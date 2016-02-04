@@ -29,6 +29,8 @@ public class GM : MonoBehaviour {
 				debug_label1.GetComponent<UILabel> ().text = i.ToString ();
 
 			}
+			//i++;
+			//debug_label1.GetComponent<UILabel> ().text = i.ToString ();
 
 		}
 	}
