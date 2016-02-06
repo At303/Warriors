@@ -40,6 +40,8 @@ namespace gamedata
 		public static GameObject debug_label2;
 
 		public static GameObject chest_sprite;
+		public static GameObject chest_opened_sprite;
+
 		public static GameObject slash_animation;
 // ************************************************************************************************************* //
 
@@ -48,10 +50,13 @@ namespace gamedata
 		void Start () {
 			debug_label1 = GameObject.Find ("debug_label1");
 			debug_label2 = GameObject.Find ("debug_label2");
+
 			chest_sprite = GameObject.Find ("chest_sprite");
+			chest_opened_sprite = GameObject.Find ("chest_opened_sprite");
+			chest_opened_sprite.SetActive (false);
 // **************************************    GameObject init    ************************************************ //
-			chest_struct.HP = 100f;
-			chest_struct._HP = 100f;
+			chest_struct.HP = 1000f;
+			chest_struct._HP = 1000f;
 
 			touch_struct.damage = 10f;
 
