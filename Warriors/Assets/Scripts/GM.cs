@@ -11,9 +11,10 @@ public class GM : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-		if (Input.GetMouseButtonDown (0)) {
+	void Update () 
+	{
+		if (Input.GetMouseButtonDown (0)) 
+		{
 			//Get the mouse position on the screen and send a raycast into the game world from that position.
 			Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint (Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast (worldPoint, Vector2.zero);
@@ -23,8 +24,8 @@ public class GM : MonoBehaviour {
 			GameData.slash_animation = GameObject.Find (slash_animation_name);
 
 			//If something was hit, the RaycastHit2D.collider will not be null.
-			if (hit.collider != null) {
-
+			if (hit.collider != null) 
+			{
 				// slash sprite enable
 				GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
 				GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
@@ -32,10 +33,17 @@ public class GM : MonoBehaviour {
 				// chest sprite animation enable
 				GameData.chest_sprite.GetComponent<Animator>().SetTrigger("enable");
 
-			}
-			//i++;
-			//debug_label1.GetComponent<UILabel> ().text = i.ToString ();
+				// Chest box HP modify
+				GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.touch_struct.damage;
+				float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+				GameData.chest_sprite.GetComponent<UIProgressBar> ().value = fHP;
 
+				// if chest HP is under 0, reset chest HP.
+				if (GameData.chest_struct._HP <= 0) 
+				{
+					GameData.chest_struct._HP = GameData.chest_struct.HP;
+				}
+			}
 		}
 	}
 
@@ -71,8 +79,5 @@ public class GM : MonoBehaviour {
 				}
 			}
 		}
-
-
 	}
-
 }

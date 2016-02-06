@@ -7,6 +7,32 @@ namespace gamedata
 {
 	public class GameData : MonoBehaviour {
 
+// **************************************    Game data Struct    ************************************************ //
+
+		// Treasure Chest struct
+		public struct coin_struct
+		{
+			public static float total;
+		}
+
+		// Treasure Chest struct
+		public struct chest_struct
+		{
+			public static int Level;
+			public static float HP;
+			public static float _HP;										// to save the current chest HP
+			public static float drop_gold;
+			public static float attacked_gold;
+			public static float upgrade_cost;
+		}
+
+		// Touch struct
+		public struct touch_struct
+		{
+			public static int Level;
+			public static float damage;
+			public static float upgrade_cost;
+		}
 
 // **************************************    GameObject data    ************************************************ //
 
@@ -23,6 +49,12 @@ namespace gamedata
 			debug_label1 = GameObject.Find ("debug_label1");
 			debug_label2 = GameObject.Find ("debug_label2");
 			chest_sprite = GameObject.Find ("chest_sprite");
+// **************************************    GameObject init    ************************************************ //
+			chest_struct.HP = 100f;
+			chest_struct._HP = 100f;
+
+			touch_struct.damage = 10f;
+
 		}
 		
 		// Update is called once per frame
