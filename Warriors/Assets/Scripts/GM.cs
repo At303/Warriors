@@ -5,12 +5,15 @@ public class GM : MonoBehaviour {
 
 	public static GameObject debug_label1;
 	public static GameObject debug_label2;
+
+	public static GameObject chest_sprite;
 	public static GameObject slash_animation;
 	int i = 0;
 	// Use this for initialization
 	void Start () {
 		debug_label1 = GameObject.Find ("debug_label1");
 		debug_label2 = GameObject.Find ("debug_label2");
+		chest_sprite = GameObject.Find ("chest_sprite");
 	}
 	
 	// Update is called once per frame
@@ -28,9 +31,12 @@ public class GM : MonoBehaviour {
 			//If something was hit, the RaycastHit2D.collider will not be null.
 			if (hit.collider != null) {
 
-				//slash sprite enable
+				// slash sprite enable
 				slash_animation.GetComponent<Animator>().SetTrigger("enable");
 				slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+
+				// chest sprite animation enable
+				chest_sprite.GetComponent<Animator>().SetTrigger("enable");
 
 			}
 			//i++;
