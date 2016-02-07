@@ -40,7 +40,10 @@ namespace gamedata
 
 		// label object
 		public static GameObject coin_total_label;
-		public static GameObject chhest_lvup_cost_label;
+		public static GameObject chest_lvup_cost_label;
+		public static GameObject chest_lv_label;
+		public static GameObject chest_dropgold_current_label;
+		public static GameObject chest_dropgold_after_label;
 
 		// sprite object
 		public static GameObject chest_sprite;
@@ -70,8 +73,12 @@ namespace gamedata
 			chest_opened_sprite.SetActive (false);
 
 			chest_lvup_btn = GameObject.Find ("chest_levelup_btn");
-			chhest_lvup_cost_label = GameObject.Find ("chest_levelup_cost_label");
+			chest_lvup_cost_label = GameObject.Find ("_chest_levelup_cost_label");
+			chest_dropgold_current_label = GameObject.Find ("_chest_dropgold_current_label");
+			chest_dropgold_after_label = GameObject.Find ("_chest_dropgold_after_label");
+
 			chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+			chest_lv_label = GameObject.Find ("_chest_lv_label");
 
 // **************************************    GameObject init    ************************************************ //
 			coin_struct.total = 0f;
@@ -82,7 +89,7 @@ namespace gamedata
 			chest_struct._HP = 100f;
 			chest_struct.attacked_gold = (float)chest_struct.Level;
 			chest_struct.upgrade_cost = 100f;
-			chhest_lvup_cost_label.GetComponent<UILabel> ().text = chest_struct.upgrade_cost.ToString ();
+			update_chest_data_label ();
 
 			// touch init //
 			touch_struct.damage = 2f;
@@ -92,6 +99,26 @@ namespace gamedata
 		// Update is called once per frame
 		void Update () {
 		
+		}
+
+		// Update Chest button all labels
+		public static void update_chest_data_label()
+		{
+			chest_lvup_cost_label.GetComponent<UILabel> ().text = chest_struct.upgrade_cost.ToString ();
+			chest_lv_label.GetComponent<UILabel> ().text = chest_struct.Level.ToString ();
+
+		}
+
+		// Update Chest data
+		public static void update_chest_data_struct()
+		{
+			chest_struct.Level = chest_struct.Level + 1;
+			chest_struct.HP = chest_struct.HP  + 100f ;
+			chest_struct._HP = chest_struct._HP  + 100f;
+			chest_struct.attacked_gold = (float)chest_struct.Level;
+			chest_struct.upgrade_cost = chest_struct.upgrade_cost + 100f;
+			update_chest_data_label ();
+
 		}
 	}
 
