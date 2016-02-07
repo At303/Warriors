@@ -746,6 +746,103 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: DungeonColor2@64x64_95
   mFillCenter: 1
+--- !u!1 &81163429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 81163430}
+  - 114: {fileID: 81163431}
+  m_Layer: 5
+  m_Name: chest_HUDText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &81163430
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81163429}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 342, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1477418565}
+  m_RootOrder: 2
+--- !u!114 &81163431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 81163429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  font: {fileID: 0}
+  bitmapFont: {fileID: 0}
+  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
+  fontSize: 64
+  fontStyle: 1
+  applyGradient: 0
+  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  effect: 1
+  effectColor: {r: 0, g: 0, b: 0, a: 1}
+  offsetCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 3
+      value: 40
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1.525
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &88276327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,7 +3683,7 @@ Transform:
   m_GameObject: {fileID: 397735267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0010405828, y: 0.0010405828, z: 0.0010405828}
+  m_LocalScale: {x: 0.0010416667, y: 0.0010416667, z: 0.0010416667}
   m_Children:
   - {fileID: 1509842278}
   - {fileID: 245446472}
@@ -8376,7 +8473,7 @@ GameObject:
   - 4: {fileID: 794779666}
   - 114: {fileID: 794779667}
   m_Layer: 5
-  m_Name: debug_label1
+  m_Name: coin_total_label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8389,11 +8486,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 794779665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -281, y: 818, z: 0}
+  m_LocalPosition: {x: -204.99998, y: 819.99994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1464005023}
-  m_RootOrder: 2
+  m_Father: {fileID: 1678163837}
+  m_RootOrder: 1
 --- !u!114 &794779667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8424,20 +8521,20 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 210
-  mHeight: 48
+  mWidth: 352
+  mHeight: 46
   mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 4.375
+  aspectRatio: 7.652174
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: d7697c83b7b91a241a155eafa142c00b, type: 2}
-  mText: New Label
-  mFontSize: 48
+  mText: 0
+  mFontSize: 40
   mFontStyle: 1
-  mAlignment: 0
+  mAlignment: 1
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -10122,7 +10219,7 @@ Transform:
   - {fileID: 1123639786}
   - {fileID: 179491603}
   m_Father: {fileID: 1464005023}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!114 &1084590839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12977,7 +13074,6 @@ Transform:
   m_Children:
   - {fileID: 1639577742}
   - {fileID: 22965182}
-  - {fileID: 794779666}
   - {fileID: 1477418565}
   - {fileID: 1084590838}
   - {fileID: 1678163837}
@@ -13183,8 +13279,9 @@ Transform:
   m_Children:
   - {fileID: 1253263680}
   - {fileID: 468813509}
+  - {fileID: 81163430}
   m_Father: {fileID: 1464005023}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &1484002079
 GameObject:
   m_ObjectHideFlags: 0
@@ -15015,8 +15112,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1097123537}
+  - {fileID: 794779666}
   m_Father: {fileID: 1464005023}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &1682430800
 GameObject:
   m_ObjectHideFlags: 0

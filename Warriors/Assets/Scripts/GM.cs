@@ -15,7 +15,7 @@ public class GM : MonoBehaviour {
 	void Start () {
 
 	}
-
+	/*
 
 	// Update is called once per frame
 	void Update () 
@@ -69,6 +69,12 @@ public class GM : MonoBehaviour {
 	
 					GameData.chest_opened_sprite.SetActive (true);
 				}
+
+
+				// Test HUDText;;;;
+				string get_coin_str = "+" + GameData.chest_struct.attacked_gold ;
+				GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
+
 			} 
 			else if (hit.collider != null) 
 			{
@@ -83,7 +89,7 @@ public class GM : MonoBehaviour {
 		}
 	}
 
-
+	*/
 	void FixedUpdate()
 	{
 		// Single touch
@@ -98,17 +104,16 @@ public class GM : MonoBehaviour {
 				Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
-				// Random slash animation
+				// Random touch slash animation
 				string slash_animation_name = "slash" + Random.Range(1,3).ToString();
 				GameData.slash_animation = GameObject.Find (slash_animation_name);
 
-				//If touch screen is on the fixed range, excute the code.
-				if (hit.collider != null) 
+				//If touch is on the fixed range, excute the code.
+				if (hit.collider != null  && !(opened_chest_box.enable_disable_chest_open)) 
 				{
 					// slash sprite enable
 					GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
 					GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
-
 
 					// Chest box HP modify
 					GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.touch_struct.damage;
@@ -130,6 +135,13 @@ public class GM : MonoBehaviour {
 					// chest sprite animation enable
 					GameData.chest_sprite.GetComponent<Animator>().SetTrigger("enable");
 
+					// Test HUDText;;;;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gold ;
+					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
+
+					// Add touch coin to total_coin and update total coin label
+					GameData.coin_struct.total = GameData.coin_struct.total + GameData.chest_struct.attacked_gold;
+					GameData.coin_tatal_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
 
 					// if chest HP is under 0, reset chest HP.
 					if (GameData.chest_struct._HP <= 0) 
@@ -144,6 +156,23 @@ public class GM : MonoBehaviour {
 
 						GameData.chest_opened_sprite.SetActive (true);
 					}
+				}
+				else if (hit.collider != null) 		// opened chest is enable.
+				{
+					// only touched in the collision area //
+
+					// slash sprite enable
+					GameData.slash_animation.GetComponent<Animator> ().SetTrigger ("enable");
+					GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+
+					// (Fever TIME) X2 Add touch coin to total_coin and update total coin label
+					GameData.coin_struct.total = GameData.coin_struct.total + (GameData.chest_struct.attacked_gold*2);
+					GameData.coin_tatal_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
+
+					// Test HUDText;;;;
+					string get_coin_str = "+" + (GameData.chest_struct.attacked_gold*2) ;
+					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
+
 				}
 			}
 		}
