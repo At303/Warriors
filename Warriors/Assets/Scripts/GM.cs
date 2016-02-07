@@ -16,7 +16,7 @@ public class GM : MonoBehaviour {
 
 	}
 
-	/*
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -31,10 +31,9 @@ public class GM : MonoBehaviour {
 			GameData.slash_animation = GameObject.Find (slash_animation_name);
 
 			//If something was hit, the RaycastHit2D.collider will not be null.
-			if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open)) 
-			{
+			if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open)) {
 				// slash sprite enable
-				GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+				GameData.slash_animation.GetComponent<Animator> ().SetTrigger ("enable");
 				GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 
 				// Chest box HP modify
@@ -55,12 +54,11 @@ public class GM : MonoBehaviour {
 					GameData.chest_sprite.GetComponent<Animator> ().SetFloat ("speed", touch_deltatime);
 				}
 				// chest sprite animation enable
-				GameData.chest_sprite.GetComponent<Animator>().SetTrigger("enable");
+				GameData.chest_sprite.GetComponent<Animator> ().SetTrigger ("enable");
 
 
 				// if chest HP is under 0, reset chest HP.
-				if (GameData.chest_struct._HP <= 0) 
-				{
+				if (GameData.chest_struct._HP <= 0) {
 					// 보물상자 false시키고 , open된 보물상자 enable
 					GameData.chest_sprite.SetActive (false);
 					opened_chest_box.enable_disable_chest_open = true;
@@ -71,12 +69,22 @@ public class GM : MonoBehaviour {
 	
 					GameData.chest_opened_sprite.SetActive (true);
 				}
+			} 
+			else if (hit.collider != null) 
+			{
+				// only touchedd in the collision area //
+
+				// slash sprite enable
+				GameData.slash_animation.GetComponent<Animator> ().SetTrigger ("enable");
+				GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+
+
 			}
 		}
 	}
-	*/
 
-	void Update()
+
+	void FixedUpdate()
 	{
 		// Single touch
 		if (Input.touchCount > 0) 

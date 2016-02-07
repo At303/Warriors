@@ -55,8 +55,8 @@ namespace gamedata
 			chest_opened_sprite = GameObject.Find ("chest_opened_sprite");
 			chest_opened_sprite.SetActive (false);
 // **************************************    GameObject init    ************************************************ //
-			chest_struct.HP = 1000f;
-			chest_struct._HP = 1000f;
+			chest_struct.HP = 100f;
+			chest_struct._HP = 100f;
 
 			touch_struct.damage = 10f;
 
