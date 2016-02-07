@@ -141,7 +141,7 @@ public class GM : MonoBehaviour {
 
 					// Add touch coin to total_coin and update total coin label
 					GameData.coin_struct.total = GameData.coin_struct.total + GameData.chest_struct.attacked_gold;
-					GameData.coin_tatal_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
+					GameData.coin_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
 
 					// if chest HP is under 0, reset chest HP.
 					if (GameData.chest_struct._HP <= 0) 
@@ -156,6 +156,10 @@ public class GM : MonoBehaviour {
 
 						GameData.chest_opened_sprite.SetActive (true);
 					}
+
+					// check upgrade buttons들을 활성화 할 지말지 .
+					check_lvup_button_is_enable_or_not ();
+
 				}
 				else if (hit.collider != null) 		// opened chest is enable.
 				{
@@ -167,14 +171,29 @@ public class GM : MonoBehaviour {
 
 					// (Fever TIME) X2 Add touch coin to total_coin and update total coin label
 					GameData.coin_struct.total = GameData.coin_struct.total + (GameData.chest_struct.attacked_gold*2);
-					GameData.coin_tatal_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
+					GameData.coin_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
 
 					// Test HUDText;;;;
 					string get_coin_str = "+" + (GameData.chest_struct.attacked_gold*2) ;
 					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
 
+					// check upgrade buttons들을 활성화 할 지말지 .
+					check_lvup_button_is_enable_or_not ();
 				}
 			}
 		}
 	}
+
+	//check whether upgrade buttons are possiable or not
+	public static void check_lvup_button_is_enable_or_not()
+	{
+		if (GameData.coin_struct.total >= GameData.chest_struct.upgrade_cost) {
+			GameData.chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
+		} else 
+		{
+			GameData.chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+		}
+	}
+
+
 }

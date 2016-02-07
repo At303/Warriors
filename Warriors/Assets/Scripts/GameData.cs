@@ -38,13 +38,23 @@ namespace gamedata
 
 		public static GameObject debug_label2;
 
-		public static GameObject coin_tatal_label;
+		// label object
+		public static GameObject coin_total_label;
+		public static GameObject chhest_lvup_cost_label;
 
+		// sprite object
 		public static GameObject chest_sprite;
 		public static GameObject chest_opened_sprite;
+
+		// HUD object
 		public static GameObject chest_HUDText_control;
 
+		// animation object
 		public static GameObject slash_animation;
+
+		// button Object
+		public static GameObject chest_lvup_btn;
+
 // ************************************************************************************************************* //
 
 
@@ -52,21 +62,29 @@ namespace gamedata
 		void Start () {
 			debug_label2 = GameObject.Find ("debug_label2");
 
-			coin_tatal_label = GameObject.Find ("coin_total_label");
+			coin_total_label = GameObject.Find ("coin_total_label");
 
 			chest_sprite = GameObject.Find ("chest_sprite");
 			chest_HUDText_control = GameObject.Find ("chest_HUDText");
 			chest_opened_sprite = GameObject.Find ("chest_opened_sprite");
 			chest_opened_sprite.SetActive (false);
+
+			chest_lvup_btn = GameObject.Find ("chest_levelup_btn");
+			chhest_lvup_cost_label = GameObject.Find ("chest_levelup_cost_label");
+			chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+
 // **************************************    GameObject init    ************************************************ //
 			coin_struct.total = 0f;
 
+			// chest init //
 			chest_struct.Level = 1;
 			chest_struct.HP = 100f;
 			chest_struct._HP = 100f;
 			chest_struct.attacked_gold = (float)chest_struct.Level;
 			chest_struct.upgrade_cost = 100f;
+			chhest_lvup_cost_label.GetComponent<UILabel> ().text = chest_struct.upgrade_cost.ToString ();
 
+			// touch init //
 			touch_struct.damage = 2f;
 
 		}
