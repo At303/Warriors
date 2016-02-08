@@ -107,6 +107,8 @@ namespace gamedata
 			chest_lvup_cost_label.GetComponent<UILabel> ().text = chest_struct.upgrade_cost.ToString ();
 			chest_lv_label.GetComponent<UILabel> ().text = chest_struct.Level.ToString ();
 
+			chest_dropgold_current_label.GetComponent<UILabel>().text = chest_struct.attacked_gold.ToString ();
+			chest_dropgold_after_label.GetComponent<UILabel> ().text = (chest_struct.attacked_gold + 1).ToString ();
 		}
 
 		// Update Chest data

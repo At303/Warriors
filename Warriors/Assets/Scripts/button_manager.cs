@@ -34,6 +34,9 @@ public class button_manager : MonoBehaviour {
 
 
 	}
-
+	public void Clicked_touch_Level_UP()
+	{
+		print ("touch button");
+	}
 
 }
