@@ -165,6 +165,7 @@ namespace gamedata
 			{
 				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
+
 			if (coin_struct.total >= touch_struct.upgrade_cost) {
 				touch_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
 			} else 
