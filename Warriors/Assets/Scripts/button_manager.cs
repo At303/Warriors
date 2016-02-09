@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using gamedata;
+using UnityEngine.SceneManagement;
 
 public class button_manager : MonoBehaviour {
 
@@ -48,15 +49,19 @@ public class button_manager : MonoBehaviour {
 		GameData.check_lvup_button_is_enable_or_not();
 	}
 
-
-
-
 	public void Clicked_human_Level_UP()
 	{
 		print ("human lvup");
 		Human.human_struct.gameobject.SetActive (true);
 		Human.upgrade_human_data ();
 		Human.update_human_data_label ();
+
 	}
 
+	public void Clicked_boss_scene()
+	{
+		SceneManager.LoadScene ("warriors_boss");
+
+	}
+		
 }

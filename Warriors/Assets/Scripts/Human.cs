@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Human : MonoBehaviour {
 
 
@@ -58,10 +59,10 @@ public class Human : MonoBehaviour {
 
 	public static void update_human_data_label()
 	{
+		
 		human_struct.level_label.GetComponent<UILabel> ().text = human_struct.Level.ToString ();
 		human_struct.damage_label.GetComponent<UILabel> ().text = human_struct.damage.ToString ();
 		human_struct.upgrade_cost_label.GetComponent<UILabel> ().text = human_struct.upgrade_cost.ToString ();
-
 
 	}
 }
