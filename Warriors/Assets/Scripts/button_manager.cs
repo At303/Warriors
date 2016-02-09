@@ -54,6 +54,9 @@ public class button_manager : MonoBehaviour {
 	public void Clicked_human_Level_UP()
 	{
 		print ("human lvup");
+		Human.human_struct.gameobject.SetActive (true);
+		Human.upgrade_human_data ();
+		Human.update_human_data_label ();
 	}
 
 }
