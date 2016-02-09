@@ -90,6 +90,62 @@ public class GM : MonoBehaviour {
 	}
 
 	*/
+
+	public static void attacked_chest()
+	{
+		// Get a gap of two touch
+		float before_touch = 0.0f;
+		float current_touch = 0.0f;
+		float touch_deltatime = 0.0f;
+
+		// Chest box HP modify
+		GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.touch_struct.damage;
+		float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+		GameData.chest_sprite.GetComponent<UIProgressBar> ().value = fHP;
+
+
+		// touch 사이의 차이에 따라서 상자 animation speed control.
+		before_touch = current_touch; 
+		current_touch = Time.time;
+		touch_deltatime = current_touch - before_touch;
+		GameData.debug_label2.GetComponent<UILabel> ().text = touch_deltatime.ToString ();
+
+		//coin box attack animation 
+		if (touch_deltatime < 0.17) {
+			GameData.chest_sprite.GetComponent<Animator> ().SetFloat ("speed", touch_deltatime);
+		} else {
+			GameData.chest_sprite.GetComponent<Animator> ().SetFloat ("speed", touch_deltatime);
+		}
+		// chest sprite animation enable
+		GameData.chest_sprite.GetComponent<Animator>().SetTrigger("enable");
+
+		// Test HUDText;;;;
+		string get_coin_str = "+" + GameData.chest_struct.attacked_gold ;
+		GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
+
+		// Add touch coin to total_coin and update total coin label
+		GameData.coin_struct.total = GameData.coin_struct.total + GameData.chest_struct.attacked_gold;
+		GameData.coin_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
+
+		// if chest HP is under 0, reset chest HP.
+		if (GameData.chest_struct._HP <= 0) 
+		{
+			// 보물상자 false시키고 , open된 보물상자 enable
+			GameData.chest_sprite.SetActive (false);
+			opened_chest_box.enable_disable_chest_open = true;
+
+			opened_chest_box.target_time = Time.time + 5.0f;
+			GameData.chest_struct._HP = GameData.chest_struct.HP;
+			GameData.chest_sprite.GetComponent<UIProgressBar> ().value = GameData.chest_struct._HP;
+
+			GameData.chest_opened_sprite.SetActive (true);
+		}
+
+		// check upgrade buttons들을 활성화 할 지말지 .
+		GameData.check_lvup_button_is_enable_or_not ();
+
+	}
+
 	void FixedUpdate()
 	{
 		// Single touch
@@ -158,7 +214,7 @@ public class GM : MonoBehaviour {
 					}
 
 					// check upgrade buttons들을 활성화 할 지말지 .
-					check_lvup_button_is_enable_or_not ();
+					GameData.check_lvup_button_is_enable_or_not ();
 
 				}
 				else if (hit.collider != null) 		// opened chest is enable.
@@ -178,22 +234,13 @@ public class GM : MonoBehaviour {
 					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
 
 					// check upgrade buttons들을 활성화 할 지말지 .
-					check_lvup_button_is_enable_or_not ();
+					GameData.check_lvup_button_is_enable_or_not ();
 				}
 			}
 		}
 	}
 
-	//check whether upgrade buttons are possiable or not
-	public static void check_lvup_button_is_enable_or_not()
-	{
-		if (GameData.coin_struct.total >= GameData.chest_struct.upgrade_cost) {
-			GameData.chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
-		} else 
-		{
-			GameData.chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
-		}
-	}
+
 
 
 }

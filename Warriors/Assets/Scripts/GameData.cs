@@ -45,6 +45,11 @@ namespace gamedata
 		public static GameObject chest_dropgold_current_label;
 		public static GameObject chest_dropgold_after_label;
 
+		public static GameObject touch_lv_label;
+		public static GameObject touch_lvup_cost_label;
+		public static GameObject touch_damage_current_label;
+		public static GameObject touch_damage_after_label;
+
 		// sprite object
 		public static GameObject chest_sprite;
 		public static GameObject chest_opened_sprite;
@@ -57,6 +62,8 @@ namespace gamedata
 
 		// button Object
 		public static GameObject chest_lvup_btn;
+		public static GameObject touch_lvup_btn;
+
 
 // ************************************************************************************************************* //
 
@@ -73,26 +80,32 @@ namespace gamedata
 			chest_opened_sprite.SetActive (false);
 
 			chest_lvup_btn = GameObject.Find ("chest_levelup_btn");
+			chest_lv_label = GameObject.Find ("_chest_lv_label");
 			chest_lvup_cost_label = GameObject.Find ("_chest_levelup_cost_label");
 			chest_dropgold_current_label = GameObject.Find ("_chest_dropgold_current_label");
 			chest_dropgold_after_label = GameObject.Find ("_chest_dropgold_after_label");
 
-			chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
-			chest_lv_label = GameObject.Find ("_chest_lv_label");
+			touch_lvup_btn = GameObject.Find ("_touch_levelup_btn");
+			touch_lv_label = GameObject.Find ("_touch_lv_label");
+			touch_lvup_cost_label = GameObject.Find ("_touch_levelup_cost_label");
+			touch_damage_current_label = GameObject.Find ("_touch_damage_current_label");
+			touch_damage_after_label = GameObject.Find ("_touch_damage_after_label");
 
+			chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+			touch_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 // **************************************    GameObject init    ************************************************ //
 			coin_struct.total = 0f;
 
 			// chest init //
-			chest_struct.Level = 1;
-			chest_struct.HP = 100f;
-			chest_struct._HP = 100f;
-			chest_struct.attacked_gold = (float)chest_struct.Level;
-			chest_struct.upgrade_cost = 100f;
+			update_chest_data_struct();
 			update_chest_data_label ();
 
 			// touch init //
-			touch_struct.damage = 2f;
+			update_touch_data_struct();
+			update_touch_data_label();
+
+			// check whether all buttons is enable or not //
+			check_lvup_button_is_enable_or_not();
 
 		}
 		
@@ -119,8 +132,45 @@ namespace gamedata
 			chest_struct._HP = chest_struct._HP  + 100f;
 			chest_struct.attacked_gold = (float)chest_struct.Level;
 			chest_struct.upgrade_cost = chest_struct.upgrade_cost + 100f;
-			update_chest_data_label ();
+			//update_chest_data_label ();
 
+		}
+
+		// Update touch button all labels
+		public static void update_touch_data_label()
+		{
+			touch_lv_label.GetComponent<UILabel> ().text = touch_struct.Level.ToString ();
+			touch_lvup_cost_label.GetComponent<UILabel> ().text = touch_struct.upgrade_cost.ToString ();
+
+			touch_damage_current_label.GetComponent<UILabel>().text = touch_struct.damage.ToString ();
+			touch_damage_after_label.GetComponent<UILabel> ().text = (touch_struct.damage + 1).ToString ();
+		}
+
+		// Update touch data
+		public static void update_touch_data_struct()
+		{
+			touch_struct.Level = touch_struct.Level + 1;
+			touch_struct.damage = touch_struct.damage + 1;
+			touch_struct.upgrade_cost = touch_struct.upgrade_cost + 100;
+
+		}
+
+
+		//check whether upgrade buttons are possiable or not
+		public static void check_lvup_button_is_enable_or_not()
+		{
+			if (coin_struct.total >= chest_struct.upgrade_cost) {
+				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
+			} else 
+			{
+				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+			}
+			if (coin_struct.total >= touch_struct.upgrade_cost) {
+				touch_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
+			} else 
+			{
+				touch_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
+			}
 		}
 	}
 
