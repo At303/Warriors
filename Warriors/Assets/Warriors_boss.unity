@@ -3733,6 +3733,7 @@ GameObject:
   - 95: {fileID: 496743692}
   - 61: {fileID: 496743694}
   - 114: {fileID: 496743695}
+  - 50: {fileID: 496743693}
   m_Layer: 5
   m_Name: slash_bg_square
   m_TagString: Untagged
@@ -3799,6 +3800,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!50 &496743693
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 496743689}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &496743694
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3808,7 +3826,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
@@ -9267,11 +9285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 111650, guid: e084c7e09c93241f3bf51edec7269a79, type: 2}
-  - {fileID: 175056, guid: d9bf6fbb70cca4050a5759eb6518ea33, type: 2}
-  - {fileID: 151236, guid: 77bd917cb905e4d79a68e76c681f50b0, type: 2}
-  - {fileID: 137714, guid: 17646b0b61b554900b2e42063e29ceb5, type: 2}
-  - {fileID: 151226, guid: 487b0cc1f5cf8445c80192e5210b3092, type: 2}
+  - {fileID: 181470, guid: edd0658b80c4a47c3b4be0224f5f9904, type: 2}
+  - {fileID: 113686, guid: 1df3eb81bb4b4476b868e62d70ed2ed9, type: 2}
+  - {fileID: 110698, guid: d1f8a973781c54a48a9ea5f5eb1cb24a, type: 2}
+  - {fileID: 132550, guid: 7652bf069f0c742f18ba4c56d7695651, type: 2}
+  - {fileID: 169510, guid: b63b63428a74445d89b5d47a94bdb061, type: 2}
   move_prefabs: []
 --- !u!114 &1248217138
 MonoBehaviour:
