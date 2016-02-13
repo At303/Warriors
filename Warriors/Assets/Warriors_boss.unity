@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 7379582}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: slash_prefabs_parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ Transform:
   - {fileID: 496743690}
   - {fileID: 1248217136}
   m_Father: {fileID: 516165560}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &17106662
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,6 +2463,45 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
+--- !u!1 &307964084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 307964086}
+  - 114: {fileID: 307964085}
+  m_Layer: 5
+  m_Name: slash_btn_manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &307964085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307964084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca2631947101f45328a30b01144f9d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &307964086
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307964084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 516165560}
+  m_RootOrder: 0
 --- !u!1 &312431226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,7 +2934,7 @@ Transform:
   m_GameObject: {fileID: 330560327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0010416667, y: 0.0010416667, z: 0.0010416667}
+  m_LocalScale: {x: 0.001039501, y: 0.001039501, z: 0.001039501}
   m_Children:
   - {fileID: 1665970281}
   m_Father: {fileID: 0}
@@ -3869,7 +3908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &505143607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3948,6 +3987,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 307964086}
   - {fileID: 505143606}
   - {fileID: 752351947}
   - {fileID: 1639283858}
@@ -4129,8 +4169,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 531374009}
   - 114: {fileID: 531374010}
+  - 114: {fileID: 531374011}
+  - 65: {fileID: 531374012}
   m_Layer: 5
-  m_Name: Sprite (2)
+  m_Name: slash3_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4147,7 +4189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &531374010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4181,7 +4223,7 @@ MonoBehaviour:
   mWidth: 160
   mHeight: 182
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.8791209
@@ -4201,6 +4243,47 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: slash02_btn_Off
   mFillCenter: 1
+--- !u!114 &531374011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 531374008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 531374008}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: slash02_btn_On
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 307964085}
+    mMethodName: Clicked_slash3_button
+    mParameters: []
+    oneShot: 0
+--- !u!65 &531374012
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 531374008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160, y: 182, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &532250330
 GameObject:
   m_ObjectHideFlags: 0
@@ -5626,7 +5709,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!114 &752351948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7066,8 +7149,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 960059473}
   - 114: {fileID: 960059474}
+  - 114: {fileID: 960059475}
+  - 65: {fileID: 960059476}
   m_Layer: 5
-  m_Name: Sprite (4)
+  m_Name: slash5_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7084,7 +7169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &960059474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7118,7 +7203,7 @@ MonoBehaviour:
   mWidth: 160
   mHeight: 182
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.8791209
@@ -7138,6 +7223,47 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: slash04_btn_Off
   mFillCenter: 1
+--- !u!114 &960059475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 960059472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 960059472}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: slash04_btn_On
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 307964085}
+    mMethodName: Clicked_slash5_button
+    mParameters: []
+    oneShot: 0
+--- !u!65 &960059476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 960059472}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160, y: 182, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &974283976
 GameObject:
   m_ObjectHideFlags: 0
@@ -8281,8 +8407,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1077823494}
   - 114: {fileID: 1077823495}
+  - 114: {fileID: 1077823496}
+  - 65: {fileID: 1077823497}
   m_Layer: 5
-  m_Name: Sprite (3)
+  m_Name: slash4_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8299,7 +8427,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1077823495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8333,7 +8461,7 @@ MonoBehaviour:
   mWidth: 160
   mHeight: 182
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.8791209
@@ -8353,6 +8481,47 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: slash03_btn_Off
   mFillCenter: 1
+--- !u!114 &1077823496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077823493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1077823493}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: slash03_btn_On
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 307964085}
+    mMethodName: Clicked_slash4_button
+    mParameters: []
+    oneShot: 0
+--- !u!65 &1077823497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1077823493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160, y: 182, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1079947284
 GameObject:
   m_ObjectHideFlags: 0
@@ -9252,7 +9421,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1248217136}
-  - 114: {fileID: 1248217138}
   - 114: {fileID: 1248217137}
   m_Layer: 5
   m_Name: prefabs_panel
@@ -9268,8 +9436,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1248217135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 610, y: -507, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 780, y: -507, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 7379582}
   m_RootOrder: 1
@@ -9285,58 +9453,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 181470, guid: edd0658b80c4a47c3b4be0224f5f9904, type: 2}
-  - {fileID: 113686, guid: 1df3eb81bb4b4476b868e62d70ed2ed9, type: 2}
-  - {fileID: 110698, guid: d1f8a973781c54a48a9ea5f5eb1cb24a, type: 2}
-  - {fileID: 132550, guid: 7652bf069f0c742f18ba4c56d7695651, type: 2}
-  - {fileID: 169510, guid: b63b63428a74445d89b5d47a94bdb061, type: 2}
-  move_prefabs: []
---- !u!114 &1248217138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248217135}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  showInPanelTool: 1
-  generateNormals: 0
-  widgetsAreStatic: 0
-  cullWhileDragging: 1
-  alwaysOnScreen: 0
-  anchorOffset: 0
-  softBorderPadding: 1
-  renderQueue: 0
-  startingRenderQueue: 3004
-  mClipTexture: {fileID: 0}
-  mAlpha: 1
-  mClipping: 0
-  mClipRange: {x: 0, y: 0, z: 300, w: 200}
-  mClipSoftness: {x: 4, y: 4}
-  mDepth: 1
-  mSortingOrder: 0
-  mSortingLayerName: 
-  mClipOffset: {x: 0, y: 0}
+  - {fileID: 176404, guid: edd0658b80c4a47c3b4be0224f5f9904, type: 2}
+  - {fileID: 109616, guid: 1df3eb81bb4b4476b868e62d70ed2ed9, type: 2}
+  - {fileID: 185084, guid: d1f8a973781c54a48a9ea5f5eb1cb24a, type: 2}
+  - {fileID: 133686, guid: 7652bf069f0c742f18ba4c56d7695651, type: 2}
+  - {fileID: 168980, guid: b63b63428a74445d89b5d47a94bdb061, type: 2}
 --- !u!1 &1288146943
 GameObject:
   m_ObjectHideFlags: 0
@@ -11452,8 +11573,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1608499898}
   - 114: {fileID: 1608499899}
+  - 114: {fileID: 1608499900}
+  - 65: {fileID: 1608499901}
   m_Layer: 5
-  m_Name: Sprite (1)
+  m_Name: slash2_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11470,7 +11593,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &1608499899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11504,7 +11627,7 @@ MonoBehaviour:
   mWidth: 160
   mHeight: 182
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.8791209
@@ -11524,6 +11647,47 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: slash01_btn_Off
   mFillCenter: 1
+--- !u!114 &1608499900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1608499897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1608499897}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: slash01_btn_On
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 307964085}
+    mMethodName: Clicked_slash2_button
+    mParameters: []
+    oneShot: 0
+--- !u!65 &1608499901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1608499897}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160, y: 182, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1611220935
 GameObject:
   m_ObjectHideFlags: 0
@@ -11614,8 +11778,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 1639283858}
   - 114: {fileID: 1639283859}
+  - 114: {fileID: 1639283860}
+  - 65: {fileID: 1639283861}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: slash1_btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11632,7 +11798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 516165560}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &1639283859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11666,7 +11832,7 @@ MonoBehaviour:
   mWidth: 160
   mHeight: 182
   mDepth: 1
-  autoResizeBoxCollider: 0
+  autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 0.8791209
@@ -11686,6 +11852,47 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: slash00_btn_Off
   mFillCenter: 1
+--- !u!114 &1639283860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639283857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 1639283857}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: slash00_btn_On
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 307964085}
+    mMethodName: Clicked_slash1_button
+    mParameters: []
+    oneShot: 0
+--- !u!65 &1639283861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639283857}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 160, y: 182, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1659147908
 GameObject:
   m_ObjectHideFlags: 0
