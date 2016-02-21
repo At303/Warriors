@@ -60,7 +60,7 @@ public class slash_prefabs_2 : MonoBehaviour {
 	void move_prefabs_func(GameObject move,int distance)
 	{
 		if (move.transform.localPosition.x > (-1192 + (220 * distance))) {
-			move.transform.Translate (Vector2.left * 0.3f * Time.deltaTime, Space.World);
+			move.transform.Translate (Vector2.left * 0.6f * Time.deltaTime, Space.World);
 		} else
 		{
 			move_enable [distance] = false;

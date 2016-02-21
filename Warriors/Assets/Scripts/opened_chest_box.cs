@@ -25,14 +25,14 @@ public class opened_chest_box : MonoBehaviour {
 				float fHP = GameData.chest_struct._HP / GameData.chest_struct._HP;
 				GameData.chest_opened_sprite.GetComponent<UIProgressBar> ().value = fHP;
 
-				enable_disable_chest_open = false;
 				GameData.chest_sprite.SetActive (true);
 				GameData.chest_opened_sprite.SetActive (false);
+				enable_disable_chest_open = false;
+
 			}
 
 		}
 	}
-
 
 	void OnTriggerExit2D(Collider2D Collider2D) 
 	{
