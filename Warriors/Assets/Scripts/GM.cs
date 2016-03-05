@@ -168,7 +168,7 @@ public class GM : MonoBehaviour {
 					if (GameData.chest_struct._HP <= 0) {
 						
 						//마지막 chest animatino은 opened_chest_sprite이후 상자 크기가 변하는 bug를 방지하기 위해 animation event로 처리
-						if (animation_evt_manager.enable_chest_animation) 
+						//if (animation_evt_manager.enable_chest_animation) 
 						GameData.chest_sprite.GetComponent<Animator> ().SetTrigger ("end_enable");
 
 					} else 

@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: 1st_menu_Off
-    x: 1286
-    y: 1609
+    x: 1706
+    y: 1761
     width: 160
     height: 181
     borderLeft: 410
@@ -120,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: 2nd_menu_Off
-    x: 1544
-    y: 1761
+    x: 1286
+    y: 1609
     width: 160
     height: 181
     borderLeft: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: 3rd_menu_Off
     x: 1544
-    y: 1578
+    y: 1761
     width: 160
     height: 181
     borderLeft: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: 4rd_menu_Off
-    x: 1706
-    y: 1761
+    x: 1544
+    y: 1578
     width: 160
     height: 181
     borderLeft: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: char
-    x: 1749
+    x: 1885
     y: 1300
     width: 95
     height: 99
@@ -224,8 +224,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_01
-    x: 264
-    y: 323
+    x: 198
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -237,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_02
-    x: 603
-    y: 1224
+    x: 132
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_03
-    x: 537
-    y: 366
+    x: 66
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_04
-    x: 66
-    y: 983
+    x: 0
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_05
-    x: 264
-    y: 983
+    x: 462
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_06
     x: 396
-    y: 983
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_07
-    x: 780
+    x: 784
     y: 1239
     width: 60
     height: 49
@@ -316,7 +316,7 @@ MonoBehaviour:
     paddingBottom: 8
   - name: DungeonColor2@64x64_08
     x: 669
-    y: 965
+    y: 841
     width: 48
     height: 59
     borderLeft: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 4
   - name: DungeonColor2@64x64_09
-    x: 904
+    x: 908
     y: 1239
     width: 59
     height: 49
@@ -342,7 +342,7 @@ MonoBehaviour:
     paddingBottom: 9
   - name: DungeonColor2@64x64_10
     x: 669
-    y: 906
+    y: 782
     width: 49
     height: 57
     borderLeft: 0
@@ -354,8 +354,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 2
   - name: DungeonColor2@64x64_100
-    x: 330
-    y: 389
+    x: 537
+    y: 894
     width: 64
     height: 64
     borderLeft: 0
@@ -367,8 +367,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_101
-    x: 396
-    y: 389
+    x: 537
+    y: 960
     width: 64
     height: 64
     borderLeft: 0
@@ -380,8 +380,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_102
-    x: 462
-    y: 389
+    x: 537
+    y: 1026
     width: 64
     height: 64
     borderLeft: 0
@@ -393,8 +393,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_103
-    x: 132
-    y: 323
+    x: 537
+    y: 1092
     width: 64
     height: 64
     borderLeft: 0
@@ -406,8 +406,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_104
-    x: 132
-    y: 257
+    x: 537
+    y: 1158
     width: 64
     height: 64
     borderLeft: 0
@@ -419,8 +419,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_105
-    x: 132
-    y: 191
+    x: 537
+    y: 1224
     width: 64
     height: 64
     borderLeft: 0
@@ -432,8 +432,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_106
-    x: 132
-    y: 125
+    x: 462
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -445,8 +445,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_107
-    x: 132
-    y: 59
+    x: 330
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -459,7 +459,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_108
     x: 603
-    y: 1158
+    y: 1027
     width: 63
     height: 64
     borderLeft: 0
@@ -471,8 +471,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_109
-    x: 198
-    y: 323
+    x: 396
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -497,8 +497,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 8
   - name: DungeonColor2@64x64_110
-    x: 330
-    y: 323
+    x: 264
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -510,8 +510,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_111
-    x: 396
-    y: 323
+    x: 264
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_112
     x: 462
-    y: 323
+    y: 257
     width: 64
     height: 64
     borderLeft: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_113
-    x: 198
+    x: 396
     y: 257
     width: 64
     height: 64
@@ -549,8 +549,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_114
-    x: 198
-    y: 191
+    x: 537
+    y: 234
     width: 64
     height: 64
     borderLeft: 0
@@ -562,8 +562,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_115
-    x: 198
-    y: 125
+    x: 537
+    y: 102
     width: 64
     height: 64
     borderLeft: 0
@@ -575,8 +575,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_116
-    x: 198
-    y: 59
+    x: 537
+    y: 36
     width: 64
     height: 64
     borderLeft: 0
@@ -588,8 +588,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_117
-    x: 264
-    y: 257
+    x: 603
+    y: 1224
     width: 64
     height: 64
     borderLeft: 0
@@ -601,8 +601,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_118
-    x: 330
-    y: 257
+    x: 603
+    y: 1158
     width: 64
     height: 64
     borderLeft: 0
@@ -614,8 +614,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_119
-    x: 396
-    y: 257
+    x: 537
+    y: 366
     width: 64
     height: 64
     borderLeft: 0
@@ -640,8 +640,8 @@ MonoBehaviour:
     paddingTop: 31
     paddingBottom: 3
   - name: DungeonColor2@64x64_120
-    x: 462
-    y: 257
+    x: 537
+    y: 432
     width: 64
     height: 64
     borderLeft: 0
@@ -653,8 +653,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_121
-    x: 264
-    y: 191
+    x: 537
+    y: 762
     width: 64
     height: 64
     borderLeft: 0
@@ -666,72 +666,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_122
-    x: 264
-    y: 125
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_123
-    x: 264
-    y: 59
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_124
-    x: 330
-    y: 191
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_125
-    x: 462
-    y: 521
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_126
-    x: 0
-    y: 455
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_127
-    x: 0
+    x: 198
     y: 389
     width: 64
     height: 64
@@ -743,9 +678,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_128
-    x: 0
-    y: 323
+  - name: DungeonColor2@64x64_123
+    x: 132
+    y: 389
     width: 64
     height: 64
     borderLeft: 0
@@ -756,8 +691,47 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_129
-    x: 0
+  - name: DungeonColor2@64x64_124
+    x: 66
+    y: 59
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_125
+    x: 66
+    y: 125
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_126
+    x: 66
+    y: 191
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_127
+    x: 66
     y: 257
     width: 64
     height: 64
@@ -769,8 +743,34 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: DungeonColor2@64x64_128
+    x: 396
+    y: 455
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_129
+    x: 330
+    y: 455
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: DungeonColor2@64x64_13
-    x: 720
+    x: 724
     y: 1235
     width: 58
     height: 53
@@ -784,7 +784,7 @@ MonoBehaviour:
     paddingBottom: 6
   - name: DungeonColor2@64x64_130
     x: 0
-    y: 191
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_131
     x: 0
-    y: 125
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -810,7 +810,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_132
     x: 0
-    y: 59
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -822,8 +822,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_133
-    x: 66
-    y: 455
+    x: 330
+    y: 257
     width: 64
     height: 64
     borderLeft: 0
@@ -835,8 +835,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_134
-    x: 132
-    y: 455
+    x: 264
+    y: 257
     width: 64
     height: 64
     borderLeft: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_135
     x: 198
-    y: 455
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -861,8 +861,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_136
-    x: 264
-    y: 455
+    x: 198
+    y: 257
     width: 64
     height: 64
     borderLeft: 0
@@ -874,8 +874,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_137
-    x: 330
-    y: 455
+    x: 462
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -888,45 +888,6 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_138
     x: 396
-    y: 455
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_139
-    x: 462
-    y: 455
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_14
-    x: 66
-    y: 389
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_140
-    x: 66
     y: 323
     width: 64
     height: 64
@@ -938,9 +899,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_141
-    x: 66
-    y: 257
+  - name: DungeonColor2@64x64_139
+    x: 330
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -951,34 +912,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_142
-    x: 66
-    y: 191
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_143
-    x: 66
-    y: 125
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor2@64x64_144
-    x: 66
+  - name: DungeonColor2@64x64_14
+    x: 132
     y: 59
     width: 64
     height: 64
@@ -990,8 +925,73 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_145
+  - name: DungeonColor2@64x64_140
     x: 132
+    y: 125
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_141
+    x: 132
+    y: 191
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_142
+    x: 132
+    y: 257
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_143
+    x: 132
+    y: 323
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_144
+    x: 462
+    y: 389
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: DungeonColor2@64x64_145
+    x: 396
     y: 389
     width: 64
     height: 64
@@ -1004,7 +1004,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_146
-    x: 264
+    x: 132
     y: 3
     width: 64
     height: 54
@@ -1017,7 +1017,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 10
   - name: DungeonColor2@64x64_147
-    x: 198
+    x: 264
     y: 389
     width: 64
     height: 64
@@ -1030,7 +1030,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_148
-    x: 264
+    x: 330
     y: 389
     width: 64
     height: 64
@@ -1044,7 +1044,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_149
     x: 603
-    y: 190
+    y: 256
     width: 54
     height: 64
     borderLeft: 0
@@ -1070,7 +1070,7 @@ MonoBehaviour:
     paddingBottom: 50
   - name: DungeonColor2@64x64_150
     x: 603
-    y: 322
+    y: 190
     width: 54
     height: 64
     borderLeft: 0
@@ -1082,8 +1082,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_151
-    x: 537
-    y: 300
+    x: 198
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -1095,8 +1095,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_152
-    x: 537
-    y: 234
+    x: 264
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -1108,8 +1108,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_153
-    x: 537
-    y: 168
+    x: 198
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -1121,8 +1121,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_154
-    x: 537
-    y: 102
+    x: 198
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -1135,7 +1135,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_155
     x: 669
-    y: 1224
+    y: 1161
     width: 49
     height: 64
     borderLeft: 0
@@ -1147,8 +1147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_156
-    x: 537
-    y: 960
+    x: 0
+    y: 257
     width: 64
     height: 64
     borderLeft: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_157
     x: 669
-    y: 1026
+    y: 963
     width: 47
     height: 64
     borderLeft: 0
@@ -1173,8 +1173,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_158
-    x: 462
-    y: 125
+    x: 0
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -1186,8 +1186,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_159
-    x: 330
-    y: 125
+    x: 66
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -1199,8 +1199,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_16
-    x: 396
-    y: 191
+    x: 132
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -1212,8 +1212,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_160
-    x: 462
-    y: 191
+    x: 198
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -1225,8 +1225,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_161
-    x: 330
-    y: 59
+    x: 264
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -1251,8 +1251,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 0
   - name: DungeonColor2@64x64_163
-    x: 396
-    y: 125
+    x: 462
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -1264,8 +1264,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_164
-    x: 396
-    y: 59
+    x: 66
+    y: 389
     width: 64
     height: 64
     borderLeft: 0
@@ -1277,8 +1277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_165
-    x: 462
-    y: 59
+    x: 66
+    y: 323
     width: 64
     height: 64
     borderLeft: 0
@@ -1291,7 +1291,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_166
     x: 537
-    y: 1224
+    y: 828
     width: 64
     height: 64
     borderLeft: 0
@@ -1304,7 +1304,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_167
     x: 537
-    y: 1158
+    y: 696
     width: 64
     height: 64
     borderLeft: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_168
     x: 537
-    y: 1092
+    y: 630
     width: 64
     height: 64
     borderLeft: 0
@@ -1330,7 +1330,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_169
     x: 537
-    y: 1026
+    y: 564
     width: 64
     height: 64
     borderLeft: 0
@@ -1343,7 +1343,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_17
     x: 537
-    y: 894
+    y: 498
     width: 64
     height: 64
     borderLeft: 0
@@ -1356,7 +1356,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_170
     x: 537
-    y: 828
+    y: 300
     width: 64
     height: 64
     borderLeft: 0
@@ -1369,7 +1369,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_171
     x: 669
-    y: 715
+    y: 591
     width: 34
     height: 64
     borderLeft: 0
@@ -1382,7 +1382,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_172
     x: 537
-    y: 36
+    y: 168
     width: 64
     height: 64
     borderLeft: 0
@@ -1395,7 +1395,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_173
     x: 669
-    y: 781
+    y: 657
     width: 35
     height: 64
     borderLeft: 0
@@ -1407,8 +1407,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_174
-    x: 537
-    y: 432
+    x: 264
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -1420,8 +1420,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_175
-    x: 537
-    y: 498
+    x: 330
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -1433,8 +1433,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_176
-    x: 537
-    y: 564
+    x: 462
+    y: 191
     width: 64
     height: 64
     borderLeft: 0
@@ -1446,8 +1446,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_177
-    x: 537
-    y: 630
+    x: 330
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -1459,8 +1459,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_178
-    x: 537
-    y: 696
+    x: 396
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -1472,8 +1472,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_179
-    x: 537
-    y: 762
+    x: 462
+    y: 125
     width: 64
     height: 64
     borderLeft: 0
@@ -1485,8 +1485,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_18
-    x: 0
-    y: 983
+    x: 396
+    y: 59
     width: 64
     height: 64
     borderLeft: 0
@@ -1538,7 +1538,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_183
     x: 669
-    y: 657
+    y: 533
     width: 38
     height: 56
     borderLeft: 0
@@ -1550,8 +1550,8 @@ MonoBehaviour:
     paddingTop: 5
     paddingBottom: 3
   - name: DungeonColor2@64x64_184
-    x: 669
-    y: 165
+    x: 724
+    y: 1183
     width: 35
     height: 50
     borderLeft: 0
@@ -1564,7 +1564,7 @@ MonoBehaviour:
     paddingBottom: 14
   - name: DungeonColor2@64x64_185
     x: 603
-    y: 9
+    y: 6
     width: 64
     height: 50
     borderLeft: 0
@@ -1576,8 +1576,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 14
   - name: DungeonColor2@64x64_186
-    x: 669
-    y: 60
+    x: 724
+    y: 1078
     width: 34
     height: 50
     borderLeft: 0
@@ -1590,7 +1590,7 @@ MonoBehaviour:
     paddingBottom: 14
   - name: DungeonColor2@64x64_187
     x: 669
-    y: 427
+    y: 303
     width: 30
     height: 64
     borderLeft: 0
@@ -1602,7 +1602,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_188
-    x: 330
+    x: 198
     y: 983
     width: 64
     height: 64
@@ -1628,7 +1628,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_19
-    x: 462
+    x: 264
     y: 983
     width: 64
     height: 64
@@ -1641,8 +1641,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_190
-    x: 0
-    y: 917
+    x: 330
+    y: 983
     width: 64
     height: 64
     borderLeft: 0
@@ -1654,8 +1654,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_191
-    x: 66
-    y: 917
+    x: 396
+    y: 983
     width: 64
     height: 64
     borderLeft: 0
@@ -1667,8 +1667,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_192
-    x: 132
-    y: 917
+    x: 462
+    y: 983
     width: 64
     height: 64
     borderLeft: 0
@@ -1681,7 +1681,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_193
     x: 669
-    y: 542
+    y: 418
     width: 39
     height: 54
     borderLeft: 0
@@ -1693,7 +1693,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 10
   - name: DungeonColor2@64x64_194
-    x: 132
+    x: 264
     y: 3
     width: 64
     height: 54
@@ -1706,7 +1706,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 10
   - name: DungeonColor2@64x64_195
-    x: 198
+    x: 0
     y: 917
     width: 64
     height: 64
@@ -1720,7 +1720,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_196
     x: 603
-    y: 256
+    y: 124
     width: 54
     height: 64
     borderLeft: 0
@@ -1733,7 +1733,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_197
     x: 603
-    y: 388
+    y: 322
     width: 55
     height: 64
     borderLeft: 0
@@ -1745,7 +1745,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_198
-    x: 264
+    x: 66
     y: 917
     width: 64
     height: 64
@@ -1758,7 +1758,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_199
-    x: 330
+    x: 132
     y: 917
     width: 64
     height: 64
@@ -1771,7 +1771,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_20
-    x: 396
+    x: 198
     y: 917
     width: 64
     height: 64
@@ -1785,7 +1785,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_200
     x: 669
-    y: 276
+    y: 112
     width: 35
     height: 51
     borderLeft: 0
@@ -1810,8 +1810,8 @@ MonoBehaviour:
     paddingTop: 13
     paddingBottom: 0
   - name: DungeonColor2@64x64_202
-    x: 669
-    y: 112
+    x: 724
+    y: 1130
     width: 34
     height: 51
     borderLeft: 0
@@ -1824,7 +1824,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_203
     x: 669
-    y: 1158
+    y: 1095
     width: 48
     height: 64
     borderLeft: 0
@@ -1836,8 +1836,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_204
-    x: 66
-    y: 851
+    x: 264
+    y: 917
     width: 64
     height: 64
     borderLeft: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_205
     x: 669
-    y: 1092
+    y: 1029
     width: 47
     height: 64
     borderLeft: 0
@@ -1875,7 +1875,7 @@ MonoBehaviour:
     paddingTop: 35
     paddingBottom: 0
   - name: DungeonColor2@64x64_208
-    x: 842
+    x: 846
     y: 1239
     width: 60
     height: 49
@@ -1901,8 +1901,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 0
   - name: DungeonColor2@64x64_21
-    x: 1357
-    y: 1543
+    x: 330
+    y: 917
     width: 64
     height: 64
     borderLeft: 0
@@ -1927,8 +1927,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 0
   - name: DungeonColor2@64x64_211
-    x: 1448
-    y: 1569
+    x: 396
+    y: 917
     width: 64
     height: 64
     borderLeft: 0
@@ -1941,7 +1941,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_212
     x: 603
-    y: 124
+    y: 58
     width: 53
     height: 64
     borderLeft: 0
@@ -1967,7 +1967,7 @@ MonoBehaviour:
     paddingBottom: 53
   - name: DungeonColor2@64x64_214
     x: 669
-    y: 598
+    y: 474
     width: 37
     height: 57
     borderLeft: 0
@@ -1979,8 +1979,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 5
   - name: DungeonColor2@64x64_215
-    x: 1652
-    y: 1308
+    x: 462
+    y: 917
     width: 64
     height: 64
     borderLeft: 0
@@ -1992,8 +1992,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_216
-    x: 1885
-    y: 1335
+    x: 0
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2005,8 +2005,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_217
-    x: 1951
-    y: 1335
+    x: 66
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2018,8 +2018,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_218
-    x: 320
-    y: 1181
+    x: 132
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2044,8 +2044,8 @@ MonoBehaviour:
     paddingTop: 16
     paddingBottom: 0
   - name: DungeonColor2@64x64_22
-    x: 320
-    y: 1115
+    x: 198
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2149,7 +2149,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_227
     x: 603
-    y: 1027
+    y: 961
     width: 63
     height: 64
     borderLeft: 0
@@ -2162,7 +2162,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_228
     x: 603
-    y: 834
+    y: 768
     width: 63
     height: 62
     borderLeft: 0
@@ -2174,8 +2174,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 2
   - name: DungeonColor2@64x64_229
-    x: 66
-    y: 1049
+    x: 264
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2187,8 +2187,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_23
-    x: 132
-    y: 1049
+    x: 330
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2200,8 +2200,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_230
-    x: 198
-    y: 1049
+    x: 396
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -2226,8 +2226,8 @@ MonoBehaviour:
     paddingTop: 13
     paddingBottom: 0
   - name: DungeonColor2@64x64_232
-    x: 264
-    y: 1049
+    x: 1357
+    y: 1543
     width: 64
     height: 64
     borderLeft: 0
@@ -2239,8 +2239,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_233
-    x: 330
-    y: 1049
+    x: 1448
+    y: 1569
     width: 64
     height: 64
     borderLeft: 0
@@ -2252,8 +2252,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_234
-    x: 396
-    y: 1049
+    x: 1586
+    y: 1308
     width: 64
     height: 64
     borderLeft: 0
@@ -2265,8 +2265,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_235
-    x: 462
-    y: 1049
+    x: 1652
+    y: 1308
     width: 64
     height: 64
     borderLeft: 0
@@ -2278,8 +2278,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_236
-    x: 66
-    y: 653
+    x: 1982
+    y: 1335
     width: 64
     height: 64
     borderLeft: 0
@@ -2291,8 +2291,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_237
-    x: 132
-    y: 653
+    x: 320
+    y: 1181
     width: 64
     height: 64
     borderLeft: 0
@@ -2304,8 +2304,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_238
-    x: 198
-    y: 653
+    x: 320
+    y: 1115
     width: 64
     height: 64
     borderLeft: 0
@@ -2317,8 +2317,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_239
-    x: 720
-    y: 1174
+    x: 669
+    y: 902
     width: 50
     height: 59
     borderLeft: 0
@@ -2330,8 +2330,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 1
   - name: DungeonColor2@64x64_24
-    x: 264
-    y: 653
+    x: 386
+    y: 1181
     width: 64
     height: 64
     borderLeft: 0
@@ -2344,7 +2344,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_240
     x: 669
-    y: 217
+    y: 53
     width: 31
     height: 57
     borderLeft: 0
@@ -2357,7 +2357,7 @@ MonoBehaviour:
     paddingBottom: 2
   - name: DungeonColor2@64x64_241
     x: 603
-    y: 962
+    y: 896
     width: 63
     height: 63
     borderLeft: 0
@@ -2370,7 +2370,7 @@ MonoBehaviour:
     paddingBottom: 1
   - name: DungeonColor2@64x64_242
     x: 603
-    y: 707
+    y: 577
     width: 62
     height: 62
     borderLeft: 0
@@ -2383,7 +2383,7 @@ MonoBehaviour:
     paddingBottom: 2
   - name: DungeonColor2@64x64_243
     x: 603
-    y: 643
+    y: 641
     width: 62
     height: 62
     borderLeft: 0
@@ -2408,8 +2408,8 @@ MonoBehaviour:
     paddingTop: 13
     paddingBottom: 14
   - name: DungeonColor2@64x64_245
-    x: 396
-    y: 653
+    x: 386
+    y: 1115
     width: 64
     height: 64
     borderLeft: 0
@@ -2421,8 +2421,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_246
-    x: 462
-    y: 653
+    x: 452
+    y: 1181
     width: 64
     height: 64
     borderLeft: 0
@@ -2448,7 +2448,7 @@ MonoBehaviour:
     paddingBottom: 1
   - name: DungeonColor2@64x64_248
     x: 603
-    y: 580
+    y: 514
     width: 61
     height: 61
     borderLeft: 0
@@ -2461,7 +2461,7 @@ MonoBehaviour:
     paddingBottom: 2
   - name: DungeonColor2@64x64_249
     x: 603
-    y: 518
+    y: 452
     width: 59
     height: 60
     borderLeft: 0
@@ -2473,8 +2473,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 2
   - name: DungeonColor2@64x64_25
-    x: 0
-    y: 587
+    x: 452
+    y: 1115
     width: 64
     height: 64
     borderLeft: 0
@@ -2486,7 +2486,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_251
-    x: 1869
+    x: 1935
     y: 1544
     width: 64
     height: 47
@@ -2525,7 +2525,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 35
   - name: DungeonColor2@64x64_254
-    x: 1935
+    x: 1869
     y: 1544
     width: 64
     height: 47
@@ -2538,8 +2538,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 17
   - name: DungeonColor2@64x64_255
-    x: 2017
-    y: 1343
+    x: 724
+    y: 1020
     width: 28
     height: 56
     borderLeft: 0
@@ -2552,7 +2552,7 @@ MonoBehaviour:
     paddingBottom: 5
   - name: DungeonColor2@64x64_256
     x: 603
-    y: 771
+    y: 705
     width: 64
     height: 61
     borderLeft: 0
@@ -2564,8 +2564,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 3
   - name: DungeonColor2@64x64_26
-    x: 198
-    y: 587
+    x: 0
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2577,8 +2577,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_27
-    x: 264
-    y: 587
+    x: 66
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2591,7 +2591,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_28
     x: 603
-    y: 454
+    y: 388
     width: 57
     height: 62
     borderLeft: 0
@@ -2630,7 +2630,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_31
     x: 669
-    y: 847
+    y: 723
     width: 48
     height: 57
     borderLeft: 0
@@ -2655,8 +2655,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_33
-    x: 66
-    y: 521
+    x: 132
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2668,8 +2668,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_34
-    x: 132
-    y: 521
+    x: 198
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2681,8 +2681,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_35
-    x: 198
-    y: 521
+    x: 264
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2694,8 +2694,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_36
-    x: 264
-    y: 521
+    x: 330
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2707,8 +2707,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_37
-    x: 330
-    y: 521
+    x: 396
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2720,8 +2720,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_38
-    x: 396
-    y: 521
+    x: 462
+    y: 1049
     width: 64
     height: 64
     borderLeft: 0
@@ -2733,8 +2733,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_39
-    x: 264
-    y: 851
+    x: 0
+    y: 983
     width: 64
     height: 64
     borderLeft: 0
@@ -2746,8 +2746,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_40
-    x: 330
-    y: 851
+    x: 66
+    y: 983
     width: 64
     height: 64
     borderLeft: 0
@@ -2759,8 +2759,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_41
-    x: 396
-    y: 851
+    x: 264
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -2772,8 +2772,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_42
-    x: 462
-    y: 851
+    x: 330
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -2785,8 +2785,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_43
-    x: 0
-    y: 785
+    x: 396
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -2824,8 +2824,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 50
   - name: DungeonColor2@64x64_46
-    x: 198
-    y: 785
+    x: 462
+    y: 653
     width: 64
     height: 64
     borderLeft: 0
@@ -2850,8 +2850,8 @@ MonoBehaviour:
     paddingTop: 50
     paddingBottom: 0
   - name: DungeonColor2@64x64_48
-    x: 330
-    y: 785
+    x: 0
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2863,8 +2863,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_49
-    x: 396
-    y: 785
+    x: 66
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2876,8 +2876,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_50
-    x: 462
-    y: 785
+    x: 132
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2929,7 +2929,7 @@ MonoBehaviour:
     paddingBottom: 10
   - name: DungeonColor2@64x64_54
     x: 198
-    y: 719
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2942,7 +2942,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_55
     x: 264
-    y: 719
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2955,7 +2955,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_56
     x: 330
-    y: 719
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2968,7 +2968,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_57
     x: 396
-    y: 719
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2981,7 +2981,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_58
     x: 462
-    y: 719
+    y: 587
     width: 64
     height: 64
     borderLeft: 0
@@ -2994,7 +2994,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_59
     x: 0
-    y: 653
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3006,8 +3006,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_60
-    x: 1668
-    y: 1550
+    x: 259
+    y: 1115
     width: 26
     height: 26
     borderLeft: 0
@@ -3019,8 +3019,8 @@ MonoBehaviour:
     paddingTop: 38
     paddingBottom: 0
   - name: DungeonColor2@64x64_61
-    x: 2000
-    y: 1307
+    x: 669
+    y: 25
     width: 26
     height: 26
     borderLeft: 0
@@ -3032,8 +3032,8 @@ MonoBehaviour:
     paddingTop: 38
     paddingBottom: 0
   - name: DungeonColor2@64x64_62
-    x: 132
-    y: 719
+    x: 66
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3058,8 +3058,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 38
   - name: DungeonColor2@64x64_64
-    x: 66
-    y: 719
+    x: 132
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3071,8 +3071,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_65
-    x: 0
-    y: 719
+    x: 198
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3085,7 +3085,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_66
     x: 264
-    y: 785
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3098,7 +3098,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_67
     x: 669
-    y: 493
+    y: 369
     width: 43
     height: 47
     borderLeft: 0
@@ -3110,7 +3110,7 @@ MonoBehaviour:
     paddingTop: 15
     paddingBottom: 2
   - name: DungeonColor2@64x64_68
-    x: 1885
+    x: 1982
     y: 1294
     width: 47
     height: 39
@@ -3124,7 +3124,7 @@ MonoBehaviour:
     paddingBottom: 13
   - name: DungeonColor2@64x64_69
     x: 669
-    y: 378
+    y: 254
     width: 39
     height: 47
     borderLeft: 0
@@ -3136,8 +3136,8 @@ MonoBehaviour:
     paddingTop: 7
     paddingBottom: 10
   - name: DungeonColor2@64x64_70
-    x: 132
-    y: 785
+    x: 330
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3149,8 +3149,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_71
-    x: 66
-    y: 785
+    x: 396
+    y: 521
     width: 64
     height: 64
     borderLeft: 0
@@ -3162,7 +3162,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_72
-    x: 0
+    x: 462
     y: 521
     width: 64
     height: 64
@@ -3175,8 +3175,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_73
-    x: 462
-    y: 587
+    x: 0
+    y: 455
     width: 64
     height: 64
     borderLeft: 0
@@ -3188,8 +3188,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_74
-    x: 396
-    y: 587
+    x: 0
+    y: 389
     width: 64
     height: 64
     borderLeft: 0
@@ -3201,8 +3201,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_75
-    x: 330
-    y: 587
+    x: 462
+    y: 851
     width: 64
     height: 64
     borderLeft: 0
@@ -3214,8 +3214,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_76
-    x: 287
-    y: 1115
+    x: 1668
+    y: 1550
     width: 26
     height: 26
     borderLeft: 0
@@ -3227,7 +3227,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 38
   - name: DungeonColor2@64x64_77
-    x: 259
+    x: 287
     y: 1115
     width: 26
     height: 26
@@ -3253,8 +3253,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_79
-    x: 603
-    y: 61
+    x: 669
+    y: 1227
     width: 53
     height: 61
     borderLeft: 0
@@ -3279,8 +3279,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_81
-    x: 132
-    y: 587
+    x: 0
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3293,7 +3293,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_82
     x: 66
-    y: 587
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3318,8 +3318,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: DungeonColor2@64x64_84
-    x: 1951
-    y: 1295
+    x: 669
+    y: 214
     width: 47
     height: 38
     borderLeft: 0
@@ -3332,7 +3332,7 @@ MonoBehaviour:
     paddingBottom: 10
   - name: DungeonColor2@64x64_85
     x: 669
-    y: 329
+    y: 165
     width: 38
     height: 47
     borderLeft: 0
@@ -3344,8 +3344,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 7
   - name: DungeonColor2@64x64_86
-    x: 330
-    y: 653
+    x: 132
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3357,8 +3357,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_87
-    x: 0
-    y: 1049
+    x: 198
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3370,8 +3370,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_88
-    x: 452
-    y: 1115
+    x: 264
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3383,8 +3383,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_89
-    x: 452
-    y: 1181
+    x: 330
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3396,8 +3396,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_90
-    x: 386
-    y: 1115
+    x: 396
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3409,8 +3409,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_91
-    x: 386
-    y: 1181
+    x: 462
+    y: 785
     width: 64
     height: 64
     borderLeft: 0
@@ -3435,8 +3435,8 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 0
   - name: DungeonColor2@64x64_94
-    x: 1586
-    y: 1308
+    x: 0
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3461,8 +3461,8 @@ MonoBehaviour:
     paddingTop: 38
     paddingBottom: 0
   - name: DungeonColor2@64x64_96
-    x: 198
-    y: 851
+    x: 66
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3475,7 +3475,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: DungeonColor2@64x64_97
     x: 132
-    y: 851
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3487,8 +3487,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_98
-    x: 0
-    y: 851
+    x: 198
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3500,8 +3500,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: DungeonColor2@64x64_99
-    x: 462
-    y: 917
+    x: 264
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3643,8 +3643,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: locked
-    x: 198
-    y: 983
+    x: 330
+    y: 719
     width: 64
     height: 64
     borderLeft: 0
@@ -3772,6 +3772,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: slash1_icon_re
+    x: 1749
+    y: 1300
+    width: 95
+    height: 99
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: tutorial_sample35c64x64
     x: 330
     y: 4
@@ -3787,7 +3800,7 @@ MonoBehaviour:
     paddingBottom: 2
   - name: tutorial_sample49b_64x65
     x: 603
-    y: 898
+    y: 832
     width: 64
     height: 62
     borderLeft: 0

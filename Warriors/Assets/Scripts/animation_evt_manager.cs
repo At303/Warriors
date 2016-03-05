@@ -15,7 +15,7 @@ public class animation_evt_manager : MonoBehaviour {
 	
 	}
 
-	void chest_animation_end()
+	public void chest_animation_end()
 	{
 		NGUIDebug.Log( "chest_animation_end" );
 
@@ -31,12 +31,12 @@ public class animation_evt_manager : MonoBehaviour {
 
 	}
 
-	void chest_animation_enable()
+	public void chest_animation_enable()
 	{
 		enable_chest_animation = true;
 
 	}
-	void chest_animation_disable()
+	public void chest_animation_disable()
 	{
 		enable_chest_animation = false;
 	}
