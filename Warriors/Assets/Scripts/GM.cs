@@ -43,7 +43,15 @@ public class GM : MonoBehaviour {
 				// if chest HP is under 0, reset chest HP.
 				if (GameData.chest_struct._HP <= 0) {
 					
-					GameData.chest_sprite.GetComponent<Animator> ().SetTrigger ("end_enable");
+					// 보물상자 false시키고 , open된 보물상자 enable
+					GameData.chest_sprite.SetActive (false);
+					opened_chest_box.enable_disable_chest_open = true;
+
+					opened_chest_box.target_time = Time.time + 5.0f;
+					GameData.chest_struct._HP = GameData.chest_struct.HP;
+					GameData.chest_sprite.GetComponent<UIProgressBar> ().value = GameData.chest_struct._HP;
+
+					GameData.chest_opened_sprite.SetActive (true);
 
 				} else
 				{
@@ -58,7 +66,7 @@ public class GM : MonoBehaviour {
 					before_touch = current_touch; 
 					current_touch = Time.time;
 					touch_deltatime = current_touch - before_touch;
-					GameData.debug_label2.GetComponent<UILabel> ().text = touch_deltatime.ToString ();
+					//GameData.debug_label2.GetComponent<UILabel> ().text = touch_deltatime.ToString ();
 
 					//coin box attack animation 
 					if (touch_deltatime < 0.17) {
@@ -145,7 +153,8 @@ public class GM : MonoBehaviour {
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
 				// Random touch slash animation
-				string slash_animation_name = "slash1";// + Random.Range(1,3).ToString();
+				int slash_index = Random.Range(1,6);
+				string slash_animation_name = "slash" + slash_index.ToString ();
 				GameData.slash_animation = GameObject.Find (slash_animation_name);
 
 				//If touch is on the fixed range, excute the code.
@@ -182,7 +191,7 @@ public class GM : MonoBehaviour {
 						before_touch = current_touch; 
 						current_touch = Time.time;
 						touch_deltatime = current_touch - before_touch;
-						GameData.debug_label2.GetComponent<UILabel> ().text = touch_deltatime.ToString ();
+						//GameData.debug_label2.GetComponent<UILabel> ().text = touch_deltatime.ToString ();
 
 						//coin box attack animation 
 						if (touch_deltatime < 0.17) {

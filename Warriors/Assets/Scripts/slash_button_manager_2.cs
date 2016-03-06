@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using gamedata;
+using UnityEngine.SceneManagement;
 
 public class slash_button_manager_2 : MonoBehaviour {
 
@@ -22,10 +23,6 @@ public class slash_button_manager_2 : MonoBehaviour {
 
 	public void Clicked_slash1_button()
 	{
-		print ("damage 1  : "+GameData.slash1_struct.damage);
-		print ("damage 2  : "+GameData.slash2_struct.damage);
-		print ("damage 3  : "+GameData.slash3_struct.damage);
-
 
 		if (slash_control_2.get_object_name () == "prefabs0") {
 			slash_control_2.destory_object ();	// Destory Object in the square box
@@ -36,6 +33,13 @@ public class slash_button_manager_2 : MonoBehaviour {
 			float fHP = GameData.boss_monster_struct._HP / GameData.boss_monster_struct.HP;
 			GameData.boss_hp_value.GetComponent<UIProgressBar> ().value = fHP;
 
+			//slash에 해당하는 atack image enable
+			string slash_animation_name = "slash1";
+			GameData.slash_animation = GameObject.Find (slash_animation_name);
+
+			// slash sprite enable
+			GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+			GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 
 		} else 
 		{
@@ -55,7 +59,13 @@ public class slash_button_manager_2 : MonoBehaviour {
 			float fHP = GameData.boss_monster_struct._HP / GameData.boss_monster_struct.HP;
 			GameData.boss_hp_value.GetComponent<UIProgressBar> ().value = fHP;
 
+			//slash에 해당하는 atack image enable
+			string slash_animation_name = "slash2";
+			GameData.slash_animation = GameObject.Find (slash_animation_name);
 
+			// slash sprite enable
+			GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+			GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 
 		} else 
 		{
@@ -71,6 +81,19 @@ public class slash_button_manager_2 : MonoBehaviour {
 			slash_control_2.destory_object ();	// Destory Object in the square box
 			slash_prefabs_2.swap_prefabs_and_make_new ();		// move Object in the array and make new Object
 
+			// Decrease boss HP
+			GameData.boss_monster_struct._HP = GameData.boss_monster_struct._HP - GameData.slash1_struct.damage;
+			float fHP = GameData.boss_monster_struct._HP / GameData.boss_monster_struct.HP;
+			GameData.boss_hp_value.GetComponent<UIProgressBar> ().value = fHP;
+
+			//slash에 해당하는 atack image enable
+			string slash_animation_name = "slash3";
+			GameData.slash_animation = GameObject.Find (slash_animation_name);
+
+			// slash sprite enable
+			GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+			GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+
 		} else 
 		{
 			print ("fail 1");
@@ -85,6 +108,18 @@ public class slash_button_manager_2 : MonoBehaviour {
 			slash_control_2.destory_object ();	// Destory Object in the square box
 			slash_prefabs_2.swap_prefabs_and_make_new ();		// move Object in the array and make new Object
 
+			// Decrease boss HP
+			GameData.boss_monster_struct._HP = GameData.boss_monster_struct._HP - GameData.slash1_struct.damage;
+			float fHP = GameData.boss_monster_struct._HP / GameData.boss_monster_struct.HP;
+			GameData.boss_hp_value.GetComponent<UIProgressBar> ().value = fHP;
+
+			//slash에 해당하는 atack image enable
+			string slash_animation_name = "slash4";
+			GameData.slash_animation = GameObject.Find (slash_animation_name);
+
+			// slash sprite enable
+			GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+			GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 		} else 
 		{
 			print ("fail 1");
@@ -99,11 +134,31 @@ public class slash_button_manager_2 : MonoBehaviour {
 			slash_control_2.destory_object ();	// Destory Object in the square box
 			slash_prefabs_2.swap_prefabs_and_make_new ();		// move Object in the array and make new Object
 
+			// Decrease boss HP
+			GameData.boss_monster_struct._HP = GameData.boss_monster_struct._HP - GameData.slash1_struct.damage;
+			float fHP = GameData.boss_monster_struct._HP / GameData.boss_monster_struct.HP;
+			GameData.boss_hp_value.GetComponent<UIProgressBar> ().value = fHP;
+
+			//slash에 해당하는 atack image enable
+			string slash_animation_name = "slash5";
+			GameData.slash_animation = GameObject.Find (slash_animation_name);
+
+			// slash sprite enable
+			GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+			GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+
 		} else 
 		{
 			print ("fail 1");
 		}
 
 	}
+
+	public void return_back_button()
+	{
+		SceneManager.LoadScene ("warriors");
+
+	}
+
 
 }

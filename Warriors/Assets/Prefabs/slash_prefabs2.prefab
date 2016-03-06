@@ -93,8 +93,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: slash03
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: slash3_icon
   mFillCenter: 1
 --- !u!1001 &100100000
 Prefab:
@@ -102,7 +102,16 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: mAtlas
+      value: 
+      objectReference: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: mSpriteName
+      value: slash3_icon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185084}
