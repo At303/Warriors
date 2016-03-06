@@ -9,15 +9,14 @@ public class NPC02_make : MonoBehaviour {
 	void Start()
 	{
 		character.Info.order = 1;
-		character.Info.unit_part = "troll";
-		character.Info.main_weapon_part = "sword-a";
-		character.Info.main_weapon_index = 17;
+		character.Info.unit_part = "mummy";
+		character.Info.main_weapon_part = "blunt-a";
+		character.Info.main_weapon_index = 10;
 		character.Info.wing_part = "cape-a";
 		character.Info.wing_index = 5;
 
 		//character.UpdateView(); // with texture-baking
 		character.InitWithoutTextureBaking ();
-		//GameData.debug_label2.GetComponent<UILabel> ().text = character.main_weapon_type.ToString();
 
 		switch (character.main_weapon_type) {
 		case PACKAGE_TYPE.WEAPON_BOW:
@@ -30,6 +29,13 @@ public class NPC02_make : MonoBehaviour {
 		default:
 		//character.PlayAnimation("anim_melee_walk", false);
 			break;
+		}
+	}
+	void Update () 
+	{
+		if (Input.GetMouseButtonDown (0)) 
+		{
+			character.PlayAnimation("anim_melee_attack1", true);
 		}
 	}
 }

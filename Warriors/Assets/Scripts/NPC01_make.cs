@@ -40,8 +40,6 @@ public class NPC01_make : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) 
 		{
 			character.PlayAnimation("anim_melee_attack1", true);
-
-
 		}
 	}
 }
