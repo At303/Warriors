@@ -33,13 +33,16 @@ public class NPC01_make : MonoBehaviour {
 			character.PlayAnimation("anim_melee_attack1", true);
 			break;
 		}
+
+
+		// attack animation coroutine about 2sec.
+		StartCoroutine("start_attack_animation");
+	}
+	IEnumerator start_attack_animation()
+	{
+		yield return new WaitForSeconds(2f);
+		character.PlayAnimation("anim_melee_attack1", true);
+		StartCoroutine("start_attack_animation");
 	}
 
-	void Update () 
-	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			character.PlayAnimation("anim_melee_attack1", true);
-		}
-	}
 }

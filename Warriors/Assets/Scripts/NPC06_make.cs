@@ -21,14 +21,14 @@ public class NPC06_make : MonoBehaviour {
 		//character.UpdateView(); // with texture-baking
 		character.InitWithoutTextureBaking ();
 
+		// attack animation coroutine about 2sec.
+		StartCoroutine("start_attack_animation");
 	}
-
-	void Update () 
+	IEnumerator start_attack_animation()
 	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			character.PlayAnimation("anim_bow_shoot_1", true);
-		}
+		yield return new WaitForSeconds(2f);
+		character.PlayAnimation("anim_bow_shoot_1", true);
+		StartCoroutine("start_attack_animation");
 	}
 
 }

@@ -35,13 +35,13 @@ public class NPC05_make : MonoBehaviour {
 			break;
 		}
 	
+		// attack animation coroutine about 2sec.
+		StartCoroutine("start_attack_animation");
 	}
-	
-	void Update () 
+	IEnumerator start_attack_animation()
 	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			character.PlayAnimation("anim_bow_shoot_1", true);
-		}
+		yield return new WaitForSeconds(2f);
+		character.PlayAnimation("anim_bow_shoot_1", true);
+		StartCoroutine("start_attack_animation");
 	}
 }

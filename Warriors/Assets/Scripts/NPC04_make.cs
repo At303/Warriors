@@ -32,13 +32,13 @@ public class NPC04_make : MonoBehaviour {
 			//character.PlayAnimation("anim_melee_walk", false);
 			break;
 		}
+		// attack animation coroutine about 2sec.
+		StartCoroutine("start_attack_animation");
 	}
-	
-	void Update () 
+	IEnumerator start_attack_animation()
 	{
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			character.PlayAnimation("anim_bow_shoot", true);
-		}
+		yield return new WaitForSeconds(2f);
+		character.PlayAnimation("anim_bow_shoot_1", true);
+		StartCoroutine("start_attack_animation");
 	}
 }
