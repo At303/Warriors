@@ -33,7 +33,7 @@ public class Human : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) 
 	{
 		print("human attack");
-		GM.attacked_chest ();
+		//GM.attacked_chest ();
 
 	}
 

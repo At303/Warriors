@@ -5,10 +5,12 @@ using gamedata;
 
 public class NPC02_make : MonoBehaviour {
 	public DevCharacter character;
-
+    public GameObject NPC02_HUD;
 	void Start()
 	{
-		character.Info.order = 1;
+        NPC02_HUD = GameObject.Find("2nd_friend_HUD");
+
+        character.Info.order = 1;
 		character.Info.unit_part = "mummy";
 		character.Info.main_weapon_part = "blunt-a";
 		character.Info.main_weapon_index = 10;
@@ -35,8 +37,13 @@ public class NPC02_make : MonoBehaviour {
 	}
 	IEnumerator start_attack_animation()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		character.PlayAnimation("anim_melee_attack1", true);
-		StartCoroutine("start_attack_animation");
+
+        // Test HUDText;;;;
+        string get_coin_str = "+" + (GameData.chest_struct.attacked_gold * 2)+ " GOLD";
+        NPC02_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
+
+        StartCoroutine("start_attack_animation");
 	}
 }

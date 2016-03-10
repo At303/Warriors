@@ -5,18 +5,28 @@ using System.Collections;
 
 namespace gamedata 
 {
-	public class GameData : MonoBehaviour {
+    public enum SLASH_TYPE
+    {
+        NONE,
+        SLASH1,
+        SLASH2,
+        SLASH3,
+        SLASH4,
+        SLASH5,
+    }
 
-// **************************************    Game data Struct    ************************************************ //
+    public class GameData : MonoBehaviour {
 
-		// Treasure Chest struct
-		public struct coin_struct
+        // **************************************    Game data Struct    ************************************************ //
+
+        // Coin Struct
+        public struct coin_struct
 		{
 			public static float total;
 		}
 
-		// Treasure Chest struct
-		public struct boss_monster_struct
+        // Boss Monster Struct
+        public struct boss_monster_struct
 		{
 			public static float HP;
 			public static float _HP;
@@ -32,7 +42,9 @@ namespace gamedata
 			public static float attacked_gold;
 			public static float upgrade_cost;
 		}
-			
+
+        public static int number_of_slash;
+
 		// slash1 struct
 		public struct slash1_struct
 		{
@@ -72,14 +84,23 @@ namespace gamedata
 			public static float damage;
 			public static float upgrade_cost;
 		}
-// **************************************    GameObject data    ************************************************ //
 
-		public static GameObject debug_label2;
+        // NPC01 struct
+        public struct NPC01_struct
+        {
+            public static int Level;
+            public static float damage;
+            public static float upgrade_cost;
+        }
+
+        // **************************************    GameObject data    ************************************************ //
+
+        public static GameObject debug_label2;
 
 		// label object
 		public static GameObject coin_total_label;
 
-		// chest label object
+		// chest && slashes object
 		public static GameObject chest_lv_label;
 		public static GameObject chest_dropgold_current_label;
 		public static GameObject chest_dropgold_after_label;
@@ -114,7 +135,15 @@ namespace gamedata
 		public static GameObject slash5_damage_current_label;
 		public static GameObject slash5_damage_after_label;
 
-		public static GameObject boss_hp_value;
+        // NPC00 object
+
+        public static GameObject npc_gameobject;
+        public static GameObject npc_lv_label;
+        public static GameObject npc_lvup_cost_label;
+        public static GameObject npc_damage_label;
+
+        // boss object
+        public static GameObject boss_hp_value;
 
 		// sprite object
 		public static GameObject chest_sprite;
@@ -134,12 +163,14 @@ namespace gamedata
 		public static GameObject slash4_lvup_btn;
 		public static GameObject slash5_lvup_btn;
 
+        public static GameObject npc01_lvup_btn;
 
-// ************************************************************************************************************* //
+
+        // ************************************************************************************************************* //
 
 
-		// Use this for initialization
-		void Awake () {
+        // Use this for initialization
+        void Awake () {
 			debug_label2 = GameObject.Find ("debug_label2");
 
 			coin_total_label = GameObject.Find ("coin_total_label");
@@ -189,15 +220,30 @@ namespace gamedata
 			slash5_damage_current_label = GameObject.Find ("_slash5_damage_current_label");
 			slash5_damage_after_label = GameObject.Find ("_slash5_damage_after_label");
 
-			boss_hp_value = GameObject.Find ("Boss_Sprite");
+            // **************************************   NPC00 GameObject init    ************************************************ //
+            npc_gameobject = GameObject.Find("_NPC01_gameobj");
+            //npc_gameobject.SetActive(false);                    // 추후 모든 캐릭터가 잠깐 나올 수 있기때문에 로딩딜레이줘야함.
+
+            npc_lv_label = GameObject.Find("_npc01_level_label");
+            npc_lvup_cost_label = GameObject.Find("_npc01_lvup_cost_label");
+            npc_damage_label = GameObject.Find("_npc01_damage_label");
+            npc01_lvup_btn = GameObject.Find("_npc01_lvup_btn");
+
+            // **************************************   BOSS GameObject init    ************************************************ //
+            boss_hp_value = GameObject.Find ("Boss_Sprite");
 
 			chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			slash1_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
-// **************************************    GameObject init    ************************************************ //
-			coin_struct.total = 0f;
 
-			// chest init and update label //
-			levelup_chest_data_struct();
+            // **************************************    GameObject init    ************************************************ //
+            // Total Gold 초기화.
+            coin_struct.total = 0f;
+
+            // Touch Slash 개수 초기화.
+            number_of_slash = 2;
+
+            // chest init and update label //
+            levelup_chest_data_struct();
 			update_chest_data_label ();
 
 			// slash1 init and update label//
@@ -220,11 +266,14 @@ namespace gamedata
 			levelup_slash5_data_struct();
 			update_slash5_data_label();
 
-			// check whether all buttons is enable or not //
-			check_lvup_button_is_enable_or_not();
+            // NPC01 데이터 초기화 및 라벨 Update//
+            levelup_npc01_data_struct();
+            update_npc01_data_label();
 
-			// slash init //
-			update_slash_data_struct();
+
+            // check whether all buttons is enable or not //
+            check_lvup_button_is_enable_or_not();
+
 		}
 		
 		// Update is called once per frame
@@ -240,7 +289,7 @@ namespace gamedata
 			chest_lv_label.GetComponent<UILabel> ().text = chest_struct.Level.ToString ();
 
 			chest_dropgold_current_label.GetComponent<UILabel>().text = chest_struct.attacked_gold.ToString ();
-			chest_dropgold_after_label.GetComponent<UILabel> ().text = (chest_struct.attacked_gold + 1).ToString ();
+			chest_dropgold_after_label.GetComponent<UILabel> ().text = (chest_struct.attacked_gold+1).ToString ();
 			chest_lvup_cost_label.GetComponent<UILabel> ().text = chest_struct.upgrade_cost.ToString ();
 
 		}
@@ -249,12 +298,12 @@ namespace gamedata
 		public static void levelup_chest_data_struct()
 		{
 			chest_struct.Level = chest_struct.Level + 1;
-			chest_struct.HP = chest_struct.HP  + 10f ;
-			chest_struct._HP = chest_struct._HP  + 10f;
-			chest_struct.attacked_gold = (float)chest_struct.Level;
-			chest_struct.upgrade_cost = chest_struct.upgrade_cost + 100f;
-			//update_chest_data_label ();
-		}
+			chest_struct.HP = 200f + (chest_struct.Level * 50);
+			chest_struct._HP = 200f + (chest_struct.Level * 50);
+            chest_struct.attacked_gold = (float)chest_struct.Level;
+            chest_struct.upgrade_cost = chest_struct.Level * 100f;
+
+        }
 
 		// **************			slash1 function 					************** //
 
@@ -272,9 +321,16 @@ namespace gamedata
 		public static void levelup_slash1_data_struct()
 		{
 			slash1_struct.Level = slash1_struct.Level + 1;
-			slash1_struct.damage = slash1_struct.damage + 10;
-			slash1_struct.upgrade_cost = slash1_struct.upgrade_cost + 10;
+			slash1_struct.damage = slash1_struct.Level;
+			slash1_struct.upgrade_cost = 10f + (slash1_struct.Level*5);
 
+            // 다음 slash UnLock.
+            if(slash1_struct.Level == 2)
+            {
+                print("unlock slash2");
+                slash2_locking_sprite.SetActive(false);                 // Slash2 Object 활성화.
+                number_of_slash++;                                    // Slash2 Object 활성화.
+            }
 		}
 
 		// **************			slash2 function 					************** //
@@ -286,17 +342,24 @@ namespace gamedata
 			slash2_lvup_cost_label.GetComponent<UILabel> ().text = slash2_struct.upgrade_cost.ToString ();
 
 			slash2_damage_current_label.GetComponent<UILabel>().text = slash2_struct.damage.ToString ();
-			slash2_damage_after_label.GetComponent<UILabel> ().text = (slash2_struct.damage + 1).ToString ();
+			slash2_damage_after_label.GetComponent<UILabel> ().text = (10 + ((slash2_struct.Level+1) * 3)).ToString ();
 		}
 
 		// Levelup slash2 struct data
 		public static void levelup_slash2_data_struct()
 		{
 			slash2_struct.Level = slash2_struct.Level + 1;
-			slash2_struct.damage = slash2_struct.damage + 1;
-			slash2_struct.upgrade_cost = slash2_struct.upgrade_cost + 20;
+			slash2_struct.damage = 10 + (slash2_struct.Level*3);
+			slash2_struct.upgrade_cost = 300f + (slash1_struct.Level * 55);
 
-		}
+            // 다음 slash UnLock.
+            if (slash2_struct.Level == 20)
+            {
+                print("unlock slash3");
+                slash3_locking_sprite.SetActive(false);
+                number_of_slash++;
+            }
+        }
 
 		// **************			slash3 function 					************** //
 
@@ -361,21 +424,37 @@ namespace gamedata
 
 		}
 
-		// Update slash data
-		public static void update_slash_data_struct()
-		{
-			print ("init slash");
-			slash1_struct.damage = 1f;
-			slash2_struct.damage = 2f;
-			slash3_struct.damage = 3f;
-			slash4_struct.damage = 4f;
-			slash5_struct.damage = 5f;
-		}
+        // ********************************************************			NPC functions 					******************************************************** //
 
-		//check whether upgrade buttons are possiable or not
-		public static void check_lvup_button_is_enable_or_not()
+        // NPC01 데이터 초기화.
+        public static void levelup_npc01_data_struct()
+        {
+            NPC01_struct.Level = NPC01_struct.Level + 1;
+            NPC01_struct.damage = NPC01_struct.Level * 2 + 7f;
+            NPC01_struct.upgrade_cost = 30f + NPC01_struct.Level*2;
+
+            // NPC01 캐릭터 Enable.
+            if(NPC01_struct.Level == 2)
+            {
+                npc_gameobject.SetActive(true);
+            }
+        }
+
+        // NPC01 라벨 && 버튼 Update.
+        public static void update_npc01_data_label()
+        {
+            npc_lv_label.GetComponent<UILabel>().text = NPC01_struct.Level.ToString();
+            npc_lvup_cost_label.GetComponent<UILabel>().text = NPC01_struct.upgrade_cost.ToString();
+            npc_damage_label.GetComponent<UILabel>().text = NPC01_struct.damage.ToString();
+        }
+
+        
+        // ********************************************************			etc.. functions 					******************************************************** //
+
+        //check whether upgrade buttons are possiable or not
+        public static void check_lvup_button_is_enable_or_not()
 		{
-			// chest button check
+			// 보물상자 버튼 체크.
 			if (coin_struct.total >= chest_struct.upgrade_cost) {
 				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
 			} else 
@@ -399,7 +478,18 @@ namespace gamedata
 				slash2_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
 
-		}
+            // NPC01 button check
+            if (coin_struct.total >= NPC01_struct.upgrade_cost)
+            {
+                npc01_lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                npc01_lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+
+        }
 	}
 
 }

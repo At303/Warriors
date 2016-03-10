@@ -26,7 +26,7 @@ public class NPC06_make : MonoBehaviour {
 	}
 	IEnumerator start_attack_animation()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.9f);
 		character.PlayAnimation("anim_bow_shoot_1", true);
 		StartCoroutine("start_attack_animation");
 	}

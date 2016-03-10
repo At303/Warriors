@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class button_manager : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,28 +50,32 @@ public class button_manager : MonoBehaviour {
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
 		GameData.check_lvup_button_is_enable_or_not();
 
-		//slash1레벨이 10이상 되면 slash2 메뉴 enable.
-		if (GameData.slash1_struct.Level > 5) 
-		{
-			GameData.slash2_locking_sprite.SetActive (false);
-		}
 	}
 
 
 // ------------------------------------------------------------------------------------------------------------------------------------------------//
-	public void Clicked_human_Level_UP()
+	public void Clicked_npc01_Level_UP()
 	{
-		print ("human lvup");
-		Human.human_struct.gameobject.SetActive (true);
-		Human.upgrade_human_data ();
-		Human.update_human_data_label ();
+        // pay the cost about chest level up
+        GameData.coin_struct.total = GameData.coin_struct.total - GameData.NPC01_struct.upgrade_cost;
+        GameData.coin_total_label.GetComponent<UILabel>().text = GameData.coin_struct.total.ToString();
 
-	}
+        // update chest_struct data
+        GameData.levelup_npc01_data_struct();
+
+        // update chest label
+        GameData.update_npc01_data_label();
+
+        // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
+        GameData.check_lvup_button_is_enable_or_not();
+
+    }
 
 	public void Clicked_boss_scene()
 	{
-		SceneManager.LoadScene ("warriors_boss");
+       
+        SceneManager.LoadScene ("warriors_boss");
 
-	}
-		
+    }
+
 }

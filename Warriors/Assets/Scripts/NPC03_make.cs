@@ -34,7 +34,7 @@ public class NPC03_make : MonoBehaviour {
 	}
 	IEnumerator start_attack_animation()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		character.PlayAnimation("anim_melee_attack1", true);
 		StartCoroutine("start_attack_animation");
 	}

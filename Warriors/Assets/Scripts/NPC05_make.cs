@@ -40,7 +40,7 @@ public class NPC05_make : MonoBehaviour {
 	}
 	IEnumerator start_attack_animation()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.2f);
 		character.PlayAnimation("anim_bow_shoot_1", true);
 		StartCoroutine("start_attack_animation");
 	}
