@@ -69,6 +69,10 @@ public class button_manager : MonoBehaviour {
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
         GameData.check_lvup_button_is_enable_or_not();
 
+        print("test change npc6 sword");
+       // NPC06_make.change_sword(10);
+
+
     }
 
 	public void Clicked_boss_scene()

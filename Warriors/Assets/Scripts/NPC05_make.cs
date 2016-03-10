@@ -8,39 +8,23 @@ public class NPC05_make : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		character.Info.order = 1;
-		character.Info.unit_part = "human-male";
-		character.Info.unit_index = 10;
-		character.Info.armor_part = "ancient-b";
-		character.Info.armor_index = 2;
-		character.Info.main_weapon_part = "bow-a";
-		character.Info.main_weapon_index = 14;
-		character.Info.sub_weapon_part = "arrow-a";
-		character.Info.wing_part = "cape-a";
-		character.Info.wing_index = 10;
+        character.Info.order = 1;
+        character.Info.unit_part = "darkelf-male";
+        character.Info.unit_index = 8;
+        character.Info.main_weapon_part = "bow-a";
+        character.Info.main_weapon_index = 0;
+        character.Info.sub_weapon_part = "arrow-a";
+        character.Info.sub_weapon_index = 0;
 
-		//character.UpdateView(); // with texture-baking
-		character.InitWithoutTextureBaking ();
-
-		switch (character.main_weapon_type) {
-		case PACKAGE_TYPE.WEAPON_BOW:
-			//character.PlayAnimation("anim_bow_walk", false);
-			break;
-		case PACKAGE_TYPE.WEAPON_STAFF:
-			//character.PlayAnimation("anim_staff_walk", false);
-			break;
-		case PACKAGE_TYPE.WEAPON_MELEE:
-		default:
-			//character.PlayAnimation("anim_melee_walk", false);
-			break;
-		}
-	
+        //character.UpdateView(); // with texture-baking
+        character.InitWithoutTextureBaking ();
+			
 		// attack animation coroutine about 2sec.
 		StartCoroutine("start_attack_animation");
 	}
 	IEnumerator start_attack_animation()
 	{
-		yield return new WaitForSeconds(0.2f);
+		yield return new WaitForSeconds(1f);
 		character.PlayAnimation("anim_bow_shoot_1", true);
 		StartCoroutine("start_attack_animation");
 	}

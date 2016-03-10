@@ -274,7 +274,7 @@ namespace gamedata
             // check whether all buttons is enable or not //
             check_lvup_button_is_enable_or_not();
 
-		}
+        }
 		
 		// Update is called once per frame
 		void Update () {
