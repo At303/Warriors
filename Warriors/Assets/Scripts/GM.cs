@@ -30,20 +30,18 @@ public class GM : MonoBehaviour {
                 //If touch is on the fixed range, excute the code.
                 if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open))
                 {
-
-                   
-
                     // Test HUDText;;;;
                     string get_coin_str = "+" + GameData.chest_struct.attacked_gold;
                     GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
 
                     // Add touch coin to total_coin and update total coin label
-                    GameData.coin_struct.total = GameData.coin_struct.total + GameData.chest_struct.attacked_gold;
-                    GameData.coin_total_label.GetComponent<UILabel>().text = GameData.coin_struct.total.ToString();
+					GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
+					GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
 
                     // if chest HP is under 0, reset chest HP.
                     if (GameData.chest_struct._HP <= 0)
                     {
+						print ("open chest");
                         // 보물상자 false시키고 , open된 보물상자 enable
                         GameData.chest_sprite.SetActive(false);
                         opened_chest_box.enable_disable_chest_open = true;
@@ -89,22 +87,23 @@ public class GM : MonoBehaviour {
                     // check upgrade buttons들을 활성화 할 지말지 .
                     check_all_function_when_coin_changed();
 
-                }
-                else if (hit.collider != null)      // opened chest is enable.
+				}
+				// opened chest is enable.
+                else if (hit.collider != null)      
                 {
                     // only touched in the collision area //
+
+					// Gemstone HUDText;;;;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone;
+					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
                     // slash sprite enable
                     GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
                     GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
                     // (Fever TIME) X2 Add touch coin to total_coin and update total coin label
-                    GameData.coin_struct.total = GameData.coin_struct.total + (GameData.chest_struct.attacked_gold * 2);
-                    GameData.coin_total_label.GetComponent<UILabel>().text = GameData.coin_struct.total.ToString();
-
-                    // Test HUDText;;;;
-                    string get_coin_str = "+" + (GameData.chest_struct.attacked_gold * 2);
-                    GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
+					GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
+					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
 
                     // check upgrade buttons들을 활성화 할 지말지 .
                     check_all_function_when_coin_changed();
@@ -112,6 +111,26 @@ public class GM : MonoBehaviour {
             }
         }
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	void FixedUpdate()
@@ -147,8 +166,8 @@ public class GM : MonoBehaviour {
 					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
 
 					// Add touch coin to total_coin and update total coin label
-					GameData.coin_struct.total = GameData.coin_struct.total + GameData.chest_struct.attacked_gold;
-					GameData.coin_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
+					GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
+					GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
 
 					// if chest HP is under 0, reset chest HP.
 					if (GameData.chest_struct._HP <= 0) {
@@ -194,17 +213,17 @@ public class GM : MonoBehaviour {
 				{
 					// only touched in the collision area //
 
+					// Gemstone HUDText;;;;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone;
+					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
+
 					// slash sprite enable
-					GameData.slash_animation.GetComponent<Animator> ().SetTrigger ("enable");
-					GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
+					GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+					GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
 					// (Fever TIME) X2 Add touch coin to total_coin and update total coin label
-					GameData.coin_struct.total = GameData.coin_struct.total + (GameData.chest_struct.attacked_gold*2);
-					GameData.coin_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.total.ToString ();
-
-					// Test HUDText;;;;
-					string get_coin_str = "+" + (GameData.chest_struct.attacked_gold*2) ;
-					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
+					GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
+					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
 
 					// check upgrade buttons들을 활성화 할 지말지 .
 					check_all_function_when_coin_changed();
