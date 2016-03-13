@@ -143,6 +143,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
             // check upgrade buttons들을 활성화 할 지말지 .
             GM.check_all_function_when_coin_changed();
+
         }
 
     }

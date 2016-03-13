@@ -950,13 +950,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 54
-  mHeight: 42
+  mWidth: 40
+  mHeight: 40
   mDepth: 4
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.2857143
+  aspectRatio: 1
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -3221,7 +3221,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.9333334, g: 0.6392157, b: 0.10588236, a: 1}
   mPivot: 4
   mWidth: 212
   mHeight: 56
@@ -6687,6 +6687,7 @@ GameObject:
   - 114: {fileID: 397735269}
   - 54: {fileID: 397735268}
   - 114: {fileID: 397735272}
+  - 114: {fileID: 397735273}
   m_Layer: 5
   m_Name: UI Root
   m_TagString: Untagged
@@ -6783,7 +6784,7 @@ Transform:
   m_GameObject: {fileID: 397735267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0010411245, y: 0.0010411245, z: 0.0010411245}
+  m_LocalScale: {x: 0.0010416667, y: 0.0010416667, z: 0.0010416667}
   m_Children:
   - {fileID: 1509842278}
   - {fileID: 245446472}
@@ -6799,6 +6800,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55c0a1685ccbe4936999145401679f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &397735273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 397735267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e265bde0bd148f8b30a043cb8604ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &398047731
@@ -8134,7 +8146,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.9921569, g: 0.6784314, b: 0.11764707, a: 1}
   mPivot: 4
   mWidth: 208
   mHeight: 44
@@ -24246,7 +24258,7 @@ GameObject:
   - 114: {fileID: 1197451627}
   - 65: {fileID: 1197451626}
   m_Layer: 5
-  m_Name: 1st_weapon_lvup_button
+  m_Name: _weapon01_lvup_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24292,12 +24304,12 @@ MonoBehaviour:
   tweenTarget: {fileID: 1197451624}
   hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
   pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
   duration: 0.2
   dragHighlight: 0
   hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
+  pressedSprite: levelup_button
+  disabledSprite: levelup_button_disabled
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
@@ -35245,7 +35257,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1721766286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 81, y: 60, z: 0}
+  m_LocalPosition: {x: 23, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982245932}
@@ -35293,7 +35305,7 @@ MonoBehaviour:
   mText: 0
   mFontSize: 45
   mFontStyle: 0
-  mAlignment: 0
+  mAlignment: 1
   mEncoding: 1
   mMaxLineCount: 0
   mEffectStyle: 0
@@ -39479,7 +39491,7 @@ MonoBehaviour:
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
-  mClipRange: {x: 24, y: 6, z: 1024, w: 440}
+  mClipRange: {x: 24, y: -338, z: 1024, w: 1128}
   mClipSoftness: {x: 4, y: 4}
   mDepth: 10
   mSortingOrder: 0
@@ -39953,7 +39965,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mColor: {r: 1, g: 0.8431373, b: 0.32156864, a: 1}
   mPivot: 4
   mWidth: 158
   mHeight: 44

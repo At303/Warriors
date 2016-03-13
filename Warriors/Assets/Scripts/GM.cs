@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using gamedata;
+using gamedata_weapon;
 
 public class GM : MonoBehaviour {
 
@@ -85,9 +86,10 @@ public class GM : MonoBehaviour {
                         
                     }
                     // check upgrade buttons들을 활성화 할 지말지 .
-                    check_all_function_when_coin_changed();
+                    check_all_function_when_coin_changed();                          
 
-				}
+
+                }
 				// opened chest is enable.
                 else if (hit.collider != null)      
                 {
@@ -236,8 +238,10 @@ public class GM : MonoBehaviour {
 	public static void check_all_function_when_coin_changed()
 	{
 		// check upgrade buttons들을 활성화 할 지말지 .
-		GameData.check_lvup_button_is_enable_or_not ();
-	}
+		GameData.check_lvup_button_is_enable_or_not ();                  // check slash && npc
+        GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
+
+    }
 
 
 

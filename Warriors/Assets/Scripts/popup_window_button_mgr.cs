@@ -74,7 +74,6 @@ public class popup_window_button_mgr : MonoBehaviour {
                 // Change the NPC01 Weapon01 icon Sprite.
                 NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
                 NPC01_make.NPC01_struct.weapon_sp.spriteName = GameData.to_change_weapon_struct.To_Change_Weapon_Name + GameData.to_change_weapon_struct.weapon_index.ToString(); ;
-                print("change weapon ----------> " + NPC01_make.NPC01_struct.weapon_sp.spriteName);
 
                 // NPC01 캐릭터 이미지 바꾸기.
                 npc01_make.change_weapon(_weapon_index, _weapon_name);
@@ -93,6 +92,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 break;
         }
+
+        // NPC선택 후 popUp window 비활성화.
+        GameData.weapon_sel_popup_window_obj.SetActive(false);
 
     }
 
