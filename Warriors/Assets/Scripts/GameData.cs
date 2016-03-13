@@ -88,29 +88,7 @@ namespace gamedata
 			public static float upgrade_cost;
 		}
 
-        // NPC01 struct
-        public struct NPC01_struct
-        {
-            public static int Level;
-            public static float damage;
-            public static float attack_speed;
-			public static float upgrade_cost;
-
-			// NPC01 Label.
-			public static GameObject npc01_gameobject;
-			public static GameObject npc01_lv_label;
-			public static GameObject npc01_lvup_cost_label;
-			public static GameObject npc01_damage_label;
-
-			// NPC01 Sprite.
-			public static UISprite weapon_sp; 
-			public static UISprite clothes_sp; 
-			public static UISprite wing_sp; 
-
-			// NPC01 Button.
-			public static GameObject npc01_lvup_btn;
-
-        }
+      
 
         // **************************************    GameObject data    ************************************************ //
 
@@ -235,18 +213,7 @@ namespace gamedata
 			slash5_damage_current_label = GameObject.Find ("_slash5_damage_current_label");
 			slash5_damage_after_label = GameObject.Find ("_slash5_damage_after_label");
 
-            // **************************************   NPC00 GameObject init    ************************************************ //
-			NPC01_struct.npc01_gameobject = GameObject.Find("_NPC01_gameobj");
-			NPC01_struct.weapon_sp = GameObject.Find("npc01_weapon_sprite").GetComponent<UISprite>();
-			NPC01_struct.clothes_sp = GameObject.Find("npc01_clothes_sprite").GetComponent<UISprite>();
-			NPC01_struct.wing_sp = GameObject.Find("npc01_wing_sprite").GetComponent<UISprite>();
-
-            //npc_gameobject.SetActive(false);                    // 추후 모든 캐릭터가 잠깐 나올 수 있기때문에 로딩딜레이줘야함.
-
-			NPC01_struct.npc01_lv_label = GameObject.Find("_npc01_level_label");
-			NPC01_struct.npc01_lvup_cost_label = GameObject.Find("_npc01_lvup_cost_label");
-			NPC01_struct.npc01_damage_label = GameObject.Find("_npc01_damage_label");
-			NPC01_struct.npc01_lvup_btn = GameObject.Find("_npc01_lvup_btn");
+           
 
             // **************************************   BOSS GameObject init    ************************************************ //
             boss_hp_value = GameObject.Find ("Boss_Sprite");
@@ -285,11 +252,6 @@ namespace gamedata
 			// slash5 init and update label//
 			levelup_slash5_data_struct();
 			update_slash5_data_label();
-
-            // NPC01 데이터 초기화 및 라벨 Update//
-            levelup_npc01_data_struct();
-            update_npc01_data_label();
-
 
             // check whether all buttons is enable or not //
             check_lvup_button_is_enable_or_not();
@@ -445,31 +407,7 @@ namespace gamedata
 
 		}
 
-        // ********************************************************			NPC functions 					******************************************************** //
-
-        // NPC01 데이터 초기화.
-        public static void levelup_npc01_data_struct()
-        {
-            NPC01_struct.Level = NPC01_struct.Level + 1;
-            NPC01_struct.damage = NPC01_struct.Level * 2 + 7f;
-			NPC01_struct.attack_speed = NPC01_struct.Level*0.3f;
-            NPC01_struct.upgrade_cost = 30f + NPC01_struct.Level*2;
-
-            // NPC01 캐릭터 Enable.
-            if(NPC01_struct.Level == 2)
-            {
-				NPC01_struct.npc01_gameobject.SetActive(true);
-            }
-        }
-
-        // NPC01 라벨 && 버튼 Update.
-        public static void update_npc01_data_label()
-        {
-			NPC01_struct.npc01_lv_label.GetComponent<UILabel>().text = NPC01_struct.Level.ToString();
-			NPC01_struct.npc01_lvup_cost_label.GetComponent<UILabel>().text = NPC01_struct.upgrade_cost.ToString();
-			NPC01_struct.npc01_damage_label.GetComponent<UILabel>().text = NPC01_struct.damage.ToString();
-			print ("finish npc01 label");
-        }
+      
 
         
         // ********************************************************			etc.. functions 					******************************************************** //
@@ -502,13 +440,13 @@ namespace gamedata
 			}
 
             // NPC01 button check
-            if (coin_struct.gold >= NPC01_struct.upgrade_cost)
+            if (coin_struct.gold >= NPC01_make.NPC01_struct.upgrade_cost)
             {
-				NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = true;
+                NPC01_make.NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = true;
             }
             else
             {
-				NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = false;
+                NPC01_make.NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = false;
             }
 
 

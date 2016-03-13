@@ -24,12 +24,12 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		GameObject otherGameObject = GameObject.Find ("_NPC01_gameobj");
 		NPC01_make npc01_make = otherGameObject.GetComponent<NPC01_make>();
 
-		// Change the NPC01 Weapon01 icon Sprite.
-		GameData.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas> ("BackgroundAtlas");
-		GameData.NPC01_struct.weapon_sp.spriteName = "weapon01_icon";
+        // Change the NPC01 Weapon01 icon Sprite.
+        NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas> ("BackgroundAtlas");
+        NPC01_make.NPC01_struct.weapon_sp.spriteName = "weapon01_icon";
 
 		// For test code...........
-		npc01_make.change_weapon (0);
+		npc01_make.change_weapon (0,"axe-a");
 
 		// pay the cost about chest level up
 		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.Weapon01_struct.upgrade_cost;

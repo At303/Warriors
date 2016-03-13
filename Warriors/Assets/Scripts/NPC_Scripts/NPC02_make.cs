@@ -4,7 +4,32 @@ using Devwin;
 using gamedata;
 
 public class NPC02_make : MonoBehaviour,IAnimEventListener {
-	public DevCharacter character;
+
+    // NPC02 struct
+    public struct NPC02_struct
+    {
+        public static bool enable;  
+        public static int Level;
+        public static float damage;
+        public static float attack_speed;
+        public static float upgrade_cost;
+
+        // NPC01 Label.
+        public static GameObject npc02_gameobject;
+        public static GameObject npc02_lv_label;
+        public static GameObject npc02_lvup_cost_label;
+        public static GameObject npc02_damage_label;
+
+        // NPC01 Sprite.
+        public static UISprite weapon_sp;
+        public static UISprite clothes_sp;
+        public static UISprite wing_sp;
+
+        // NPC01 Button.
+        public static GameObject npc02_lvup_btn;
+    }
+
+    public DevCharacter character;
     public GameObject NPC02_HUD;
 	void Start()
 	{
