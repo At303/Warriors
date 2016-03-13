@@ -68,15 +68,15 @@ public class GM : MonoBehaviour {
                         switch ((SLASH_TYPE)slash_index)
                         {
                             case SLASH_TYPE.SLASH1:
-                                print("slash1");
-                                print(GameData.slash1_struct.damage + "-> GameData.slash1_struct.damage");
+                                //print("slash1");
+                                //print(GameData.slash1_struct.damage + "-> GameData.slash1_struct.damage");
                                 GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash1_struct.damage;
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH2:
-                                print("slash2");
-                                print(GameData.slash2_struct.damage+ "-> GameData.slash2_struct.damage");
+                                // print("slash2");
+                                // print(GameData.slash2_struct.damage+ "-> GameData.slash2_struct.damage");
                                 GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash2_struct.damage;
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;

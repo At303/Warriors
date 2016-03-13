@@ -94,8 +94,6 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // Interface about attacked. ( 캐릭터가 공격 애니메이션 이후 실행 할 함수. )
     public void OnAnimation_Hitting(int _index)
     {
-        print("NPC01 attack animation finished && update GOLD and Chest HP");
-
         // 보물상자 HP가 0이면 아래 코드 안타도록함.
         if (!opened_chest_box.enable_disable_chest_open)
         {
@@ -189,7 +187,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // ********************************************************			NPC01 Image change functions 					******************************************************** //
 
     // Change the Weapon.
-    public void change_weapon(int index, string weapon_name)
+    public void change_weapon(int weapon_index, string weapon_name)
 	{
         // 캐릭터 이미지 변화시 잠시 캐릭터 이미지 저장할 Reference 생성.
         // CharacterData _character = new CharacterData();
@@ -200,7 +198,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         this.gameObject.SetActive(false);         
         
         character.Info.main_weapon_part = weapon_name;
-        character.Info.main_weapon_index = index;
+        character.Info.main_weapon_index = weapon_index;
 
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();

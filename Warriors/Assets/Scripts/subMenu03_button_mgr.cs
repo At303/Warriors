@@ -17,19 +17,10 @@ public class subMenu03_button_mgr : MonoBehaviour {
 	
 	}
 
-	//weapon01 레벨 업 버튼 클릭시 호출 함수
+	// Weapon01 레벨 업 버튼 클릭시 호출 함수.
 	public void Clicked_weapon01_Level_UP()
 	{
-		// Change the NPC01 Character Sprite.
-		GameObject otherGameObject = GameObject.Find ("_NPC01_gameobj");
-		NPC01_make npc01_make = otherGameObject.GetComponent<NPC01_make>();
-
-        // Change the NPC01 Weapon01 icon Sprite.
-        NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas> ("BackgroundAtlas");
-        NPC01_make.NPC01_struct.weapon_sp.spriteName = "weapon01_icon";
-
-		// For test code...........
-		npc01_make.change_weapon (0,"axe-a");
+		
 
 		// pay the cost about chest level up
 		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.Weapon01_struct.upgrade_cost;
@@ -45,5 +36,16 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		GameData.check_lvup_button_is_enable_or_not();
 
 	}
+
+    // Weapon01 캐릭터 선택 창 클릭시 호출 함수.
+    public void Clicked_weapon01_select_NPC()
+    {
+        // NPC 선택 창 Popup 닫기.
+        GameData.weapon_sel_popup_window_obj.SetActive(true);
+
+        // 바꿀 Weapon 정보 저장.
+        GameData.to_change_weapon_struct.To_Change_Weapon_Name = "dagger-a";
+        GameData.to_change_weapon_struct.weapon_index = 0;
+    }
 
 }

@@ -88,14 +88,22 @@ namespace gamedata
 			public static float upgrade_cost;
 		}
 
-      
-
+        
+        // 캐릭터 무기 바꿀 시 사용하는 구조체.
+        public struct to_change_weapon_struct
+        {
+            public static int weapon_index;
+            public static string To_Change_Weapon_Name;
+        }
         // **************************************    GameObject data    ************************************************ //
 
         public static GameObject debug_label2;
 
-		// label object
-		public static GameObject gold_total_label;					// gold total label
+        // Popup Window object
+        public static GameObject weapon_sel_popup_window_obj;
+
+        // label object
+        public static GameObject gold_total_label;					// gold total label
 		public static GameObject gemstone_total_label;				// gemstone total label
 
 		// chest && slashes object
@@ -165,7 +173,10 @@ namespace gamedata
 		void Awake () {
 			debug_label2 = GameObject.Find ("debug_label2");
 
-			gold_total_label = GameObject.Find ("_gold_total_label");
+            print("set popup");
+            weapon_sel_popup_window_obj = GameObject.Find("_select_npc_popup_window");
+
+            gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
 				
 			chest_sprite = GameObject.Find ("chest_sprite");
