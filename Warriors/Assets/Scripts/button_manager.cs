@@ -59,4 +59,17 @@ public class button_manager : MonoBehaviour {
 
     }
 
+    public void toggle3_changed()
+    {
+        // NPC 선택 창 Popup Close.
+        GameData.weapon_sel_popup_window_obj.SetActive(false);
+    }
+
+    public void toggle4_changed()
+    {
+        // NPC 선택 창 Popup Close.
+        GameData.clothes_sel_popup_window_obj.SetActive(false);
+    }
+
+
 }

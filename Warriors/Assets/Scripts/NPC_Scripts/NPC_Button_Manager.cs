@@ -23,16 +23,53 @@ public class NPC_Button_Manager : MonoBehaviour {
 		// pay the cost about chest level up
 		GameData.coin_struct.gold = GameData.coin_struct.gold - NPC01_make.NPC01_struct.upgrade_cost;
 		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+ 
+        NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
 
-        // update chest_struct data
-        NPC01_make.levelup_npc01_data_struct();
+        // update NPC01 데이터.
+        npc01.levelup_npc01_data_struct();
 
-        // update chest label
-        NPC01_make.update_npc01_data_label();
+        // update NPC01 label Update.
+        npc01.update_npc01_data_label();
 
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
 		GameData.check_lvup_button_is_enable_or_not();
-
-
 	}
+
+    public void Clicked_npc02_Level_UP()
+    {
+        // pay the cost about chest level up
+        GameData.coin_struct.gold = GameData.coin_struct.gold - NPC02_make.NPC02_struct.upgrade_cost;
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+
+        NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
+
+        // update NPC02 데이터.
+        npc02.levelup_npc02_data_struct();
+
+        // update NPC02 label Update.
+        npc02.update_npc02_data_label();
+
+        // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
+        GameData.check_lvup_button_is_enable_or_not();
+    }
+
+    public void Clicked_npc03_Level_UP()
+    {
+        // pay the cost about chest level up
+        GameData.coin_struct.gold = GameData.coin_struct.gold - NPC03_make.NPC03_struct.upgrade_cost;
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+
+        NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+
+        // update NPC03 데이터.
+        npc03.levelup_npc03_data_struct();
+
+        // update NPC03 label Update.
+        npc03.update_npc03_data_label();
+
+        // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
+        GameData.check_lvup_button_is_enable_or_not();
+    }
+
 }

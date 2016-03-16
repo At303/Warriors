@@ -32,7 +32,7 @@ public class GM : MonoBehaviour {
                 if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open))
                 {
                     // Test HUDText;;;;
-                    string get_coin_str = "+" + GameData.chest_struct.attacked_gold;
+                    string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD";
                     GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
 
                     // Add touch coin to total_coin and update total coin label
@@ -86,7 +86,7 @@ public class GM : MonoBehaviour {
                         
                     }
                     // check upgrade buttons들을 활성화 할 지말지 .
-                    check_all_function_when_coin_changed();                          
+                    check_all_function_when_gold_changed();                          
 
 
                 }
@@ -96,7 +96,7 @@ public class GM : MonoBehaviour {
                     // only touched in the collision area //
 
 					// Gemstone HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
                     // slash sprite enable
@@ -108,7 +108,7 @@ public class GM : MonoBehaviour {
 					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
 
                     // check upgrade buttons들을 활성화 할 지말지 .
-                    check_all_function_when_coin_changed();
+                    check_all_function_when_gold_changed();
                 }
             }
         }
@@ -207,8 +207,8 @@ public class GM : MonoBehaviour {
 						}
 		
 					}
-					// check upgrade buttons들을 활성화 할 지말지 .
-					check_all_function_when_coin_changed();
+                    // check upgrade buttons들을 활성화 할 지말지 .
+                    check_all_function_when_gold_changed();
 
 				}
 				else if (hit.collider != null) 		// opened chest is enable.
@@ -227,22 +227,26 @@ public class GM : MonoBehaviour {
 					GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
 					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
 
-					// check upgrade buttons들을 활성화 할 지말지 .
-					check_all_function_when_coin_changed();
+                    // check upgrade buttons들을 활성화 할 지말지 .
+                    check_all_function_when_gold_changed();
 				}
 			}
 		}
 	}
 
-	// toal coin 변경시 check해야할 모든 함수 불르기
-	public static void check_all_function_when_coin_changed()
+	// 골드획득량 변경시 check해야할 모든 함수 불르기
+	public static void check_all_function_when_gold_changed()
 	{
 		// check upgrade buttons들을 활성화 할 지말지 .
 		GameData.check_lvup_button_is_enable_or_not ();                  // check slash && npc
         GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
 
     }
-
+    // 보석획득량 변경시 check해야할 모든 함수 불르기
+    public static void check_all_function_when_gems_changed()
+    {
+       
+    }
 
 
 }

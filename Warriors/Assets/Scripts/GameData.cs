@@ -90,10 +90,13 @@ namespace gamedata
 
         
         // 캐릭터 무기 바꿀 시 사용하는 구조체.
-        public struct to_change_weapon_struct
+        public struct to_change_npc_struct
         {
             public static int weapon_index;
-            public static string To_Change_Weapon_Name;
+            public static string To_Change_Weapon_type;
+            public static int armor_index;
+            public static int armor_color;
+            public static string To_Change_Armor_type;
         }
         // **************************************    GameObject data    ************************************************ //
 
@@ -101,6 +104,7 @@ namespace gamedata
 
         // Popup Window object
         public static GameObject weapon_sel_popup_window_obj;
+        public static GameObject clothes_sel_popup_window_obj;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -173,8 +177,8 @@ namespace gamedata
 		void Awake () {
 			debug_label2 = GameObject.Find ("debug_label2");
 
-            print("set popup");
-            weapon_sel_popup_window_obj = GameObject.Find("_select_npc_popup_window");
+            weapon_sel_popup_window_obj = GameObject.Find("_select_npc_weapon_popup_window");
+            clothes_sel_popup_window_obj = GameObject.Find("_select_npc_clothes_popup_window");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
@@ -265,7 +269,7 @@ namespace gamedata
 			update_slash5_data_label();
 
             // check whether all buttons is enable or not //
-            check_lvup_button_is_enable_or_not();
+           // check_lvup_button_is_enable_or_not();
 
         }
 		
@@ -453,11 +457,31 @@ namespace gamedata
             // NPC01 button check
             if (coin_struct.gold >= NPC01_make.NPC01_struct.upgrade_cost)
             {
-                NPC01_make.NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = true;
+                NPC01_make.NPC01_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
             }
             else
             {
-                NPC01_make.NPC01_struct.npc01_lvup_btn.GetComponent<UIButton>().isEnabled = false;
+                NPC01_make.NPC01_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC02 button check
+            if (coin_struct.gold >= NPC02_make.NPC02_struct.upgrade_cost)
+            {
+                NPC02_make.NPC02_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC02_make.NPC02_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC03 button check
+            if (coin_struct.gold >= NPC03_make.NPC03_struct.upgrade_cost)
+            {
+                NPC03_make.NPC03_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC03_make.NPC03_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
             }
 
 

@@ -8,16 +8,18 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // NPC01 struct
     public struct NPC01_struct
     {
+        // NPC01 Data. 
+        public static bool enable;
         public static int Level;
         public static float damage;
         public static float attack_speed;
         public static float upgrade_cost;
 
         // NPC01 Label.
-        public static GameObject npc01_gameobject;
-        public static GameObject npc01_lv_label;
-        public static GameObject npc01_lvup_cost_label;
-        public static GameObject npc01_damage_label;
+        public static GameObject gameobject;
+        public static GameObject lv_label;
+        public static GameObject lvup_cost_label;
+        public static GameObject damage_label;
 
         // NPC01 Sprite.
         public static UISprite weapon_sp;
@@ -25,7 +27,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         public static UISprite wing_sp;
 
         // NPC01 Button.
-        public static GameObject npc01_lvup_btn;
+        public static GameObject lvup_btn;
     }
 
     // 화면에 보여지는 캐릭터 이미지.
@@ -37,19 +39,18 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // NPC01 Struct 구조체 초기화 및 Gameobject 가져오기.
     void Awake()
     {
-        print("here");
         // **************************************   NPC01 GameObject init    ************************************************ //
-        NPC01_struct.npc01_gameobject = GameObject.Find("_NPC01_gameobj");
-        NPC01_struct.weapon_sp = GameObject.Find("_npc01_weapon_sprite").GetComponent<UISprite>();
-        NPC01_struct.clothes_sp = GameObject.Find("_npc01_clothes_sprite").GetComponent<UISprite>();
-        NPC01_struct.wing_sp = GameObject.Find("_npc01_wing_sprite").GetComponent<UISprite>();
+        NPC01_struct.gameobject = GameObject.Find("_NPC01_gameobj");                                       // NPC01 GameObject.    
+        NPC01_struct.weapon_sp = GameObject.Find("_npc01_weapon_sprite").GetComponent<UISprite>();               // NPC01 무기 icon Object.
+        NPC01_struct.clothes_sp = GameObject.Find("_npc01_clothes_sprite").GetComponent<UISprite>();             // NPC01 옷 icon Object.
+        NPC01_struct.wing_sp = GameObject.Find("_npc01_wing_sprite").GetComponent<UISprite>();                   // NPC01 날개 icon Object.
 
         //npc_gameobject.SetActive(false);                    // 추후 모든 캐릭터가 잠깐 나올 수 있기때문에 로딩딜레이줘야함.
 
-        NPC01_struct.npc01_lv_label = GameObject.Find("_npc01_level_label");
-        NPC01_struct.npc01_lvup_cost_label = GameObject.Find("_npc01_lvup_cost_label");
-        NPC01_struct.npc01_damage_label = GameObject.Find("_npc01_damage_label");
-        NPC01_struct.npc01_lvup_btn = GameObject.Find("_npc01_lvup_btn");
+        NPC01_struct.lv_label = GameObject.Find("_npc01_level_label");
+        NPC01_struct.lvup_cost_label = GameObject.Find("_npc01_lvup_cost_label");
+        NPC01_struct.damage_label = GameObject.Find("_npc01_damage_label");
+        NPC01_struct.lvup_btn = GameObject.Find("_npc01_lvup_btn");
 
         // Damage HUD Init.
         NPC01_HUD = GameObject.Find("1st_friend_HUD");
@@ -64,20 +65,28 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
     void Start()
 	{
+        // 처음 NPC01 GameObject생성시 enable 변수는 False로 해줌.
+        NPC01_struct.enable = false;
+        NPC01_struct.gameobject.SetActive(false);
+    }
+
+    public void init()
+    {
+        // NPC01 캐릭터 이미지 초기화.
         character.Info.order = 0;
-		character.Info.unit_part = "human-male";
+        character.Info.unit_part = "human-male";
         character.Info.unit_index = 2;
+
+        // NPC01 캐릭터 enable 변수 True.
+        NPC01_struct.enable = true;
 
         character.InitWithoutTextureBaking();
 
-		// Add Attack event clip interface.
-		character.event_listener.Add (this);
-
-
+        // Add Attack event clip interface. ( NPC01이 공격 애니메이션 시 사용할 함수를 추가. )
+        character.event_listener.Add(this);
 
         // attack animation coroutine about 2sec.
         StartCoroutine("npc_attack_func");
-
     }
 
     //  Coroutine   //
@@ -127,7 +136,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
             }
 
             // check upgrade buttons들을 활성화 할 지말지 .
-            GM.check_all_function_when_coin_changed();
+            GM.check_all_function_when_gold_changed();
         }
         // Chest opened
         else
@@ -142,7 +151,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
             GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
 
             // check upgrade buttons들을 활성화 할 지말지 .
-            GM.check_all_function_when_coin_changed();
+            GM.check_all_function_when_gold_changed();
 
         }
 
@@ -154,29 +163,38 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
     // ********************************************************			NPC01 init functions 					******************************************************** //
 
-    // NPC01 데이터 초기화.
-    public static void levelup_npc01_data_struct()
+    // NPC01 데이터 초기화. ( NPC01 레벨업 버튼 클릭 시 실행할 함수. )
+    public void levelup_npc01_data_struct()
     {
+        print("npc01 level : " + NPC01_struct.Level.ToString());
+
+        if(NPC01_struct.Level == 1)
+        {
+            // 맨 처음 NPC01 레벨업 버튼 클릭시에는 해당 캐릭터가 disable되어 있으므로 Enable시켜줌.
+            NPC01_struct.gameobject.SetActive(true);
+            init();
+        }
+
+        // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC01_struct.Level = NPC01_struct.Level + 1;
         NPC01_struct.damage = NPC01_struct.Level * 2 + 7f;
         NPC01_struct.attack_speed = NPC01_struct.Level * 0.3f;
         NPC01_struct.upgrade_cost = 30f + NPC01_struct.Level * 2;
 
-        // NPC01 캐릭터 Enable.
-        if (NPC01_struct.Level == 2)
+        // NPC01 레벨이 20 이상이면 NPC02 캐릭터 구입할 수 있음.
+        if (NPC01_struct.Level == 3)
         {
-            NPC01_struct.npc01_gameobject.SetActive(true);
+            // NPC02 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC02 캐릭터는 화면에 안보여짐. )
+            NPC02_make.NPC02_struct.unlock_sp.SetActive(false);
         }
     }
 
-    // NPC01 라벨 && 버튼 Update.
-    public static void update_npc01_data_label()
+    // NPC01 라벨 && Level up cost 버튼 Update.
+    public void update_npc01_data_label()
     {
-        print("cost = " + NPC01_struct.upgrade_cost.ToString());
-        NPC01_struct.npc01_lv_label.GetComponent<UILabel>().text = NPC01_struct.Level.ToString();
-        NPC01_struct.npc01_lvup_cost_label.GetComponent<UILabel>().text = NPC01_struct.upgrade_cost.ToString();
-        NPC01_struct.npc01_damage_label.GetComponent<UILabel>().text = NPC01_struct.damage.ToString();
-        print("finish npc01 label");
+        NPC01_struct.lv_label.GetComponent<UILabel>().text = NPC01_struct.Level.ToString();
+        NPC01_struct.lvup_cost_label.GetComponent<UILabel>().text = NPC01_struct.upgrade_cost.ToString();
+        NPC01_struct.damage_label.GetComponent<UILabel>().text = NPC01_struct.damage.ToString();
     }
 
     // ********************************************************			NPC01 init functions 					******************************************************** //
@@ -185,7 +203,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
 
 
-    // ********************************************************			NPC01 Image change functions 					******************************************************** //
+    // ********************************************************			Image change functions 					******************************************************** //
 
     // Change the Weapon.
     public void change_weapon(int weapon_index, string weapon_name)

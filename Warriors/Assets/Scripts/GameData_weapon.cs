@@ -48,7 +48,7 @@ namespace gamedata_weapon
         }
 
         // 무기01 레벨 UP && Data Update.
-        void levelup_weapon01_data_struct()
+        public static void levelup_weapon01_data_struct()
         {
             Weapon01_struct.level = Weapon01_struct.level + 1;
             Weapon01_struct.damage = Weapon01_struct.level * 2 + 20f;
@@ -62,7 +62,7 @@ namespace gamedata_weapon
         }
 
         // 무기01 버튼 && 라벨 Update.
-        void update_weapon01_data_label()
+        public static void update_weapon01_data_label()
         {
             Weapon01_struct.weapon01_lv_label = GameObject.Find("_weapon01_level_label");
             Weapon01_struct.weapon01_lvup_cost_label = GameObject.Find("_weapon01_upgrade_cost_label");
@@ -70,8 +70,8 @@ namespace gamedata_weapon
             Weapon01_struct.weapon01_levelup_button = GameObject.Find("_weapon01_lvup_button");
 
             Weapon01_struct.weapon01_lv_label.GetComponent<UILabel>().text = Weapon01_struct.level.ToString();
-            Weapon01_struct.weapon01_lvup_cost_label.GetComponent<UILabel>().text = Weapon01_struct.damage.ToString();
-            Weapon01_struct.weapon01_damage_label.GetComponent<UILabel>().text = Weapon01_struct.upgrade_cost.ToString();
+            Weapon01_struct.weapon01_lvup_cost_label.GetComponent<UILabel>().text = Weapon01_struct.upgrade_cost.ToString();
+            Weapon01_struct.weapon01_damage_label.GetComponent<UILabel>().text = Weapon01_struct.damage.ToString();
         }
 
         //check whether upgrade buttons are possiable or not
