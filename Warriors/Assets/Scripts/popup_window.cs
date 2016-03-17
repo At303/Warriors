@@ -5,8 +5,6 @@ using gamedata;
 public class popup_window : MonoBehaviour {
     void Start()
     {
-        // popup window gameobject Set.
-        GameData.weapon_sel_popup_window_obj = this.gameObject;
         setDisable();
     }
 

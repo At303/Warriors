@@ -15,7 +15,7 @@ public class popup_window_button_mgr : MonoBehaviour {
         NPC04,
         NPC05,
     }
-
+    
     public string npc01_weapon
     {
         get { return "npc01_weapon"; }
@@ -24,7 +24,10 @@ public class popup_window_button_mgr : MonoBehaviour {
     {
         get { return "npc01_clothes"; }
     }
-
+    public string npc01_bow
+    {
+        get { return "npc01_bow"; }
+    }
     public string npc02
     {
         get { return "npc02"; }
@@ -49,12 +52,17 @@ public class popup_window_button_mgr : MonoBehaviour {
     {
         GameData.weapon_sel_popup_window_obj.SetActive(false);
     }
-
-    // 무기 선택을 위한 캐릭터 창 Close시키는 함수.
+    // 옷 선택을 위한 캐릭터 창 Close시키는 함수.
     public void Close_NPC_Sel_clothes_popup_Window()
     {
         GameData.clothes_sel_popup_window_obj.SetActive(false);
     }
+    // 활무기 선택을 위한 캐릭터 창 Close시키는 함수.
+    public void Close_NPC_Sel_bow_popup_Window()
+    {
+        GameData.bow_sel_popup_window_obj.SetActive(false);
+    }
+
 
     // 어떤 NPC를 선택했는지 처리하기 위한 함수.
     public void Select_NPC(string npc_name)
@@ -69,8 +77,8 @@ public class popup_window_button_mgr : MonoBehaviour {
             case "npc01_clothes":
                 clothes_to_selected_NPC(NPC_INDEX.NPC01, GameData.to_change_npc_struct.To_Change_Armor_type, GameData.to_change_npc_struct.armor_index, GameData.to_change_npc_struct.armor_color );
                 break;
-            case "npc02":
-                weapon_to_selected_NPC(NPC_INDEX.NPC02, GameData.to_change_npc_struct.To_Change_Weapon_type, GameData.to_change_npc_struct.weapon_index);
+            case "npc01_bow":
+                weapon_to_selected_NPC(NPC_INDEX.NPC01, GameData.to_change_npc_struct.To_Change_bow_type, GameData.to_change_npc_struct.bow_index);
                 break;
         }
         
@@ -150,5 +158,5 @@ public class popup_window_button_mgr : MonoBehaviour {
 
     }
 
-
+   
 }

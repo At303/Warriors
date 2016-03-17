@@ -97,6 +97,8 @@ namespace gamedata
             public static int armor_index;
             public static int armor_color;
             public static string To_Change_Armor_type;
+            public static int bow_index;
+            public static string To_Change_bow_type;
         }
         // **************************************    GameObject data    ************************************************ //
 
@@ -105,6 +107,8 @@ namespace gamedata
         // Popup Window object
         public static GameObject weapon_sel_popup_window_obj;
         public static GameObject clothes_sel_popup_window_obj;
+        public static GameObject bow_sel_popup_window_obj;
+
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -179,6 +183,7 @@ namespace gamedata
 
             weapon_sel_popup_window_obj = GameObject.Find("_select_npc_weapon_popup_window");
             clothes_sel_popup_window_obj = GameObject.Find("_select_npc_clothes_popup_window");
+            bow_sel_popup_window_obj = GameObject.Find("_select_npc_bow_popup_window");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");

@@ -50,14 +50,15 @@ public class subMenu03_button_mgr : MonoBehaviour {
     }
 
     // Weapon02 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_weapon02_select_NPC()
+    public void Clicked_weapon_select_NPC(string weapon_type, int weapon_index)
     {
+        // 바꿀 Weapon 정보 저장.
+        GameData.to_change_npc_struct.To_Change_Weapon_type = weapon_type;
+        GameData.to_change_npc_struct.weapon_index = weapon_index;
+
         // NPC 선택 창 Popup Open.
         GameData.weapon_sel_popup_window_obj.SetActive(true);
 
-        // 바꿀 Weapon 정보 저장.
-        GameData.to_change_npc_struct.To_Change_Weapon_type = "dagger-a";
-        GameData.to_change_npc_struct.weapon_index = 1;
     }
 
 
@@ -65,19 +66,32 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
     // ************************************************************************  Clothes Functions ************************************************************************ //
 
-
-
-    // Clothes01 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_clothes01_select_NPC()
+    // Clothes 캐릭터 선택 창 클릭시 호출 함수.
+    public void Clicked_clothes_select_NPC(string armor_type, int armor_index, int armor_color)
     {
+
+        // 바꿀 Clothes 정보 저장.
+        GameData.to_change_npc_struct.To_Change_Armor_type = armor_type;
+        GameData.to_change_npc_struct.armor_index = armor_index;
+        GameData.to_change_npc_struct.armor_color = armor_color;
+
         // NPC 선택 창 Popup Open.
         GameData.clothes_sel_popup_window_obj.SetActive(true);
-
-        // 바꿀 Weapon 정보 저장.
-        GameData.to_change_npc_struct.To_Change_Armor_type = "steel-a";
-        GameData.to_change_npc_struct.armor_index = 0;
-        GameData.to_change_npc_struct.armor_color = 0;
-
     }
-    
+    // ************************************************************************  bow Functions ************************************************************************ //
+
+    // Clothes01 캐릭터 선택 창 클릭시 호출 함수.
+    public void Clicked_bow_select_NPC(int bow_index)
+    {
+
+        // 버튼 클릭에 맞는 bow index를 가져오고 해당 index로 캐릭터 update.
+        // 바꿀 Bow 정보 저장.
+        GameData.to_change_npc_struct.To_Change_bow_type = "bow-a";
+        GameData.to_change_npc_struct.bow_index = bow_index;
+
+
+        // NPC 선택 창 Popup Open.
+        GameData.bow_sel_popup_window_obj.SetActive(true);
+    }
+
 }
