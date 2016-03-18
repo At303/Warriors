@@ -16,6 +16,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 	void Update () {
 	
 	}
+	// ************************************************************************  Weapon Functions ************************************************************************ //
 
 	// Weapon01 레벨 업 버튼 클릭시 호출 함수.
 	public void Clicked_weapon01_Level_UP()
@@ -38,18 +39,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
 	}
 
-    // Weapon01 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_weapon01_select_NPC()
-    {
-        // NPC 선택 창 Popup Open.
-        GameData.weapon_sel_popup_window_obj.SetActive(true);
-
-        // 바꿀 Weapon 정보 저장.
-        GameData.to_change_npc_struct.To_Change_Weapon_type = "dagger-a";
-        GameData.to_change_npc_struct.weapon_index = 0;
-    }
-
-    // Weapon02 캐릭터 선택 창 클릭시 호출 함수.
+    // Weapon 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_weapon_select_NPC(string weapon_type, int weapon_index)
     {
         // 바꿀 Weapon 정보 저장.
@@ -60,8 +50,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
         GameData.weapon_sel_popup_window_obj.SetActive(true);
 
     }
-
-
 
 
     // ************************************************************************  Clothes Functions ************************************************************************ //
@@ -80,7 +68,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
     }
     // ************************************************************************  bow Functions ************************************************************************ //
 
-    // Clothes01 캐릭터 선택 창 클릭시 호출 함수.
+    // Bow 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_bow_select_NPC(int bow_index)
     {
 
@@ -93,5 +81,22 @@ public class subMenu03_button_mgr : MonoBehaviour {
         // NPC 선택 창 Popup Open.
         GameData.bow_sel_popup_window_obj.SetActive(true);
     }
+
+	// ************************************************************************  Wing Functions ************************************************************************ //
+
+	// wing 캐릭터 선택 창 클릭시 호출 함수.
+	public void Clicked_wing_select_NPC(string wing_type, int wing_index)
+	{
+
+		// 버튼 클릭에 맞는 bow index를 가져오고 해당 index로 캐릭터 update.
+		// 바꿀 Bow 정보 저장.
+		GameData.to_change_npc_struct.To_Change_bow_type = wing_type;
+		GameData.to_change_npc_struct.bow_index = wing_index;
+
+
+		// NPC 선택 창 Popup Open.
+		GameData.wing_sel_popup_window_obj.SetActive(true);
+	}
+
 
 }

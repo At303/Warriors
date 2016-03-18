@@ -7,8 +7,6 @@ public class Armor_Index_data : MonoBehaviour {
     {
         get { return "steel-a"; }
     }
-
-
     public string ancient_b
     {
         get { return "ancient-b"; }
@@ -23,9 +21,6 @@ public class Armor_Index_data : MonoBehaviour {
     {
         get { return 1; }
     }
-
-
-
 
 
 

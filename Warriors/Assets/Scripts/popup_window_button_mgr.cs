@@ -28,6 +28,11 @@ public class popup_window_button_mgr : MonoBehaviour {
     {
         get { return "npc01_bow"; }
     }
+	public string npc01_wing
+	{
+		get { return "npc01_wing"; }
+	}
+
     public string npc02
     {
         get { return "npc02"; }
@@ -37,15 +42,9 @@ public class popup_window_button_mgr : MonoBehaviour {
         get { return "npc03"; }
     }
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+   
+
+
 
     // 무기 선택을 위한 캐릭터 창 Close시키는 함수.
     public void Close_NPC_Sel_weapon_popup_Window()
@@ -62,6 +61,11 @@ public class popup_window_button_mgr : MonoBehaviour {
     {
         GameData.bow_sel_popup_window_obj.SetActive(false);
     }
+	// 날개 선택을 위한 캐릭터 창 Close시키는 함수.
+	public void Close_NPC_Sel_wing_popup_Window()
+	{
+		GameData.wing_sel_popup_window_obj.SetActive(false);
+	}
 
 
     // 어떤 NPC를 선택했는지 처리하기 위한 함수.
@@ -80,6 +84,9 @@ public class popup_window_button_mgr : MonoBehaviour {
             case "npc01_bow":
                 weapon_to_selected_NPC(NPC_INDEX.NPC01, GameData.to_change_npc_struct.To_Change_bow_type, GameData.to_change_npc_struct.bow_index);
                 break;
+			case "npc01_wing":
+				wing_to_selected_NPC(NPC_INDEX.NPC01, GameData.to_change_npc_struct.To_Change_bow_type, GameData.to_change_npc_struct.bow_index);
+				break;
         }
         
     }
@@ -99,7 +106,7 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
                 NPC01_make.NPC01_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString(); ;
 
-                // NPC01 캐릭터 이미지 바꾸기.
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
                 npc01.change_weapon(_weapon_index, _weapon_name);
                 break;
             case NPC_INDEX.NPC02:
@@ -122,7 +129,7 @@ public class popup_window_button_mgr : MonoBehaviour {
     }
 
     // 해당 NPC에게 선택한 Clothes를 장착하게 하는 함수.
-    void clothes_to_selected_NPC(NPC_INDEX _npc_index, string _armor_name, int _armor_index, int _armor_color)
+    void clothes_to_selected_NPC(NPC_INDEX _npc_index, string _armor_type, int _armor_index, int _armor_color)
     {
         // npc0x에 따라서 실행.
         switch (_npc_index)
@@ -136,8 +143,8 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
                 NPC01_make.NPC01_struct.clothes_sp.spriteName = GameData.to_change_npc_struct.To_Change_Armor_type + GameData.to_change_npc_struct.armor_index.ToString();
 
-                // NPC01 캐릭터 이미지 바꾸기.
-                npc01.change_clothes(_armor_index, _armor_color, _armor_name);
+                // NPC01 캐릭터 clothes 이미지 바꾸기.
+			npc01.change_clothes(_armor_index, _armor_color, _armor_type);
 
                 break;
             case NPC_INDEX.NPC02:
@@ -154,9 +161,36 @@ public class popup_window_button_mgr : MonoBehaviour {
         }
 
         // NPC선택 후 popUp window 비활성화.
-        GameData.weapon_sel_popup_window_obj.SetActive(false);
+		GameData.clothes_sel_popup_window_obj.SetActive(false);
 
     }
 
+	// 해당 NPC에게 선택한 Clothes를 장착하게 하는 함수.
+	void wing_to_selected_NPC(NPC_INDEX _npc_index, string _wing_type, int _armor_index)
+	{
+		// npc0x에 따라서 실행.
+		switch (_npc_index)
+		{
+
+		case NPC_INDEX.NPC01:
+			// Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+			NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+
+			// Change the NPC01 Clothes icon Sprite.
+			NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+			NPC01_make.NPC01_struct.clothes_sp.spriteName = GameData.to_change_npc_struct.To_Change_Armor_type + GameData.to_change_npc_struct.armor_index.ToString();
+
+			// NPC01 캐릭터 wing 이미지 바꾸기.
+			npc01.change_wing(_armor_index, _wing_type);
+
+			break;
+
+
+		}
+
+		// NPC선택 후 popUp window 비활성화.
+		GameData.wing_sel_popup_window_obj.SetActive(false);
+
+	}
    
 }
