@@ -565,6 +565,96 @@ namespace gamedata
                 NPC03_make.NPC03_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
             }
 
+            // NPC04 button check
+            if (coin_struct.gold >= NPC04_make.NPC04_struct.upgrade_cost)
+            {
+                NPC04_make.NPC04_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC04_make.NPC04_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC05 button check
+            if (coin_struct.gold >= NPC05_make.NPC05_struct.upgrade_cost)
+            {
+                NPC05_make.NPC05_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC05_make.NPC05_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC06 button check
+            if (coin_struct.gold >= NPC06_make.NPC06_struct.upgrade_cost)
+            {
+                NPC06_make.NPC06_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC06_make.NPC06_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC07 button check
+            if (coin_struct.gold >= NPC07_make.NPC07_struct.upgrade_cost)
+            {
+                NPC07_make.NPC07_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC07_make.NPC07_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC08 button check
+            if (coin_struct.gold >= NPC08_make.NPC08_struct.upgrade_cost)
+            {
+                NPC08_make.NPC08_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC08_make.NPC08_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC09 button check
+            if (coin_struct.gold >= NPC09_make.NPC09_struct.upgrade_cost)
+            {
+                NPC09_make.NPC09_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC09_make.NPC09_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC10 button check
+            if (coin_struct.gold >= NPC10_make.NPC10_struct.upgrade_cost)
+            {
+                NPC10_make.NPC10_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC10_make.NPC10_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC11 button check
+            if (coin_struct.gold >= NPC11_make.NPC11_struct.upgrade_cost)
+            {
+                NPC11_make.NPC11_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC11_make.NPC11_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
+            // NPC12 button check
+            if (coin_struct.gold >= NPC12_make.NPC12_struct.upgrade_cost)
+            {
+                NPC12_make.NPC12_struct.lvup_btn.GetComponent<UIButton>().isEnabled = true;
+            }
+            else
+            {
+                NPC12_make.NPC12_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
+            }
+
 
         }
 

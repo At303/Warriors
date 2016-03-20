@@ -73,9 +73,10 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
     void Start()
 	{
+        init();
         // 처음 NPC01 GameObject생성시 enable 변수는 False로 해줌.
-        NPC01_struct.enable = false;
-        NPC01_struct.gameobject.SetActive(false);
+        //NPC01_struct.enable = false;
+        //NPC01_struct.gameobject.SetActive(false);
     }
 
     public void init()
@@ -132,7 +133,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
             else {
 
                 // Gold HUDText;;;;
-                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD";
+                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
                 NPC01_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
                 // Add touch coin to total_coin and update total coin label
@@ -153,7 +154,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         {
 
             // Gemstone HUDText;;;;
-            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
+            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
             NPC01_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);
 
             // Add gemstone while NPC attacking to chest.
@@ -186,7 +187,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC01_struct.Level = NPC01_struct.Level + 1;
 		NPC01_struct.damage = (ulong)(NPC01_struct.Level * 2) + 7;
-		NPC01_struct.attack_speed = NPC01_struct.Level * 0.3f;
+		NPC01_struct.attack_speed = NPC01_struct.Level * 1f;
 		NPC01_struct.upgrade_cost = 30 + (ulong)(NPC01_struct.Level * 2);
 
         // NPC01 레벨이 20 이상이면 NPC02 캐릭터 구입할 수 있음.

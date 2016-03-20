@@ -72,9 +72,10 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
 
     void Start()
 	{
+        init();
         // 처음 NPC01 GameObject생성시 enable 변수는 False로 해줌.
-        NPC02_struct.enable = false;
-        NPC02_struct.gameobject.SetActive(false);
+        //NPC02_struct.enable = false;
+        //NPC02_struct.gameobject.SetActive(false);
     }
 
     public void init()
@@ -83,7 +84,9 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
         character.Info.order = 1;
         character.Info.unit_part = "human-female";
         character.Info.unit_index = 8;
-		NPC02_struct.attack_speed = 1f;
+
+        // NPC 속도 1로 초기화.
+        NPC02_struct.attack_speed = 1f;
 
         // NPC02 캐릭터 enable 변수 True.
         NPC02_struct.enable = true;
@@ -133,7 +136,7 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
             else {
 
                 // Gold HUDText;;;;
-                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD";
+                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
                 NPC02_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
                 // Add touch coin to total_coin and update total coin label
@@ -153,7 +156,7 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
         else
         {
             // Gemstone HUDText;;;;
-            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
+            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
             NPC02_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);
 
             // Add gemstone while NPC attacking to chest.
@@ -186,7 +189,7 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
         // NPC02 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC02_struct.Level = NPC02_struct.Level + 1;
 		NPC02_struct.damage = (ulong)(NPC02_struct.Level * 2 + 7);
-        NPC02_struct.attack_speed = NPC02_struct.Level * 0.3f;
+        NPC02_struct.attack_speed = NPC02_struct.Level * 1f;
 		NPC02_struct.upgrade_cost = (ulong)(30 + NPC02_struct.Level * 2);
 
         // NPC02 레벨이 20 이상이면 NPC03 캐릭터 구입할 수 있음.

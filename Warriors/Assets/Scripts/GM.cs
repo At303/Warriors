@@ -32,7 +32,7 @@ public class GM : MonoBehaviour {
                 if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open))
                 {
                     // Test HUDText;;;;
-                    string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD";
+                    string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
                     GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
 
                     // Add touch coin to total_coin and update total coin label
@@ -96,7 +96,7 @@ public class GM : MonoBehaviour {
                     // only touched in the collision area //
 
 					// Gemstone HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
                     // slash sprite enable
@@ -169,7 +169,7 @@ public class GM : MonoBehaviour {
 					GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 
 					// Test HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD" ;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g" ;
 					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
 
 					// Add touch coin to total_coin and update total coin label
@@ -221,7 +221,7 @@ public class GM : MonoBehaviour {
 					// only touched in the collision area //
 
 					// Gemstone HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
 					// slash sprite enable

@@ -72,19 +72,21 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
     // Use this for initialization
     void Start () 
 	{
-
+        init();
         // 처음 NPC03 GameObject생성시 enable 변수는 False로 해줌.
-        NPC03_struct.enable = false;
-        NPC03_struct.gameobject.SetActive(false);
+        //NPC03_struct.enable = false;
+        //NPC03_struct.gameobject.SetActive(false);
     }
 
     public void init()
     {
-        // NPC03 캐릭터 이미지 초기화.
+        // NPC 캐릭터 이미지 초기화.
         character.Info.order = 1;
         character.Info.unit_part = "undead";
         character.Info.unit_index = 1;
-		NPC03_struct.attack_speed = 1f;
+
+        // NPC 속도 1로 초기화.
+        NPC03_struct.attack_speed = 1f;
 
         // NPC03 캐릭터 enable 변수 True.
         NPC03_struct.enable = true;
@@ -131,7 +133,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
             else {
 
                 // Gold HUDText;;;;
-                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD";
+                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
                 NPC03_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
                 // Add touch coin to total_coin and update total coin label
@@ -151,7 +153,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
         else
         {
             // Gemstone HUDText;;;;
-            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
+            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
             NPC03_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);
 
             // Add gemstone while NPC attacking to chest.
@@ -184,14 +186,14 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC03_struct.Level = NPC03_struct.Level + 1;
 		NPC03_struct.damage = (ulong)(NPC03_struct.Level * 2 + 7);
-        NPC03_struct.attack_speed = NPC03_struct.Level * 0.3f;
+        NPC03_struct.attack_speed = NPC03_struct.Level * 1f;
 		NPC03_struct.upgrade_cost = (ulong)(30 + NPC03_struct.Level * 2);
 
         // NPC03 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
-        if (NPC03_struct.Level == 3)
+        if (NPC03_struct.Level == 2)
         {
             // NPC04 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC04 캐릭터는 화면에 안보여짐. )
-            //NPC04_make.NPC04_struct.unlock_sp.enabled = false;
+            NPC04_make.NPC04_struct.unlock_sp.SetActive(false);
         }
     }
 
