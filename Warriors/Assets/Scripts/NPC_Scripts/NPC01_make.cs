@@ -11,15 +11,20 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         // NPC01 Data. 
         public static bool enable;
         public static int Level;
-        public static float damage;
-        public static float attack_speed;
-        public static float upgrade_cost;
+		public static ulong damage;
+		public static ulong add_damage;
+		public static float attack_speed;
+		public static float add_speed;
+		public static ulong upgrade_cost;
 
         // NPC01 Label.
         public static GameObject gameobject;
         public static GameObject lv_label;
         public static GameObject lvup_cost_label;
         public static GameObject damage_label;
+		public static GameObject add_damage_label;
+		public static GameObject add_speed_label;
+
 
         // NPC01 Sprite.
         public static UISprite weapon_sp;
@@ -40,7 +45,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     void Awake()
     {
         // **************************************   NPC01 GameObject init    ************************************************ //
-        NPC01_struct.gameobject = GameObject.Find("_NPC01_gameobj");                                       // NPC01 GameObject.    
+        NPC01_struct.gameobject = GameObject.Find("_NPC01_gameobj");                                     		 // NPC01 GameObject.    
         NPC01_struct.weapon_sp = GameObject.Find("_npc01_weapon_sprite").GetComponent<UISprite>();               // NPC01 무기 icon Object.
         NPC01_struct.clothes_sp = GameObject.Find("_npc01_clothes_sprite").GetComponent<UISprite>();             // NPC01 옷 icon Object.
         NPC01_struct.wing_sp = GameObject.Find("_npc01_wing_sprite").GetComponent<UISprite>();                   // NPC01 날개 icon Object.
@@ -50,7 +55,10 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         NPC01_struct.lv_label = GameObject.Find("_npc01_level_label");
         NPC01_struct.lvup_cost_label = GameObject.Find("_npc01_lvup_cost_label");
         NPC01_struct.damage_label = GameObject.Find("_npc01_damage_label");
-        NPC01_struct.lvup_btn = GameObject.Find("_npc01_lvup_btn");
+		NPC01_struct.add_damage_label = GameObject.Find ("_npc01_damage_plus_label");
+		NPC01_struct.add_speed_label = GameObject.Find ("_npc01_speed_plus_label");
+
+		NPC01_struct.lvup_btn = GameObject.Find("_npc01_lvup_btn");
 
         // Damage HUD Init.
         NPC01_HUD = GameObject.Find("1st_friend_HUD");
@@ -76,6 +84,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         character.Info.order = 0;
         character.Info.unit_part = "human-male";
         character.Info.unit_index = 2;
+		NPC01_struct.attack_speed = 1f;
 
         // NPC01 캐릭터 enable 변수 True.
         NPC01_struct.enable = true;
@@ -93,7 +102,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // attack animation coroutine about 2sec.
     IEnumerator npc_attack_func()
     {
-        yield return new WaitForSeconds(1f);         // 모든 NPC 공격 default속도는 3. attack. 무한반복.
+		yield return new WaitForSeconds(NPC01_struct.attack_speed);         		// 모든 NPC 공격 default속도는 1. attack. 무한반복.
         character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
 
         StartCoroutine("npc_attack_func");
@@ -106,7 +115,8 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         // 보물상자 HP가 0이면 아래 코드 안타도록함.
         if (!opened_chest_box.enable_disable_chest_open)
         {
-            if (GameData.chest_struct._HP <= 0)
+			// 혹시 다른 곳에서 동시에 opened sprite접근시 에러방지를 위해 enabled bool check
+			if (GameData.chest_struct._HP <= 0)		
             {
                 // 보물상자 false시키고 , open된 보물상자 enable
                 GameData.chest_sprite.SetActive(false);
@@ -148,7 +158,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
             // Add gemstone while NPC attacking to chest.
             GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
-            GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
+			GameData.gemstone_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gemstone);
 
             // check upgrade buttons들을 활성화 할 지말지 .
             GM.check_all_function_when_gold_changed();
@@ -166,8 +176,6 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     // NPC01 데이터 초기화. ( NPC01 레벨업 버튼 클릭 시 실행할 함수. )
     public void levelup_npc01_data_struct()
     {
-        print("npc01 level : " + NPC01_struct.Level.ToString());
-
         if(NPC01_struct.Level == 1)
         {
             // 맨 처음 NPC01 레벨업 버튼 클릭시에는 해당 캐릭터가 disable되어 있으므로 Enable시켜줌.
@@ -177,9 +185,9 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
         // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC01_struct.Level = NPC01_struct.Level + 1;
-        NPC01_struct.damage = NPC01_struct.Level * 2 + 7f;
-        NPC01_struct.attack_speed = NPC01_struct.Level * 0.3f;
-        NPC01_struct.upgrade_cost = 30f + NPC01_struct.Level * 2;
+		NPC01_struct.damage = (ulong)(NPC01_struct.Level * 2) + 7;
+		NPC01_struct.attack_speed = NPC01_struct.Level * 0.3f;
+		NPC01_struct.upgrade_cost = 30 + (ulong)(NPC01_struct.Level * 2);
 
         // NPC01 레벨이 20 이상이면 NPC02 캐릭터 구입할 수 있음.
         if (NPC01_struct.Level == 3)
@@ -193,8 +201,9 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
     public void update_npc01_data_label()
     {
         NPC01_struct.lv_label.GetComponent<UILabel>().text = NPC01_struct.Level.ToString();
-        NPC01_struct.lvup_cost_label.GetComponent<UILabel>().text = NPC01_struct.upgrade_cost.ToString();
-        NPC01_struct.damage_label.GetComponent<UILabel>().text = NPC01_struct.damage.ToString();
+		NPC01_struct.lvup_cost_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (NPC01_struct.upgrade_cost);
+		NPC01_struct.damage_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (NPC01_struct.damage);
+
     }
 
     // ********************************************************			NPC01 init functions 					******************************************************** //

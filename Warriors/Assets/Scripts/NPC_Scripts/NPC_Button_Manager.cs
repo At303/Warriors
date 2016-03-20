@@ -22,8 +22,9 @@ public class NPC_Button_Manager : MonoBehaviour {
 	{
 		// pay the cost about chest level up
 		GameData.coin_struct.gold = GameData.coin_struct.gold - NPC01_make.NPC01_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
- 
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
+
+		// NPC01 함수를 쓰기 위해 Object 가져옴. 
         NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
 
         // update NPC01 데이터.
@@ -40,8 +41,9 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC02_make.NPC02_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
 
+		// NPC03 함수를 쓰기 위해 Object 가져옴. 
         NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
         // update NPC02 데이터.
@@ -58,8 +60,9 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC03_make.NPC03_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
+		// NPC02 함수를 쓰기 위해 Object 가져옴. 
         NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
 
         // update NPC03 데이터.

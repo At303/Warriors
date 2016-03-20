@@ -10,7 +10,7 @@ public class GM : MonoBehaviour {
 	float before_touch = 0.0f;
 	float current_touch = 0.0f;
 	float touch_deltatime = 0.0f;
-
+	int slash_index = 1;
 	// Use this for initialization
 	void Start () {
 
@@ -151,9 +151,14 @@ public class GM : MonoBehaviour {
 				RaycastHit2D hit = Physics2D.Raycast(worldPoint,Vector2.zero);
 
 				// Random touch slash animation
-				int slash_index = Random.Range(1,6);
+				//int slash_index = Random.Range(1,GameData.number_of_slash);
+				if (slash_index == GameData.number_of_slash) 
+				{
+					slash_index = 1;
+				}
 				string slash_animation_name = "slash" + slash_index.ToString ();
 				GameData.slash_animation = GameObject.Find (slash_animation_name);
+				slash_index++;
 
 				//If touch is on the fixed range, excute the code.
 				if (hit.collider != null  && !(opened_chest_box.enable_disable_chest_open)) 
@@ -164,7 +169,7 @@ public class GM : MonoBehaviour {
 					GameData.slash_animation.GetComponent<SpriteRenderer> ().enabled = true;
 
 					// Test HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gold ;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gold + " GOLD" ;
 					GameData.chest_HUDText_control.GetComponent<HUDText> ().Add (get_coin_str, Color.yellow, -0.8f);
 
 					// Add touch coin to total_coin and update total coin label
@@ -216,7 +221,7 @@ public class GM : MonoBehaviour {
 					// only touched in the collision area //
 
 					// Gemstone HUDText;;;;
-					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone;
+					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + " GEMS";
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
 					// slash sprite enable
@@ -233,6 +238,8 @@ public class GM : MonoBehaviour {
 			}
 		}
 	}
+
+
 
 	// 골드획득량 변경시 check해야할 모든 함수 불르기
 	public static void check_all_function_when_gold_changed()

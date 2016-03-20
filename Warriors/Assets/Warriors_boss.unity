@@ -679,7 +679,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &70563992
 GameObject:
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_124
   mFillCenter: 1
 --- !u!1 &126604187
 GameObject:
@@ -1334,7 +1334,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &126961303
 GameObject:
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &207216756
 GameObject:
@@ -1820,7 +1820,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &237621356
 GameObject:
@@ -2630,7 +2630,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &299331506
 GameObject:
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &321793608
 GameObject:
@@ -3485,7 +3485,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_141
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &388478741
 GameObject:
@@ -4915,7 +4915,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &561594788
 GameObject:
@@ -4996,7 +4996,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &581032781
 GameObject:
@@ -6157,7 +6157,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &752351946
 GameObject:
@@ -6724,7 +6724,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_140
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &813027449
 GameObject:
@@ -6967,7 +6967,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_124
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &848991941
 GameObject:
@@ -7048,7 +7048,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &849834260
 GameObject:
@@ -7210,7 +7210,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &867851226
 GameObject:
@@ -7820,7 +7820,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &990648465
 GameObject:
@@ -7982,7 +7982,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &993320676
 GameObject:
@@ -8387,7 +8387,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &1041298977
 GameObject:
@@ -8549,7 +8549,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &1051761636
 GameObject:
@@ -8630,7 +8630,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &1052418120
 GameObject:
@@ -10014,7 +10014,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_141
   mFillCenter: 1
 --- !u!1 &1304633229
 GameObject:
@@ -10753,7 +10753,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &1405883263
 GameObject:
@@ -11482,7 +11482,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_125
   mFillCenter: 1
 --- !u!1 &1548445589
 GameObject:
@@ -12211,7 +12211,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_140
   mFillCenter: 1
 --- !u!1 &1608499897
 GameObject:
@@ -12794,7 +12794,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.5461181, g: 0.6820786, b: 0.8161765, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -13141,7 +13141,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_125
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &1720075541
 GameObject:
@@ -13303,7 +13303,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_175
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &1729915070
 GameObject:
@@ -13815,7 +13815,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &1835999304
 GameObject:
@@ -14875,7 +14875,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &2103046953
 GameObject:

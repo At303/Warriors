@@ -24,7 +24,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		
 
 		// pay the cost about chest level up
-		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.Weapon01_struct.upgrade_cost;
+		//GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.Weapon01_struct.upgrade_cost;
 		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
 
 

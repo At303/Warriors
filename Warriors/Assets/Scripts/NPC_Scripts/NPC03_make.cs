@@ -11,15 +11,19 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
         // NPC03 Data. 
         public static bool enable;
         public static int Level;
-        public static float damage;
+		public static ulong damage;
+		public static ulong add_damage;
         public static float attack_speed;
-        public static float upgrade_cost;
+		public static float add_speed;
+		public static ulong upgrade_cost;
 
         // NPC03 Label.
         public static GameObject gameobject;
         public static GameObject lv_label;
         public static GameObject lvup_cost_label;
         public static GameObject damage_label;
+		public static GameObject add_damage_label;
+		public static GameObject add_speed_label;
         public static GameObject unlock_sp;
 
         // NPC03 Sprite.
@@ -50,6 +54,9 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
         NPC03_struct.lv_label = GameObject.Find("_npc03_level_label");
         NPC03_struct.lvup_cost_label = GameObject.Find("_npc03_lvup_cost_label");
         NPC03_struct.damage_label = GameObject.Find("_npc03_damage_label");
+		NPC03_struct.add_damage_label = GameObject.Find("_npc03_damage_plus_label");
+		NPC03_struct.add_speed_label = GameObject.Find("_npc03_speed_plus_label");
+
         NPC03_struct.lvup_btn = GameObject.Find("_npc03_lvup_btn");
 
         // Damage HUD Init.
@@ -77,6 +84,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
         character.Info.order = 1;
         character.Info.unit_part = "undead";
         character.Info.unit_index = 1;
+		NPC03_struct.attack_speed = 1f;
 
         // NPC03 캐릭터 enable 변수 True.
         NPC03_struct.enable = true;
@@ -94,8 +102,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
     // attack animation coroutine about 2sec.
     IEnumerator npc_attack_func()
     {
-        //character.SetAnimationSpeed (5f);
-        yield return new WaitForSeconds(1f);                                         // 모든 NPC 공격 default속도는 3. attack. 무한반복.
+		yield return new WaitForSeconds(NPC03_struct.attack_speed);                  // 모든 NPC 공격 default속도는 3. attack. 무한반복.
         character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
 
         StartCoroutine("npc_attack_func");
@@ -129,7 +136,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
 
                 // Add touch coin to total_coin and update total coin label
                 GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
-                GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+				GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
 
                 // Chest box HP modify
                 GameData.chest_struct._HP = GameData.chest_struct._HP - NPC03_struct.damage;
@@ -149,7 +156,7 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
 
             // Add gemstone while NPC attacking to chest.
             GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
-            GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
+			GameData.gemstone_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gemstone);
 
             // check upgrade buttons들을 활성화 할 지말지 .
             GM.check_all_function_when_gold_changed();
@@ -176,9 +183,9 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
 
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC03_struct.Level = NPC03_struct.Level + 1;
-        NPC03_struct.damage = NPC03_struct.Level * 2 + 7f;
+		NPC03_struct.damage = (ulong)(NPC03_struct.Level * 2 + 7);
         NPC03_struct.attack_speed = NPC03_struct.Level * 0.3f;
-        NPC03_struct.upgrade_cost = 30f + NPC03_struct.Level * 2;
+		NPC03_struct.upgrade_cost = (ulong)(30 + NPC03_struct.Level * 2);
 
         // NPC03 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
         if (NPC03_struct.Level == 3)
@@ -192,8 +199,8 @@ public class NPC03_make : MonoBehaviour,IAnimEventListener {
     public void update_npc03_data_label()
     {
         NPC03_struct.lv_label.GetComponent<UILabel>().text = NPC03_struct.Level.ToString();
-        NPC03_struct.lvup_cost_label.GetComponent<UILabel>().text = NPC03_struct.upgrade_cost.ToString();
-        NPC03_struct.damage_label.GetComponent<UILabel>().text = NPC03_struct.damage.ToString();
+		NPC03_struct.lvup_cost_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (NPC03_struct.upgrade_cost);
+		NPC03_struct.damage_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (NPC03_struct.damage);
     }
 
     // ********************************************************			NPC03 init functions 					******************************************************** //
