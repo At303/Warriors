@@ -246,7 +246,7 @@ public class GM : MonoBehaviour {
 	{
 		// check upgrade buttons들을 활성화 할 지말지 .
 		GameData.check_lvup_button_is_enable_or_not ();                  // check slash && npc
-        GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
+        //GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
 
     }
     // 보석획득량 변경시 check해야할 모든 함수 불르기

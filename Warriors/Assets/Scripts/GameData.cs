@@ -307,7 +307,6 @@ namespace gamedata
 		// **************  Update Chest button all labels
 		public static void update_chest_data_label()
 		{
-			//int_to_label_format (8446744073709551615);
 			chest_lv_label.GetComponent<UILabel> ().text = chest_struct.Level.ToString ();
 
 			chest_dropgold_label.GetComponent<UILabel> ().text = int_to_label_format (chest_struct.attacked_gold);
@@ -486,7 +485,7 @@ namespace gamedata
 
         //check whether upgrade buttons are possiable or not
         public static void check_lvup_button_is_enable_or_not()
-		{
+		{/*
 			// 보물상자 버튼 체크.
 			if (coin_struct.gold >= chest_struct.upgrade_cost) {
 				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
@@ -655,7 +654,7 @@ namespace gamedata
                 NPC12_make.NPC12_struct.lvup_btn.GetComponent<UIButton>().isEnabled = false;
             }
 
-
+            */
         }
 
 		public static string int_to_label_format(ulong _number)

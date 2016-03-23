@@ -85,8 +85,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         character.Info.order = 1;
         character.Info.unit_part = "darkelf-male";
         character.Info.unit_index = 5;
-        character.Info.main_weapon_part = "dagger-a";
-        character.Info.main_weapon_index = 0;
+
 
         // NPC 속도 1로 초기화.
         NPC07_struct.attack_speed = 1f;

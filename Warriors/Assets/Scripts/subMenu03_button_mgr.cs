@@ -5,34 +5,20 @@ using gamedata;
 
 public class subMenu03_button_mgr : MonoBehaviour {
 
+   // ************************************************************************  Weapon Functions ************************************************************************ //
 
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	// ************************************************************************  Weapon Functions ************************************************************************ //
-
-	// Weapon01 레벨 업 버튼 클릭시 호출 함수.
-	public void Clicked_weapon01_Level_UP()
+    // Weapon 레벨 업 버튼 클릭시 호출 함수. ( 버튼 클릭시 index 값을 paramater로 가져와서 해당 weapon구조체 list에 update )
+    public void Clicked_weapon_Level_UP(int weapon_index)
 	{
-		
+        // pay the cost about chest level up
+        GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.weapon_struct_object[weapon_index].upgrade_cost;
+        GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
 
-		// pay the cost about chest level up
-		//GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.Weapon01_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
-
-
-        // update chest_struct data
-        GameData_weapon.levelup_weapon01_data_struct();
+        // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
+        GameData_weapon.levelup_weapon_data_struct(weapon_index);
 
         // update chest label
-        GameData_weapon.update_weapon01_data_label();
+        GameData_weapon.update_weapon_data_label(weapon_index);
 
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
 		GM.check_all_function_when_gold_changed();
@@ -67,6 +53,23 @@ public class subMenu03_button_mgr : MonoBehaviour {
         GameData.clothes_sel_popup_window_obj.SetActive(true);
     }
     // ************************************************************************  bow Functions ************************************************************************ //
+
+    public void Clicked_bow_Level_UP(int bow_index)
+    {
+        // pay the cost about chest level up
+        GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.bow_struct_object[bow_index].upgrade_cost;
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+
+        // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
+        GameData_weapon.levelup_bow_data_struct(bow_index);
+
+        // update chest label
+        GameData_weapon.update_bow_data_label(bow_index);
+
+        // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
+        GM.check_all_function_when_gold_changed();
+
+    }
 
     // Bow 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_bow_select_NPC(int bow_index)

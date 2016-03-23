@@ -4,87 +4,135 @@ using gamedata;
 
 namespace gamedata_weapon
 {
+
+    // Weapon Struct
+    public struct Weapon_struct
+    {
+        public bool enable;
+        public int level;
+        public ulong damage;
+        public ulong upgrade_cost;
+        public string skill;
+
+    }
+
+    public struct bow_struct
+    {
+        public bool enable;
+        public int level;
+        public ulong damage;
+        public ulong upgrade_cost;
+        public string skill;
+
+    }
+
     public class GameData_weapon : MonoBehaviour
     {
+        // 처음 시작시 weapon struct 초기화.
+        public static Weapon_struct[] weapon_struct_object = new Weapon_struct[35];
 
-
-        // Weapon01 Struct
-        public struct Weapon01_struct
-        {
-            public static bool enable;
-            public static int level;
-            public static float damage;
-            public static float upgrade_cost;
-
-            //////////////////// GameObject //////////////////////////
-            public static GameObject weapon01_lv_label;
-            public static GameObject weapon01_lvup_cost_label;
-            public static GameObject weapon01_damage_label;
-            public static GameObject weapon01_levelup_button;
-
-        }
-
-        // Weapon02 Struct
-        public struct Weapon02_struct
-        {
-            public int level;
-            public float damage;
-            public float upgrade_cost;
-
-        }
+        // 처음 시작시 bow struct 초기화.
+        public static bow_struct[] bow_struct_object = new bow_struct[35];
 
         // Use this for initialization
         void Start()
         {
-            // Weapon01 데이터 초기화 및 라벨 Update//
-            levelup_weapon01_data_struct();
-            update_weapon01_data_label();
+            // 무기 데이터 초기화.
+            for (int i = 0; i < 4; i++)
+            {
+                levelup_weapon_data_struct(i);
+                update_weapon_data_label(i);
+            }
+
+            // 활 데이터 초기화.
+            for (int i = 0; i < 2; i++)
+            {
+                levelup_bow_data_struct(i);
+                update_bow_data_label(i);
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+
+        // ************************************************************************  Weapon Functions ************************************************************************ //
+
+        // 무기 레벨 UP && Data Update.
+        public static void levelup_weapon_data_struct(int _weapon_index)
         {
+            weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
+            weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].level*2 +2);
+            weapon_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + weapon_struct_object[_weapon_index].level * 2);
 
-        }
-
-        // 무기01 레벨 UP && Data Update.
-        public static void levelup_weapon01_data_struct()
-        {
-            Weapon01_struct.level = Weapon01_struct.level + 1;
-            Weapon01_struct.damage = Weapon01_struct.level * 2 + 20f;
-            Weapon01_struct.upgrade_cost = 130f + Weapon01_struct.level * 2;
-
-            // Weapon02 Enable.
-            if (Weapon01_struct.level == 2)
+            // Next Weapon Enable.
+            if (weapon_struct_object[_weapon_index].level == 2)
             {
                 //npc_gameobject.SetActive(true);
             }
         }
 
-        // 무기01 버튼 && 라벨 Update.
-        public static void update_weapon01_data_label()
+        // 무기 버튼 && 라벨 Update.
+        public static  void update_weapon_data_label(int _weapon_index)
         {
-            Weapon01_struct.weapon01_lv_label = GameObject.Find("_weapon01_level_label");
-            Weapon01_struct.weapon01_lvup_cost_label = GameObject.Find("_weapon01_upgrade_cost_label");
-            Weapon01_struct.weapon01_damage_label = GameObject.Find("_weapon01_damage_label");
-            Weapon01_struct.weapon01_levelup_button = GameObject.Find("_weapon01_lvup_button");
+            string level_label = "_weapon" + _weapon_index.ToString() + "_level_label";
+            string damage_label = "_weapon" + _weapon_index.ToString() + "_damage_label";
+            string lvup_cost_label = "_weapon" + _weapon_index.ToString() + "_upgrade_cost_label";
+            string skill_label = "_weapon" + _weapon_index.ToString() + "_skill_label";
 
-            Weapon01_struct.weapon01_lv_label.GetComponent<UILabel>().text = Weapon01_struct.level.ToString();
-            Weapon01_struct.weapon01_lvup_cost_label.GetComponent<UILabel>().text = Weapon01_struct.upgrade_cost.ToString();
-            Weapon01_struct.weapon01_damage_label.GetComponent<UILabel>().text = Weapon01_struct.damage.ToString();
+            GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
+            GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
+            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
         }
 
-        //check whether upgrade buttons are possiable or not
-        public static void check_weapon_buttons_is_enable_or_not()
+        // ************************************************************************  bow Functions ************************************************************************ //
+
+        // 활 레벨 UP && Data Update.
+        public static void levelup_bow_data_struct(int _weapon_index)
         {
-            // 무기01 버튼 체크.
-            if (GameData.coin_struct.gold >= Weapon01_struct.upgrade_cost)
+            weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
+            weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].level * 2 + 2);
+            weapon_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + weapon_struct_object[_weapon_index].level * 2);
+
+            // Next Weapon Enable.
+            if (weapon_struct_object[_weapon_index].level == 2)
             {
-                Weapon01_struct.weapon01_levelup_button.GetComponent<UIButton>().isEnabled = true;
+                //npc_gameobject.SetActive(true);
             }
-            else
+        }
+
+        // 활 버튼 && 라벨 Update.
+        public static void update_bow_data_label(int _weapon_index)
+        {
+            string level_label = "_bow" + _weapon_index.ToString() + "_level_label";
+            string damage_label = "_bow" + _weapon_index.ToString() + "_damage_label";
+            string lvup_cost_label = "_bow" + _weapon_index.ToString() + "_upgrade_cost_label";
+            string skill_label = "_bow" + _weapon_index.ToString() + "_skill_label";
+
+            GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
+            GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
+            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
+        }
+
+
+
+
+
+        // ************************************************************************  common Functions ************************************************************************ //
+
+        //check whether upgrade buttons are possiable or not
+        public void check_weapon_buttons_is_enable_or_not()
+        {
+            // 무기 버튼 체크.
+            for (int i = 0; i < 3; i++)
             {
-                Weapon01_struct.weapon01_levelup_button.GetComponent<UIButton>().isEnabled = false;
+                if (GameData.coin_struct.gold >= weapon_struct_object[i].upgrade_cost)
+                {
+                    string weapon_lvup_btn = "_weapon" + i.ToString() + "_lvup_button";
+                    GameObject.Find(weapon_lvup_btn).GetComponent<UIButton>().isEnabled = true;
+                }
+                else
+                {
+                    string weapon_lvup_btn = "_weapon" + i.ToString() + "_lvup_button";
+                    GameObject.Find(weapon_lvup_btn).GetComponent<UIButton>().isEnabled = false;
+                }
             }
         }
     }

@@ -82,8 +82,7 @@ public class NPC08_make : MonoBehaviour, IAnimEventListener
     void init () {
         character.Info.order = 1;
         character.Info.unit_part = "imp";
-        character.Info.main_weapon_part = "dagger-a";
-        character.Info.main_weapon_index = 0;
+
 
 
         // NPC 속도 1로 초기화.
