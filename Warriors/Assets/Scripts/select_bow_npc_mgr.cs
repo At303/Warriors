@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class select_bow_npc_mgr : MonoBehaviour {
+
     // 처음 시작시 NPC01 아이콘 GameObject를 받아오기 위한 List 변수 선언.
-    //List<GameObject> npc_object = new List<GameObject>();
     GameObject[] npc_object = new GameObject[6];
 
     // Use this for initialization

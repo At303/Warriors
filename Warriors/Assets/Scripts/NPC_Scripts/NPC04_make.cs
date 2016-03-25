@@ -86,7 +86,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
         // NPC 캐릭터 이미지 초기화.
         character.Info.order = 1;
 		character.Info.unit_part = "elf-male";
-		character.Info.unit_index = 4;
+		character.Info.unit_index = 5;
         character.Info.main_weapon_part = "bow-a";
         character.Info.main_weapon_index = 0;
         character.Info.sub_weapon_part = "arrow-a";

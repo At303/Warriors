@@ -26,6 +26,16 @@ namespace gamedata_weapon
 
     }
 
+    public struct wing_struct
+    {
+        public bool enable;
+        public int level;
+        public ulong damage;
+        public ulong upgrade_cost;
+        public string skill;
+
+    }
+
     public class GameData_weapon : MonoBehaviour
     {
         // 처음 시작시 weapon struct 초기화.
@@ -33,6 +43,10 @@ namespace gamedata_weapon
 
         // 처음 시작시 bow struct 초기화.
         public static bow_struct[] bow_struct_object = new bow_struct[35];
+
+        // 처음 시작시 wing struct 초기화.
+        public static wing_struct[] wing_struct_object = new wing_struct[35];
+
 
         // Use this for initialization
         void Start()
@@ -49,6 +63,13 @@ namespace gamedata_weapon
             {
                 levelup_bow_data_struct(i);
                 update_bow_data_label(i);
+            }
+
+            // 활 데이터 초기화.
+            for (int i = 0; i < 1; i++)
+            {
+                levelup_wing_data_struct(i);
+                update_wing_data_label(i);
             }
         }
 
@@ -87,12 +108,12 @@ namespace gamedata_weapon
         // 활 레벨 UP && Data Update.
         public static void levelup_bow_data_struct(int _weapon_index)
         {
-            weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
-            weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].level * 2 + 2);
-            weapon_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + weapon_struct_object[_weapon_index].level * 2);
+            bow_struct_object[_weapon_index].level = bow_struct_object[_weapon_index].level + 1;
+            bow_struct_object[_weapon_index].damage = (ulong)(bow_struct_object[_weapon_index].level * 2 + 2);
+            bow_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + bow_struct_object[_weapon_index].level * 2);
 
             // Next Weapon Enable.
-            if (weapon_struct_object[_weapon_index].level == 2)
+            if (bow_struct_object[_weapon_index].level == 2)
             {
                 //npc_gameobject.SetActive(true);
             }
@@ -111,7 +132,34 @@ namespace gamedata_weapon
             GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
         }
 
+        // ************************************************************************  wing Functions ************************************************************************ //
 
+        // wing 레벨 UP && Data Update.
+        public static void levelup_wing_data_struct(int _wing_index)
+        {
+            wing_struct_object[_wing_index].level = wing_struct_object[_wing_index].level + 1;
+            wing_struct_object[_wing_index].damage = (ulong)(wing_struct_object[_wing_index].level * 2 + 2);
+            wing_struct_object[_wing_index].upgrade_cost = (ulong)(30 + wing_struct_object[_wing_index].level * 2);
+
+            // Next Weapon Enable.
+            if (wing_struct_object[_wing_index].level == 2)
+            {
+                //npc_gameobject.SetActive(true);
+            }
+        }
+
+        // wing 버튼 && 라벨 Update.
+        public static void update_wing_data_label(int _weapon_index)
+        {
+            string level_label = "_wing" + _weapon_index.ToString() + "_level_label";
+            string damage_label = "_wing" + _weapon_index.ToString() + "_damage_label";
+            string lvup_cost_label = "_wing" + _weapon_index.ToString() + "_upgrade_cost_label";
+            string skill_label = "_wing" + _weapon_index.ToString() + "_skill_label";
+
+            GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
+            GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
+            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
+        }
 
 
 
