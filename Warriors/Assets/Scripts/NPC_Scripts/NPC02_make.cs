@@ -196,7 +196,7 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
         if (NPC02_struct.Level == 3)
         {
             // NPC03 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC03 캐릭터는 화면에 안보여짐. )
-            NPC03_make.NPC03_struct.unlock_sp.SetActive(false);
+            //NPC03_make.NPC03_struct.unlock_sp.SetActive(false);
         }
     }
 
@@ -245,6 +245,7 @@ public class NPC02_make : MonoBehaviour,IAnimEventListener {
         character.Info.armor_part = clothes_type;
         character.Info.armor_index = index;
         character.Info.armor_color = color;
+
 
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();

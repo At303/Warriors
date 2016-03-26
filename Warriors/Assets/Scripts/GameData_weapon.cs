@@ -16,7 +16,7 @@ namespace gamedata_weapon
 
     }
 
-    public struct bow_struct
+    public struct Bow_struct
     {
         public bool enable;
         public int level;
@@ -26,7 +26,7 @@ namespace gamedata_weapon
 
     }
 
-    public struct wing_struct
+    public struct Wing_struct
     {
         public bool enable;
         public int level;
@@ -35,6 +35,16 @@ namespace gamedata_weapon
         public string skill;
 
     }
+
+	public struct Armor_struct
+	{
+		public bool enable;
+		public int level;
+		public ulong damage;
+		public ulong upgrade_cost;
+		public string skill;
+
+	}
 
     public class GameData_weapon : MonoBehaviour
     {
@@ -42,11 +52,13 @@ namespace gamedata_weapon
         public static Weapon_struct[] weapon_struct_object = new Weapon_struct[35];
 
         // 처음 시작시 bow struct 초기화.
-        public static bow_struct[] bow_struct_object = new bow_struct[35];
+		public static Bow_struct[] bow_struct_object = new Bow_struct[35];
 
         // 처음 시작시 wing struct 초기화.
-        public static wing_struct[] wing_struct_object = new wing_struct[35];
+        public static Wing_struct[] wing_struct_object = new Wing_struct[35];
 
+		// 처음 시작시 Armor struct 초기화.
+		public static Armor_struct[] armor_struct_object = new Armor_struct[35];
 
         // Use this for initialization
         void Start()
@@ -65,12 +77,20 @@ namespace gamedata_weapon
                 update_bow_data_label(i);
             }
 
-            // 활 데이터 초기화.
+            // 망토 데이터 초기화.
             for (int i = 0; i < 1; i++)
             {
                 levelup_wing_data_struct(i);
                 update_wing_data_label(i);
             }
+
+			// 아머 데이터 초기화.
+			for (int i = 0; i < 1; i++)
+			{
+				levelup_wing_data_struct(i);
+				update_wing_data_label(i);
+			}
+
         }
 
 
@@ -161,7 +181,34 @@ namespace gamedata_weapon
             GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
         }
 
+		// ************************************************************************  Armor Functions ************************************************************************ //
 
+		// Armor 레벨 UP && Data Update.
+		public static void levelup_armor_data_struct(int _armor_index)
+		{
+			armor_struct_object[_armor_index].level = armor_struct_object[_armor_index].level + 1;
+			armor_struct_object[_armor_index].damage = (ulong)(armor_struct_object[_armor_index].level * 2 + 2);
+			armor_struct_object[_armor_index].upgrade_cost = (ulong)(30 + armor_struct_object[_armor_index].level * 2);
+
+			// Next Armor Enable.
+			if (wing_struct_object[_armor_index].level == 2)
+			{
+				//npc_gameobject.SetActive(true);
+			}
+		}
+
+		// Armor 버튼 && 라벨 Update.
+		public static void update_armor_data_label(int _armor_index)
+		{
+			string level_label = "_armor" + _armor_index.ToString() + "_level_label";
+			string damage_label = "_armor" + _armor_index.ToString() + "_damage_label";
+			string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
+			string skill_label = "_armor" + _armor_index.ToString() + "_skill_label";
+
+			GameObject.Find(level_label).GetComponent<UILabel>().text = armor_struct_object[_armor_index].level.ToString();
+			GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].damage);
+			GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
+		}
 
         // ************************************************************************  common Functions ************************************************************************ //
 

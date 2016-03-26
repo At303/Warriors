@@ -27,9 +27,9 @@ public class popup_window_button_mgr : MonoBehaviour {
     {
         get { return "weapon"; }
     }
-    public string clothes
+    public string armor
     {
-        get { return "clothes"; }
+        get { return "armor"; }
     }
     public string bow
     {
@@ -122,7 +122,7 @@ public class popup_window_button_mgr : MonoBehaviour {
         case "weapon":
             weapon_to_selected_NPC(npc_index, GameData.to_change_npc_struct.To_Change_Weapon_type, GameData.to_change_npc_struct.weapon_index);
             break;
-        case "clothes":
+        case "armor":
             clothes_to_selected_NPC(npc_index, GameData.to_change_npc_struct.To_Change_Armor_type, GameData.to_change_npc_struct.armor_index, GameData.to_change_npc_struct.armor_color);
             break;
         case "bow":
@@ -131,6 +131,9 @@ public class popup_window_button_mgr : MonoBehaviour {
         case "wing":
             wing_to_selected_NPC(npc_index, GameData.to_change_npc_struct.To_Change_wing_type, GameData.to_change_npc_struct.wing_index);
             break;
+		default:
+			print ("type Error");
+			break;
         } 
     }
    
@@ -308,6 +311,7 @@ public class popup_window_button_mgr : MonoBehaviour {
     // 해당 NPC에게 선택한 Clothes를 장착하게 하는 함수.
     void clothes_to_selected_NPC(NPC_INDEX _npc_index, string _armor_type, int _armor_index, int _armor_color)
     {
+
         // npc0x에 따라서 실행.
         switch (_npc_index)
         {
@@ -321,20 +325,33 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC01_make.NPC01_struct.clothes_sp.spriteName = GameData.to_change_npc_struct.To_Change_Armor_type + GameData.to_change_npc_struct.armor_index.ToString();
 
                 // NPC01 캐릭터 clothes 이미지 바꾸기.
-			npc01.change_clothes(_armor_index, _armor_color, _armor_type);
-
+				npc01.change_clothes(_armor_index, _armor_color, _armor_type);
                 break;
-            case NPC_INDEX.NPC02:
-                // Change the NPC02 Character Sprite.
-                NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
-                // Change the NPC02 Weapon01 icon Sprite.
-                NPC02_make.NPC02_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC02_make.NPC02_struct.clothes_sp.spriteName = "weapon01_icon";
+			case NPC_INDEX.NPC02:
+				// Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+				NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
-                // NPC02 캐릭터 이미지 바꾸기.
+				// Change the NPC02 Clothes icon Sprite.
+				NPC02_make.NPC02_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+				NPC02_make.NPC02_struct.clothes_sp.spriteName = GameData.to_change_npc_struct.To_Change_Armor_type + GameData.to_change_npc_struct.armor_index.ToString();
 
-                break;
+				// NPC02 캐릭터 clothes 이미지 바꾸기.
+				npc02.change_clothes(_armor_index, _armor_color, _armor_type);
+				break;
+
+			case NPC_INDEX.NPC03:
+				// Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+				NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+
+				// Change the NPC03 Clothes icon Sprite.
+				NPC03_make.NPC03_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+				NPC03_make.NPC03_struct.clothes_sp.spriteName = GameData.to_change_npc_struct.To_Change_Armor_type + GameData.to_change_npc_struct.armor_index.ToString();
+
+				// NPC03 캐릭터 clothes 이미지 바꾸기.
+				npc03.change_clothes(_armor_index, _armor_color, _armor_type);
+				break;
+
         }
 
         // NPC선택 후 popUp window 비활성화.

@@ -18,4 +18,19 @@ public class Wing_Index_data : MonoBehaviour {
         get { return 1; }
     }
 
+	public int index_2
+	{
+		get { return 2; }
+	}
+
+	public int index_3
+	{
+		get { return 3; }
+	}
+
+	public int index_4
+	{
+		get { return 4; }
+	}
+
 }

@@ -25,7 +25,6 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 		public static GameObject add_damage_label;
 		public static GameObject add_speed_label;
 
-
         // NPC01 Sprite.
         public static UISprite weapon_sp;
         public static UISprite clothes_sp;
@@ -34,6 +33,23 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         // NPC01 Button.
         public static GameObject lvup_btn;
     }
+
+	public struct npc01_char
+	{
+		public static bool weapon_enable;
+		public static string weapon_part;
+		public static int weapon_index;
+
+		public static bool armor_enable;
+		public static string armor_type;
+		public static int armor_index;
+		public static int armor_color;
+
+		public static bool wing_enable;
+		public static string wing_type;
+		public static int wing_index;
+
+	}
 
     // 화면에 보여지는 캐릭터 이미지.
     public DevCharacter character;         
@@ -65,7 +81,7 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         // **************************************   NPC01 GameObject init    ************************************************ //
 
         // Init NPC01 Data && Update Label.
-        levelup_npc01_data_struct();
+        //levelup_npc01_data_struct();
         update_npc01_data_label();
 
     }
@@ -73,7 +89,9 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
     void Start()
 	{
-        init();
+		
+		init(); 			// 나 중 에 지 워 야 할 부 .
+		DontDestroyOnLoad(gameObject);
         // 처음 NPC01 GameObject생성시 enable 변수는 False로 해줌.
         //NPC01_struct.enable = false;
         //NPC01_struct.gameobject.SetActive(false);
@@ -85,6 +103,12 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         character.Info.order = 0;
         character.Info.unit_part = "human-male";
         character.Info.unit_index = 2;
+
+		// Boss Scene Loading시 weapon 체크해야 Error 발생하지 않음 
+		npc01_char.weapon_enable = false;
+		npc01_char.armor_enable = false;
+		npc01_char.wing_enable = false;
+
 		NPC01_struct.attack_speed = 1f;
 
         // NPC01 캐릭터 enable 변수 True.
@@ -229,6 +253,11 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
 
+		// Boss Scene Load시 사용할 character image;
+		npc01_char.weapon_enable = true;
+		npc01_char.weapon_part = weapon_name;
+		npc01_char.weapon_index = weapon_index;
+
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();
 
@@ -249,6 +278,12 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
         character.Info.armor_index = index;
         character.Info.armor_color = color;
 
+		// Boss Scene Load시 사용할 character image;
+		npc01_char.armor_enable = true;
+		npc01_char.armor_type = clothes_type;
+		npc01_char.armor_index = index;
+		npc01_char.armor_color = color;
+
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();
 
@@ -267,6 +302,12 @@ public class NPC01_make : MonoBehaviour,IAnimEventListener {
 
         character.Info.wing_part = wing_type;
         character.Info.wing_index = index;
+
+
+		// Boss Scene Load시 사용할 character image;
+		npc01_char.wing_enable = true;
+		npc01_char.wing_type = wing_type;
+		npc01_char.wing_index = index;
 
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();

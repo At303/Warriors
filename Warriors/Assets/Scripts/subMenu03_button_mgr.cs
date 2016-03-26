@@ -40,8 +40,25 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
     // ************************************************************************  Clothes Functions ************************************************************************ //
 
+	public void Clicked_Armor_Level_UP(int armor_index)
+	{
+		// pay the cost about chest level up
+		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.armor_struct_object[armor_index].upgrade_cost;
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+
+		// u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
+		//GameData_weapon.levelup_bow_data_struct(armor_index);
+
+		// update chest label
+		//GameData_weapon.update_bow_data_label(armor_index);
+
+		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
+		GM.check_all_function_when_gold_changed();
+
+	}
+
     // Clothes 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_clothes_select_NPC(string armor_type, int armor_index, int armor_color)
+    public void Clicked_Armor_select_NPC(string armor_type, int armor_index, int armor_color)
     {
 
         // 바꿀 Clothes 정보 저장.

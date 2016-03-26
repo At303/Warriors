@@ -99,9 +99,14 @@ public class GM : MonoBehaviour {
 					string get_coin_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
-                    // slash sprite enable
-                    GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
-                    GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
+					// Random touch slash animation
+					int slash_index = Random.Range(1, GameData.number_of_slash);
+					string slash_animation_name = "slash" + slash_index.ToString();
+					GameData.slash_animation = GameObject.Find(slash_animation_name);
+
+					// slash sprite enable
+					GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+					GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
                     // (Fever TIME) X2 Add touch coin to total_coin and update total coin label
 					GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
