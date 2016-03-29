@@ -28,7 +28,21 @@ public class NPC_Button_Manager : MonoBehaviour {
         NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
 
         // update NPC01 데이터.
-        npc01.levelup_npc01_data_struct();
+        NPC01_make.NPC01_struct.Level++;
+        npc01.levelup_npc01_data_struct(NPC01_make.NPC01_struct.Level);
+
+        // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
+        if(NPC01_make.NPC01_struct.Level == 2)
+        {
+            PlayerPrefs.SetInt("npc1_enable", 1);
+            PlayerPrefs.SetInt("npc1_level", NPC01_make.NPC01_struct.Level);
+            PlayerPrefs.Save();
+
+            // npc01 캐릭터 init해주고 gameobject Active
+            NPC01_make.NPC01_struct.gameobject.SetActive(true);
+            npc01.init();
+
+        }
 
         // update NPC01 label Update.
         npc01.update_npc01_data_label();

@@ -37,9 +37,10 @@ namespace gamedata
 		// Treasure Chest struct
 		public struct chest_struct
 		{
-			public static ulong Level;
+			public static int Level;
 			public static float HP;
 			public static float _HP;										// to save the current chest HP
+
 			//public static float drop_gold;
 			public static ulong attacked_gold;
 			public static ulong attacked_plus_gold;
@@ -53,9 +54,9 @@ namespace gamedata
 		// slash1 struct
 		public struct slash1_struct
 		{
-			public static ulong Level;
-			public static ulong damage;
-			public static ulong add_damage;
+			public static int Level;
+			public static float damage;
+			public static float add_damage;
 			public static ulong upgrade_cost;
 		}
 
@@ -71,7 +72,7 @@ namespace gamedata
 		// slash3 struct
 		public struct slash3_struct
 		{
-			public static int Level;
+            public static int Level;
 			public static ulong damage;
 			public static ulong add_damage;
 			public static ulong upgrade_cost;
@@ -80,7 +81,7 @@ namespace gamedata
 		// slash4 struct
 		public struct slash4_struct
 		{
-			public static int Level;
+            public static int Level;
 			public static ulong damage;
 			public static ulong add_damage;
 			public static ulong upgrade_cost;
@@ -89,7 +90,7 @@ namespace gamedata
 		// slash5 struct
 		public struct slash5_struct
 		{
-			public static int Level;
+            public static int Level;
 			public static ulong damage;
 			public static ulong add_damage;
 			public static ulong upgrade_cost;
@@ -119,7 +120,7 @@ namespace gamedata
         public static GameObject clothes_sel_popup_window_obj;
         public static GameObject bow_sel_popup_window_obj;
 		public static GameObject wing_sel_popup_window_obj;
-
+        public static GameObject boss_sel_popup_window_obj;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -196,6 +197,7 @@ namespace gamedata
             clothes_sel_popup_window_obj = GameObject.Find("_select_npc_clothes_popup_window");
             bow_sel_popup_window_obj = GameObject.Find("_select_npc_bow_popup_window");
 			wing_sel_popup_window_obj = GameObject.Find ("_select_npc_wing_popup_window");
+            boss_sel_popup_window_obj = GameObject.Find("_select_boss_popup_window");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
@@ -235,7 +237,7 @@ namespace gamedata
 			slash4_lvup_btn = GameObject.Find ("_slash4_levelup_btn");
 			slash4_lv_label = GameObject.Find ("_slash4_lv_label");
 			slash4_lvup_cost_label = GameObject.Find ("_slash4_levelup_cost_label");
-			slash4_damage_label = GameObject.Find ("_slash4_damage_label");
+            slash4_damage_label = GameObject.Find ("_slash4_damage_label");
 			slash4_damage_plus_label = GameObject.Find ("_slash4_damage_plus_label");
 
 			slash5_locking_sprite = GameObject.Find ("_slash5_locking_sprite");
@@ -260,48 +262,135 @@ namespace gamedata
 
             // Touch Slash 개수 초기화.
             number_of_slash = 2;
-
-            // chest init and update label //
+            print("init number_of_slash : " + number_of_slash.ToString());
+            // 보물상자 init and update label //
 			chest_struct.attacked_plus_gold = 0;
-            levelup_chest_data_struct();
-			update_chest_data_label ();
+            // 보물상자 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            if(PlayerPrefs.HasKey("chest_level"))
+            {
+                int get_chest_level = PlayerPrefs.GetInt("chest_level");
+                print(get_chest_level.ToString());
+                levelup_chest_data_struct(get_chest_level);
+                update_chest_data_label();
+            }
+            else
+            {
+                GameData.chest_struct.Level = 1;
+               levelup_chest_data_struct(GameData.chest_struct.Level);
+                update_chest_data_label();
+            }
 
-			// slash1 init and update label//
-			slash1_struct.add_damage = 0;
-			levelup_slash1_data_struct();
-			update_slash1_data_label();
+            // slash1 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            slash1_struct.add_damage = 0;
+            if (PlayerPrefs.HasKey("slash1_level"))
+            {
+                int get_slash_level = PlayerPrefs.GetInt("slash1_level");
+                slash1_data_struct_update(get_slash_level);
+                update_slash1_data_label();
+            }
+            else
+            {
+                GameData.slash1_struct.Level = 1;
+                slash1_data_struct_update(GameData.slash1_struct.Level);
+                update_slash1_data_label();
+            }
 
-			// slash2 init and update label//
-			slash2_struct.add_damage = 0;
-			levelup_slash2_data_struct();
-			update_slash2_data_label();
+            // slash2가 enable인지 아닌지 Cehck할 변수.
+            int check_slash_enable;
+            check_slash_enable = PlayerPrefs.GetInt("slash2_enable", 0);
+            if (check_slash_enable == 1)
+            {
+                print("init number_of_slash2 : " + number_of_slash.ToString());
+                number_of_slash++;
+                slash2_locking_sprite.SetActive(false);                 // Slash2 UI 활성화.
+            }
+            // slash2 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            slash2_struct.add_damage = 0;
+            if (PlayerPrefs.HasKey("slash2_level"))
+            {
+                int get_slash_level = PlayerPrefs.GetInt("slash2_level");
+                slash2_data_struct_update(get_slash_level);
+                update_slash2_data_label();
+            }
+            else
+            {
+                GameData.slash2_struct.Level = 1;
+                slash2_data_struct_update(GameData.slash2_struct.Level);
+                update_slash2_data_label();
+            }
 
-			// slash3 init and update label//
-			slash3_struct.add_damage = 0;
-			levelup_slash3_data_struct();
-			update_slash3_data_label();
+            // slash3이 enable인지 아닌지 Cehck할 변수.
+            check_slash_enable = PlayerPrefs.GetInt("slash3_enable", 0);
+            if (check_slash_enable == 1)
+            {
+                number_of_slash++;
+                slash3_locking_sprite.SetActive(false);                 // Slash3 UI 활성화.
+            }
+            // slash3 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            slash3_struct.add_damage = 0;
+            if (PlayerPrefs.HasKey("slash3_level"))
+            {
+                int get_slash_level = PlayerPrefs.GetInt("slash3_level");
+                slash3_data_struct_update(get_slash_level);
+                update_slash3_data_label();
+            }
+            else
+            {
+                GameData.slash3_struct.Level = 1;
+                slash3_data_struct_update(GameData.slash3_struct.Level);
+                update_slash3_data_label();
+            }
 
-			// slash4 init and update label//
-			slash4_struct.add_damage = 0;
-			levelup_slash4_data_struct();
-			update_slash4_data_label();
+            // slash4이 enable인지 아닌지 Cehck할 변수.
+            check_slash_enable = PlayerPrefs.GetInt("slash4_enable", 0);
+            if (check_slash_enable == 1)
+            {
+                number_of_slash++;
+                slash4_locking_sprite.SetActive(false);                 // Slash4 UI 활성화.
+            }
+            // slash3 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            slash4_struct.add_damage = 0;
+            if (PlayerPrefs.HasKey("slash4_level"))
+            {
+                int get_slash_level = PlayerPrefs.GetInt("slash4_level");
+                slash4_data_struct_update(get_slash_level);
+                update_slash4_data_label();
+            }
+            else
+            {
+                GameData.slash4_struct.Level = 1;
+                slash4_data_struct_update(GameData.slash4_struct.Level);
+                update_slash4_data_label();
+            }
 
-			// slash5 init and update label//
-			slash5_struct.add_damage = 0;
-			levelup_slash5_data_struct();
-			update_slash5_data_label();
+            // slash5이 enable인지 아닌지 Cehck할 변수.
+            check_slash_enable = PlayerPrefs.GetInt("slash5_enable", 0);
+            if (check_slash_enable == 1)
+            {
+                number_of_slash++;
+                slash5_locking_sprite.SetActive(false);                 // Slash5 UI 활성화.
+            }
+            // slash5 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            slash5_struct.add_damage = 0;
+            if (PlayerPrefs.HasKey("slash5_level"))
+            {
+                int get_slash_level = PlayerPrefs.GetInt("slash5_level");
+                slash5_data_struct_update(get_slash_level);
+                update_slash5_data_label();
+            }
+            else
+            {
+                GameData.slash5_struct.Level = 1;
+                slash5_data_struct_update(GameData.slash5_struct.Level);
+                update_slash5_data_label();
+            }
 
-            // check whether all buttons is enable or not //
+           // check whether all buttons is enable or not //
            // check_lvup_button_is_enable_or_not();
 
 
         }
 		
-		// Update is called once per frame
-		void Update () {
-		
-		}
-
 		// **************			chest function 					************** //
 
 		// **************  Update Chest button all labels
@@ -315,16 +404,17 @@ namespace gamedata
 
 		}
 
-		// Update Chest data
-		public static void levelup_chest_data_struct()
+		// 보물상자 구조체에 Level에 따라 data 저장.
+		public static void levelup_chest_data_struct(int Level)
 		{
-			chest_struct.Level = chest_struct.Level + 1;
-			chest_struct.HP = 600f + (chest_struct.Level * 50);
-			chest_struct._HP = 600f + (chest_struct.Level * 50);
+            chest_struct.Level = Level;
+            // 보물상자 HP , 공격시 얻는 골드,보석 Level 증가 cost 공식.
+            chest_struct.HP = 600f + (Level * 50);
+            chest_struct._HP = 600f + (Level * 50);
 
-            chest_struct.attacked_gold = chest_struct.Level;
-			chest_struct.attacked_gemstone = chest_struct.Level;
-            chest_struct.upgrade_cost = chest_struct.Level * 100;
+            chest_struct.attacked_gold = (ulong)Level;
+            chest_struct.attacked_gemstone = (ulong)Level;
+            chest_struct.upgrade_cost = (ulong)Level * 100;         
 
         }
 
@@ -336,28 +426,43 @@ namespace gamedata
 			slash1_lv_label.GetComponent<UILabel> ().text = slash1_struct.Level.ToString ();
 			slash1_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash1_struct.upgrade_cost);
 
-			slash1_damage_label.GetComponent<UILabel> ().text = int_to_label_format (slash1_struct.damage);
-			slash1_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format (slash1_struct.add_damage);
+			slash1_damage_label.GetComponent<UILabel> ().text = int_to_label_format ((ulong)slash1_struct.damage);
+			slash1_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format ((ulong)slash1_struct.add_damage);
 		}
 
-		// Levelup slash1 struct data
-		public static void levelup_slash1_data_struct()
+        // Slash1 데이터를 해당 레벨에 맞게 Setting해줄 함수.
+		public static void slash1_data_struct_update(int Level)
 		{
-			slash1_struct.Level = slash1_struct.Level + 1;
-			slash1_struct.damage = slash1_struct.Level;
-			slash1_struct.upgrade_cost = 10 + (slash1_struct.Level*5);
 
-            // 다음 slash UnLock.
-            if(slash1_struct.Level == 3)
-            {
-                slash2_locking_sprite.SetActive(false);                 // Slash2 Object 활성화.
-            }
+            slash1_struct.Level = Level;
+			slash1_struct.damage = (ulong)slash1_struct.Level;
+			slash1_struct.upgrade_cost = 10 + (ulong)(slash1_struct.Level*5);
+            
 		}
 
-		// **************			slash2 function 					************** //
 
-		// Update slash2 button all labels
-		public static void update_slash2_data_label()
+        // Slash1 레벨업시 Call할 함수.
+        public static void slash1_data_struct_levelup(int Level)
+        {
+
+            slash1_struct.Level = Level;
+            slash1_struct.damage = (ulong)slash1_struct.Level;
+            slash1_struct.upgrade_cost = 10 + (ulong)(slash1_struct.Level * 5);
+
+            // slash2 UnLock.
+            if (slash1_struct.Level == 3)
+            {
+                PlayerPrefs.SetInt("slash2_enable", 1);
+                PlayerPrefs.Save();
+                slash2_locking_sprite.SetActive(false);                 // Slash2 Object 활성화.
+                number_of_slash++;
+            }
+        }
+
+        // **************			slash2 function 					************** //
+
+        // Update slash2 button all labels
+        public static void update_slash2_data_label()
 		{
 			slash2_lv_label.GetComponent<UILabel> ().text = slash2_struct.Level.ToString ();
 			slash2_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash2_struct.upgrade_cost);
@@ -367,29 +472,36 @@ namespace gamedata
 		}
 
 		// Levelup slash2 struct data
-		public static void levelup_slash2_data_struct()
+		public static void slash2_data_struct_update(int Level)
 		{
-			// slash Image UnLock.
-			if (slash2_struct.Level == 1)
-			{
-				number_of_slash++;                                    // Slash 레벨 업시 slash 이미지 추가.
-			}
 
-			slash2_struct.Level = slash2_struct.Level + 1;
+			slash2_struct.Level = Level;
 			slash2_struct.damage = 10UL + (ulong)(slash2_struct.Level*3);
-			slash2_struct.upgrade_cost = 10 + (slash1_struct.Level * 5);
+			slash2_struct.upgrade_cost = 10 + (ulong)(slash1_struct.Level * 5);
+        }
+
+        // Levelup slash2 struct data
+        public static void slash2_data_struct_levelup(int Level)
+        {
+
+            slash2_struct.Level = Level;
+            slash2_struct.damage = 10UL + (ulong)(slash2_struct.Level * 3);
+            slash2_struct.upgrade_cost = 10 + (ulong)(slash1_struct.Level * 5);
 
             // 다음 slash UnLock.
             if (slash2_struct.Level == 3)
             {
+                PlayerPrefs.SetInt("slash3_enable", 1);
+                PlayerPrefs.Save();
                 slash3_locking_sprite.SetActive(false);
+                number_of_slash++;
             }
         }
 
-		// **************			slash3 function 					************** //
+        // **************			slash3 function 					************** //
 
-		// Update slash3 button all labels
-		public static void update_slash3_data_label()
+        // Update slash3 button all labels
+        public static void update_slash3_data_label()
 		{
 			slash3_lv_label.GetComponent<UILabel> ().text = slash3_struct.Level.ToString ();
 			slash3_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash3_struct.upgrade_cost);
@@ -399,81 +511,92 @@ namespace gamedata
 		}
 
 		// Levelup slash3 struct data
-		public static void levelup_slash3_data_struct()
+		public static void slash3_data_struct_update(int Level)
 		{
-			// slash Image UnLock.
-			if (slash3_struct.Level == 1)
-			{
-				number_of_slash++;                                    // Slash 레벨 업시 slash 이미지 추가.
-			}
-
-			slash3_struct.Level = slash3_struct.Level + 1;
+			slash3_struct.Level = Level;
 			slash3_struct.damage = slash3_struct.damage + 1;
 			slash3_struct.upgrade_cost = slash3_struct.upgrade_cost + 30;
-
-			// 다음 slash UnLock.
-			if (slash3_struct.Level == 3)
-			{
-				slash4_locking_sprite.SetActive(false);
-			}
 		}
 
-		// **************			slash4 function 					************** //
+        // Levelup slash3 struct data
+        public static void slash3_data_struct_levelup(int Level)
+        {
 
-		// Update slash4 button all labels
-		public static void update_slash4_data_label()
+            slash3_struct.Level = Level;
+            slash3_struct.damage = slash3_struct.damage + 1;
+            slash3_struct.upgrade_cost = slash3_struct.upgrade_cost + 30;
+
+            // 다음 slash UnLock.
+            if (slash3_struct.Level == 3)
+            {
+                PlayerPrefs.SetInt("slash4_enable", 1);
+                PlayerPrefs.Save();
+                slash4_locking_sprite.SetActive(false);
+                number_of_slash++;
+            }
+        }
+
+
+        // **************			slash4 function 					************** //
+
+        // Update slash4 button all labels
+        public static void update_slash4_data_label()
 		{
 			slash4_lv_label.GetComponent<UILabel> ().text = slash4_struct.Level.ToString ();
-			slash4_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash3_struct.upgrade_cost);
+			slash4_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash4_struct.upgrade_cost);
 
 			slash4_damage_label.GetComponent<UILabel> ().text = int_to_label_format (slash4_struct.damage);
-			slash4_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format (slash3_struct.add_damage);
+			slash4_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format (slash4_struct.add_damage);
 		}
 
 		// Levelup slash2 struct data
-		public static void levelup_slash4_data_struct()
+		public static void slash4_data_struct_update(int Level)
 		{
-			// slash Image UnLock.
-			if (slash4_struct.Level == 1)
-			{
-				number_of_slash++;                                    // Slash 레벨 업시 slash 이미지 추가.
-			}
 
-			slash4_struct.Level = slash4_struct.Level + 1;
+            slash4_struct.Level = Level;
 			slash4_struct.damage = slash4_struct.damage + 1;
 			slash4_struct.upgrade_cost = slash4_struct.upgrade_cost + 40;
 
-			// 다음 slash UnLock.
-			if (slash4_struct.Level == 3)
-			{
-				slash4_locking_sprite.SetActive(false);
-			}
-
 		}
 
-		// **************			slash5 function 					************** //
+        // Levelup slash2 struct data
+        public static void slash4_data_struct_levelupfpl(int Level)
+        {
 
-		// Update slash5 button all labels
-		public static void update_slash5_data_label()
+            slash4_struct.Level = Level;
+            slash4_struct.damage = slash4_struct.damage + 1;
+            slash4_struct.upgrade_cost = slash4_struct.upgrade_cost + 40;
+
+            // 다음 slash UnLock.
+            if (slash4_struct.Level == 3)
+            {
+                PlayerPrefs.SetInt("slash5_enable", 1);
+                PlayerPrefs.Save();
+                slash5_locking_sprite.SetActive(false);
+                number_of_slash++;
+            }
+
+        }
+
+
+        // **************			slash5 function 					************** //
+
+        // Update slash5 button all labels
+        public static void update_slash5_data_label()
 		{
 			slash5_lv_label.GetComponent<UILabel> ().text = slash5_struct.Level.ToString ();
-			slash5_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash1_struct.upgrade_cost);
+			slash5_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format (slash5_struct.upgrade_cost);
 
 			slash5_damage_label.GetComponent<UILabel> ().text = int_to_label_format (slash5_struct.damage);
 			slash5_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format (slash5_struct.add_damage);
 		}
 
 		// Levelup slash5 struct data
-		public static void levelup_slash5_data_struct()
+		public static void slash5_data_struct_update(int Level)
 		{
-			// slash Image UnLock.
-			if (slash5_struct.Level == 1)
-			{
-				number_of_slash++;                                    // Slash 레벨 업시 slash 이미지 추가.
-			}
 
-			slash5_struct.Level = slash5_struct.Level + 1;
-			slash5_struct.damage = slash5_struct.damage + 1;
+            slash5_struct.Level = Level;
+            slash5_struct.damage = slash5_struct.damage + 1;
 			slash5_struct.upgrade_cost = slash5_struct.upgrade_cost + 50;
 
 		}
@@ -485,7 +608,7 @@ namespace gamedata
 
         //check whether upgrade buttons are possiable or not
         public static void check_lvup_button_is_enable_or_not()
-		{/*
+		{
 			// 보물상자 버튼 체크.
 			if (coin_struct.gold >= chest_struct.upgrade_cost) {
 				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = true;
@@ -493,6 +616,7 @@ namespace gamedata
 			{
 				chest_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
+
 
 			// slash1 button check
 			if (coin_struct.gold >= slash1_struct.upgrade_cost) {
@@ -534,6 +658,7 @@ namespace gamedata
 				slash5_lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
 
+            /*
             // NPC01 button check
             if (coin_struct.gold >= NPC01_make.NPC01_struct.upgrade_cost)
             {

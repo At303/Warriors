@@ -112,6 +112,14 @@ public class popup_window_button_mgr : MonoBehaviour {
 		GameData.wing_sel_popup_window_obj.SetActive(false);
 	}
 
+    public void Close_boss_Sel_popup_Window()
+    {
+        // 터치 클릭 영역을 원상태로 복귀 시킴.
+        GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 1280f);
+        GameObject.Find("Touch_Area").transform.position = new Vector2(0, 0);
+
+        GameData.boss_sel_popup_window_obj.SetActive(false);
+    }
 
     // 어떤 NPC를 선택했는지 처리하기 위한 함수.
     public void Select_NPC(NPC_INDEX npc_index,string type)

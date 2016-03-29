@@ -26,9 +26,32 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	private GameObject NPC01_HUD;
 
 	// Use this for initialization
-	void Start () {
-		init ();
-	}
+	void Start ()
+    {
+        // npc가 enable인지 아닌지 check할 변수.
+        int check_npc_enable;
+        check_npc_enable = PlayerPrefs.GetInt("npc1_enable", 0);
+        print("check_npc_enable : " + check_npc_enable);
+        if (check_npc_enable == 1)
+        {
+            // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
+
+            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(true);                 // npc1 캐릭터 활성화.
+                                                                                // npc Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            if (PlayerPrefs.HasKey("npc1_level"))
+            {
+                int get_npc_level = PlayerPrefs.GetInt("npc1_level");
+                levelup_npc01_data_struct(get_npc_level);
+            }
+
+            init();
+        }
+        else
+        {
+            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(false);                 // npc1 캐릭터 활성화.
+        }
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,42 +60,43 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 
 	public void init()
 	{
-		// NPC01 캐릭터 이미지 초기화.
-		character.Info.order = 0;
-		character.Info.unit_part = "human-male";
-		character.Info.unit_index = 2;
+        // NPC01 캐릭터 default값.
+        character.Info.order = 0;
+        character.Info.unit_part = "human-male";
+        character.Info.unit_index = 2;
 
-		if(NPC01_make.npc01_char.weapon_enable)
-		{
-			character.Info.main_weapon_part = NPC01_make.npc01_char.weapon_part;
-			character.Info.main_weapon_index = NPC01_make.npc01_char.weapon_index;
-		}
-		if(NPC01_make.npc01_char.armor_enable)
-		{
-			character.Info.armor_part = NPC01_make.npc01_char.armor_type;
-			character.Info.armor_index = NPC01_make.npc01_char.armor_index;
-			character.Info.armor_color = NPC01_make.npc01_char.armor_color;
-		}
-		if(NPC01_make.npc01_char.wing_enable)
-		{
-			character.Info.wing_part = NPC01_make.npc01_char.wing_type;
-			character.Info.wing_index = NPC01_make.npc01_char.wing_index;
-		}
+        // Boss Scene Loading시 weapon 체크해야 Error 발생하지 않음 
+        // weapon enable값을 가져옴. 없으면 default값으로 0을 setting.
+        if (PlayerPrefs.GetInt("npc1_weapon_enable", 0) == 1)
+        {
+            character.Info.main_weapon_part = PlayerPrefs.GetString("npc1_weapon_part", "");
+            character.Info.main_weapon_index = PlayerPrefs.GetInt("npc1_weapon_index", 0);
+        }
 
+        if (PlayerPrefs.GetInt("npc1_armor_enable", 0) == 1)
+        {
+            character.Info.armor_part = PlayerPrefs.GetString("npc1_armor_part", "");
+            character.Info.armor_index = PlayerPrefs.GetInt("npc1_armor_index", 0);
+            character.Info.armor_color = PlayerPrefs.GetInt("npc1_armor_color", 0);            
+        }
 
-		NPC01_Boss_struct.attack_speed = 1f;
+        if (PlayerPrefs.GetInt("npc1_wing_enable", 0) == 1)
+        {
+            character.Info.wing_part = PlayerPrefs.GetString("npc1_wing_part", "");
+            character.Info.wing_index = PlayerPrefs.GetInt("npc1_wing_index", 0);
+        }
 
-		// NPC01 캐릭터 enable 변수 True.
-		NPC01_Boss_struct.enable = true;
+        // 무기에 따라서 해당 값을 변경해주면될듯.
+        NPC01_Boss_struct.attack_speed = 1f;
 
-		character.InitWithoutTextureBaking();
+        character.InitWithoutTextureBaking();
 
-		// Add Attack event clip interface. ( NPC01이 공격 애니메이션 시 사용할 함수를 추가. )
-		character.event_listener.Add(this);
+        // Add Attack event clip interface. ( NPC01이 공격 애니메이션 시 사용할 함수를 추가. )
+        character.event_listener.Add(this);
 
-		// attack animation coroutine about 2sec.
-		StartCoroutine("npc_attack_func");
-	}
+        // attack animation coroutine about 2sec.
+        StartCoroutine("npc_attack_func");
+    }
 
 	//  Coroutine   //
 	// attack animation coroutine about 2sec.
@@ -149,4 +173,15 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	{
 
 	}
+
+    public void levelup_npc01_data_struct(int Level)
+    {
+
+        // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
+        NPC01_Boss_struct.Level = Level;
+        NPC01_Boss_struct.damage = (ulong)(NPC01_Boss_struct.Level * 2) + 7;
+        NPC01_Boss_struct.attack_speed = NPC01_Boss_struct.Level * 1f;       
+    }
+
+
 }

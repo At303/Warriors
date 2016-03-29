@@ -25,7 +25,7 @@ public class animation_evt_manager : MonoBehaviour {
 
 		opened_chest_box.target_time = Time.time + 5.0f;
 		GameData.chest_struct._HP = GameData.chest_struct.HP;
-		GameData.chest_sprite.GetComponent<UIProgressBar> ().value = GameData.chest_struct._HP;
+		GameData.chest_sprite.GetComponent<UIProgressBar> ().value = (float)GameData.chest_struct._HP;
 
 		GameData.chest_opened_sprite.SetActive (true);
 

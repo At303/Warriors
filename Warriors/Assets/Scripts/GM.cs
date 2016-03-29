@@ -2,6 +2,7 @@
 using System.Collections;
 using gamedata;
 using gamedata_weapon;
+using System;
 
 public class GM : MonoBehaviour {
 
@@ -14,7 +15,41 @@ public class GM : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-	}
+        // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        PlayerPrefs.DeleteAll();
+
+        // 처음 게임을 시작하면 Gold 데이터를 Local에서 가져옴. 없으면 0으로  Set.
+        if (PlayerPrefs.HasKey("gold"))
+        {
+            print("gold 있음.");
+            string get_gold = PlayerPrefs.GetString("gold");
+            GameData.coin_struct.gold = Convert.ToUInt64(get_gold);
+        }
+        else
+        {
+            GameData.coin_struct.gold = 0;
+        }
+
+        // 처음 게임을 시작하면 보석 데이터를 Local에서 가져옴. 없으면 0으로  Set.
+        if (PlayerPrefs.HasKey("gemstone"))
+        {
+            string get_gemstone = PlayerPrefs.GetString("gemstone");
+            GameData.coin_struct.gemstone = Convert.ToUInt64(get_gemstone);
+        }
+        else
+        {
+            GameData.coin_struct.gemstone = 0;
+        }
+
+        // 골드 && 보석 Label에 Update.
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
+
+        // 골드 && 보석 데이터 10초마다 자동 저장.
+        StartCoroutine("save_data_gold_gemstone");
+
+
+    }
 
 
 	// Update is called once per frame
@@ -27,9 +62,9 @@ public class GM : MonoBehaviour {
                 //Get the mouse position on the screen and send a raycast into the game world from that position.
                 Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
-                               
+
                 //If touch is on the fixed range, excute the code.
-                if (hit.collider != null && !(opened_chest_box.enable_disable_chest_open))
+                if (hit.collider != null && hit.collider.name == "Touch_Area" && !(opened_chest_box.enable_disable_chest_open))
                 {
                     // Test HUDText;;;;
                     string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
@@ -37,7 +72,7 @@ public class GM : MonoBehaviour {
 
                     // Add touch coin to total_coin and update total coin label
 					GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
-					GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+					GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                     // if chest HP is under 0, reset chest HP.
                     if (GameData.chest_struct._HP <= 0)
@@ -56,9 +91,14 @@ public class GM : MonoBehaviour {
                     else
                     {
                         // Random touch slash animation
-                        int slash_index = Random.Range(1, GameData.number_of_slash);
+                        if (slash_index == GameData.number_of_slash)
+                        {
+                            slash_index = 1;
+                        }
+                        print("number slash : " + GameData.number_of_slash.ToString());
                         string slash_animation_name = "slash" + slash_index.ToString();
                         GameData.slash_animation = GameObject.Find(slash_animation_name);
+                        slash_index++;
 
                         // slash sprite enable
                         GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
@@ -69,16 +109,32 @@ public class GM : MonoBehaviour {
                         switch ((SLASH_TYPE)slash_index)
                         {
                             case SLASH_TYPE.SLASH1:
-                                //print("slash1");
-                                //print(GameData.slash1_struct.damage + "-> GameData.slash1_struct.damage");
+
                                 GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash1_struct.damage;
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH2:
-                                // print("slash2");
-                                // print(GameData.slash2_struct.damage+ "-> GameData.slash2_struct.damage");
+
                                 GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash2_struct.damage;
+                                fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+                                GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
+                                break;
+                            case SLASH_TYPE.SLASH3:
+
+                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash3_struct.damage;
+                                fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+                                GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
+                                break;
+                            case SLASH_TYPE.SLASH4:
+
+                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash4_struct.damage;
+                                fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+                                GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
+                                break;
+                            case SLASH_TYPE.SLASH5:
+
+                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash5_struct.damage;
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
@@ -87,11 +143,9 @@ public class GM : MonoBehaviour {
                     }
                     // check upgrade buttons들을 활성화 할 지말지 .
                     check_all_function_when_gold_changed();                          
-
-
                 }
-				// opened chest is enable.
-                else if (hit.collider != null)      
+				// 보물상자가 열림. 보석 획득 시작.
+                else if (hit.collider != null && hit.collider.name == "Touch_Area")      
                 {
                     // only touched in the collision area //
 
@@ -100,7 +154,7 @@ public class GM : MonoBehaviour {
 					GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.red, -0.8f);
 
 					// Random touch slash animation
-					int slash_index = Random.Range(1, GameData.number_of_slash);
+					int slash_index = UnityEngine.Random.Range(1, GameData.number_of_slash);
 					string slash_animation_name = "slash" + slash_index.ToString();
 					GameData.slash_animation = GameObject.Find(slash_animation_name);
 
@@ -108,9 +162,9 @@ public class GM : MonoBehaviour {
 					GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
 					GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
-                    // (Fever TIME) X2 Add touch coin to total_coin and update total coin label
+                    // 보물상자가 open되어 보석을 얻을 수 있음.
 					GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
-					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gemstone.ToString();
+					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
                     // check upgrade buttons들을 활성화 할 지말지 .
                     check_all_function_when_gold_changed();
@@ -258,6 +312,26 @@ public class GM : MonoBehaviour {
     public static void check_all_function_when_gems_changed()
     {
        
+    }
+
+    //  Coroutine   //
+    // attack animation coroutine about 2sec.
+    IEnumerator save_data_gold_gemstone()
+    {
+        yield return new WaitForSeconds(10f);    
+        string temp_string;
+
+        // 골드 저장.
+        temp_string = GameData.coin_struct.gold.ToString();
+        PlayerPrefs.SetString("gold", temp_string);
+
+        // 보석 저장.
+        temp_string = GameData.coin_struct.gemstone.ToString();
+        PlayerPrefs.SetString("gemstone", temp_string);
+
+        print("save gold & gemstone");
+        PlayerPrefs.Save();
+        StartCoroutine("save_data_gold_gemstone");
     }
 
 

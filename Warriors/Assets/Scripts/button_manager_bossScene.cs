@@ -15,8 +15,7 @@ public class button_manager_bossScene : MonoBehaviour {
 	}
 	public void Clicked_boss_scene()
 	{
-
-		SceneManager.LoadScene ("warriors");
+		//SceneManager.LoadScene ("warriors");
 
 	}
 }
