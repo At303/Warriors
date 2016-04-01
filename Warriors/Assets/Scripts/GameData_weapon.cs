@@ -4,11 +4,12 @@ using gamedata;
 
 namespace gamedata_weapon
 {
-
+    
+   
     // Weapon Struct
     public struct Weapon_struct
     {
-        public bool enable;
+        public int enable;
         public int level;
         public ulong damage;
         public ulong upgrade_cost;
@@ -48,6 +49,8 @@ namespace gamedata_weapon
 
     public class GameData_weapon : MonoBehaviour
     {
+        public static GameObject test_obj;
+
         // 처음 시작시 weapon struct 초기화.
         public static Weapon_struct[] weapon_struct_object = new Weapon_struct[35];
 
@@ -63,9 +66,21 @@ namespace gamedata_weapon
         // Use this for initialization
         void Start()
         {
+
             // 무기 데이터 초기화.
             for (int i = 0; i < 4; i++)
             {
+                // 처음 시작시에는 무기 lock sprite를 on 시키기 위해 check할 변수를 false시켜줌.
+                // 나중에 아래 변수는 playerprefas로 가져와야함.
+                string get_weapon_enable = "weapon" + i.ToString() + "_enable";
+                weapon_struct_object[i].enable = PlayerPrefs.GetInt(get_weapon_enable, 1);
+
+                if(weapon_struct_object[i].enable == 0)
+                {
+                    string weapon_lock_sp = "_weapon" + i.ToString() + "_unlock_sprite";
+                    GameObject.Find(weapon_lock_sp).SetActive(false);
+                }
+                
                 levelup_weapon_data_struct(i);
                 update_weapon_data_label(i);
             }
@@ -99,15 +114,11 @@ namespace gamedata_weapon
         // 무기 레벨 UP && Data Update.
         public static void levelup_weapon_data_struct(int _weapon_index)
         {
+
             weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
             weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].level*2 +2);
             weapon_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + weapon_struct_object[_weapon_index].level * 2);
 
-            // Next Weapon Enable.
-            if (weapon_struct_object[_weapon_index].level == 2)
-            {
-                //npc_gameobject.SetActive(true);
-            }
         }
 
         // 무기 버튼 && 라벨 Update.
@@ -123,6 +134,40 @@ namespace gamedata_weapon
             GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
         }
 
+
+        public static void equip_the_weapon(int _weapon_index, popup_window_button_mgr.NPC_INDEX _npc_index)
+        {
+            // NPC에 Damage 추가.
+            switch(_npc_index)
+            {
+                case popup_window_button_mgr.NPC_INDEX.NPC01:
+                    NPC01_make.NPC01_struct.add_damage = weapon_struct_object[_weapon_index].damage;
+
+                    print("add damage to npc01");
+                    break;
+                case popup_window_button_mgr.NPC_INDEX.NPC02:
+
+                    break;
+                case popup_window_button_mgr.NPC_INDEX.NPC03:
+
+                    break;
+            }
+
+            // weapon별 스킬 추가.
+            switch(_weapon_index)
+            {
+                case 0:
+                    // weapon1 스킬 추가. < slash1에 Damage 추가. >
+                    GameData.slash1_struct.add_damage = 100;
+                    GameData.slash1_data_struct_update(GameData.slash1_struct.Level);
+                    break;
+                case 1:
+
+                    break;
+
+            }
+
+        }
         // ************************************************************************  bow Functions ************************************************************************ //
 
         // 활 레벨 UP && Data Update.
@@ -176,9 +221,9 @@ namespace gamedata_weapon
             string lvup_cost_label = "_wing" + _weapon_index.ToString() + "_upgrade_cost_label";
             string skill_label = "_wing" + _weapon_index.ToString() + "_skill_label";
 
-            GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
-            GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
-            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
+            //GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
+           // GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
+           // GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
         }
 
 		// ************************************************************************  Armor Functions ************************************************************************ //

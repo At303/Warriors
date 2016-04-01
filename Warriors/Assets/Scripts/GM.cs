@@ -16,7 +16,7 @@ public class GM : MonoBehaviour {
 	void Start () {
 
         // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         // 처음 게임을 시작하면 Gold 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gold"))
@@ -95,7 +95,7 @@ public class GM : MonoBehaviour {
                         {
                             slash_index = 1;
                         }
-                        print("number slash : " + GameData.number_of_slash.ToString());
+                        print("slash damage : " + GameData.slash1_struct.damage.ToString());
                         string slash_animation_name = "slash" + slash_index.ToString();
                         GameData.slash_animation = GameObject.Find(slash_animation_name);
                         slash_index++;
@@ -141,8 +141,8 @@ public class GM : MonoBehaviour {
                         }
                         
                     }
-                    // check upgrade buttons들을 활성화 할 지말지 .
-                    check_all_function_when_gold_changed();                          
+                    // check upgrade buttons들을 활성화 할 지말지.
+                    check_all_function_when_gold_changed();
                 }
 				// 보물상자가 열림. 보석 획득 시작.
                 else if (hit.collider != null && hit.collider.name == "Touch_Area")      

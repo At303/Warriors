@@ -163,6 +163,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC01 캐릭터 weapon 이미지 바꾸기.
                 npc01.change_weapon(_weapon_index, _weapon_name);
+
+                // NPC01 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(0, NPC_INDEX.NPC01);
                 break;
 
             case NPC_INDEX.NPC02:

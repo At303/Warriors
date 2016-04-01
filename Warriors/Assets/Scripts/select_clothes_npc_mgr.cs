@@ -13,7 +13,6 @@ public class select_clothes_npc_mgr : MonoBehaviour {
         
         for (int i = 0; i < 3; i++)
         {
-            print("find obj : " + i.ToString());
             GameObject temp_gameobject = GameObject.Find("select_clothes_NPC" + (i + 1).ToString() + "_icon");
             npc_object[i] = temp_gameobject;
         }

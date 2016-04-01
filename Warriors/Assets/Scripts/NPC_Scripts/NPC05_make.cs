@@ -36,6 +36,23 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         public static GameObject lvup_btn;
     }
 
+    public struct npc05_char
+    {
+        public static int weapon_enable;
+        public static string weapon_part;
+        public static int weapon_index;
+
+        public static int armor_enable;
+        public static string armor_type;
+        public static int armor_index;
+        public static int armor_color;
+
+        public static int wing_enable;
+        public static string wing_type;
+        public static int wing_index;
+
+    }
+
     // 화면에 보여지는 캐릭터 이미지.
     public DevCharacter character;
 
@@ -66,21 +83,49 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         // **************************************   NPC02 GameObject init    ************************************************ //
 
         // Init NPC02 Data && Update Label.
-        levelup_npc05_data_struct();
-        update_npc05_data_label();
+        //levelup_npc05_data_struct();
+        //update_npc05_data_label();
 
     }
 
     void Start()
     {
-        init();
-        // 처음 NPC01 GameObject생성시 enable 변수는 False로 해줌.
-       // NPC05_struct.enable = false;
-        //NPC05_struct.gameobject.SetActive(false);
+        // npc가 enable인지 아닌지 check할 변수.
+        int check_npc_enable;
+        check_npc_enable = PlayerPrefs.GetInt("npc5_enable", 0);
+
+        if (check_npc_enable == 1)
+        {
+            // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
+
+            NPC05_struct.gameobject.SetActive(true);                 // npc5 캐릭터 활성화.
+            init();
+        }
+        else
+        {
+            // 처음 NPC05 GameObject생성시 enable 변수는 False로 해줌.
+            NPC05_struct.enable = false;            // boss Scene에서 사용할 변수.
+            NPC05_struct.gameobject.SetActive(false);
+        }
+
+        // npc Level 데이터를 가져온 후 해당 값으로 Data Setting.
+        if (PlayerPrefs.HasKey("npc5_level"))
+        {
+            int get_npc_level = PlayerPrefs.GetInt("npc5_level");
+            levelup_npc05_data_struct(get_npc_level);
+            update_npc05_data_label();
+        }
+        else
+        {
+            // npc를 처음 만드는 경우.
+            int init_level = 1;
+            levelup_npc05_data_struct(init_level);
+            update_npc05_data_label();
+        }
     }
 
     // Use this for initialization
-    void init () 
+    public void init () 
 	{
         character.Info.order = 1;
         character.Info.unit_part = "darkelf-male";
@@ -89,6 +134,46 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         character.Info.main_weapon_index = 0;
         character.Info.sub_weapon_part = "arrow-a";
         character.Info.sub_weapon_index = 0;
+
+        // Boss Scene Loading시 weapon 체크해야 Error 발생하지 않음 
+        // weapon enable값을 가져옴. 없으면 default값으로 0을 setting.
+        npc05_char.weapon_enable = PlayerPrefs.GetInt("npc5_weapon_enable", 0);
+        if (npc05_char.weapon_enable == 1)
+        {
+            character.Info.main_weapon_part = PlayerPrefs.GetString("npc5_weapon_part", "");
+            character.Info.main_weapon_index = PlayerPrefs.GetInt("npc5_weapon_index", 0);
+
+            // Change the NPC01 Weapon01 icon Sprite.
+            // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
+            NPC05_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC05_struct.weapon_sp.spriteName = character.Info.main_weapon_part + character.Info.main_weapon_index.ToString();
+
+        }
+
+        npc05_char.armor_enable = PlayerPrefs.GetInt("npc5_armor_enable", 0);
+        if (npc05_char.armor_enable == 1)
+        {
+            character.Info.armor_part = PlayerPrefs.GetString("npc5_armor_part", "");
+            character.Info.armor_index = PlayerPrefs.GetInt("npc5_armor_index", 0);
+            character.Info.armor_color = PlayerPrefs.GetInt("npc5_armor_color", 0);
+
+            // Change the NPC05 Clothes icon Sprite.
+            NPC05_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC05_struct.clothes_sp.spriteName = character.Info.armor_part + character.Info.armor_index.ToString();
+
+        }
+
+        npc05_char.wing_enable = PlayerPrefs.GetInt("npc5_wing_enable", 0);
+        if (npc05_char.wing_enable == 1)
+        {
+            character.Info.wing_part = PlayerPrefs.GetString("npc5_wing_part", "");
+            character.Info.wing_index = PlayerPrefs.GetInt("npc5_wing_index", 0);
+
+            // Change the NPC Clothes icon Sprite.
+            NPC05_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC05_struct.wing_sp.spriteName = character.Info.wing_part + character.Info.wing_index.ToString();
+
+        }
 
         // NPC 속도 1로 초기화.
         NPC05_struct.attack_speed = 1f;
@@ -180,18 +265,12 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
     // ********************************************************			NPC05 init functions 					******************************************************** //
 
     // NPC 데이터 초기화. ( NPC05 레벨업 버튼 클릭 시 실행할 함수. )
-    public void levelup_npc05_data_struct()
-    {
-        if (NPC05_struct.Level == 1)
-        {
-            // 맨 처음 NPC 레벨업 버튼 클릭시에는 해당 캐릭터가 disable되어 있으므로 Enable시켜줌.
-            NPC05_struct.gameobject.SetActive(true);
-            init();
-        }
+    public void levelup_npc05_data_struct(int Level)
+    { 
 
         // NPC 데이터 초기화 및 레벨업시 적용되는 공식.
-        NPC05_struct.Level = NPC05_struct.Level + 1;
-        NPC05_struct.damage = (ulong)(NPC05_struct.Level * 2 + 7);
+        NPC05_struct.Level =Level;
+        NPC05_struct.damage = (ulong)(NPC05_struct.Level * 2 + 7) + NPC05_struct.add_damage;
         NPC05_struct.attack_speed = NPC05_struct.Level * 1f;
         NPC05_struct.upgrade_cost = (ulong)(30 + NPC05_struct.Level * 2);
 
@@ -199,7 +278,7 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         if (NPC05_struct.Level == 3)
         {
             // NPC05 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC05 캐릭터는 화면에 안보여짐. )
-            //NPC06_make.NPC06_struct.unlock_sp.SetActive(false);
+            NPC06_make.NPC06_struct.unlock_sp.SetActive(false);
         }
     }
 
@@ -229,6 +308,17 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
 
+        // Boss Scene Load시 사용할 character image;
+        npc05_char.weapon_enable = 1;
+        npc05_char.weapon_part = weapon_name;
+        npc05_char.weapon_index = weapon_index;
+
+        // Local에 npc1 weapon 이미지 저장.
+        PlayerPrefs.SetInt("npc5_weapon_enable", npc05_char.weapon_enable);
+        PlayerPrefs.SetString("npc5_weapon_part", npc05_char.weapon_part);
+        PlayerPrefs.SetInt("npc5_weapon_index", npc05_char.weapon_index);
+        PlayerPrefs.Save();
+
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();
 
@@ -249,6 +339,19 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         character.Info.armor_index = index;
         character.Info.armor_color = color;
 
+        // Boss Scene Load시 사용할 character image;
+        npc05_char.armor_enable = 1;
+        npc05_char.armor_type = clothes_type;
+        npc05_char.armor_index = index;
+        npc05_char.armor_color = color;
+
+        // Local에 npc1 armor 이미지 저장.
+        PlayerPrefs.SetInt("npc5_armor_enable", npc05_char.armor_enable);
+        PlayerPrefs.SetString("npc5_armor_part", npc05_char.armor_type);
+        PlayerPrefs.SetInt("npc5_armor_index", npc05_char.armor_index);
+        PlayerPrefs.SetInt("npc5_armor_color", npc05_char.armor_color);
+        PlayerPrefs.Save();
+
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();
 
@@ -267,6 +370,17 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
 
         character.Info.wing_part = wing_type;
         character.Info.wing_index = index;
+
+        // Boss Scene Load시 사용할 character image;
+        npc05_char.wing_enable = 1;
+        npc05_char.wing_type = wing_type;
+        npc05_char.wing_index = index;
+
+        // Local에 npc1 weapon 이미지 저장.
+        PlayerPrefs.SetInt("npc5_wing_enable", npc05_char.wing_enable);
+        PlayerPrefs.SetString("npc5_wing_part", npc05_char.wing_type);
+        PlayerPrefs.SetInt("npc5_wing_index", npc05_char.wing_index);
+        PlayerPrefs.Save();
 
         // 바뀐 정보로 Update.
         character.InitWithoutTextureBaking();

@@ -5,6 +5,15 @@ using gamedata_weapon;
 
 public class GM_Boss : MonoBehaviour {
 
+    public struct boss_struct
+    {
+        public ulong HP;
+    }
+
+    // 처음 시작시 Boss struct 초기화.
+    public static GameObject[] boss_obj = new GameObject[5];
+    public static boss_struct[] boss_st = new boss_struct[5];
+
     // 어떤 Boss를 Enable할 지 index를 가져올 변수.
     public static int boss_index;
 
@@ -29,11 +38,16 @@ public class GM_Boss : MonoBehaviour {
         popup_window_1 = GameObject.Find("count_1st");
         popup_window_0 = GameObject.Find("count_fight");
 
-        // 이전 씬에서 어떤 보스와 싸울지 index값을 가져오고, 해당 index에 맞는 boss HP return
-        //Boss_make boss_make_obj = Boss_make.gameobject.GetComponent<Boss_make>();
-        //boss_hp = _boss_hp = boss_make_obj.get_boss_hp(boss_index);
+        // Boss HP init && object 가져오기.
+        for (int i = 0; i < 3; i++)
+        {
+            boss_st[i].HP = (ulong)(i * 100);                                               // Boss HP init.
+            boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
-        print("boss HP : " + boss_hp.ToString());
+            print("Boss" + i.ToString() + "_Sprite");
+            boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
+        }
+
 
     }
 
@@ -42,18 +56,23 @@ public class GM_Boss : MonoBehaviour {
 
         start_time = Time.time + 10;
 
+        // 이전 씬에서 어떤 보스와 싸울지 index값을 가져오고, 해당 index에 맞는 boss HP return
+        boss_hp = _boss_hp = boss_st[boss_index].HP;
+        print("Boss HP : " + boss_hp.ToString());
 
+        // 가져온 Boss Index에 해당하는 보스 몬스터를 Active 시켜줌.
+        boss_obj[boss_index].SetActive(true);
     }
 
     // Update is called once per frame
     void Update () 
 	{
+        // 처음 Boss Scene진입 시 카운트 다운 시작.
         if (!Boss_make.start_boss_kill)
         {
             double time = (start_time - Time.time) / 10.0f;        // For test set 10 sec.
 
             string cmp = string.Format("{0:0.0}", time * 10);
-            print(cmp.ToString());
             if (cmp == "9.0")
             {
                 popup_window_3.SetActive(true);
@@ -86,39 +105,51 @@ public class GM_Boss : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) && Boss_make.start_boss_kill)
 		{
-				//Get the mouse position on the screen and send a raycast into the game world from that position.
-				Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
-				RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+            float fHP = 0;
 
-				//If touch is on the fixed range, excute the code.
-				if (hit.collider != null)
-				{
-                    // Random touch slash animation
-                    if (slash_index == GameData.number_of_slash)
-                    {
-                        slash_index = 1;
-                    }
-                    string slash_animation_name = "slash" + slash_index.ToString();
-                    GameData.slash_animation = GameObject.Find(slash_animation_name);
+            //Get the mouse position on the screen and send a raycast into the game world from that position.
+            Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
+			RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+
+			//If touch is on the fixed range, excute the code.
+			if (hit.collider != null)
+			{
+                // Random touch slash animation
+                if (slash_index == GameData.number_of_slash)
+                {
+                    slash_index = 1;
+                }
+                string slash_animation_name = "slash" + slash_index.ToString();
+                GameData.slash_animation = GameObject.Find(slash_animation_name);
                     
 
-                // slash sprite enable
-                    GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
-					GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
+            // slash sprite enable
+                GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
+				GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
-                    float fHP;
-					switch ((SLASH_TYPE)slash_index)
-					{
-						case SLASH_TYPE.SLASH1:
-							boss_hp = boss_hp - GameData.slash1_struct.damage;
-                            print(GameData.slash1_struct.damage);
-                            fHP = boss_hp / _boss_hp;
-							GameObject.Find ("Boss_Sprite").GetComponent<UIProgressBar> ().value = fHP;
-							break;
+				switch ((SLASH_TYPE)slash_index)
+				{
+					case SLASH_TYPE.SLASH1:
+						boss_hp = boss_hp - GameData.slash1_struct.damage;
+                        print(GameData.slash1_struct.damage);
+                        fHP = boss_hp / _boss_hp;
+						GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
+						break;
 
-					}
+				}
 
                 slash_index++;
+
+                if(fHP < 0)
+                {
+                    print("kill the boss!!!!!!!");
+
+                    //index에 해당하는 무기의 lock sprite를 false시켜줌. ( boss_index도 어차피 weapon_index랑 같음. )
+                    string weapon_enable_str = "weapon" + boss_index.ToString() + "_enable";
+                    PlayerPrefs.SetInt(weapon_enable_str, 0);
+                    PlayerPrefs.Save();
+                }
+
             }
 		}
 	}

@@ -262,9 +262,10 @@ namespace gamedata
 
             // Touch Slash 개수 초기화.
             number_of_slash = 2;
-            print("init number_of_slash : " + number_of_slash.ToString());
+
             // 보물상자 init and update label //
 			chest_struct.attacked_plus_gold = 0;
+
             // 보물상자 Level 데이터를 가져온 후 해당 값으로 Data Setting.
             if(PlayerPrefs.HasKey("chest_level"))
             {
@@ -433,11 +434,9 @@ namespace gamedata
         // Slash1 데이터를 해당 레벨에 맞게 Setting해줄 함수.
 		public static void slash1_data_struct_update(int Level)
 		{
-
             slash1_struct.Level = Level;
-			slash1_struct.damage = (ulong)slash1_struct.Level;
+			slash1_struct.damage = (ulong)slash1_struct.Level + 10 + slash1_struct.add_damage;
 			slash1_struct.upgrade_cost = 10 + (ulong)(slash1_struct.Level*5);
-            
 		}
 
 
