@@ -23,6 +23,8 @@ public class popup_window_button_mgr : MonoBehaviour {
         NPC12,
     }
     
+	public static int equip_weapon_index;
+
     public string weapon
     {
         get { return "weapon"; }
@@ -165,7 +167,7 @@ public class popup_window_button_mgr : MonoBehaviour {
                 npc01.change_weapon(_weapon_index, _weapon_name);
 
                 // NPC01 캐릭터 damage에 첫번째 weapon damage 추가.
-                GameData_weapon.equip_the_weapon(0, NPC_INDEX.NPC01);
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC01);
                 break;
 
             case NPC_INDEX.NPC02:
@@ -178,6 +180,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC02 캐릭터 이미지 바꾸기.
                 npc02.change_weapon(_weapon_index, _weapon_name);
+
+				// NPC02 캐릭터 damage에 첫번째 weapon damage 추가.
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC02);
                 break;
 
             case NPC_INDEX.NPC03:
@@ -190,6 +195,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC03 캐릭터 이미지 바꾸기.
                 npc03.change_weapon(_weapon_index, _weapon_name);
+
+				// NPC03 캐릭터 damage에 첫번째 weapon damage 추가.
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC03);
                 break;
 
             case NPC_INDEX.NPC07:
@@ -202,6 +210,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC07 캐릭터 이미지 바꾸기.
                 npc07.change_weapon(_weapon_index, _weapon_name);
+
+				// NPC07 캐릭터 damage에 첫번째 weapon damage 추가.
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC07);
                 break;
 
             case NPC_INDEX.NPC08:
@@ -214,6 +225,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC08 캐릭터 이미지 바꾸기.
                 npc08.change_weapon(_weapon_index, _weapon_name);
+
+				// NPC08 캐릭터 damage에 첫번째 weapon damage 추가.
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC08);
                 break;
 
             case NPC_INDEX.NPC09:
@@ -226,6 +240,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC09 캐릭터 이미지 바꾸기.
                 npc09.change_weapon(_weapon_index, _weapon_name);
+
+				// NPC09 캐릭터 damage에 첫번째 weapon damage 추가.
+				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC09);
                 break;
         }
         // NPC선택 후 popUp window 비활성화.

@@ -78,6 +78,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
         NPC12_struct.add_speed_label = GameObject.Find("_npc12_speed_plus_label");
 
         NPC12_struct.lvup_btn = GameObject.Find("_npc12_lvup_btn");
+		NPC12_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 
         // Damage HUD Init.
         NPC12_HUD = GameObject.Find("12th_friend_HUD");
@@ -230,7 +231,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
-                GameData.chest_struct._HP = GameData.chest_struct._HP - NPC12_struct.damage;
+				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC12_struct.damage +  + NPC12_struct.add_damage);
                 float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
             }
@@ -268,7 +269,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
 
         // NPC 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC12_struct.Level = Level;
-        NPC12_struct.damage = (ulong)(NPC12_struct.Level * 2 + 7) + NPC12_struct.add_damage;
+        NPC12_struct.damage = (ulong)(NPC12_struct.Level * 2 + 7);
         NPC12_struct.attack_speed = NPC12_struct.Level * 1f;
         NPC12_struct.upgrade_cost = (ulong)(30 + NPC12_struct.Level * 2);
 

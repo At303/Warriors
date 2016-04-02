@@ -76,6 +76,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
         NPC04_struct.add_speed_label = GameObject.Find("_npc04_speed_plus_label");
 
         NPC04_struct.lvup_btn = GameObject.Find("_npc04_lvup_btn");
+		NPC04_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 
         // Damage HUD Init.
         NPC04_HUD = GameObject.Find("4th_friend_HUD");
@@ -270,7 +271,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
     {
         // NPC 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC04_struct.Level = Level;
-        NPC04_struct.damage = (ulong)(NPC04_struct.Level * 2 + 7) + NPC04_make.NPC04_struct.add_damage;
+        NPC04_struct.damage = (ulong)(NPC04_struct.Level * 2 + 7);
         NPC04_struct.attack_speed = NPC04_struct.Level * 1f;
         NPC04_struct.upgrade_cost = (ulong)(30 + NPC04_struct.Level * 2);
 

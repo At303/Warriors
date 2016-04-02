@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using gamedata_weapon;
 
 public class NPC02_make : MonoBehaviour, IAnimEventListener
 {
@@ -77,7 +78,7 @@ public class NPC02_make : MonoBehaviour, IAnimEventListener
         NPC02_struct.add_speed_label = GameObject.Find("_npc02_speed_plus_label");
 
         NPC02_struct.lvup_btn = GameObject.Find("_npc02_lvup_btn");
-
+		NPC02_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
         // Damage HUD Init.
         NPC02_HUD = GameObject.Find("2nd_friend_HUD");
         // **************************************   NPC02 GameObject init    ************************************************ //
@@ -227,7 +228,7 @@ public class NPC02_make : MonoBehaviour, IAnimEventListener
                 NPC02_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
                 // Add touch coin to total_coin and update total coin label
-                GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
+				GameData.coin_struct.gold = GameData.coin_struct.gold + (GameData.chest_struct.attacked_gold + + NPC02_struct.add_damage);
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
@@ -270,7 +271,7 @@ public class NPC02_make : MonoBehaviour, IAnimEventListener
         // NPC02 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC02_struct.Level = Level;
         NPC02_struct.damage = (ulong)(NPC02_struct.Level * 2 + 7) + NPC02_struct.add_damage;
-        NPC02_struct.attack_speed = NPC02_struct.Level * 1f;
+        //NPC02_struct.attack_speed = NPC02_struct.Level * 1f;
         NPC02_struct.upgrade_cost = (ulong)(30 + NPC02_struct.Level * 2);
 
         // NPC02 레벨이 20 이상이면 NPC03 캐릭터 구입할 수 있음.
@@ -306,6 +307,10 @@ public class NPC02_make : MonoBehaviour, IAnimEventListener
 
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
+
+		// 현재 장착하고 있는 무기의 스킬 Setting.
+		GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
+
 
         // Boss Scene Load시 사용할 character image;
         npc02_char.weapon_enable = 1;

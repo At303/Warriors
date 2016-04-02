@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using gamedata_weapon;
 
 public class NPC01_make : MonoBehaviour, IAnimEventListener
 {
@@ -143,6 +144,9 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
             character.Info.main_weapon_part = PlayerPrefs.GetString("npc1_weapon_part", "");
             character.Info.main_weapon_index = PlayerPrefs.GetInt("npc1_weapon_index", 0);
 
+			// 현재 장착하고 있는 무기의 스킬 Setting.
+			GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
+
             // Change the NPC01 Weapon01 icon Sprite.
             // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
             NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
@@ -228,7 +232,7 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
                 NPC01_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
                 // Add touch coin to total_coin and update total coin label
-                GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
+				GameData.coin_struct.gold = GameData.coin_struct.gold + (GameData.chest_struct.attacked_gold + + NPC01_struct.add_damage);
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
@@ -271,9 +275,9 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
 
         // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC01_struct.Level = Level;
-        NPC01_struct.damage = (ulong)(NPC01_struct.Level * 2) + 7 + NPC01_struct.add_damage;
+        NPC01_struct.damage = (ulong)(NPC01_struct.Level * 2) + 7 ;
 
-        NPC01_struct.attack_speed = NPC01_struct.Level * 1f;
+        //NPC01_struct.attack_speed = NPC01_struct.Level * 1f;
         NPC01_struct.upgrade_cost = 30 + (ulong)(NPC01_struct.Level * 2);
 
         // NPC01 레벨이 20 이상이면 NPC02 캐릭터 구입할 수 있음.

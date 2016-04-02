@@ -19,15 +19,26 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 
 	}
 
+	float boss_hp;
+	float _boss_hp;              // 보스 HP 감소시 사용 할 Base 값.
+	float fHP;
+
 	// 화면에 보여지는 캐릭터 이미지.
 	public DevCharacter character;         
 
 	// For 데미지 HUD Text.
 	private GameObject NPC01_HUD;
 
+	// check count down is done or not
+	private bool check_count_down;
 	// Use this for initialization
 	void Start ()
     {
+		// count down이 끝나고 npc animation실행하게 할 변수
+		check_count_down = true;
+
+		// npc01 boss kill시 damage HUD.
+		NPC01_HUD = GameObject.Find ("1st_friend_HUD");
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
         check_npc_enable = PlayerPrefs.GetInt("npc1_enable", 0);
@@ -48,7 +59,7 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
         }
         else
         {
-            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(false);                 // npc1 캐릭터 활성화.
+            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(false);                 // npc1 캐릭터 비활성화.
         }
 
     }
@@ -56,6 +67,12 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	// Update is called once per frame
 	void Update () {
 	
+		if (check_count_down && Boss_make.start_boss_kill) {
+			// attack animation coroutine about 2sec.
+			StartCoroutine("npc_attack_func");
+			check_count_down = false;
+		} else {
+		}
 	}
 
 	public void init()
@@ -94,8 +111,7 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
         // Add Attack event clip interface. ( NPC01이 공격 애니메이션 시 사용할 함수를 추가. )
         character.event_listener.Add(this);
 
-        // attack animation coroutine about 2sec.
-        StartCoroutine("npc_attack_func");
+        
     }
 
 	//  Coroutine   //
@@ -106,6 +122,7 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 		character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
 
 		StartCoroutine("npc_attack_func");
+
 	}
 
 
@@ -114,60 +131,25 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	public void OnAnimation_Hitting(int _index)
 	{
 		print ("hit the boss!!");
-		/*
-		// 보물상자 HP가 0이면 아래 코드 안타도록함.
-		if (!opened_chest_box.enable_disable_chest_open)
+
+		if(GameData.chest_struct._HP > 0)
 		{
-			// 혹시 다른 곳에서 동시에 opened sprite접근시 에러방지를 위해 enabled bool check
-			if (GameData.chest_struct._HP <= 0)		
-			{
-				// 보물상자 false시키고 , open된 보물상자 enable
-				GameData.chest_sprite.SetActive(false);
-				opened_chest_box.enable_disable_chest_open = true;
+		// Gold HUDText;;;;
+		string get_coin_str = "-" + (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage).ToString();
+		NPC01_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
 
-				// 보물 상자 시간 설정.
-				opened_chest_box.target_time = Time.time + 5.0f;
-				GameData.chest_struct._HP = GameData.chest_struct.HP;
-				GameData.chest_sprite.GetComponent<UIProgressBar>().value = GameData.chest_struct._HP;
-
-				GameData.chest_opened_sprite.SetActive(true);
-			}
-			else {
-
-				// Gold HUDText;;;;
-				string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
-				NPC01_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
-
-				// Add touch coin to total_coin and update total coin label
-				GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
-				GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
-
-				// Chest box HP modify
-				GameData.chest_struct._HP = GameData.chest_struct._HP - NPC01_Boss_struct.damage;
-				float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
-				GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
-			}
-
-			// check upgrade buttons들을 활성화 할 지말지 .
-			GM.check_all_function_when_gold_changed();
+		// Chest box HP modify
+	
+		boss_hp = boss_hp - (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage);
+		fHP = boss_hp / _boss_hp;
+		GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 		}
-		// Chest opened
 		else
 		{
-
-			// Gemstone HUDText;;;;
-			string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
-			NPC01_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);
-
-			// Add gemstone while NPC attacking to chest.
-			GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
-			GameData.gemstone_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gemstone);
-
-			// check upgrade buttons들을 활성화 할 지말지 .
-			GM.check_all_function_when_gold_changed();
-
+			print ("kill the boss");
 		}
-		*/
+
+
 	}
 	public void OnAnimation_AttackMove()
 	{

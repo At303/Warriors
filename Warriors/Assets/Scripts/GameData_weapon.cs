@@ -4,7 +4,6 @@ using gamedata;
 
 namespace gamedata_weapon
 {
-    
    
     // Weapon Struct
     public struct Weapon_struct
@@ -14,6 +13,9 @@ namespace gamedata_weapon
         public ulong damage;
         public ulong upgrade_cost;
         public string skill;
+		public popup_window_button_mgr.NPC_INDEX equiped_this_weapon_npc_index;
+
+		public GameObject lvup_button;
 
     }
 
@@ -119,6 +121,42 @@ namespace gamedata_weapon
             weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].level*2 +2);
             weapon_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + weapon_struct_object[_weapon_index].level * 2);
 
+			weapon_struct_object [_weapon_index].lvup_button = GameObject.Find ("_weapon"+_weapon_index.ToString()+"_lvup_button");
+
+
+			// NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
+			switch (weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index) 
+			{
+				case popup_window_button_mgr.NPC_INDEX.NPC01:
+				NPC01_make.NPC01_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC01_make.NPC01_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC01_make.NPC01_struct.add_damage);
+				break;
+		
+				case popup_window_button_mgr.NPC_INDEX.NPC02:
+				NPC02_make.NPC02_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC02_make.NPC02_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC02_make.NPC02_struct.add_damage);
+				break;
+
+				case popup_window_button_mgr.NPC_INDEX.NPC03:
+				NPC03_make.NPC03_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC03_make.NPC03_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC03_make.NPC03_struct.add_damage);
+				break;
+
+				case popup_window_button_mgr.NPC_INDEX.NPC07:
+				NPC07_make.NPC07_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC07_make.NPC07_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC07_make.NPC07_struct.add_damage);
+				break;
+
+				case popup_window_button_mgr.NPC_INDEX.NPC08:
+				NPC08_make.NPC08_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC08_make.NPC08_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC08_make.NPC08_struct.add_damage);
+				break;
+
+				case popup_window_button_mgr.NPC_INDEX.NPC09:
+				NPC09_make.NPC09_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				NPC09_make.NPC09_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC09_make.NPC09_struct.add_damage);
+				break;
+			}
         }
 
         // 무기 버튼 && 라벨 Update.
@@ -127,7 +165,6 @@ namespace gamedata_weapon
             string level_label = "_weapon" + _weapon_index.ToString() + "_level_label";
             string damage_label = "_weapon" + _weapon_index.ToString() + "_damage_label";
             string lvup_cost_label = "_weapon" + _weapon_index.ToString() + "_upgrade_cost_label";
-            string skill_label = "_weapon" + _weapon_index.ToString() + "_skill_label";
 
             GameObject.Find(level_label).GetComponent<UILabel>().text = weapon_struct_object[_weapon_index].level.ToString();
             GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].damage);
@@ -137,33 +174,82 @@ namespace gamedata_weapon
 
         public static void equip_the_weapon(int _weapon_index, popup_window_button_mgr.NPC_INDEX _npc_index)
         {
-            // NPC에 Damage 추가.
+			// 무기 change, reset the before add damage.
+			GameData.slash1_struct.add_damage = 0;
+			GameData.slash2_struct.add_damage = 0;
+			GameData.slash3_struct.add_damage = 0;
+			GameData.slash4_struct.add_damage = 0;
+			GameData.slash5_struct.add_damage = 0;
+
+            // NPC에 Damage 추가 && NPC Damage 추가 Label Update.
             switch(_npc_index)
             {
-                case popup_window_button_mgr.NPC_INDEX.NPC01:
-                    NPC01_make.NPC01_struct.add_damage = weapon_struct_object[_weapon_index].damage;
+			case popup_window_button_mgr.NPC_INDEX.NPC01:
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC01;
 
-                    print("add damage to npc01");
+					NPC01_make.NPC01_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+				    NPC01_make.NPC01_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC01_make.NPC01_struct.add_damage);
                     break;
                 case popup_window_button_mgr.NPC_INDEX.NPC02:
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC02;
 
+					NPC02_make.NPC02_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+					NPC02_make.NPC02_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC02_make.NPC02_struct.add_damage);
                     break;
                 case popup_window_button_mgr.NPC_INDEX.NPC03:
-
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC03;
+					
+					NPC03_make.NPC03_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+					NPC03_make.NPC03_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC03_make.NPC03_struct.add_damage);
                     break;
+				case popup_window_button_mgr.NPC_INDEX.NPC07:
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC07;
+					
+					NPC07_make.NPC07_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+					NPC07_make.NPC07_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC07_make.NPC07_struct.add_damage);
+					break;
+				case popup_window_button_mgr.NPC_INDEX.NPC08:
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC08;
+					
+					NPC08_make.NPC08_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+					NPC08_make.NPC08_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC08_make.NPC08_struct.add_damage);
+					break;
+				case popup_window_button_mgr.NPC_INDEX.NPC09:
+					weapon_struct_object [_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC09;
+					
+					NPC09_make.NPC09_struct.add_damage = weapon_struct_object [_weapon_index].damage;
+					NPC09_make.NPC09_struct.add_damage_label.GetComponent<UILabel>().text =  GameData.int_to_label_format (NPC09_make.NPC09_struct.add_damage);
+					break;
             }
 
-            // weapon별 스킬 추가.
+			// weapon별 스킬 추가.
             switch(_weapon_index)
             {
-                case 0:
+				case 0:
                     // weapon1 스킬 추가. < slash1에 Damage 추가. >
                     GameData.slash1_struct.add_damage = 100;
-                    GameData.slash1_data_struct_update(GameData.slash1_struct.Level);
+					GameData.slash1_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash1_struct.add_damage);
                     break;
                 case 1:
-
-                    break;
+					// weapon2 스킬 추가. < slash2에 Damage 추가. >
+					GameData.slash2_struct.add_damage = 100;
+					GameData.slash2_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash2_struct.add_damage);
+					break;
+				case 2:
+					// weapon3 스킬 추가. < slash3에 Damage 추가. >
+					GameData.slash3_struct.add_damage = 100;
+					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash3_struct.add_damage);
+					break;
+				case 3:
+					// weapon4 스킬 추가. < slash4에 Damage 추가. >
+					GameData.slash4_struct.add_damage = 100;
+					GameData.slash4_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash4_struct.add_damage);
+					break;
+				case 4:
+					// weapon5 스킬 추가. < slash5에 Damage 추가. >
+					GameData.slash5_struct.add_damage = 100;
+					GameData.slash5_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash5_struct.add_damage);
+					break;
 
             }
 
@@ -258,22 +344,68 @@ namespace gamedata_weapon
         // ************************************************************************  common Functions ************************************************************************ //
 
         //check whether upgrade buttons are possiable or not
-        public void check_weapon_buttons_is_enable_or_not()
+        public static void check_weapon_buttons_is_enable_or_not()
         {
             // 무기 버튼 체크.
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 if (GameData.coin_struct.gold >= weapon_struct_object[i].upgrade_cost)
                 {
-                    string weapon_lvup_btn = "_weapon" + i.ToString() + "_lvup_button";
-                    GameObject.Find(weapon_lvup_btn).GetComponent<UIButton>().isEnabled = true;
+					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = true;
                 }
                 else
                 {
-                    string weapon_lvup_btn = "_weapon" + i.ToString() + "_lvup_button";
-                    GameObject.Find(weapon_lvup_btn).GetComponent<UIButton>().isEnabled = false;
+					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = false;
                 }
             }
         }
+
+		public static void set_data_for_equip_weapon(string weapon_type, int equip_weapon_index)
+		{
+			switch (weapon_type) 
+			{
+
+			case "dagger-a":
+				if (equip_weapon_index == 0) 
+				{
+					// weapon1 스킬 추가. < slash1에 Damage 추가. >
+					GameData.slash1_struct.add_damage = 100;
+					GameData.slash1_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash1_struct.add_damage);
+				} else if (equip_weapon_index == 1) 
+				{
+					// weapon2 스킬 추가. < slash2에 Damage 추가. >
+					GameData.slash2_struct.add_damage = 100;
+					GameData.slash2_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash2_struct.add_damage);
+				}
+				break;
+
+			case "sword-a":
+				switch (equip_weapon_index) 
+				{
+					case 0:
+					// weapon3 스킬 추가. < slash3에 Damage 추가. >
+					GameData.slash3_struct.add_damage = 100;
+					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash3_struct.add_damage);
+					break;
+
+					case 1:
+					// weapon4 스킬 추가. < slash4에 Damage 추가. >
+					GameData.slash4_struct.add_damage = 100;
+					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash4_struct.add_damage);
+					break;
+
+					case 2:
+					// weapon5 스킬 추가. < slash5에 Damage 추가. >
+					GameData.slash5_struct.add_damage = 100;
+					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash5_struct.add_damage);
+					break;
+
+					case 3:
+					
+					break;
+				}
+				break;
+			}
+		}
     }
 }

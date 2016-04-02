@@ -7,12 +7,12 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
    // ************************************************************************  Weapon Functions ************************************************************************ //
 
-    // Weapon 레벨 업 버튼 클릭시 호출 함수. ( 버튼 클릭시 index 값을 paramater로 가져와서 해당 weapon구조체 list에 update )
+	// Weapon 레벨 업 버튼 클릭시 호출 함수. ( 버튼 클릭시 index 값을 paramater로 가져와서 해당 weapon구조체 list에 update )
     public void Clicked_weapon_Level_UP(int weapon_index)
 	{
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.weapon_struct_object[weapon_index].upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
         // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
         GameData_weapon.levelup_weapon_data_struct(weapon_index);
@@ -26,11 +26,14 @@ public class subMenu03_button_mgr : MonoBehaviour {
 	}
 
     // Weapon 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_weapon_select_NPC(string weapon_type, int weapon_index)
+    public void Clicked_weapon_select_NPC(string weapon_type, int weapon_index, int _equip_weapon_index)
     {
         // 바꿀 Weapon 정보 저장.
         GameData.to_change_npc_struct.To_Change_Weapon_type = weapon_type;
         GameData.to_change_npc_struct.weapon_index = weapon_index;
+
+		// 어떤 무기를 사용할 지 index Save.
+		popup_window_button_mgr.equip_weapon_index = _equip_weapon_index;
 
         // NPC 선택 창 Popup Open.
         GameData.weapon_sel_popup_window_obj.SetActive(true);
@@ -44,7 +47,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 	{
 		// pay the cost about chest level up
 		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.armor_struct_object[armor_index].upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
 		// u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
 		//GameData_weapon.levelup_bow_data_struct(armor_index);
@@ -75,7 +78,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.bow_struct_object[bow_index].upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
         // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
         GameData_weapon.levelup_bow_data_struct(bow_index);
@@ -109,7 +112,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.wing_struct_object[wing_index].upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.coin_struct.gold.ToString();
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
         // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
         GameData_weapon.levelup_bow_data_struct(wing_index);

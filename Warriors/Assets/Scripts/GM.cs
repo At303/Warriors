@@ -11,12 +11,12 @@ public class GM : MonoBehaviour {
 	float before_touch = 0.0f;
 	float current_touch = 0.0f;
 	float touch_deltatime = 0.0f;
-	int slash_index = 1;
+	int slash_index = 0;
 	// Use this for initialization
 	void Start () {
 
         // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        //PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll();
 
         // 처음 게임을 시작하면 Gold 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gold"))
@@ -44,6 +44,9 @@ public class GM : MonoBehaviour {
         // 골드 && 보석 Label에 Update.
         GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
         GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
+
+		// Check All Buttons
+		check_all_function_when_gold_changed();
 
         // 골드 && 보석 데이터 10초마다 자동 저장.
         StartCoroutine("save_data_gold_gemstone");
@@ -90,13 +93,8 @@ public class GM : MonoBehaviour {
                     }
                     else
                     {
-                        // Random touch slash animation
-                        if (slash_index == GameData.number_of_slash)
-                        {
-                            slash_index = 1;
-                        }
-                        print("slash damage : " + GameData.slash1_struct.damage.ToString());
-                        string slash_animation_name = "slash" + slash_index.ToString();
+   
+						string slash_animation_name = "slash" + (slash_index+1).ToString();
                         GameData.slash_animation = GameObject.Find(slash_animation_name);
                         slash_index++;
 
@@ -109,37 +107,45 @@ public class GM : MonoBehaviour {
                         switch ((SLASH_TYPE)slash_index)
                         {
                             case SLASH_TYPE.SLASH1:
-
-                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash1_struct.damage;
+							
+								GameData.chest_struct._HP = GameData.chest_struct._HP - (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage);
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH2:
 
-                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash2_struct.damage;
+								GameData.chest_struct._HP = GameData.chest_struct._HP - (GameData.slash2_struct.damage + GameData.slash2_struct.add_damage);
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH3:
 
-                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash3_struct.damage;
+								GameData.chest_struct._HP = GameData.chest_struct._HP - (GameData.slash3_struct.damage + GameData.slash3_struct.add_damage);
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH4:
 
-                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash4_struct.damage;
+								GameData.chest_struct._HP = GameData.chest_struct._HP - (GameData.slash4_struct.damage + GameData.slash4_struct.add_damage);
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                             case SLASH_TYPE.SLASH5:
 
-                                GameData.chest_struct._HP = GameData.chest_struct._HP - GameData.slash5_struct.damage;
+								GameData.chest_struct._HP = GameData.chest_struct._HP - (GameData.slash5_struct.damage + GameData.slash5_struct.add_damage);
                                 fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
                                 break;
                         }
-                        
+
+
+						print ("damage : " + GameData.slash1_struct.damage.ToString ());
+						print ("add damage: " + GameData.slash1_struct.add_damage.ToString ());
+						// Random touch slash animation
+						if (slash_index == GameData.number_of_slash)
+						{
+							slash_index = 0;
+						}
                     }
                     // check upgrade buttons들을 활성화 할 지말지.
                     check_all_function_when_gold_changed();
@@ -305,7 +311,7 @@ public class GM : MonoBehaviour {
 	{
 		// check upgrade buttons들을 활성화 할 지말지 .
 		GameData.check_lvup_button_is_enable_or_not ();                  // check slash && npc
-        //GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
+        GameData_weapon.check_weapon_buttons_is_enable_or_not();         // check weapon 
 
     }
     // 보석획득량 변경시 check해야할 모든 함수 불르기

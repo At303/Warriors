@@ -41,7 +41,7 @@ public class Boss_make : MonoBehaviour {
         if (start_boss_kill)
         {
             // 보스 Kill Time 설정
-            double time = (target_time - Time.time) / 10.0f;        // For test set 10 sec.
+            double time = (target_time - Time.time) / 20.0f;        // For test set 20 sec.
 
             if (time > 0)
             {

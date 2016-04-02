@@ -24,7 +24,8 @@ public class boss_button_mgr : MonoBehaviour {
     {
         // Boss Index세팅해줌.
         GM_Boss.boss_index = boss_index;
-        
+		print ("boss index : " + boss_index.ToString ());
+
         // Boss Scene으로 입장.
         SceneManager.LoadScene ("warriors_boss");
     }

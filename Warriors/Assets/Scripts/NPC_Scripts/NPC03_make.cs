@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using gamedata_weapon;
 
 public class NPC03_make : MonoBehaviour, IAnimEventListener
 {
@@ -76,6 +77,7 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
         NPC03_struct.add_speed_label = GameObject.Find("_npc03_speed_plus_label");
 
         NPC03_struct.lvup_btn = GameObject.Find("_npc03_lvup_btn");
+		NPC03_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 
         // Damage HUD Init.
         NPC03_HUD = GameObject.Find("3th_friend_HUD");
@@ -265,7 +267,7 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
 
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC03_struct.Level = Level;
-        NPC03_struct.damage = (ulong)(NPC03_struct.Level * 2 + 7) + NPC03_make.NPC03_struct.add_damage;
+		NPC03_struct.damage = (ulong)(NPC03_struct.Level * 2 + 7);
         NPC03_struct.attack_speed = NPC03_struct.Level * 1f;
         NPC03_struct.upgrade_cost = (ulong)(30 + NPC03_struct.Level * 2);
 
@@ -302,6 +304,9 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
 
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
+
+		// 현재 장착하고 있는 무기의 스킬 Setting.
+		GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
 
         // Boss Scene Load시 사용할 character image;
         npc03_char.weapon_enable = 1;

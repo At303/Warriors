@@ -48,12 +48,13 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc01.update_npc01_data_label();
 
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-		GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
 	}
 
     public void Clicked_npc02_Level_UP()
     {
         // pay the cost about chest level up
+		print("current gold : " + GameData.coin_struct.gold.ToString() + " upgrade cost : " + NPC01_make.NPC01_struct.upgrade_cost.ToString());
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC02_make.NPC02_struct.upgrade_cost;
 		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
 
@@ -81,7 +82,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc02.update_npc02_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc03_Level_UP()
@@ -114,7 +115,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc03.update_npc03_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc04_Level_UP()
@@ -147,7 +148,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc04.update_npc04_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc05_Level_UP()
@@ -180,7 +181,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc05.update_npc05_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc06_Level_UP()
@@ -213,7 +214,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc06.update_npc06_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc07_Level_UP()
@@ -246,7 +247,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc07.update_npc07_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc08_Level_UP()
@@ -279,7 +280,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc08.update_npc08_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc09_Level_UP()
@@ -312,7 +313,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc09.update_npc09_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc10_Level_UP()
@@ -345,7 +346,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc10.update_npc10_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc11_Level_UP()
@@ -379,7 +380,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc11.update_npc11_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
     public void Clicked_npc12_Level_UP()
@@ -412,7 +413,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         npc12.update_npc12_data_label();
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GameData.check_lvup_button_is_enable_or_not();
+		GM.check_all_function_when_gold_changed();
     }
 
 

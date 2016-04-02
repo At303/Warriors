@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using gamedata_weapon;
 
 public class NPC07_make : MonoBehaviour, IAnimEventListener
 {
@@ -76,6 +77,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         NPC07_struct.add_speed_label = GameObject.Find("_npc07_speed_plus_label");
 
         NPC07_struct.lvup_btn = GameObject.Find("_npc07_lvup_btn");
+		NPC07_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 
         // Damage HUD Init.
         NPC07_HUD = GameObject.Find("7th_friend_HUD");
@@ -226,7 +228,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
-                GameData.chest_struct._HP = GameData.chest_struct._HP - NPC07_struct.damage;
+				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC07_struct.damage + + NPC07_struct.add_damage);
                 float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
             }
@@ -264,7 +266,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
 
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC07_struct.Level = Level;
-        NPC07_struct.damage = (ulong)(NPC07_struct.Level * 2 + 7) + NPC07_struct.add_damage;
+        NPC07_struct.damage = (ulong)(NPC07_struct.Level * 2 + 7) ;
         NPC07_struct.attack_speed = NPC07_struct.Level * 1f;
         NPC07_struct.upgrade_cost = (ulong)(30 + NPC07_struct.Level * 2);
 
@@ -301,6 +303,10 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
 
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
+
+		// 현재 장착하고 있는 무기의 스킬 Setting.
+		GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
+
 
         // Boss Scene Load시 사용할 character image;
         npc07_char.weapon_enable = 1;

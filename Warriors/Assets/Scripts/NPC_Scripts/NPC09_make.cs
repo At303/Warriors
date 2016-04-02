@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using gamedata_weapon;
 
 public class NPC09_make : MonoBehaviour, IAnimEventListener
 {
@@ -76,6 +77,7 @@ public class NPC09_make : MonoBehaviour, IAnimEventListener
         NPC09_struct.add_speed_label = GameObject.Find("_npc09_speed_plus_label");
 
         NPC09_struct.lvup_btn = GameObject.Find("_npc09_lvup_btn");
+		NPC09_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 
         // Damage HUD Init.
         NPC09_HUD = GameObject.Find("9th_friend_HUD");
@@ -224,7 +226,7 @@ public class NPC09_make : MonoBehaviour, IAnimEventListener
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
-                GameData.chest_struct._HP = GameData.chest_struct._HP - NPC09_struct.damage;
+				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC09_struct.damage +  + NPC09_struct.add_damage);
                 float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
             }
@@ -263,7 +265,7 @@ public class NPC09_make : MonoBehaviour, IAnimEventListener
 
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC09_struct.Level = Level;
-        NPC09_struct.damage = (ulong)(NPC09_struct.Level * 2 + 7) + NPC09_struct.add_damage;
+        NPC09_struct.damage = (ulong)(NPC09_struct.Level * 2 + 7);
         NPC09_struct.attack_speed = NPC09_struct.Level * 1f;
         NPC09_struct.upgrade_cost = (ulong)(30 + NPC09_struct.Level * 2);
 
@@ -300,6 +302,9 @@ public class NPC09_make : MonoBehaviour, IAnimEventListener
 
         character.Info.main_weapon_part = weapon_name;
         character.Info.main_weapon_index = weapon_index;
+
+		// 현재 장착하고 있는 무기의 스킬 Setting.
+		GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
 
         // Boss Scene Load시 사용할 character image;
         npc09_char.weapon_enable = 1;
