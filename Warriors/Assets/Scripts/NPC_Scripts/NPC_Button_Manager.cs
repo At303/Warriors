@@ -35,14 +35,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if(NPC01_make.NPC01_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc1_enable", 1);
-            PlayerPrefs.SetInt("npc1_level", NPC01_make.NPC01_struct.Level);
-            PlayerPrefs.Save();
 
             // npc01 캐릭터 init해주고 gameobject Active
             NPC01_make.NPC01_struct.gameobject.SetActive(true);
             npc01.init();
 
         }
+
+        // 레벨업시 Local에 저장.
+        PlayerPrefs.SetInt("npc1_level", NPC01_make.NPC01_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC01 label Update.
         npc01.update_npc01_data_label();
@@ -69,14 +71,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC02_make.NPC02_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc2_enable", 1);
-            PlayerPrefs.SetInt("npc2_level", NPC02_make.NPC02_struct.Level);
-            PlayerPrefs.Save();
-
+           
             // npc02 캐릭터 init해주고 gameobject Active
             NPC02_make.NPC02_struct.gameobject.SetActive(true);
             npc02.init();
 
         }
+
+        // 레벨업시 Local에 저장.
+        PlayerPrefs.SetInt("npc2_level", NPC02_make.NPC02_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC02 label Update.
         npc02.update_npc02_data_label();
@@ -102,14 +106,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC03_make.NPC03_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc3_enable", 1);
-            PlayerPrefs.SetInt("npc3_level", NPC03_make.NPC03_struct.Level);
-            PlayerPrefs.Save();
+            
 
             // npc03 캐릭터 init해주고 gameobject Active
             NPC03_make.NPC03_struct.gameobject.SetActive(true);
             npc03.init();
 
         }
+
+        PlayerPrefs.SetInt("npc3_level", NPC03_make.NPC03_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC03 label Update.
         npc03.update_npc03_data_label();
@@ -134,15 +140,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if (NPC04_make.NPC04_struct.Level == 2)
         {
-            PlayerPrefs.SetInt("npc4_enable", 1);
-            PlayerPrefs.SetInt("npc4_level", NPC04_make.NPC04_struct.Level);
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt("npc4_enable", 1);      
 
             // npc04 캐릭터 init해주고 gameobject Active
             NPC04_make.NPC04_struct.gameobject.SetActive(true);
             npc04.init();
 
         }
+
+        PlayerPrefs.SetInt("npc4_level", NPC04_make.NPC04_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc04.update_npc04_data_label();
@@ -168,14 +175,15 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC05_make.NPC05_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc5_enable", 1);
-            PlayerPrefs.SetInt("npc5_level", NPC05_make.NPC05_struct.Level);
-            PlayerPrefs.Save();
-
+           
             // npc04 캐릭터 init해주고 gameobject Active
             NPC05_make.NPC05_struct.gameobject.SetActive(true);
             npc05.init();
 
         }
+
+        PlayerPrefs.SetInt("npc5_level", NPC05_make.NPC05_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc05.update_npc05_data_label();
@@ -201,14 +209,15 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC06_make.NPC06_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc6_enable", 1);
-            PlayerPrefs.SetInt("npc6_level", NPC06_make.NPC06_struct.Level);
-            PlayerPrefs.Save();
-
+           
             // npc06 캐릭터 init해주고 gameobject Active
             NPC06_make.NPC06_struct.gameobject.SetActive(true);
             npc06.init();
 
         }
+
+        PlayerPrefs.SetInt("npc6_level", NPC06_make.NPC06_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc06.update_npc06_data_label();
@@ -234,14 +243,15 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC07_make.NPC07_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc7_enable", 1);
-            PlayerPrefs.SetInt("npc7_level", NPC07_make.NPC07_struct.Level);
-            PlayerPrefs.Save();
-
+           
             // npc06 캐릭터 init해주고 gameobject Active
             NPC07_make.NPC07_struct.gameobject.SetActive(true);
             npc07.init();
 
         }
+
+        PlayerPrefs.SetInt("npc7_level", NPC07_make.NPC07_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc07.update_npc07_data_label();
@@ -267,14 +277,15 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC08_make.NPC08_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc8_enable", 1);
-            PlayerPrefs.SetInt("npc8_level", NPC08_make.NPC08_struct.Level);
-            PlayerPrefs.Save();
 
             // npc06 캐릭터 init해주고 gameobject Active
             NPC08_make.NPC08_struct.gameobject.SetActive(true);
             npc08.init();
 
         }
+
+        PlayerPrefs.SetInt("npc8_level", NPC08_make.NPC08_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc08.update_npc08_data_label();
@@ -299,15 +310,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if (NPC09_make.NPC09_struct.Level == 2)
         {
-            PlayerPrefs.SetInt("npc9_enable", 1);
-            PlayerPrefs.SetInt("npc9_level", NPC09_make.NPC09_struct.Level);
-            PlayerPrefs.Save();
+            PlayerPrefs.SetInt("npc9_enable", 1);   
 
             // npc06 캐릭터 init해주고 gameobject Active
             NPC09_make.NPC09_struct.gameobject.SetActive(true);
             npc09.init();
 
         }
+
+        PlayerPrefs.SetInt("npc9_level", NPC09_make.NPC09_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc09.update_npc09_data_label();
@@ -333,14 +345,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC10_make.NPC10_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc10_enable", 1);
-            PlayerPrefs.SetInt("npc10_level", NPC10_make.NPC10_struct.Level);
-            PlayerPrefs.Save();
+           
 
             // npc 캐릭터 init해주고 gameobject Active
             NPC10_make.NPC10_struct.gameobject.SetActive(true);
             npc10.init();
 
         }
+
+        PlayerPrefs.SetInt("npc10_level", NPC10_make.NPC10_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc10.update_npc10_data_label();
@@ -366,16 +380,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC11_make.NPC11_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc11_enable", 1);
-            PlayerPrefs.SetInt("npc11_level", NPC11_make.NPC11_struct.Level);
-            PlayerPrefs.Save();
-
+           
             // npc 캐릭터 init해주고 gameobject Active
             NPC11_make.NPC11_struct.gameobject.SetActive(true);
             npc11.init();
 
         }
 
-
+        PlayerPrefs.SetInt("npc11_level", NPC11_make.NPC11_struct.Level);
+        PlayerPrefs.Save();
+        
         // update NPC label Update.
         npc11.update_npc11_data_label();
 
@@ -400,14 +414,16 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC12_make.NPC12_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc12_enable", 1);
-            PlayerPrefs.SetInt("npc12_level", NPC12_make.NPC12_struct.Level);
-            PlayerPrefs.Save();
+           
 
             // npc 캐릭터 init해주고 gameobject Active
             NPC12_make.NPC12_struct.gameobject.SetActive(true);
             npc12.init();
 
         }
+
+        PlayerPrefs.SetInt("npc12_level", NPC12_make.NPC12_struct.Level);
+        PlayerPrefs.Save();
 
         // update NPC label Update.
         npc12.update_npc12_data_label();

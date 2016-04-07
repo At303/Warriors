@@ -99,7 +99,8 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         {
             // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
 
-            NPC07_struct.gameobject.SetActive(true);                 // npc7 캐릭터 활성화.
+            NPC07_struct.gameobject.SetActive(true);                 // npc 캐릭터 활성화.
+
             init();
         }
         else
@@ -123,6 +124,11 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
             levelup_npc07_data_struct(init_level);
             update_npc07_data_label();
         }
+
+        int check_npc_level = PlayerPrefs.GetInt("npc6_level", 0);
+        if (check_npc_level  > 2)
+            NPC07_struct.unlock_sp.SetActive(false);                  // npc 아이템 캐릭터창 unlock 풀어주기
+
     }
 
 
@@ -228,7 +234,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
                 GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
                 // Chest box HP modify
-				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC07_struct.damage + + NPC07_struct.add_damage);
+				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC07_struct.damage + NPC07_struct.add_damage);
                 float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
                 GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
             }

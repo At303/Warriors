@@ -94,12 +94,12 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
         check_npc_enable = PlayerPrefs.GetInt("npc3_enable", 0);
-
+      
         if (check_npc_enable == 1)
         {
             // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
 
-            NPC03_struct.gameobject.SetActive(true);                 // npc1 캐릭터 활성화.
+            NPC03_struct.gameobject.SetActive(true);                 // npc 캐릭터 활성화.
             init();
         }
         else
@@ -123,6 +123,11 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
             levelup_npc03_data_struct(init_level);
             update_npc03_data_label();
         }
+
+        int check_npc_level = PlayerPrefs.GetInt("npc2_level", 0);
+        if (check_npc_level > 2)
+            NPC03_struct.unlock_sp.SetActive(false);                 // npc 아이템 캐릭터창 unlock 풀어주기
+
     }
 
     public void init()

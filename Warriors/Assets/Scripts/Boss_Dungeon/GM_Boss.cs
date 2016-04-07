@@ -11,24 +11,28 @@ public class GM_Boss : MonoBehaviour {
     }
 
     // 처음 시작시 Boss struct 초기화.
-    public static GameObject[] boss_obj = new GameObject[5];
-    public static boss_struct[] boss_st = new boss_struct[5];
+    public static GameObject[] boss_obj = new GameObject[10];
+    public static boss_struct[] boss_st = new boss_struct[10];
 
     // 어떤 Boss를 Enable할 지 index를 가져올 변수.
     public static int boss_index;
 
     int slash_index = 0;
 
-    public float boss_hp;
-	public float _boss_hp;              // 보스 HP 감소시 사용 할 Base 값.
+    public static float boss_hp;
+	public static float _boss_hp;              // 보스 HP 감소시 사용 할 Base 값.
 
     // 보스와 싸우기 전 Count 다운 Popup 테스트용.
     public static GameObject popup_window_3;
     public static GameObject popup_window_2;
     public static GameObject popup_window_1;
     public static GameObject popup_window_0;
+    public static GameObject getitem_window;
 
     public float start_time = 0.0f;
+
+    // For 데미지 HUD Text.
+    public static GameObject slash_HUD;
 
     void Awake()
     {
@@ -38,10 +42,13 @@ public class GM_Boss : MonoBehaviour {
         popup_window_1 = GameObject.Find("count_1st");
         popup_window_0 = GameObject.Find("count_fight");
 
+        // Boss Kill시 popup window object.
+        getitem_window = GameObject.Find("get_item_pop_window");
+
         // Boss HP init && object 가져오기.
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 10; i++)
         {
-			boss_st[i].HP = (ulong)((i+1) * 1000);                                               // Boss HP init.
+			boss_st[i].HP = (ulong)((i+1) * 10);                                               // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
             print("Boss" + i.ToString() + "_Sprite");
@@ -62,6 +69,10 @@ public class GM_Boss : MonoBehaviour {
 
         // 가져온 Boss Index에 해당하는 보스 몬스터를 Active 시켜줌.
         boss_obj[boss_index].SetActive(true);
+
+        // Boss에 Damage입힐 시, HUD
+        slash_HUD = GameObject.Find("slash_HUD");
+
     }
 
     // Update is called once per frame
@@ -127,16 +138,19 @@ public class GM_Boss : MonoBehaviour {
 				switch ((SLASH_TYPE)slash_index)
 				{
 					case SLASH_TYPE.SLASH1:
-						boss_hp = boss_hp - GameData.slash1_struct.damage;
-                        print("slash1 damage : " + GameData.slash1_struct.damage);
+                        boss_hp = boss_hp - (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage);
                         fHP = boss_hp / _boss_hp;
 						GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 						break;
 
 				}
 
-				// Random touch slash animation
-				if (slash_index == GameData.number_of_slash)
+                // Damage HUDText.
+                string slash_damage_hud_str = "-" + (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage).ToString();
+                slash_HUD.GetComponent<HUDText>().Add(slash_damage_hud_str, Color.red, 0.5f);
+
+                // Random touch slash animation
+                if (slash_index == GameData.number_of_slash)
 				{
 					slash_index = 0;
 				}
@@ -144,13 +158,27 @@ public class GM_Boss : MonoBehaviour {
                 {
                     print("kill the boss!!!!!!!");
 
-                    //index에 해당하는 무기의 lock sprite를 false시켜줌. ( boss_index도 어차피 weapon_index랑 같음. )
-                    string weapon_enable_str = "weapon" + boss_index.ToString() + "_enable";
-                    PlayerPrefs.SetInt(weapon_enable_str, 0);
-                    PlayerPrefs.Save();
+                    // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함. 
+                    //GameObject.Find("_NPC01_gameobj_intheboss").SetActive(false);                 // npc1 캐릭터 활성화.
+
+                    // 보스를 Kill so Kill timer stop
+                    Boss_make.start_boss_kill = false;
+
+
+
+                    // To Do... 
+                    // NPC가 Enable되어 있는거 check후 모두 False해줘야 함.
+
+
+
+                    // Get Item popup window 띄워줌.
+                    getitem_window.SetActive(true);
+
                 }
 
             }
 		}
 	}
+
+
 }

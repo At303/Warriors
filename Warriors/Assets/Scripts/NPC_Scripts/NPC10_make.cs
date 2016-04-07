@@ -99,7 +99,8 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
         {
             // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
 
-            NPC10_struct.gameobject.SetActive(true);                 // npc5 캐릭터 활성화.
+            NPC10_struct.gameobject.SetActive(true);                 // npc 캐릭터 활성화.
+
             init();
         }
         else
@@ -123,6 +124,11 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
             levelup_npc10_data_struct(init_level);
             update_npc10_data_label();
         }
+
+        int check_npc_level = PlayerPrefs.GetInt("npc9_level", 0);
+        if (check_npc_level > 2)
+            NPC10_struct.unlock_sp.SetActive(false);                  // npc 아이템 캐릭터창 unlock 풀어주기
+
     }
 
     // Use this for initialization

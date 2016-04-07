@@ -18,9 +18,6 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 		public static ulong upgrade_cost;
 
 	}
-
-	float boss_hp;
-	float _boss_hp;              // 보스 HP 감소시 사용 할 Base 값.
 	float fHP;
 
 	// 화면에 보여지는 캐릭터 이미지.
@@ -42,11 +39,9 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
         check_npc_enable = PlayerPrefs.GetInt("npc1_enable", 0);
-        print("check_npc_enable : " + check_npc_enable);
         if (check_npc_enable == 1)
         {
-            // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함.
-
+            // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함. 
             GameObject.Find("_NPC01_gameobj_intheboss").SetActive(true);                 // npc1 캐릭터 활성화.
                                                                                 // npc Level 데이터를 가져온 후 해당 값으로 Data Setting.
             if (PlayerPrefs.HasKey("npc1_level"))
@@ -67,6 +62,7 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	// Update is called once per frame
 	void Update () {
 	
+        // Count Down이 완료 되면 NPC가 공격 시작.
 		if (check_count_down && Boss_make.start_boss_kill) {
 			// attack animation coroutine about 2sec.
 			StartCoroutine("npc_attack_func");
@@ -103,6 +99,10 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
             character.Info.wing_index = PlayerPrefs.GetInt("npc1_wing_index", 0);
         }
 
+        // NPC가 가지고있는 데이터를 setting해줌.
+        NPC01_Boss_struct.damage = NPC01_make.NPC01_struct.damage;
+        NPC01_Boss_struct.add_damage = NPC01_make.NPC01_struct.add_damage;
+
         // 무기에 따라서 해당 값을 변경해주면될듯.
         NPC01_Boss_struct.attack_speed = 1f;
 
@@ -130,18 +130,17 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	// Interface about attacked. ( 캐릭터가 공격 애니메이션 이후 실행 할 함수. )
 	public void OnAnimation_Hitting(int _index)
 	{
-		print ("hit the boss!!");
 
 		if(GameData.chest_struct._HP > 0)
 		{
-		// Gold HUDText;;;;
-		string get_coin_str = "-" + (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage).ToString();
-		NPC01_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
 
-		// Chest box HP modify
-	
-		boss_hp = boss_hp - (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage);
-		fHP = boss_hp / _boss_hp;
+		// Damage HUDText.
+		string get_coin_str = "-" + (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage).ToString();
+		GM_Boss.slash_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
+
+        // Chest box HP modify.
+        GM_Boss.boss_hp = GM_Boss.boss_hp - (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage);
+		fHP = GM_Boss.boss_hp / GM_Boss._boss_hp;
 		GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 		}
 		else

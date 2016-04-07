@@ -263,7 +263,11 @@ public class popup_window_button_mgr : MonoBehaviour {
                 // Change the NPC04 Weapon04 icon Sprite.
                 // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
                 NPC04_make.NPC04_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC04_make.NPC04_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC04_make.NPC04_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC04 캐릭터 damage에 첫번째 weapon damage 추가.
+                print("to change sprite : " + NPC04_make.NPC04_struct.weapon_sp.spriteName.ToString());
+				GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC04);
 
                 // NPC04 캐릭터 bow 이미지 바꾸기.
                 npc04.change_weapon(_weapon_index, _weapon_name);
@@ -271,13 +275,15 @@ public class popup_window_button_mgr : MonoBehaviour {
 
             case NPC_INDEX.NPC05:
 
-                print("change the 05 bow");
                 // Change the NPC05 Character Sprite.
                 NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
 
                 // Change the NPC05 Weapon01 icon Sprite.
                 NPC05_make.NPC05_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC05_make.NPC05_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC05_make.NPC05_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC05 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC05);
 
                 // NPC02 캐릭터 이미지 바꾸기.
                 npc05.change_weapon(_weapon_index, _weapon_name);
@@ -289,7 +295,10 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // Change the NPC03 Weapon icon Sprite.
                 NPC06_make.NPC06_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC06_make.NPC06_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC06_make.NPC06_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC06 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC06);
 
                 // NPC03 캐릭터 이미지 바꾸기.
                 npc06.change_weapon(_weapon_index, _weapon_name);
@@ -301,7 +310,10 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // Change the NPC10 Weapon icon Sprite.
                 NPC10_make.NPC10_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC10_make.NPC10_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC10_make.NPC10_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC10 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC10);
 
                 // NPC07 캐릭터 이미지 바꾸기.
                 npc10.change_weapon(_weapon_index, _weapon_name);
@@ -313,7 +325,10 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // Change the NPC11 Weapon icon Sprite.
                 NPC11_make.NPC11_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC11_make.NPC11_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC11_make.NPC11_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC11 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC11);
 
                 // NPC11 캐릭터 이미지 바꾸기.
                 npc11.change_weapon(_weapon_index, _weapon_name);
@@ -325,7 +340,10 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // Change the NPC12 Weapon icon Sprite.
                 NPC12_make.NPC12_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                NPC12_make.NPC12_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+                NPC12_make.NPC12_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+
+                // NPC12 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC12);
 
                 // NPC12 캐릭터 이미지 바꾸기.
                 npc12.change_weapon(_weapon_index, _weapon_name);

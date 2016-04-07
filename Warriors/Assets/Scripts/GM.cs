@@ -12,7 +12,7 @@ public class GM : MonoBehaviour {
 	float current_touch = 0.0f;
 	float touch_deltatime = 0.0f;
 	int slash_index = 0;
-	// Use this for initialization
+	// Use this for initializationf
 	void Start () {
 
         // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -138,9 +138,6 @@ public class GM : MonoBehaviour {
                                 break;
                         }
 
-
-						print ("damage : " + GameData.slash1_struct.damage.ToString ());
-						print ("add damage: " + GameData.slash1_struct.add_damage.ToString ());
 						// Random touch slash animation
 						if (slash_index == GameData.number_of_slash)
 						{
