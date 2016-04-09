@@ -51,7 +51,6 @@ public class GM_Boss : MonoBehaviour {
 			boss_st[i].HP = (ulong)((i+1) * 10);                                               // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
-            print("Boss" + i.ToString() + "_Sprite");
             boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
         }
 

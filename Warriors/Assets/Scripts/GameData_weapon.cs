@@ -44,9 +44,10 @@ namespace gamedata_weapon
 
 	public struct Armor_struct
 	{
-		public bool enable;
-		public int level;
-		public ulong damage;
+		public int enable;      
+        public GameObject armor_enable_gameobject;
+        
+		public ulong plus_gold;
 		public ulong upgrade_cost;
 		public string skill;
 
@@ -60,16 +61,16 @@ namespace gamedata_weapon
         public static Weapon_struct[] weapon_struct_object = new Weapon_struct[25];
 
         // 처음 시작시 bow struct 초기화.
-		public static Bow_struct[] bow_struct_object = new Bow_struct[35];
+		public static Bow_struct[] bow_struct_object = new Bow_struct[25];
 
         // 처음 시작시 wing struct 초기화.
         public static Wing_struct[] wing_struct_object = new Wing_struct[35];
 
 		// 처음 시작시 Armor struct 초기화.
-		public static Armor_struct[] armor_struct_object = new Armor_struct[35];
+		public static Armor_struct[] armor_struct_object = new Armor_struct[40];
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
 
             // 무기 데이터 초기화.
@@ -125,20 +126,32 @@ namespace gamedata_weapon
                 bow_data_struct_update(i, bow_struct_object[i].level);
                 update_bow_data_label(i);
             }
+                     
 
+            // 아머 데이터 초기화.
+			for (int i = 0; i < 40; i++)
+			{                        
+                // unlock sprite가 있음에도 그 밑에 있는 버튼이 클릭 되어지는걸 방지하기 위해 밑에 있는  object들을 비활성화 시켜줌.
+                armor_struct_object[i].armor_enable_gameobject = GameObject.Find("_armor" + i.ToString() +"_enable");
+                armor_struct_object[i].armor_enable_gameobject.SetActive(false);
+                
+				Armor_data_struct_update(i);
+				update_armor_data_label(i);
+			}
+            
+             // Armor Button All disable except 0.
+            for(int i=1; i < 40; i++)
+            {
+                // 게임 시작시 모든 Armor 구매 버튼은 비활성화 시켜줌 아래 for문에 있는 함수에서 Local 변수를 보고 활성화 할지 결정.
+                GameObject.Find("_armor" + i.ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = false;
+            }
+            
             // 망토 데이터 초기화.
             for (int i = 0; i < 1; i++)
             {
                 levelup_wing_data_struct(i);
                 update_wing_data_label(i);
             }
-
-			// 아머 데이터 초기화.
-			for (int i = 0; i < 1; i++)
-			{
-				levelup_wing_data_struct(i);
-				update_wing_data_label(i);
-			}
 
         }
 
@@ -603,6 +616,9 @@ namespace gamedata_weapon
 
         // ************************************************************************  wing Functions ************************************************************************ //
 
+
+
+
         // wing 레벨 UP && Data Update.
         public static void levelup_wing_data_struct(int _wing_index)
         {
@@ -632,30 +648,50 @@ namespace gamedata_weapon
 
 		// ************************************************************************  Armor Functions ************************************************************************ //
 
-		// Armor 레벨 UP && Data Update.
-		public static void levelup_armor_data_struct(int _armor_index)
-		{
-			armor_struct_object[_armor_index].level = armor_struct_object[_armor_index].level + 1;
-			armor_struct_object[_armor_index].damage = (ulong)(armor_struct_object[_armor_index].level * 2 + 2);
-			armor_struct_object[_armor_index].upgrade_cost = (ulong)(30 + armor_struct_object[_armor_index].level * 2);
 
-			// Next Armor Enable.
-			if (wing_struct_object[_armor_index].level == 2)
+
+		/// Armor data init 함수.
+		public static void Armor_data_struct_update(int _armor_index)
+		{
+            // Armor Data 능력치 부여 공식.
+			armor_struct_object[_armor_index].plus_gold = (ulong)(_armor_index * 2 + 2);
+			armor_struct_object[_armor_index].upgrade_cost = (ulong)(30 + _armor_index * 2);
+
+			// Armor가 enable 되어 있는지 확인. ( 0 : false, 1 : true)
+            int check_armor_enable = PlayerPrefs.GetInt("armor_"+_armor_index.ToString()+"_enable",0);
+			if (check_armor_enable == 1)
 			{
-				//npc_gameobject.SetActive(true);
+                // Armor is enable 해당 Armor status창 enable시켜줌.
+				Armor_enable(_armor_index);
+                
+                // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
+                GameObject.Find("_armor" + (_armor_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
 			}
 		}
+        
+        /// Armor index를 가져와서 해당 Armor status창 enable 시켜줄 함수.
+        public static void Armor_enable(int _armor_index)
+        {
+            // unlock되어 있는 armor object enable시킴.
+            armor_struct_object[_armor_index].armor_enable_gameobject.SetActive(true);
+            
+             // Armor 구매시 Armor enable상태를 Local에 저장. ( 0 : false, 1 : true)
+            string set_weapon_level_str = "armor" + _armor_index.ToString() + "_enable";
+            PlayerPrefs.SetInt(set_weapon_level_str, 1);
+            PlayerPrefs.Save(); 
+            
+            // unlock sprite 제거해줌.
+            string unlock_armor_sprite = "_armor" + _armor_index.ToString() + "_unlock_sprite";
+            GameObject.Find(unlock_armor_sprite).SetActive(false);  
 
-		// Armor 버튼 && 라벨 Update.
+            // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
+            GameObject.Find("_armor" + (_armor_index + 1).ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = true;         
+        }
+
+		/// Armor 버튼 && 라벨 Update.
 		public static void update_armor_data_label(int _armor_index)
 		{
-			string level_label = "_armor" + _armor_index.ToString() + "_level_label";
-			string damage_label = "_armor" + _armor_index.ToString() + "_damage_label";
 			string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
-			string skill_label = "_armor" + _armor_index.ToString() + "_skill_label";
-
-			GameObject.Find(level_label).GetComponent<UILabel>().text = armor_struct_object[_armor_index].level.ToString();
-			GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].damage);
 			GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
 		}
 

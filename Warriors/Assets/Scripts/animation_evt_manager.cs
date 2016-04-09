@@ -12,9 +12,10 @@ public class animation_evt_manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
+    /// 보물상자 애니메이션 끝났을때.
 	public void chest_animation_end()
 	{
 		NGUIDebug.Log( "chest_animation_end" );

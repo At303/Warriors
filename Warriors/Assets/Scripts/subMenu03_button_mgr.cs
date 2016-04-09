@@ -7,7 +7,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
    // ************************************************************************  Weapon Functions ************************************************************************ //
 
-	// Weapon 레벨 업 버튼 클릭시 호출 함수. ( 버튼 클릭시 index 값을 paramater로 가져와서 해당 weapon구조체 list에 update )
+	/// Weapon 레벨 업 버튼 클릭시 호출 함수. ( 버튼 클릭시 index 값을 paramater로 가져와서 해당 weapon구조체 list에 update )
     public void Clicked_weapon_Level_UP(int weapon_index)
 	{
         // pay the cost about chest level up
@@ -25,7 +25,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
 	}
 
-    // Weapon 캐릭터 선택 창 클릭시 호출 함수.
+    /// Weapon 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_weapon_select_NPC(string weapon_type, int weapon_index, int _equip_weapon_index)
     {
         // 바꿀 Weapon 정보 저장.
@@ -46,21 +46,22 @@ public class subMenu03_button_mgr : MonoBehaviour {
 	public void Clicked_Armor_Level_UP(int armor_index)
 	{
 		// pay the cost about chest level up
-		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.armor_struct_object[armor_index].upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+		GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - GameData_weapon.armor_struct_object[armor_index].upgrade_cost;
+		GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
-		// u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
-		//GameData_weapon.levelup_bow_data_struct(armor_index);
-
+		// UI로부터 가져온 Armor_index를 가져오고, 해당 index Armor enable.
+		GameData_weapon.Armor_enable(armor_index);
+        print("Armor index : " + armor_index.ToString());
+        
 		// update chest label
 		//GameData_weapon.update_bow_data_label(armor_index);
 
-		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-		GM.check_all_function_when_gold_changed();
+		// 아머는 보석이므로 보석 check하는 함수 call.
+		GM.check_all_function_when_gems_changed();
 
 	}
 
-    // Clothes 캐릭터 선택 창 클릭시 호출 함수.
+    /// Clothes 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_Armor_select_NPC(string armor_type, int armor_index, int armor_color)
     {
 
@@ -78,8 +79,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.bow_struct_object[bow_index].upgrade_cost;
-        print(GameData_weapon.bow_struct_object[bow_index].upgrade_cost.ToString() + ": bow upgrade cost");
-        print(GameData.coin_struct.gold.ToString() + " : bow pay하고 남은 gold");
 		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
         // ui 에서 가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.

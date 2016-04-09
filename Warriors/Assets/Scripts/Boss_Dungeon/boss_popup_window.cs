@@ -38,7 +38,6 @@ public class boss_popup_window : MonoBehaviour {
             case 0:
                 float select_val = 0f;
                 select_val = Random.Range(0, 100);
-                print("select_val : " + select_val.ToString());
                 if(select_val < 100)
                 {
                     // 단검 enable
