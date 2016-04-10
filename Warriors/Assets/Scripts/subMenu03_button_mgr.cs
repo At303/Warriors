@@ -32,6 +32,8 @@ public class subMenu03_button_mgr : MonoBehaviour {
         GameData.to_change_npc_struct.To_Change_Weapon_type = weapon_type;
         GameData.to_change_npc_struct.weapon_index = weapon_index;
 
+        print(" Clicked_weapon_select_NPC : "+weapon_type.ToString() + weapon_index.ToString());
+        
 		// 어떤 무기를 사용할 지 index Save.
 		popup_window_button_mgr.equip_weapon_index = _equip_weapon_index;
 
@@ -43,6 +45,8 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
     // ************************************************************************  Clothes Functions ************************************************************************ //
 
+
+    /// Function Name은 Level Up이지만, 이 함수는 게이머가 해당 Armor Pay 버튼을 클릭했을때 Call하는 함수.
 	public void Clicked_Armor_Level_UP(int armor_index)
 	{
 		// pay the cost about chest level up
@@ -52,9 +56,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		// UI로부터 가져온 Armor_index를 가져오고, 해당 index Armor enable.
 		GameData_weapon.Armor_enable(armor_index);
         print("Armor index : " + armor_index.ToString());
-        
-		// update chest label
-		//GameData_weapon.update_bow_data_label(armor_index);
 
 		// 아머는 보석이므로 보석 check하는 함수 call.
 		GM.check_all_function_when_gems_changed();
@@ -110,21 +111,18 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
     // ************************************************************************  Wing Functions ************************************************************************ //
 
-
+    /// Function Name은 Level Up이지만, 이 함수는 게이머가 해당 wing Pay 버튼을 클릭했을때 Call하는 함수.
     public void Clicked_wing_Level_UP(int wing_index)
     {
         // pay the cost about chest level up
-        GameData.coin_struct.gold = GameData.coin_struct.gold - GameData_weapon.wing_struct_object[wing_index].upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - GameData_weapon.wing_struct_object[wing_index].upgrade_cost;
+		GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
-        // u가져온 weapon index를 가지고 해당 weapon 구조체 리스트에 upgrade.
-        GameData_weapon.levelup_bow_data_struct(wing_index);
+		// UI로부터 가져온 Armor_index를 가져오고, 해당 index Armor enable.
+		GameData_weapon.Wing_enable(wing_index);
 
-        // update chest label
-        GameData_weapon.update_bow_data_label(wing_index);
-
-        // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
-        GM.check_all_function_when_gold_changed();
+		// 아머는 보석이므로 보석 check하는 함수 call.
+		GM.check_all_function_when_gems_changed();
 
     }
 
