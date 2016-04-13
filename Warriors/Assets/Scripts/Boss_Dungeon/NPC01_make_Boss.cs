@@ -3,7 +3,8 @@ using System.Collections;
 using Devwin;
 using gamedata;
 
-public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
+public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
+{
 
 	// NPC struct
 	public struct NPC01_Boss_struct
@@ -23,27 +24,24 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	// 화면에 보여지는 캐릭터 이미지.
 	public DevCharacter character;         
 
-	// For 데미지 HUD Text.
-	private GameObject NPC01_HUD;
 
-	// check count down is done or not
+	// 보스 CountDown이 끝났는지 체크할 변수.
 	private bool check_count_down;
+
 	// Use this for initialization
 	void Start ()
     {
 		// count down이 끝나고 npc animation실행하게 할 변수
 		check_count_down = true;
-
-		// npc01 boss kill시 damage HUD.
-		NPC01_HUD = GameObject.Find ("1st_friend_HUD");
+		
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
         check_npc_enable = PlayerPrefs.GetInt("npc1_enable", 0);
         if (check_npc_enable == 1)
         {
             // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함. 
-            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(true);                 // npc1 캐릭터 활성화.
-                                                                                // npc Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            GameObject.Find("_NPC01_gameobj_intheboss").SetActive(true);                 // npc 캐릭터 활성화.
+                                                                                         // npc Level 데이터를 가져온 후 해당 값으로 Data Setting.
             if (PlayerPrefs.HasKey("npc1_level"))
             {
                 int get_npc_level = PlayerPrefs.GetInt("npc1_level");
@@ -60,7 +58,8 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 	
         // Count Down이 완료 되면 NPC가 공격 시작.
 		if (check_count_down && Boss_make.start_boss_kill) {
@@ -118,7 +117,8 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	// attack animation coroutine about 2sec.
 	IEnumerator npc_attack_func()
 	{
-		yield return new WaitForSeconds(NPC01_Boss_struct.attack_speed);         		// 모든 NPC 공격 default속도는 1. attack. 무한반복.
+        print("npc animation");
+		yield return new WaitForSeconds(NPC01_Boss_struct.attack_speed);         	 // 모든 NPC 공격 default속도는 1. attack. 무한반복.
 		character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
 
 		StartCoroutine("npc_attack_func");
@@ -131,7 +131,7 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 	public void OnAnimation_Hitting(int _index)
 	{
 
-		if(GameData.chest_struct._HP > 0)
+		if(GM_Boss.boss_hp > 0)
 		{
 
 		// Damage HUDText.
@@ -146,15 +146,20 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener{
 		else
 		{
 			print ("kill the boss");
-		}
+
+            // Boss kill하였으므로 NPC Animation Stop.
+            StopCoroutine("npc_attack_func");
+
+        }
 
 
-	}
+    }
 	public void OnAnimation_AttackMove()
 	{
 
 	}
 
+    /// NPC01 처음 init시 현재저장되어 있는 NPC Level에 맞게 값을 설정해줄 Function.
     public void levelup_npc01_data_struct(int Level)
     {
 

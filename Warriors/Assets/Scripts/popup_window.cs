@@ -42,8 +42,8 @@ public class popup_window : MonoBehaviour {
         TweenScale tween = TweenScale.Begin(gameObject, duration, scaleTo);
         tween.duration = duration;
         tween.delay = startDelay;
-        //tween.method = UITweener.Method.BounceIn; // AnimationCurve 대신 이것도 한번 써보세요.
-        tween.animationCurve = animationCurve;
+        tween.method = UITweener.Method.Linear; // AnimationCurve 대신 이것도 한번 써보세요.
+        //tween.animationCurve = animationCurve;
 
     }
 

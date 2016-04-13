@@ -121,6 +121,7 @@ namespace gamedata
         public static GameObject bow_sel_popup_window_obj;
 		public static GameObject wing_sel_popup_window_obj;
         public static GameObject boss_sel_popup_window_obj;
+        public static GameObject setting_popup_window_obj;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -198,6 +199,7 @@ namespace gamedata
             bow_sel_popup_window_obj = GameObject.Find("_select_npc_bow_popup_window");
 			wing_sel_popup_window_obj = GameObject.Find ("_select_npc_wing_popup_window");
             boss_sel_popup_window_obj = GameObject.Find("_select_boss_popup_window");
+            setting_popup_window_obj = GameObject.Find("popup_setting");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");

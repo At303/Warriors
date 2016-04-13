@@ -3,8 +3,12 @@ using System.Collections;
 using gamedata;
 using UnityEngine.SceneManagement;
 using System;
+using gamedata_weapon;
 
 public class button_manager : MonoBehaviour {
+
+    // Setting 버튼 클릭 시 true , 다시 클릭 시 false.
+    bool setting_popup_enable_or_not = false;
 
 	// Use this for initialization
 	void Start () {
@@ -163,37 +167,71 @@ public class button_manager : MonoBehaviour {
 	public void Clicked_boss_scene()
 	{
         // 터치 클릭 영역을 boss menu만큼 감소 시킴.
-        GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 810f);
+        GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 890f);
         GameObject.Find("Touch_Area").transform.position = new Vector2(0, -0.2f);
 
 
+        // 처음 게임 시작시 check button 함수를 부르지 않고 popup되었을때만 call하기 위한 변수.
+        select_boss_popup.check_popup_window = true;
         // Boss 선택 창 Popup Open.
         GameData.boss_sel_popup_window_obj.SetActive(true);
         //SceneManager.LoadScene ("warriors_boss");
 
     }
 
+    public void Clicked_setting_button()
+    {
+         PlayerPrefs.DeleteAll();
+
+        // Setting popup window 띄워줌.
+        setting_popup_enable_or_not = !setting_popup_enable_or_not;
+        GameData.setting_popup_window_obj.SetActive(setting_popup_enable_or_not);
+        if(setting_popup_enable_or_not)
+        {
+            // 터치 클릭 영역을 boss menu만큼 감소 시킴.
+            GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 1100f);
+            //GameObject.Find("Touch_Area").transform.position = new Vector2(0, 0);
+        }else
+        {
+            // 터치 클릭 영역을 원상태로 복귀 시킴.
+            GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 1280f);
+            //GameObject.Find("Touch_Area").transform.position = new Vector2(0, 0);
+        }
+
+    }
+
     public void toggle3_changed()
     {
+        print("toggle3_open");
         // NPC 선택 창 Popup Close.
         GameData.weapon_sel_popup_window_obj.SetActive(false);
     }
 
     public void toggle4_changed()
     {
+        print("toggle4_open");
+        // armor 메뉴가 open되어 있으므로 보석량과 gemstone을 비교하여 enable할지 말지 결정.
+        GameData_weapon.check_armor_buttons_is_enable_or_not();
+
         // NPC 선택 창 Popup Close.
         GameData.clothes_sel_popup_window_obj.SetActive(false);
     }
 
 	public void toggle5_changed()
 	{
-		// NPC 선택 창 Popup Close.
-		GameData.bow_sel_popup_window_obj.SetActive(false);
+        print("toggle5_open");
+
+        // NPC 선택 창 Popup Close.
+        GameData.bow_sel_popup_window_obj.SetActive(false);
 	}
 	public void toggle6_changed()
 	{
-		// NPC 선택 창 Popup Close.
-		GameData.wing_sel_popup_window_obj.SetActive(false);
+        print("toggle6_open");
+        // wing 메뉴가 open되어 있으므로 보석량과 gemstone을 비교하여 enable할지 말지 결정.
+        GameData_weapon.check_wing_buttons_is_enable_or_not();
+
+        // NPC 선택 창 Popup Close.
+        GameData.wing_sel_popup_window_obj.SetActive(false);
 	}
 
 }

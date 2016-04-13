@@ -16,7 +16,7 @@ public class GM : MonoBehaviour {
 	void Start () {
 
         // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
 
         // 처음 게임을 시작하면 Gold 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gold"))
@@ -65,9 +65,9 @@ public class GM : MonoBehaviour {
                 //Get the mouse position on the screen and send a raycast into the game world from that position.
                 Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
-
+               
                 //If touch is on the fixed range, excute the code.
-                if (hit.collider != null && hit.collider.name == "Touch_Area" && !(opened_chest_box.enable_disable_chest_open))
+                if ( hit.collider != null && hit.collider.name == "Touch_Area" && !(opened_chest_box.enable_disable_chest_open))
                 {
                     // Test HUDText;;;;
                     string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
@@ -170,7 +170,7 @@ public class GM : MonoBehaviour {
 					GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
                     // check upgrade buttons들을 활성화 할 지말지 .
-                    check_all_function_when_gold_changed();
+                    // check_all_function_when_gems_changed();
                 }
             }
         }
@@ -314,7 +314,7 @@ public class GM : MonoBehaviour {
     // 보석획득량 변경시 check해야할 모든 함수 불르기
     public static void check_all_function_when_gems_changed()
     {
-       
+        GameData_weapon.check_armor_buttons_is_enable_or_not();     // check armor && wing.
     }
 
     //  Coroutine   //

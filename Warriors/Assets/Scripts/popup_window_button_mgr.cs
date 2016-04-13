@@ -123,9 +123,13 @@ public class popup_window_button_mgr : MonoBehaviour {
         GameData.boss_sel_popup_window_obj.SetActive(false);
     }
 
+
+
+
     // 어떤 NPC를 선택했는지 처리하기 위한 함수.
     public void Select_NPC(NPC_INDEX npc_index,string type)
     {
+        print(npc_index.ToString() + " type : " + type);
         // type에 따라서 실행.
         switch (type)
         {
@@ -245,6 +249,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 				// NPC09 캐릭터 damage에 첫번째 weapon damage 추가.
 				GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC09);
                 break;
+            default:
+                print("Can`t find NPC index");
+                break;
         }
         // NPC선택 후 popUp window 비활성화.
         GameData.weapon_sel_popup_window_obj.SetActive(false);
@@ -348,6 +355,9 @@ public class popup_window_button_mgr : MonoBehaviour {
 
                 // NPC12 캐릭터 이미지 바꾸기.
                 npc12.change_weapon(_weapon_index, _weapon_name);
+                break;
+            default:
+                print("Can`t find NPC index");
                 break;
         }
 
@@ -505,9 +515,11 @@ public class popup_window_button_mgr : MonoBehaviour {
 
 				// NPC12 캐릭터 clothes 이미지 바꾸기.
 				npc12.change_clothes(_armor_index, _armor_color, _armor_type);
-				break;                
-                
-                
+				break;
+            default:
+                print("Can`t find NPC index");
+                break;
+
         }
 
         // NPC선택 후 popUp window 비활성화.
@@ -548,8 +560,139 @@ public class popup_window_button_mgr : MonoBehaviour {
 
             break;
 
-            // To Do.
-            // NPC별로 image setting 처리 추가해야함.
+        case NPC_INDEX.NPC03:
+            // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+
+            // Change the NPC03 Clothes icon Sprite.
+            NPC03_make.NPC03_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC03_make.NPC03_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC03 캐릭터 wing 이미지 바꾸기.
+            npc03.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC04:
+            // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+
+            // Change the NPC04 Clothes icon Sprite.
+            NPC04_make.NPC04_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC04_make.NPC04_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC04 캐릭터 wing 이미지 바꾸기.
+            npc04.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC05:
+            // Change the NPC05 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+
+            // Change the NPC05 Clothes icon Sprite.
+            NPC05_make.NPC05_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC05_make.NPC05_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC05 캐릭터 wing 이미지 바꾸기.
+            npc05.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC06:
+            // Change the NPC06 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+
+            // Change the NPC06 Clothes icon Sprite.
+            NPC06_make.NPC06_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC06_make.NPC06_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC06 캐릭터 wing 이미지 바꾸기.
+            npc06.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC07:
+            // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+
+            // Change the NPC07 Clothes icon Sprite.
+            NPC07_make.NPC07_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC07_make.NPC07_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC07 캐릭터 wing 이미지 바꾸기.
+            npc07.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC08:
+            // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+
+            // Change the NPC08 Clothes icon Sprite.
+            NPC08_make.NPC08_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC08_make.NPC08_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC08 캐릭터 wing 이미지 바꾸기.
+            npc08.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC09:
+            // Change the NPC09 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+
+            // Change the NPC09 Clothes icon Sprite.
+            NPC09_make.NPC09_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC09_make.NPC09_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC09 캐릭터 wing 이미지 바꾸기.
+            npc09.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC10:
+            // Change the NPC10 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+
+            // Change the NPC10 Clothes icon Sprite.
+            NPC10_make.NPC10_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC10_make.NPC10_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC10 캐릭터 wing 이미지 바꾸기.
+            npc10.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC11:
+            // Change the NPC11 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+
+            // Change the NPC11 Clothes icon Sprite.
+            NPC11_make.NPC11_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC11_make.NPC11_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC11 캐릭터 wing 이미지 바꾸기.
+            npc11.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        case NPC_INDEX.NPC12:
+            // Change the NPC12 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+            NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+
+            // Change the NPC12 Clothes icon Sprite.
+            NPC12_make.NPC12_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+            NPC12_make.NPC12_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
+
+            // NPC12 캐릭터 wing 이미지 바꾸기.
+            npc12.change_wing(_wing_index, _wing_type);
+
+            break;
+
+        default:
+            print("Can`t find NPC index");
+            break;               
         }
 
 		// NPC선택 후 popUp window 비활성화.

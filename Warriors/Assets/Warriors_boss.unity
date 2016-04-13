@@ -112,7 +112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 158
+  m_RootOrder: 157
 --- !u!114 &15646267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &16976861
 GameObject:
@@ -193,7 +193,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315375855}
-  m_RootOrder: 12
+  m_RootOrder: 32
 --- !u!114 &16976863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +368,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315375855}
-  m_RootOrder: 10
+  m_RootOrder: 30
 --- !u!114 &37282331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 129
+  m_RootOrder: 128
 --- !u!114 &51689945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 125
+  m_RootOrder: 124
 --- !u!114 &52506185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,103 +712,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
---- !u!1 &59772075
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 59772076}
-  - 114: {fileID: 59772077}
-  m_Layer: 5
-  m_Name: 8th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &59772076
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59772075}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 193, y: 293, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 104699173}
-  m_RootOrder: 1
---- !u!114 &59772077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 59772075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &60499966
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,7 +791,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &65321036
 GameObject:
@@ -917,7 +820,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 161
+  m_RootOrder: 160
 --- !u!114 &65321038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,7 +1034,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &70563992
 GameObject:
@@ -1212,7 +1115,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &78665890
 GameObject:
@@ -1293,18 +1196,12 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!4 &91205969 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483394, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
   m_PrefabInternal: {fileID: 1089631265}
---- !u!114 &91205970 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11485320, guid: 9605ed04ca8001f49ba762d39f150199,
-    type: 2}
-  m_PrefabInternal: {fileID: 1089631265}
-  m_Script: {fileID: 11500000, guid: 0d241a0a4da4eca4f88f4d5a2af592e3, type: 3}
 --- !u!1 &94190006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 183
+  m_RootOrder: 182
 --- !u!114 &103167311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,87 +1371,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
---- !u!1 &104591397
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 104591398}
-  - 114: {fileID: 104591399}
-  m_Layer: 5
-  m_Name: Sprite (123)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &104591398
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 104591397}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -198, y: 416, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 596356639}
-  m_RootOrder: 123
---- !u!114 &104591399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 104591397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 100
-  mHeight: 100
-  mDepth: 0
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 1
-  mType: 0
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor2@64x64_13
-  mFillCenter: 1
 --- !u!1 &104699172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,12 +1381,12 @@ GameObject:
   - 4: {fileID: 104699173}
   - 114: {fileID: 104699174}
   m_Layer: 5
-  m_Name: _NPC08_gameobj
+  m_Name: _NPC08_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &104699173
 Transform:
   m_ObjectHideFlags: 0
@@ -1578,11 +1394,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 104699172}
   m_LocalRotation: {x: 0, y: 0, z: -0.16912325, w: 0.9855949}
-  m_LocalPosition: {x: -373, y: 239.99998, z: 0}
+  m_LocalPosition: {x: -502, y: 184, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 732969496}
-  - {fileID: 59772076}
   m_Father: {fileID: 649934194}
   m_RootOrder: 8
 --- !u!114 &104699174
@@ -1593,11 +1408,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 104699172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6658e7177f99c24b98ee0ec5fcf3319, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d2112c9164697d4dbcc5f4f5ae3c227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 732969497}
-  NPC08_HUD: {fileID: 0}
 --- !u!1 &111688262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1681,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_124
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &126604187
 GameObject:
@@ -1948,7 +1762,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &126961303
 GameObject:
@@ -2232,6 +2046,87 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
+--- !u!1 &163373422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 163373423}
+  - 114: {fileID: 163373424}
+  m_Layer: 5
+  m_Name: Boss10_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163373423
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163373422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 10
+--- !u!114 &163373424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163373422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 362
+  mHeight: 356
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.0168539
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss11_sp
+  mFillCenter: 1
 --- !u!1 &179279859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,7 +2287,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &207216756
 GameObject:
@@ -2473,7 +2368,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &222692836
 GameObject:
@@ -2502,7 +2397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 149
+  m_RootOrder: 148
 --- !u!114 &222692838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2583,7 +2478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 163
+  m_RootOrder: 162
 --- !u!114 &230826528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2636,6 +2531,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_176
+  mFillCenter: 1
+--- !u!1 &237546300
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 237546301}
+  - 114: {fileID: 237546302}
+  m_Layer: 5
+  m_Name: Boss26_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &237546301
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237546300}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18, y: -9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 26
+--- !u!114 &237546302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237546300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 408
+  mHeight: 490
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.83265305
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss27_sp
   mFillCenter: 1
 --- !u!1 &237621356
 GameObject:
@@ -2716,7 +2692,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_141
   mFillCenter: 1
 --- !u!1 &238526289
 GameObject:
@@ -3069,7 +3045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 206
+  m_RootOrder: 205
 --- !u!114 &256273279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3231,7 +3207,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 150
+  m_RootOrder: 149
 --- !u!114 &262898982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3312,7 +3288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 124
+  m_RootOrder: 123
 --- !u!114 &263980373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3364,7 +3340,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &271735707
 GameObject:
@@ -3393,7 +3369,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 203
+  m_RootOrder: 202
 --- !u!114 &271735709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,7 +3562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 142
+  m_RootOrder: 141
 --- !u!114 &289811945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3748,7 +3724,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 184
+  m_RootOrder: 183
 --- !u!114 &301663819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3829,7 +3805,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 190
+  m_RootOrder: 189
 --- !u!114 &307395321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3991,7 +3967,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 211
+  m_RootOrder: 210
 --- !u!114 &316815189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4153,7 +4129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 136
+  m_RootOrder: 135
 --- !u!114 &321793610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4360,7 +4336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 128
+  m_RootOrder: 127
 --- !u!114 &331610716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4441,7 +4417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 213
+  m_RootOrder: 212
 --- !u!114 &332663758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4505,103 +4481,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1686916447}
   m_Script: {fileID: 11500000, guid: 0d241a0a4da4eca4f88f4d5a2af592e3, type: 3}
---- !u!1 &360931346
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 360931347}
-  - 114: {fileID: 360931348}
-  m_Layer: 5
-  m_Name: 9th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &360931347
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 360931346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 187, y: 253, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1020156865}
-  m_RootOrder: 1
---- !u!114 &360931348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 360931346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!4 &372573499 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483394, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
@@ -4639,7 +4518,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 180
+  m_RootOrder: 179
 --- !u!114 &373209255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4691,7 +4570,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &375904146
 GameObject:
@@ -4882,7 +4761,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 127
+  m_RootOrder: 126
 --- !u!114 &388478743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,7 +4923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 172
+  m_RootOrder: 171
 --- !u!114 &395102506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5125,7 +5004,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 198
+  m_RootOrder: 197
 --- !u!114 &398948684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5206,7 +5085,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 162
+  m_RootOrder: 161
 --- !u!114 &400113385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5320,7 +5199,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 316
   mHeight: 376
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -5341,103 +5220,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss9_sp
   mFillCenter: 1
---- !u!1 &410444139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 410444140}
-  - 114: {fileID: 410444141}
-  m_Layer: 5
-  m_Name: 10th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &410444140
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410444139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 203, y: 287, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1122374818}
-  m_RootOrder: 1
---- !u!114 &410444141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410444139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &416156074
 GameObject:
   m_ObjectHideFlags: 0
@@ -5465,7 +5247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 178
+  m_RootOrder: 177
 --- !u!114 &416156076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5546,7 +5328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 194
+  m_RootOrder: 193
 --- !u!114 &419716620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5679,7 +5461,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &448125531
 GameObject:
@@ -6049,7 +5831,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 138
+  m_RootOrder: 137
 --- !u!114 &461710084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6130,7 +5912,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 210
+  m_RootOrder: 209
 --- !u!114 &463771364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6515,6 +6297,87 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &481749426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 481749427}
+  - 114: {fileID: 481749428}
+  m_Layer: 5
+  m_Name: Boss16_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &481749427
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481749426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11, y: -31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 16
+--- !u!114 &481749428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481749426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 350
+  mHeight: 432
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8101852
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss17_sp
+  mFillCenter: 1
 --- !u!1 &492729136
 GameObject:
   m_ObjectHideFlags: 0
@@ -6738,7 +6601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 134
+  m_RootOrder: 133
 --- !u!114 &524342558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6790,7 +6653,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &524516770
 GameObject:
@@ -6819,7 +6682,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 148
+  m_RootOrder: 147
 --- !u!114 &524516772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6871,7 +6734,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &524798281
 GameObject:
@@ -7190,7 +7053,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 151
+  m_RootOrder: 150
 --- !u!114 &548443977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7352,7 +7215,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 179
+  m_RootOrder: 178
 --- !u!114 &554007412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7514,7 +7377,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 170
+  m_RootOrder: 169
 --- !u!114 &567920883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7566,7 +7429,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &577653209
 GameObject:
@@ -7595,7 +7458,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 168
+  m_RootOrder: 167
 --- !u!114 &577653211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7809,105 +7672,8 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
---- !u!1 &587630754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 587630755}
-  - 114: {fileID: 587630756}
-  m_Layer: 5
-  m_Name: 7th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &587630755
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 587630754}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 191, y: 293, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1081554927}
-  m_RootOrder: 1
---- !u!114 &587630756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 587630754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &593896534
 GameObject:
   m_ObjectHideFlags: 0
@@ -8144,7 +7910,6 @@ Transform:
   - {fileID: 1692166618}
   - {fileID: 1851659882}
   - {fileID: 237621357}
-  - {fileID: 104591398}
   - {fileID: 263980372}
   - {fileID: 52506184}
   - {fileID: 635298091}
@@ -8269,7 +8034,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 199
+  m_RootOrder: 198
 --- !u!114 &626858575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8402,7 +8167,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &631760077
 GameObject:
@@ -8431,7 +8196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 166
+  m_RootOrder: 165
 --- !u!114 &631760079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8512,7 +8277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 126
+  m_RootOrder: 125
 --- !u!114 &635298092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8593,7 +8358,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 165
+  m_RootOrder: 164
 --- !u!114 &637945343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8707,7 +8472,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 162
   mHeight: 160
-  mDepth: 1
+  mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -8807,7 +8572,88 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
+  mFillCenter: 1
+--- !u!1 &649285420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 649285421}
+  - 114: {fileID: 649285422}
+  m_Layer: 5
+  m_Name: Boss15_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &649285421
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 649285420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12, y: -26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 15
+--- !u!114 &649285422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 649285420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 366
+  mHeight: 442
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8280543
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss16_sp
   mFillCenter: 1
 --- !u!1 &649934193
 GameObject:
@@ -8928,7 +8774,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &653148336
 GameObject:
@@ -8957,7 +8803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 157
+  m_RootOrder: 156
 --- !u!114 &653148338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9200,7 +9046,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 200
+  m_RootOrder: 199
 --- !u!114 &665940901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9335,6 +9181,87 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
+--- !u!1 &672160789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 672160790}
+  - 114: {fileID: 672160791}
+  m_Layer: 5
+  m_Name: Boss22_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672160790
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672160789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: 40, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 22
+--- !u!114 &672160791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672160789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 416
+  mHeight: 578
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.71972317
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss23_sp
+  mFillCenter: 1
 --- !u!1 &681403441
 GameObject:
   m_ObjectHideFlags: 0
@@ -9362,7 +9289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 209
+  m_RootOrder: 208
 --- !u!114 &681403443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9443,7 +9370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 152
+  m_RootOrder: 151
 --- !u!114 &694648338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9524,7 +9451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 191
+  m_RootOrder: 190
 --- !u!114 &698193346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9576,7 +9503,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_192
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &704467923
 GameObject:
@@ -9605,7 +9532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 201
+  m_RootOrder: 200
 --- !u!114 &704467925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9777,7 +9704,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 202
+  m_RootOrder: 201
 --- !u!114 &739497829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10033,7 +9960,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 141
+  m_RootOrder: 140
 --- !u!114 &755892812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10166,7 +10093,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &765514637
 GameObject:
@@ -10247,7 +10174,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &776651822
 GameObject:
@@ -10727,7 +10654,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 370
   mHeight: 424
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -11018,7 +10945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 207
+  m_RootOrder: 206
 --- !u!114 &820701190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11072,103 +10999,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: DungeonColor2@64x64_177
   mFillCenter: 1
---- !u!1 &821834614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 821834615}
-  - 114: {fileID: 821834616}
-  m_Layer: 5
-  m_Name: 12th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &821834615
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 821834614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 191, y: 263, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1146394024}
-  m_RootOrder: 1
---- !u!114 &821834616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 821834614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &848991941
 GameObject:
   m_ObjectHideFlags: 0
@@ -11277,7 +11107,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 131
+  m_RootOrder: 130
 --- !u!114 &849834262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11398,7 +11228,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 182
+  m_RootOrder: 181
 --- !u!114 &852583550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11479,7 +11309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 208
+  m_RootOrder: 207
 --- !u!114 &858855840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11612,7 +11442,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &864889524
 GameObject:
@@ -11674,7 +11504,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 308
   mHeight: 372
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -11803,7 +11633,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 187
+  m_RootOrder: 186
 --- !u!114 &882142162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11857,103 +11687,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_190
   mFillCenter: 1
---- !u!1 &889703242
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 889703243}
-  - 114: {fileID: 889703244}
-  m_Layer: 5
-  m_Name: 11th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &889703243
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 889703242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 195, y: 286, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1078362254}
-  m_RootOrder: 1
---- !u!114 &889703244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 889703242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &890255991
 GameObject:
   m_ObjectHideFlags: 0
@@ -11981,7 +11714,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 186
+  m_RootOrder: 185
 --- !u!114 &890255993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12062,7 +11795,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 195
+  m_RootOrder: 194
 --- !u!114 &891649231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12224,7 +11957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 177
+  m_RootOrder: 176
 --- !u!114 &914102892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12357,7 +12090,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &916724152
 GameObject:
@@ -12419,7 +12152,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 324
   mHeight: 348
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -12717,7 +12450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 146
+  m_RootOrder: 145
 --- !u!114 &921633882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12831,7 +12564,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 358
   mHeight: 308
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -12879,7 +12612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 192
+  m_RootOrder: 191
 --- !u!114 &926962931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12993,7 +12726,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 228
   mHeight: 258
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -13041,7 +12774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 174
+  m_RootOrder: 173
 --- !u!114 &937138594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13186,12 +12919,12 @@ GameObject:
   - 4: {fileID: 945291539}
   - 114: {fileID: 945291540}
   m_Layer: 5
-  m_Name: _NPC02_gameobj
+  m_Name: _NPC02_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &945291539
 Transform:
   m_ObjectHideFlags: 0
@@ -13199,7 +12932,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945291538}
   m_LocalRotation: {x: 0, y: 0, z: -0.14277947, w: 0.98975456}
-  m_LocalPosition: {x: -115, y: -63, z: 0}
+  m_LocalPosition: {x: -31, y: -161, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 372573499}
@@ -13213,11 +12946,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 945291538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd15463bc137448cdb97ae72e302eb55, type: 3}
+  m_Script: {fileID: 11500000, guid: ca78a60fc8c945945a3703386f41e5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 372573500}
-  NPC02_HUD: {fileID: 0}
 --- !u!1 &946317684
 GameObject:
   m_ObjectHideFlags: 0
@@ -13278,7 +13010,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 332
   mHeight: 424
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -13326,7 +13058,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 216
+  m_RootOrder: 215
 --- !u!114 &950353474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13586,7 +13318,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &979128149
 GameObject:
@@ -13712,7 +13444,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 139
+  m_RootOrder: 138
 --- !u!114 &990648467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13845,7 +13577,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &993320676
 GameObject:
@@ -13927,6 +13659,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_01
+  mFillCenter: 1
+--- !u!1 &994179705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 994179706}
+  - 114: {fileID: 994179707}
+  m_Layer: 5
+  m_Name: Boss27_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &994179706
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994179705}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -80, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 27
+--- !u!114 &994179707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994179705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 450
+  mHeight: 338
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.3313609
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss28_sp
   mFillCenter: 1
 --- !u!1 &995153363
 GameObject:
@@ -14088,7 +13901,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_160
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &1014307256
 GameObject:
@@ -14250,7 +14063,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1001 &1015610814
 Prefab:
@@ -14512,12 +14325,12 @@ GameObject:
   - 4: {fileID: 1020156865}
   - 114: {fileID: 1020156866}
   m_Layer: 5
-  m_Name: _NPC09_gameobj
+  m_Name: _NPC09_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1020156865
 Transform:
   m_ObjectHideFlags: 0
@@ -14525,11 +14338,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1020156864}
   m_LocalRotation: {x: 0, y: 0, z: 0.18438838, w: 0.9828535}
-  m_LocalPosition: {x: -242, y: -165, z: 0}
+  m_LocalPosition: {x: -365, y: -263, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1931243187}
-  - {fileID: 360931347}
   m_Father: {fileID: 649934194}
   m_RootOrder: 9
 --- !u!114 &1020156866
@@ -14540,11 +14352,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1020156864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c3ab12b2e2ec3b4fb492532ad37f226, type: 3}
+  m_Script: {fileID: 11500000, guid: 30f25dd4ad01d4c42a044253a086ca00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1931243188}
-  NPC09_HUD: {fileID: 0}
 --- !u!1 &1041298977
 GameObject:
   m_ObjectHideFlags: 0
@@ -14786,7 +14597,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1 &1052418120
 GameObject:
@@ -14948,7 +14759,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &1063394007
 GameObject:
@@ -14977,7 +14788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 154
+  m_RootOrder: 153
 --- !u!114 &1063394009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15360,7 +15171,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!4 &1071742015 stripped
 Transform:
@@ -15376,12 +15187,12 @@ GameObject:
   - 4: {fileID: 1078362254}
   - 114: {fileID: 1078362255}
   m_Layer: 5
-  m_Name: _NPC11_gameobj
+  m_Name: _NPC11_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1078362254
 Transform:
   m_ObjectHideFlags: 0
@@ -15389,11 +15200,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1078362253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -492, y: 27, z: 0}
+  m_LocalPosition: {x: -605, y: -64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1320068922}
-  - {fileID: 889703243}
   m_Father: {fileID: 649934194}
   m_RootOrder: 11
 --- !u!114 &1078362255
@@ -15404,11 +15214,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078362253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a29c6898b53cff442b6ea5b3c1b5e530, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff44c51a566d264ab89b88836ee9fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1320068923}
-  NPC11_HUD: {fileID: 0}
 --- !u!1 &1081554926
 GameObject:
   m_ObjectHideFlags: 0
@@ -15419,12 +15228,12 @@ GameObject:
   - 4: {fileID: 1081554927}
   - 114: {fileID: 1081554928}
   m_Layer: 5
-  m_Name: _NPC07_gameobj
+  m_Name: _NPC07_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1081554927
 Transform:
   m_ObjectHideFlags: 0
@@ -15432,11 +15241,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1081554926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -340, y: 19, z: 0}
+  m_LocalPosition: {x: -443, y: -63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 455133135}
-  - {fileID: 587630755}
   m_Father: {fileID: 649934194}
   m_RootOrder: 7
 --- !u!114 &1081554928
@@ -15447,11 +15255,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081554926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95a96e7b148fc8479256c61031ca044, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e134d9a4e2677e49b20e8d2e9d6442b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 455133136}
-  NPC07_HUD: {fileID: 0}
 --- !u!1001 &1089631265
 Prefab:
   m_ObjectHideFlags: 0
@@ -15818,7 +15625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 217
+  m_RootOrder: 216
 --- !u!114 &1105128967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15899,7 +15706,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 160
+  m_RootOrder: 159
 --- !u!114 &1112573343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15963,12 +15770,12 @@ GameObject:
   - 4: {fileID: 1122374818}
   - 114: {fileID: 1122374819}
   m_Layer: 5
-  m_Name: _NPC10_gameobj
+  m_Name: _NPC10_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1122374818
 Transform:
   m_ObjectHideFlags: 0
@@ -15976,11 +15783,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1122374817}
   m_LocalRotation: {x: 0, y: 0, z: -0.12423305, w: 0.99225307}
-  m_LocalPosition: {x: -515, y: 258, z: 0}
+  m_LocalPosition: {x: -640, y: 202, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1393717838}
-  - {fileID: 410444140}
   m_Father: {fileID: 649934194}
   m_RootOrder: 10
 --- !u!114 &1122374819
@@ -15991,11 +15797,91 @@ MonoBehaviour:
   m_GameObject: {fileID: 1122374817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db50a6aa2e0c3249b487ecbdba3c308, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bffef015d3700244b377c3fe4ba2df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1393717839}
-  NPC10_HUD: {fileID: 0}
+--- !u!1 &1126957296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1126957297}
+  - 114: {fileID: 1126957298}
+  m_Layer: 5
+  m_Name: Boss17_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1126957297
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126957296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18, y: -80, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 17
+--- !u!114 &1126957298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126957296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 368
+  mHeight: 338
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.0887574
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss18_sp
+  mFillCenter: 1
 --- !u!1 &1130962900
 GameObject:
   m_ObjectHideFlags: 0
@@ -16156,7 +16042,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_158
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &1146394023
 GameObject:
@@ -16168,12 +16054,12 @@ GameObject:
   - 4: {fileID: 1146394024}
   - 114: {fileID: 1146394025}
   m_Layer: 5
-  m_Name: _NPC12_gameobj
+  m_Name: _NPC12_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1146394024
 Transform:
   m_ObjectHideFlags: 0
@@ -16181,11 +16067,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146394023}
   m_LocalRotation: {x: 0, y: 0, z: 0.16841108, w: 0.9857169}
-  m_LocalPosition: {x: -412, y: -175, z: 0}
+  m_LocalPosition: {x: -539, y: -302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 91205969}
-  - {fileID: 821834615}
   m_Father: {fileID: 649934194}
   m_RootOrder: 12
 --- !u!114 &1146394025
@@ -16196,11 +16081,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1146394023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a20e95f7f4c02d641871200ea38fcfed, type: 3}
+  m_Script: {fileID: 11500000, guid: a391ae071caecd94d9679c722426da0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 91205970}
-  NPC12_HUD: {fileID: 0}
+  character: {fileID: 0}
 --- !u!1 &1152442370
 GameObject:
   m_ObjectHideFlags: 0
@@ -16228,7 +16112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 189
+  m_RootOrder: 188
 --- !u!114 &1152442372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16363,6 +16247,87 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_128
   mFillCenter: 1
+--- !u!1 &1165958796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1165958797}
+  - 114: {fileID: 1165958798}
+  m_Layer: 5
+  m_Name: Boss13_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1165958797
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165958796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 42, y: -24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 13
+--- !u!114 &1165958798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165958796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 460
+  mHeight: 460
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss14_sp
+  mFillCenter: 1
 --- !u!1 &1186187837
 GameObject:
   m_ObjectHideFlags: 0
@@ -16442,7 +16407,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_125
   mFillCenter: 1
 --- !u!1 &1187282538
 GameObject:
@@ -16471,7 +16436,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 137
+  m_RootOrder: 136
 --- !u!114 &1187282540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16524,6 +16489,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_191
+  mFillCenter: 1
+--- !u!1 &1190103570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1190103571}
+  - 114: {fileID: 1190103572}
+  m_Layer: 5
+  m_Name: Boss19_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1190103571
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190103570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -18, y: -26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 19
+--- !u!114 &1190103572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190103570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 442
+  mHeight: 504
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8769841
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss20_sp
   mFillCenter: 1
 --- !u!1 &1192023468
 GameObject:
@@ -16605,6 +16651,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_112
+  mFillCenter: 1
+--- !u!1 &1201472869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1201472870}
+  - 114: {fileID: 1201472871}
+  m_Layer: 5
+  m_Name: Boss21_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1201472870
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201472869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11, y: -60, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 21
+--- !u!114 &1201472871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201472869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 300
+  mHeight: 368
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8152174
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss22_sp
   mFillCenter: 1
 --- !u!1001 &1215961086
 Prefab:
@@ -16972,7 +17099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 218
+  m_RootOrder: 217
 --- !u!114 &1222669272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17095,7 +17222,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 145
+  m_RootOrder: 144
 --- !u!114 &1237231950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17147,7 +17274,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &1242065625
 GameObject:
@@ -17176,7 +17303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 155
+  m_RootOrder: 154
 --- !u!114 &1242065627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17257,7 +17384,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 171
+  m_RootOrder: 170
 --- !u!114 &1243893390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17338,7 +17465,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 167
+  m_RootOrder: 166
 --- !u!114 &1247159096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17415,7 +17542,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1267171675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -57, z: 1}
+  m_LocalPosition: {x: 36, y: -61, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1595460537}
@@ -17460,7 +17587,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 215
+  m_RootOrder: 214
 --- !u!114 &1271425210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17587,7 +17714,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 205
+  m_RootOrder: 204
 --- !u!114 &1278818890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17720,7 +17847,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_02
   mFillCenter: 1
 --- !u!1001 &1291978995
 Prefab:
@@ -18002,12 +18129,12 @@ GameObject:
   - 4: {fileID: 1293385045}
   - 114: {fileID: 1293385046}
   m_Layer: 5
-  m_Name: _NPC05_gameobj
+  m_Name: _NPC05_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1293385045
 Transform:
   m_ObjectHideFlags: 0
@@ -18015,11 +18142,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1293385044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -377, y: 27, z: 0}
+  m_LocalPosition: {x: -281, y: -59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 793377162}
-  - {fileID: 1609484025}
   m_Father: {fileID: 649934194}
   m_RootOrder: 5
 --- !u!114 &1293385046
@@ -18030,11 +18156,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293385044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3388dc89c2834216b399370a892d224, type: 3}
+  m_Script: {fileID: 11500000, guid: bc0e337f28ced4b49a2940c03d87fb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 793377163}
-  NPC05_HUD: {fileID: 0}
 --- !u!1 &1304633229
 GameObject:
   m_ObjectHideFlags: 0
@@ -18062,7 +18187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 140
+  m_RootOrder: 139
 --- !u!114 &1304633231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18234,6 +18359,26 @@ Transform:
   - {fileID: 1528527888}
   - {fileID: 406005768}
   - {fileID: 946317685}
+  - {fileID: 163373423}
+  - {fileID: 1389980719}
+  - {fileID: 1848612073}
+  - {fileID: 1165958797}
+  - {fileID: 1719122227}
+  - {fileID: 649285421}
+  - {fileID: 481749427}
+  - {fileID: 1126957297}
+  - {fileID: 1823839791}
+  - {fileID: 1190103571}
+  - {fileID: 1982151684}
+  - {fileID: 1201472870}
+  - {fileID: 672160790}
+  - {fileID: 1672116760}
+  - {fileID: 1460453566}
+  - {fileID: 1838177869}
+  - {fileID: 237546301}
+  - {fileID: 994179706}
+  - {fileID: 1913193975}
+  - {fileID: 2082729739}
   - {fileID: 37282330}
   - {fileID: 1994677802}
   - {fileID: 16976862}
@@ -18346,12 +18491,12 @@ GameObject:
   - 4: {fileID: 1332779604}
   - 114: {fileID: 1332779605}
   m_Layer: 5
-  m_Name: _NPC06_gameobj
+  m_Name: _NPC06_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1332779604
 Transform:
   m_ObjectHideFlags: 0
@@ -18359,11 +18504,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1332779603}
   m_LocalRotation: {x: 0, y: 0, z: -0.16027999, w: 0.98707163}
-  m_LocalPosition: {x: -395, y: 46, z: 0}
+  m_LocalPosition: {x: -282, y: -69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1367002317}
-  - {fileID: 2091278097}
   m_Father: {fileID: 649934194}
   m_RootOrder: 6
 --- !u!114 &1332779605
@@ -18374,11 +18518,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332779603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f923d46196acf4abc8876c58df7d3477, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bd8dee275938ce4a8fabe2a63073362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1367002318}
-  NPC06_HUD: {fileID: 0}
 --- !u!1 &1334109810
 GameObject:
   m_ObjectHideFlags: 0
@@ -18795,7 +18938,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!4 &1367002317 stripped
 Transform:
@@ -18807,6 +18950,87 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 921459376}
   m_Script: {fileID: 11500000, guid: 0d241a0a4da4eca4f88f4d5a2af592e3, type: 3}
+--- !u!1 &1389980718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1389980719}
+  - 114: {fileID: 1389980720}
+  m_Layer: 5
+  m_Name: Boss11_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1389980719
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1389980718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 11
+--- !u!114 &1389980720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1389980718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 362
+  mHeight: 356
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.0168539
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss12_sp
+  mFillCenter: 1
 --- !u!1 &1392239270 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 185320, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
@@ -18888,7 +19112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 169
+  m_RootOrder: 168
 --- !u!114 &1398411029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18940,7 +19164,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &1402836182
 GameObject:
@@ -19050,7 +19274,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 197
+  m_RootOrder: 196
 --- !u!114 &1424479148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19131,7 +19355,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 176
+  m_RootOrder: 175
 --- !u!114 &1441036178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19184,6 +19408,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_174
+  mFillCenter: 1
+--- !u!1 &1460453565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1460453566}
+  - 114: {fileID: 1460453567}
+  m_Layer: 5
+  m_Name: Boss24_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1460453566
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460453565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 24
+--- !u!114 &1460453567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460453565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 400
+  mHeight: 568
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.70422536
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss25_sp
   mFillCenter: 1
 --- !u!1 &1460721845
 GameObject:
@@ -19438,7 +19743,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 600
   mHeight: 634
-  mDepth: 0
+  mDepth: 2
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -19700,7 +20005,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_140
   mFillCenter: 1
 --- !u!1 &1511417895
 GameObject:
@@ -19862,7 +20167,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
 --- !u!1 &1524374862
 GameObject:
@@ -19943,7 +20248,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_125
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &1528527887
 GameObject:
@@ -20005,7 +20310,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 256
   mHeight: 316
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -20115,7 +20420,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &1548872202
 GameObject:
@@ -20299,7 +20604,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_140
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &1564193597
 GameObject:
@@ -20368,7 +20673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 144
+  m_RootOrder: 143
 --- !u!114 &1564978517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20449,7 +20754,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 159
+  m_RootOrder: 158
 --- !u!114 &1579060509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20501,7 +20806,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
 --- !u!1 &1585724290
 GameObject:
@@ -20611,7 +20916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 147
+  m_RootOrder: 146
 --- !u!114 &1586200947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20692,7 +20997,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 132
+  m_RootOrder: 131
 --- !u!114 &1589764935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21033,7 +21338,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 175
+  m_RootOrder: 174
 --- !u!114 &1596999863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21195,7 +21500,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 181
+  m_RootOrder: 180
 --- !u!114 &1606296663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21247,7 +21552,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_190
+  mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
 --- !u!1 &1606762371
 GameObject:
@@ -21276,7 +21581,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 143
+  m_RootOrder: 142
 --- !u!114 &1606762373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21409,105 +21714,8 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_176
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
---- !u!1 &1609484024
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1609484025}
-  - 114: {fileID: 1609484026}
-  m_Layer: 5
-  m_Name: 5th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1609484025
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1609484024}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 695, y: 289, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1293385045}
-  m_RootOrder: 1
---- !u!114 &1609484026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1609484024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1611220935
 GameObject:
   m_ObjectHideFlags: 0
@@ -21616,7 +21824,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 156
+  m_RootOrder: 155
 --- !u!114 &1616139679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21800,7 +22008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 173
+  m_RootOrder: 172
 --- !u!114 &1638038141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21914,7 +22122,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 350
   mHeight: 56
-  mDepth: 2
+  mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -22202,7 +22410,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &1665970280
 GameObject:
@@ -22443,7 +22651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 130
+  m_RootOrder: 129
 --- !u!114 &1667904601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22496,6 +22704,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_174
+  mFillCenter: 1
+--- !u!1 &1672116759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1672116760}
+  - 114: {fileID: 1672116761}
+  m_Layer: 5
+  m_Name: Boss23_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1672116760
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672116759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 23
+--- !u!114 &1672116761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672116759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 414
+  mHeight: 558
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.7419355
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss24_sp
   mFillCenter: 1
 --- !u!1001 &1686916447
 Prefab:
@@ -22999,6 +23288,87 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_191
   mFillCenter: 1
+--- !u!1 &1719122226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1719122227}
+  - 114: {fileID: 1719122228}
+  m_Layer: 5
+  m_Name: Boss14_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719122227
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1719122226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 14
+--- !u!114 &1719122228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1719122226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 524
+  mHeight: 492
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.0650407
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss15_sp
+  mFillCenter: 1
 --- !u!1 &1720075541
 GameObject:
   m_ObjectHideFlags: 0
@@ -23159,7 +23529,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_01
   mFillCenter: 1
 --- !u!1 &1729915070
 GameObject:
@@ -23310,7 +23680,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 214
+  m_RootOrder: 213
 --- !u!114 &1746807417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23697,12 +24067,12 @@ GameObject:
   - 4: {fileID: 1772649808}
   - 114: {fileID: 1772649809}
   m_Layer: 5
-  m_Name: _NPC03_gameobj
+  m_Name: _NPC03_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1772649808
 Transform:
   m_ObjectHideFlags: 0
@@ -23710,7 +24080,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1772649807}
   m_LocalRotation: {x: 0, y: 0, z: 0.14964716, w: 0.9887395}
-  m_LocalPosition: {x: -9, y: 148, z: 0}
+  m_LocalPosition: {x: 99, y: 78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1543800099}
@@ -23724,11 +24094,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772649807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70f8a7880f114247b7e1b45e31cd3d8, type: 3}
+  m_Script: {fileID: 11500000, guid: c581ff8e4564a7f40b38c6847b91ee2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1543800100}
-  NPC03_HUD: {fileID: 0}
 --- !u!1 &1809655371
 GameObject:
   m_ObjectHideFlags: 0
@@ -23756,7 +24125,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 153
+  m_RootOrder: 152
 --- !u!114 &1809655373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23970,7 +24339,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_124
   mFillCenter: 1
 --- !u!1 &1820823415
 GameObject:
@@ -24043,7 +24412,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3012
+  startingRenderQueue: 3010
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -24053,6 +24422,87 @@ MonoBehaviour:
   mSortingOrder: 0
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
+--- !u!1 &1823839790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1823839791}
+  - 114: {fileID: 1823839792}
+  m_Layer: 5
+  m_Name: Boss18_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823839791
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823839790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: -9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 18
+--- !u!114 &1823839792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823839790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 384
+  mHeight: 480
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.8
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss19_sp
+  mFillCenter: 1
 --- !u!1 &1830565983
 GameObject:
   m_ObjectHideFlags: 0
@@ -24133,6 +24583,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_02
+  mFillCenter: 1
+--- !u!1 &1838177868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1838177869}
+  - 114: {fileID: 1838177870}
+  m_Layer: 5
+  m_Name: Boss25_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838177869
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838177868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50, y: -13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 25
+--- !u!114 &1838177870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838177868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 460
+  mHeight: 480
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.9583333
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss26_sp
   mFillCenter: 1
 --- !u!1 &1841210503
 GameObject:
@@ -24222,6 +24753,87 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1848612072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1848612073}
+  - 114: {fileID: 1848612074}
+  m_Layer: 5
+  m_Name: Boss12_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1848612073
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848612072}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 12
+--- !u!114 &1848612074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848612072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 382
+  mHeight: 494
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.77327937
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss13_sp
+  mFillCenter: 1
 --- !u!1 &1851659881
 GameObject:
   m_ObjectHideFlags: 0
@@ -24301,7 +24913,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_141
+  mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
 --- !u!1 &1867418234
 GameObject:
@@ -24463,7 +25075,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_176
   mFillCenter: 1
 --- !u!1 &1906207336
 GameObject:
@@ -24532,7 +25144,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 188
+  m_RootOrder: 187
 --- !u!114 &1910690747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24585,6 +25197,87 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_191
+  mFillCenter: 1
+--- !u!1 &1913193974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1913193975}
+  - 114: {fileID: 1913193976}
+  m_Layer: 5
+  m_Name: Boss28_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1913193975
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1913193974}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3, y: -78, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 28
+--- !u!114 &1913193976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1913193974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 450
+  mHeight: 338
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.3313609
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss29_sp
   mFillCenter: 1
 --- !u!1 &1914539660
 GameObject:
@@ -24694,7 +25387,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 193
+  m_RootOrder: 192
 --- !u!114 &1930732549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24899,7 +25592,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 312
   mHeight: 324
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -25082,6 +25775,87 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
+--- !u!1 &1982151683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1982151684}
+  - 114: {fileID: 1982151685}
+  m_Layer: 5
+  m_Name: Boss20_Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1982151684
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982151683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11, y: -65, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 20
+--- !u!114 &1982151685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982151683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 394
+  mHeight: 364
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1.0824176
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss21_sp
+  mFillCenter: 1
 --- !u!1 &1986227239
 GameObject:
   m_ObjectHideFlags: 0
@@ -25109,7 +25883,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 185
+  m_RootOrder: 184
 --- !u!114 &1986227241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25190,7 +25964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1315375855}
-  m_RootOrder: 11
+  m_RootOrder: 31
 --- !u!114 &1994677803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25271,7 +26045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 164
+  m_RootOrder: 163
 --- !u!114 &1995890791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25352,7 +26126,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 204
+  m_RootOrder: 203
 --- !u!114 &2004826042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25514,7 +26288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 196
+  m_RootOrder: 195
 --- !u!114 &2020056832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25676,7 +26450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 212
+  m_RootOrder: 211
 --- !u!114 &2030851957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25730,103 +26504,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: DungeonColor2@64x64_115
   mFillCenter: 1
---- !u!1 &2051490621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2051490622}
-  - 114: {fileID: 2051490623}
-  m_Layer: 5
-  m_Name: 4th_friend_HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2051490622
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2051490621}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 688, y: 278, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2129820621}
-  m_RootOrder: 1
---- !u!114 &2051490623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2051490621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &2056442634
 GameObject:
   m_ObjectHideFlags: 0
@@ -25854,7 +26531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 135
+  m_RootOrder: 134
 --- !u!114 &2056442636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25906,105 +26583,89 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
-  mSpriteName: DungeonColor3@64x64_174
+  mSpriteName: DungeonColor3@64x64_175
   mFillCenter: 1
---- !u!1 &2091278096
+--- !u!1 &2082729738
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 2091278097}
-  - 114: {fileID: 2091278098}
+  - 4: {fileID: 2082729739}
+  - 114: {fileID: 2082729740}
   m_Layer: 5
-  m_Name: 6th_friend_HUD
+  m_Name: Boss29_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2091278097
+--- !u!4 &2082729739
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2091278096}
+  m_GameObject: {fileID: 2082729738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 655, y: 300, z: 0}
+  m_LocalPosition: {x: -25, y: -31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1332779604}
-  m_RootOrder: 1
---- !u!114 &2091278098
+  m_Father: {fileID: 1315375855}
+  m_RootOrder: 29
+--- !u!114 &2082729740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2091278096}
+  m_GameObject: {fileID: 2082729738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbf080627224a44786e958729eb7601, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  font: {fileID: 0}
-  bitmapFont: {fileID: 0}
-  trueTypeFont: {fileID: 12800000, guid: 01dd8abb82f1141dab33f5965f13e649, type: 3}
-  fontSize: 35
-  fontStyle: 1
-  applyGradient: 0
-  gradientTop: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
-  gradienBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  effect: 1
-  effectColor: {r: 0, g: 0, b: 0, a: 1}
-  offsetCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 3
-      value: 40
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1.525
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 0.25
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 416
+  mHeight: 440
+  mDepth: 1
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.94545454
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
+  mSpriteName: boss30_sp
+  mFillCenter: 1
 --- !u!1 &2099877382
 GameObject:
   m_ObjectHideFlags: 0
@@ -26113,7 +26774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 596356639}
-  m_RootOrder: 133
+  m_RootOrder: 132
 --- !u!114 &2105468116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26308,7 +26969,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 366
   mHeight: 340
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -26339,12 +27000,12 @@ GameObject:
   - 4: {fileID: 2129820621}
   - 114: {fileID: 2129820622}
   m_Layer: 5
-  m_Name: _NPC04_gameobj
+  m_Name: _NPC04_gameobj_intheboss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2129820621
 Transform:
   m_ObjectHideFlags: 0
@@ -26352,11 +27013,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2129820620}
   m_LocalRotation: {x: 0, y: 0, z: 0.08582522, w: 0.99631023}
-  m_LocalPosition: {x: -361.29483, y: 97.64656, z: 0}
+  m_LocalPosition: {x: -249, y: 60, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 359963319}
-  - {fileID: 2051490622}
   m_Father: {fileID: 649934194}
   m_RootOrder: 4
 --- !u!114 &2129820622
@@ -26367,8 +27027,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129820620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1156b056ba864430ad898243e0c25f2, type: 3}
+  m_Script: {fileID: 11500000, guid: b315d658eadee1e43bcbeb7e4fc4c2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 359963320}
-  NPC04_HUD: {fileID: 0}

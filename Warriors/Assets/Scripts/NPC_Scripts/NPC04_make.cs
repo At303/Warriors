@@ -93,7 +93,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
     {
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
-        check_npc_enable = PlayerPrefs.GetInt("npc4_enable", 1);
+        check_npc_enable = PlayerPrefs.GetInt("npc4_enable", 0);
 
         if (check_npc_enable == 1)
         {

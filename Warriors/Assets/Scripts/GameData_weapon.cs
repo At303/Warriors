@@ -4,7 +4,7 @@ using gamedata;
 
 namespace gamedata_weapon
 {
-   
+
     // Weapon Struct
     public struct Weapon_struct
     {
@@ -36,7 +36,8 @@ namespace gamedata_weapon
     {
         public int enable;
         public GameObject wing_enable_gameobject;
-        
+        public GameObject wing_buy_button;
+
         public ulong plus_gold;
         public ulong upgrade_cost;
         public string skill;
@@ -47,8 +48,9 @@ namespace gamedata_weapon
 	{
 		public int enable;      
         public GameObject armor_enable_gameobject;
-        
-		public ulong plus_gold;
+        public GameObject armor_buy_button;
+
+        public ulong plus_gold;
 		public ulong upgrade_cost;
 		public string skill;
 
@@ -57,6 +59,9 @@ namespace gamedata_weapon
     public class GameData_weapon : MonoBehaviour
     {
         public static GameObject test_obj;
+
+        public static bool check_toggle4_active = false;
+        public static bool check_toggle6_active = false;
 
         // 처음 시작시 weapon struct 초기화.
         public static Weapon_struct[] weapon_struct_object = new Weapon_struct[25];
@@ -68,7 +73,7 @@ namespace gamedata_weapon
         public static Wing_struct[] wing_struct_object = new Wing_struct[20];
 
 		// 처음 시작시 Armor struct 초기화.
-		public static Armor_struct[] armor_struct_object = new Armor_struct[40];
+		public static Armor_struct[] armor_struct_object = new Armor_struct[41];
 
         // Use this for initialization
         void Awake()
@@ -90,6 +95,7 @@ namespace gamedata_weapon
 
                 if (weapon_struct_object[i].enable == 0)
                 {
+                    print(i.ToString() + "이 무기는 가지고 있음");
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string weapon_lock_sp = "_weapon" + i.ToString() + "_unlock_sprite";
                     GameObject.Find(weapon_lock_sp).SetActive(false);     
@@ -119,6 +125,7 @@ namespace gamedata_weapon
 
                 if (bow_struct_object[i].enable == 0)
                 {
+                    print(i.ToString() + "이 활은 가지고 있음");
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string bow_lock_sp = "_bow" + i.ToString() + "_unlock_sprite";
                     GameObject.Find(bow_lock_sp).SetActive(false);
@@ -135,15 +142,18 @@ namespace gamedata_weapon
             // ************************************************************************  armor init ************************************************************************ //                     
 
             // Armor Button All disable except 0.
-            for(int i=1; i < 40; i++)
+            for(int i=1; i < 41; i++)
             {
                 // 게임 시작시 모든 Armor 구매 버튼은 비활성화 시켜줌 아래 for문에 있는 함수에서 Local 변수를 보고 활성화 할지 결정.
                 GameObject.Find("_armor" + i.ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = false;
             }
             
             // 아머 데이터 초기화.
-			for (int i = 0; i < 40; i++)
-			{                        
+			for (int i = 0; i < 41; i++)
+			{
+                // Armor 레벨 up 버튼 GameObject Setting.
+                armor_struct_object[i].armor_buy_button = GameObject.Find("_armor" + i.ToString() + "_lvup_button");
+
                 // unlock sprite가 있음에도 그 밑에 있는 버튼이 클릭 되어지는걸 방지하기 위해 밑에 있는  object들을 비활성화 시켜줌.
                 armor_struct_object[i].armor_enable_gameobject = GameObject.Find("_armor" + i.ToString() +"_enable");
                 armor_struct_object[i].armor_enable_gameobject.SetActive(false);
@@ -164,6 +174,9 @@ namespace gamedata_weapon
             // 망토 데이터 초기화.
             for (int i = 0; i < 20; i++)
             {
+                // Armor 레벨 up 버튼 GameObject Setting.
+                wing_struct_object[i].wing_buy_button = GameObject.Find("_wing" + i.ToString() + "_lvup_button");
+
                 // unlock sprite가 있음에도 그 밑에 있는 버튼이 클릭 되어지는걸 방지하기 위해 밑에 있는  object들을 비활성화 시켜줌.
                 wing_struct_object[i].wing_enable_gameobject = GameObject.Find("_wing" + i.ToString() +"_enable");
                 wing_struct_object[i].wing_enable_gameobject.SetActive(false);
@@ -671,8 +684,12 @@ namespace gamedata_weapon
             GameObject.Find(unlock_armor_sprite).SetActive(false);  
 
             // Next wing 구매 버튼 활성화. 왜나하면 현재 wing를 유저가 구매했기 때문에 Next wing을 활성화 시켜줌.
-            GameObject.Find("_wing" + (_wing_index + 1).ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = true;     
-            
+            // check 다음 wing 구매할만큼의 보석을 가지고 있는지.
+            if(GameData.coin_struct.gemstone > wing_struct_object[_wing_index+1].upgrade_cost)
+            {
+                GameObject.Find("_wing" + (_wing_index + 1).ToString() + "_lvup_button").GetComponent<UIButton>().isEnabled = true;
+            }
+
         }
 
         // wing 버튼 && 라벨 Update.
@@ -718,10 +735,15 @@ namespace gamedata_weapon
             
             // unlock sprite 제거해줌.
             string unlock_armor_sprite = "_armor" + _armor_index.ToString() + "_unlock_sprite";
-            GameObject.Find(unlock_armor_sprite).SetActive(false);  
+            GameObject.Find(unlock_armor_sprite).SetActive(false);
 
             // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-            GameObject.Find("_armor" + (_armor_index + 1).ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = true;         
+            // check 다음 wing 구매할만큼의 보석을 가지고 있는지.
+            if (GameData.coin_struct.gemstone > armor_struct_object[_armor_index + 1].upgrade_cost)
+            {
+                GameObject.Find("_armor" + (_armor_index + 1).ToString() + "_lvup_button").GetComponent<UIButton>().isEnabled = true;
+            }
+
         }
 
 		/// Armor 버튼 && 라벨 Update.
@@ -763,7 +785,39 @@ namespace gamedata_weapon
             }
         }
 
-		public static void set_data_for_equip_weapon(string weapon_type, int equip_weapon_index)
+        public static void check_armor_buttons_is_enable_or_not()
+        {
+            // Armor 버튼 체크.
+            for (int i = 0; i < 41; i++)
+            {
+                if (GameData.coin_struct.gemstone >= armor_struct_object[i].upgrade_cost)
+                {
+                    armor_struct_object[i].armor_buy_button.GetComponent<UIButton>().isEnabled = true;
+                }
+                else
+                {
+                    armor_struct_object[i].armor_buy_button.GetComponent<UIButton>().isEnabled = false;
+                }
+            }
+        }
+
+        public static void check_wing_buttons_is_enable_or_not()
+        {
+            // Armor 버튼 체크.
+            for (int i = 0; i < 20; i++)
+            {
+                if (GameData.coin_struct.gemstone >= wing_struct_object[i].upgrade_cost)
+                {
+                    wing_struct_object[i].wing_buy_button.GetComponent<UIButton>().isEnabled = true;
+                }
+                else
+                {
+                    wing_struct_object[i].wing_buy_button.GetComponent<UIButton>().isEnabled = false;
+                }
+            }
+        }
+
+        public static void set_data_for_equip_weapon(string weapon_type, int equip_weapon_index)
 		{
 			switch (weapon_type) 
 			{

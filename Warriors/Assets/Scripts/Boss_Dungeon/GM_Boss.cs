@@ -11,8 +11,8 @@ public class GM_Boss : MonoBehaviour {
     }
 
     // 처음 시작시 Boss struct 초기화.
-    public static GameObject[] boss_obj = new GameObject[10];
-    public static boss_struct[] boss_st = new boss_struct[10];
+    public static GameObject[] boss_obj = new GameObject[30];
+    public static boss_struct[] boss_st = new boss_struct[30];
 
     // 어떤 Boss를 Enable할 지 index를 가져올 변수.
     public static int boss_index;
@@ -46,9 +46,9 @@ public class GM_Boss : MonoBehaviour {
         getitem_window = GameObject.Find("get_item_pop_window");
 
         // Boss HP init && object 가져오기.
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 30; i++)
         {
-			boss_st[i].HP = (ulong)((i+1) * 10);                                               // Boss HP init.
+			boss_st[i].HP = (ulong)((i+1) * 10);                                            // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
             boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
@@ -169,7 +169,8 @@ public class GM_Boss : MonoBehaviour {
                     // NPC가 Enable되어 있는거 check후 모두 False해줘야 함.
 
 
-
+                    // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
+                    boss_popup_window.enable_item_popup = true;
                     // Get Item popup window 띄워줌.
                     getitem_window.SetActive(true);
 
