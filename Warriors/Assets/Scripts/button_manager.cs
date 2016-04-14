@@ -178,12 +178,14 @@ public class button_manager : MonoBehaviour {
         //SceneManager.LoadScene ("warriors_boss");
 
     }
+
     public void Clicked_AdsPlay_button()
     {
         // 유니티 광고를 불러오기 위한 코드.
         unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
         unityADs.ShowRewardedAd();
     }
+
     public void Clicked_Ads_button()
     {
         // 유니티 광고를 불러오기 위한 코드.
