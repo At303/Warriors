@@ -147,17 +147,16 @@ public class NPC03_make_Boss : MonoBehaviour, IAnimEventListener
         else
         {
 
+            print("kill the boss HP : " + GM_Boss.boss_hp.ToString());
+
             // Boss kill하였으므로 NPC Animation Stop.
             StopCoroutine("npc_attack_func");
 
-            // Boss Kill Tiemr false.
+            // Boss Kill Timer false.
             Boss_make.start_boss_kill = false;
 
             // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
             boss_popup_window.enable_item_popup = true;
-
-            // npc 화면에서 제거해줌.
-            this.gameObject.SetActive(false);
 
             // Get Item popup window 띄워줌.
             GM_Boss.getitem_window.SetActive(true);

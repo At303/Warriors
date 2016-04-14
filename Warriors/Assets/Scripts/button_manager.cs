@@ -178,7 +178,28 @@ public class button_manager : MonoBehaviour {
         //SceneManager.LoadScene ("warriors_boss");
 
     }
+    public void Clicked_AdsPlay_button()
+    {
+        // 유니티 광고를 불러오기 위한 코드.
+        unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
+        unityADs.ShowRewardedAd();
+    }
+    public void Clicked_Ads_button()
+    {
+        // 유니티 광고를 불러오기 위한 코드.
+        //unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
+        //unityADs.ShowRewardedAd();
+        GameData.Ads_popup_window.SetActive(true);
 
+    }
+    public void Clicked_Ads_window_close_button()
+    {
+        // 유니티 광고를 불러오기 위한 코드.
+        //unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
+        //unityADs.ShowRewardedAd();
+        GameData.Ads_popup_window.SetActive(false);
+
+    }
     public void Clicked_setting_button()
     {
          PlayerPrefs.DeleteAll();

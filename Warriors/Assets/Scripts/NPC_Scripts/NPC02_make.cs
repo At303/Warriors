@@ -162,7 +162,7 @@ public class NPC02_make : MonoBehaviour, IAnimEventListener
 
             // Change the NPC02 Clothes icon Sprite.
             NPC02_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-            NPC02_struct.clothes_sp.spriteName = character.Info.armor_part + character.Info.armor_index.ToString();
+            NPC02_struct.clothes_sp.spriteName = character.Info.armor_part + character.Info.armor_index.ToString() + character.Info.armor_color.ToString();
 
         }
 

@@ -123,6 +123,7 @@ namespace gamedata
         public static GameObject boss_sel_popup_window_obj;
         public static GameObject setting_popup_window_obj;
         public static GameObject quit_popup_window;
+        public static GameObject Ads_popup_window;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -216,6 +217,7 @@ namespace gamedata
             boss_sel_popup_window_obj = GameObject.Find("_select_boss_popup_window");
             setting_popup_window_obj = GameObject.Find("popup_setting");
             quit_popup_window = GameObject.Find("popup_quit");
+            Ads_popup_window = GameObject.Find("ads_popup_window");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
