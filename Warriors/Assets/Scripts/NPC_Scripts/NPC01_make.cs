@@ -132,7 +132,7 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
     public void init()
     {
         // NPC01 캐릭터 default값.
-        character.Info.order = 0;
+        character.Info.order = 1;
         character.Info.unit_part = "human-male";
         character.Info.unit_index = 2;
 
@@ -247,7 +247,6 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
         // Chest opened
         else
         {
-
             // Gemstone HUDText;;;;
             string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
             NPC01_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);

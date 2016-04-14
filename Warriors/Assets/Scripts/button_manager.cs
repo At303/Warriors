@@ -105,7 +105,7 @@ public class button_manager : MonoBehaviour {
 
         // slash3 레벨 1 증가 시키고 해당 값으로 slash 구조체에 Data Setting.
         GameData.slash3_struct.Level++;
-        GameData.slash2_data_struct_levelup(GameData.slash3_struct.Level);
+        GameData.slash3_data_struct_levelup(GameData.slash3_struct.Level);
 
         // slash3 레벨 1 증가 시킨 값을 Local Data에 저장.
         PlayerPrefs.SetInt("slash3_level", GameData.slash3_struct.Level);
@@ -200,9 +200,27 @@ public class button_manager : MonoBehaviour {
 
     }
 
+    public void Clicked_quit_yes_button()
+    {
+        Application.Quit();
+    }
+    public void Clicked_quit_no_button()
+    {
+        GameData.quit_popup_window.SetActive(false);
+    }
+
     public void toggle3_changed()
     {
         print("toggle3_open");
+        {
+            GameData.menu1_clicked = false;
+            GameData.menu2_clicked = false;
+            GameData.menu3_clicked = true;
+            GameData.menu4_clicked = false;
+            GameData.menu5_clicked = false;
+            GameData.menu6_clicked = false;
+        }
+
         // NPC 선택 창 Popup Close.
         GameData.weapon_sel_popup_window_obj.SetActive(false);
     }
@@ -210,6 +228,15 @@ public class button_manager : MonoBehaviour {
     public void toggle4_changed()
     {
         print("toggle4_open");
+
+        {
+            GameData.menu1_clicked = false;
+            GameData.menu2_clicked = false;
+            GameData.menu3_clicked = false;
+            GameData.menu4_clicked = true;
+            GameData.menu5_clicked = false;
+            GameData.menu6_clicked = false;
+        }
         // armor 메뉴가 open되어 있으므로 보석량과 gemstone을 비교하여 enable할지 말지 결정.
         GameData_weapon.check_armor_buttons_is_enable_or_not();
 
@@ -220,13 +247,28 @@ public class button_manager : MonoBehaviour {
 	public void toggle5_changed()
 	{
         print("toggle5_open");
-
+        {
+            GameData.menu1_clicked = false;
+            GameData.menu2_clicked = false;
+            GameData.menu3_clicked = false;
+            GameData.menu4_clicked = false;
+            GameData.menu5_clicked = true;
+            GameData.menu6_clicked = false;
+        }
         // NPC 선택 창 Popup Close.
         GameData.bow_sel_popup_window_obj.SetActive(false);
 	}
 	public void toggle6_changed()
 	{
         print("toggle6_open");
+        {
+            GameData.menu1_clicked = false;
+            GameData.menu2_clicked = false;
+            GameData.menu3_clicked = false;
+            GameData.menu4_clicked = false;
+            GameData.menu5_clicked = false;
+            GameData.menu6_clicked = true;
+        }
         // wing 메뉴가 open되어 있으므로 보석량과 gemstone을 비교하여 enable할지 말지 결정.
         GameData_weapon.check_wing_buttons_is_enable_or_not();
 

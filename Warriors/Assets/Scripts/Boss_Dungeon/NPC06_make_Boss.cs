@@ -65,9 +65,11 @@ public class NPC06_make_Boss : MonoBehaviour, IAnimEventListener
             StartCoroutine("npc_attack_func");
             check_count_down = false;
         }
-        else
-        {
 
+        // 다른 곳에서 보스를 죽이면 보스가 죽엇는지 변수를 체크하여 coroutine stop시킴.
+        if (!Boss_make.start_boss_kill)
+        {
+            StopCoroutine("npc_attack_func");
         }
     }
     public void init()
@@ -120,7 +122,7 @@ public class NPC06_make_Boss : MonoBehaviour, IAnimEventListener
     IEnumerator npc_attack_func()
     {
         yield return new WaitForSeconds(NPC06_Boss_struct.attack_speed);             // 모든 NPC 공격 default속도는 1. attack. 무한반복.
-        character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
+        character.PlayAnimation("anim_bow_shoot", true);                         // NPC공격 animation 실행.
 
         StartCoroutine("npc_attack_func");
 
@@ -146,7 +148,19 @@ public class NPC06_make_Boss : MonoBehaviour, IAnimEventListener
         }
         else
         {
-            print("kill the boss");
+            print("kill the boss HP : " + GM_Boss.boss_hp.ToString());
+
+            // Boss kill하였으므로 NPC Animation Stop.
+            StopCoroutine("npc_attack_func");
+
+            // Boss Kill Timer false.
+            Boss_make.start_boss_kill = false;
+
+            // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
+            boss_popup_window.enable_item_popup = true;
+
+            // Get Item popup window 띄워줌.
+            GM_Boss.getitem_window.SetActive(true);
         }
 
 

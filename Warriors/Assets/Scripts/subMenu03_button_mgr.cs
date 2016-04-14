@@ -57,10 +57,13 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		GameData_weapon.Armor_enable(armor_index);
         print("Armor index : " + armor_index.ToString());
 
-		// 아머는 보석이므로 보석 check하는 함수 call.
-		GM.check_all_function_when_gems_changed();
+        // 해당 Armor enable 되도록 Local에 저장. ( 0 : false, 1 : true)
+        PlayerPrefs.SetInt("armor_" + armor_index.ToString() + "_enable", 1);
 
-	}
+        // Armor는 보석이므로 보석 check하는 함수 중에서도 armor메뉴가 활성화 상태이므로 armor만 check.
+        GameData_weapon.check_armor_buttons_is_enable_or_not();
+
+    }
 
     /// Clothes 캐릭터 선택 창 클릭시 호출 함수.
     public void Clicked_Armor_select_NPC(string armor_type, int armor_index, int armor_color)
@@ -121,8 +124,11 @@ public class subMenu03_button_mgr : MonoBehaviour {
 		// UI로부터 가져온 Armor_index를 가져오고, 해당 index Armor enable.
 		GameData_weapon.Wing_enable(wing_index);
 
-		// 아머는 보석이므로 보석 check하는 함수 call.
-		GM.check_all_function_when_gems_changed();
+        // 해당 wing enable 되도록 Local에 저장. ( 0 : false, 1 : true)
+        PlayerPrefs.SetInt("wing_" + wing_index.ToString() + "_enable", 1);
+
+        // Wing은 보석이므로 보석 check하는 함수 중에서도 wing메뉴가 활성화 상태이므로 wing만 check.
+        GameData_weapon.check_wing_buttons_is_enable_or_not();
 
     }
 

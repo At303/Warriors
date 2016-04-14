@@ -122,6 +122,7 @@ namespace gamedata
 		public static GameObject wing_sel_popup_window_obj;
         public static GameObject boss_sel_popup_window_obj;
         public static GameObject setting_popup_window_obj;
+        public static GameObject quit_popup_window;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -185,14 +186,28 @@ namespace gamedata
 		public static GameObject slash4_lvup_btn;
 		public static GameObject slash5_lvup_btn;
 
+        // Submenu check 
+        public static bool menu1_clicked;
+        public static bool menu2_clicked;
+        public static bool menu3_clicked;
+        public static bool menu4_clicked;
+        public static bool menu5_clicked;
+        public static bool menu6_clicked;
 
 
         // ************************************************************************************************************* //
 
 
         // Use this for initialization
-		void Awake () {
-			debug_label2 = GameObject.Find ("debug_label2");
+        void Awake () {
+            menu1_clicked = false;
+            menu2_clicked = false;
+            menu3_clicked = false;
+            menu4_clicked = false;
+            menu5_clicked = false;
+            menu6_clicked = false;
+
+            debug_label2 = GameObject.Find ("debug_label2");
 
             weapon_sel_popup_window_obj = GameObject.Find("_select_npc_weapon_popup_window");
             clothes_sel_popup_window_obj = GameObject.Find("_select_npc_clothes_popup_window");
@@ -200,6 +215,7 @@ namespace gamedata
 			wing_sel_popup_window_obj = GameObject.Find ("_select_npc_wing_popup_window");
             boss_sel_popup_window_obj = GameObject.Find("_select_boss_popup_window");
             setting_popup_window_obj = GameObject.Find("popup_setting");
+            quit_popup_window = GameObject.Find("popup_quit");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
@@ -213,7 +229,7 @@ namespace gamedata
 			chest_lv_label = GameObject.Find ("_chest_lv_label");
 			chest_lvup_cost_label = GameObject.Find ("_chest_levelup_cost_label");
 			chest_dropgold_label = GameObject.Find ("_chest_dropgold_label");
-			chest_dropgold_plus_label = GameObject.Find ("_chest_dropgold_plus_label");
+			chest_dropgold_plus_label = GameObject.Find ("_chest_drop_gold_plus_label");
 
 			slash1_lvup_btn = GameObject.Find ("_slash1_levelup_btn");
 			slash1_lv_label = GameObject.Find ("_slash1_lv_label");

@@ -48,7 +48,7 @@ public class GM_Boss : MonoBehaviour {
         // Boss HP init && object 가져오기.
         for (int i = 0; i < 30; i++)
         {
-			boss_st[i].HP = (ulong)((i+1) * 10);                                            // Boss HP init.
+			boss_st[i].HP = (ulong)((i+1) * 200);                                            // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
             boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
@@ -141,8 +141,28 @@ public class GM_Boss : MonoBehaviour {
                         fHP = boss_hp / _boss_hp;
 						GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 						break;
+                    case SLASH_TYPE.SLASH2:
+                        boss_hp = boss_hp - (GameData.slash2_struct.damage + GameData.slash2_struct.add_damage);
+                        fHP = boss_hp / _boss_hp;
+                        GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
+                        break;
+                    case SLASH_TYPE.SLASH3:
+                        boss_hp = boss_hp - (GameData.slash3_struct.damage + GameData.slash3_struct.add_damage);
+                        fHP = boss_hp / _boss_hp;
+                        GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
+                        break;
+                    case SLASH_TYPE.SLASH4:
+                        boss_hp = boss_hp - (GameData.slash4_struct.damage + GameData.slash4_struct.add_damage);
+                        fHP = boss_hp / _boss_hp;
+                        GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
+                        break;
+                    case SLASH_TYPE.SLASH5:
+                        boss_hp = boss_hp - (GameData.slash5_struct.damage + GameData.slash5_struct.add_damage);
+                        fHP = boss_hp / _boss_hp;
+                        GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
+                        break;
 
-				}
+                }
 
                 // Damage HUDText.
                 string slash_damage_hud_str = "-" + (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage).ToString();
@@ -157,20 +177,12 @@ public class GM_Boss : MonoBehaviour {
                 {
                     print("kill the boss!!!!!!!");
 
-                    // 이전의 저장되어있는 캐릭터 무기, 헬멧 , 망또를 불러와서 init 해야함. 
-                    //GameObject.Find("_NPC01_gameobj_intheboss").SetActive(false);                 // npc1 캐릭터 활성화.
-
                     // 보스를 Kill so Kill timer stop
                     Boss_make.start_boss_kill = false;
 
-
-
-                    // To Do... 
-                    // NPC가 Enable되어 있는거 check후 모두 False해줘야 함.
-
-
                     // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
                     boss_popup_window.enable_item_popup = true;
+
                     // Get Item popup window 띄워줌.
                     getitem_window.SetActive(true);
 

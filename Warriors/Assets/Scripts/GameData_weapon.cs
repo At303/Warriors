@@ -76,7 +76,7 @@ namespace gamedata_weapon
 		public static Armor_struct[] armor_struct_object = new Armor_struct[41];
 
         // Use this for initialization
-        void Awake()
+        void Start()
         {
 
             // ************************************************************************  weapon init ************************************************************************ //
@@ -103,7 +103,6 @@ namespace gamedata_weapon
 
                 // 무기 레벨 up 버튼 GameObject Setting.
                 weapon_struct_object[i].lvup_button = GameObject.Find("_weapon" + i.ToString() + "_lvup_button");
-
                 // 가져온 무기의 레벨값으로 해당 무기 data struct에 setting.
                 weapon_data_struct_update(i,weapon_struct_object[i].level);
                 update_weapon_data_label(i);
@@ -158,9 +157,9 @@ namespace gamedata_weapon
                 armor_struct_object[i].armor_enable_gameobject = GameObject.Find("_armor" + i.ToString() +"_enable");
                 armor_struct_object[i].armor_enable_gameobject.SetActive(false);
                 
-				Armor_data_struct_update(i);
-				update_armor_data_label(i);
-			}
+				
+                Armor_data_struct_update(i);
+            }
             
             // ************************************************************************  wing init ************************************************************************ //
 
@@ -182,7 +181,6 @@ namespace gamedata_weapon
                 wing_struct_object[i].wing_enable_gameobject.SetActive(false);
                 
 				Wing_data_struct_update(i);
-				update_wing_data_label(i);
             }
 
            
@@ -201,6 +199,8 @@ namespace gamedata_weapon
             // 무기가 어떤 npc에 장착되어 있는지 Local변수를 가져옴.
             // NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
             string get_weapon_to_npc_str = "weapon" + _weapon_index.ToString() + "_npc";
+
+            print(get_weapon_to_npc_str);
             switch (PlayerPrefs.GetInt(get_weapon_to_npc_str, 100))
             {
 
@@ -663,8 +663,13 @@ namespace gamedata_weapon
 				Wing_enable(_wing_index);
                 
                 // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-                GameObject.Find("_wing" + (_wing_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
+                //GameObject.Find("_wing" + (_wing_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
 			}
+            else
+            {
+                string lvup_cost_label = "_wing" + _wing_index.ToString() + "_upgrade_cost_label";
+                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_wing_index].upgrade_cost);
+            }
 		}
 
 
@@ -692,13 +697,6 @@ namespace gamedata_weapon
 
         }
 
-        // wing 버튼 && 라벨 Update.
-        public static void update_wing_data_label(int _weapon_index)
-        {
-            string lvup_cost_label = "_wing" + _weapon_index.ToString() + "_upgrade_cost_label";
-            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_weapon_index].upgrade_cost);
-        }
-
 		// ************************************************************************  Armor Functions ************************************************************************ //
 
 
@@ -718,8 +716,14 @@ namespace gamedata_weapon
 				Armor_enable(_armor_index);
                 
                 // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-                GameObject.Find("_armor" + (_armor_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
-			}
+                //GameObject.Find("_armor" + (_armor_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
+			}else
+            {
+                // 해당 armor는 아직 구입전 상태로 구매비용 label에 update해줘야 함. 
+                print("armor index : " + _armor_index.ToString());
+                string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
+                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
+            }
 		}
         
         /// Armor index를 가져와서 해당 Armor status창 enable 시켜줄 함수.
@@ -745,13 +749,6 @@ namespace gamedata_weapon
             }
 
         }
-
-		/// Armor 버튼 && 라벨 Update.
-		public static void update_armor_data_label(int _armor_index)
-		{
-			string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
-			GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
-		}
 
         // ************************************************************************  common Functions ************************************************************************ //
 

@@ -185,7 +185,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
         }
 
         // NPC 속도 1로 초기화.
-        NPC04_struct.attack_speed = 3f;
+        NPC04_struct.attack_speed = 1f;
 
         // NPC04 캐릭터 enable 변수 True.
         NPC04_struct.enable = true;
@@ -285,7 +285,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
         if (NPC04_struct.Level == 3)
         {
             // NPC04 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC04 캐릭터는 화면에 안보여짐. )
-            //NPC04_make.NPC04_struct.unlock_sp.SetActive(false);
+            NPC05_make.NPC05_struct.unlock_sp.SetActive(false);
         }
     }
 

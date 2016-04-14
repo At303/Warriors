@@ -64,9 +64,11 @@ public class NPC09_make_Boss : MonoBehaviour, IAnimEventListener
             StartCoroutine("npc_attack_func");
             check_count_down = false;
         }
-        else
-        {
 
+        // 다른 곳에서 보스를 죽이면 보스가 죽엇는지 변수를 체크하여 coroutine stop시킴.
+        if (!Boss_make.start_boss_kill)
+        {
+            StopCoroutine("npc_attack_func");
         }
     }
 
@@ -141,7 +143,19 @@ public class NPC09_make_Boss : MonoBehaviour, IAnimEventListener
         }
         else
         {
-            print("kill the boss");
+            print("kill the boss HP : " + GM_Boss.boss_hp.ToString());
+
+            // Boss kill하였으므로 NPC Animation Stop.
+            StopCoroutine("npc_attack_func");
+
+            // Boss Kill Timer false.
+            Boss_make.start_boss_kill = false;
+
+            // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
+            boss_popup_window.enable_item_popup = true;
+
+            // Get Item popup window 띄워줌.
+            GM_Boss.getitem_window.SetActive(true);
         }
 
 

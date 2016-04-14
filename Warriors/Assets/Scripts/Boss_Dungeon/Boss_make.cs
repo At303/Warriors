@@ -43,7 +43,7 @@ public class Boss_make : MonoBehaviour {
             // 보스 Kill Time 설정
             double time = (target_time - Time.time) / 20.0f;        // For test set 20 sec.
 
-            if (time > 0)
+            if (time > 0 )
             {
                 // 보스 Kill Time progress bar 설정
                 Boss_HP_Bar.GetComponent<UIProgressBar>().value = (float)time;
