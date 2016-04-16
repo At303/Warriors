@@ -16,6 +16,7 @@ namespace gamedata_weapon
 		public popup_window_button_mgr.NPC_INDEX equiped_this_weapon_npc_index;
 
 		public GameObject lvup_button;
+        public GameObject weapon_enable_gameobject;
 
     }
 
@@ -29,6 +30,7 @@ namespace gamedata_weapon
         public popup_window_button_mgr.NPC_INDEX equiped_this_weapon_npc_index;
 
         public GameObject lvup_button;
+        public GameObject bow_enable_gameobject;
 
     }
 
@@ -65,9 +67,11 @@ namespace gamedata_weapon
 
         // 처음 시작시 weapon struct 초기화.
         public static Weapon_struct[] weapon_struct_object = new Weapon_struct[25];
-
+        static int weapon_MAX = 0;
+        
         // 처음 시작시 bow struct 초기화.
 		public static Bow_struct[] bow_struct_object = new Bow_struct[25];
+        static int bow_MAX = 0;
 
         // 처음 시작시 wing struct 초기화.
         public static Wing_struct[] wing_struct_object = new Wing_struct[20];
@@ -76,7 +80,7 @@ namespace gamedata_weapon
 		public static Armor_struct[] armor_struct_object = new Armor_struct[41];
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
 
             // ************************************************************************  weapon init ************************************************************************ //
@@ -89,6 +93,11 @@ namespace gamedata_weapon
                 string get_weapon_enable = "weapon" + i.ToString() + "_enable";
                 weapon_struct_object[i].enable = PlayerPrefs.GetInt(get_weapon_enable, 1);
 
+                // unlock sprite가 ON되어 있어도 그 밑에있는 버튼들이 클릭되어지는 것을 방지하기 위함.
+                string weapon_status_enable = "_weapon" + i.ToString() + "_enable_obj";
+                weapon_struct_object[i].weapon_enable_gameobject = GameObject.Find(weapon_status_enable);
+                weapon_struct_object[i].weapon_enable_gameobject.SetActive(false);
+
                 // 해당 무기 레벨을 setting해줌.
                 string get_weapon_level = "weapon" + i.ToString() + "_level";
                 weapon_struct_object[i].level = PlayerPrefs.GetInt(get_weapon_level, 1);
@@ -98,14 +107,21 @@ namespace gamedata_weapon
                     print(i.ToString() + "이 무기는 가지고 있음");
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string weapon_lock_sp = "_weapon" + i.ToString() + "_unlock_sprite";
-                    GameObject.Find(weapon_lock_sp).SetActive(false);     
+                    GameObject.Find(weapon_lock_sp).SetActive(false); 
+                    
+                    //unlock sprite가 ON되어 있어도 그 밑에있는 버튼들이 클릭되어지는 것을 방지하기 위함.
+                    weapon_struct_object[i].weapon_enable_gameobject.SetActive(true);
+                    weapon_MAX++;
+                    
+                    // 무기 레벨 up 버튼 GameObject Setting.
+                    weapon_struct_object[i].lvup_button = GameObject.Find("_weapon" + i.ToString() + "_lvup_button");
+                    
+                    // 가져온 무기의 레벨값으로 해당 무기 data struct에 setting.
+                    weapon_data_struct_update(i,weapon_struct_object[i].level);
+                    update_weapon_data_label(i);
                 }
 
-                // 무기 레벨 up 버튼 GameObject Setting.
-                weapon_struct_object[i].lvup_button = GameObject.Find("_weapon" + i.ToString() + "_lvup_button");
-                // 가져온 무기의 레벨값으로 해당 무기 data struct에 setting.
-                weapon_data_struct_update(i,weapon_struct_object[i].level);
-                update_weapon_data_label(i);
+                
             }
 
             // ************************************************************************  bow init ************************************************************************ //
@@ -118,6 +134,11 @@ namespace gamedata_weapon
                 string get_bow_enable = "bow" + i.ToString() + "_enable";
                 bow_struct_object[i].enable = PlayerPrefs.GetInt(get_bow_enable, 1);
 
+                // unlock sprite가 ON되어 있어도 그 밑에있는 버튼들이 클릭되어지는 것을 방지하기 위함.
+                string bow_status_enable = "_bow" + i.ToString() + "_enable_obj";
+                bow_struct_object[i].bow_enable_gameobject = GameObject.Find(bow_status_enable);
+                bow_struct_object[i].bow_enable_gameobject.SetActive(false);
+                
                 // 해당 무기 레벨을 setting해줌.
                 string get_bow_level = "bow" + i.ToString() + "_level";
                 bow_struct_object[i].level = PlayerPrefs.GetInt(get_bow_level, 1);
@@ -128,16 +149,23 @@ namespace gamedata_weapon
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string bow_lock_sp = "_bow" + i.ToString() + "_unlock_sprite";
                     GameObject.Find(bow_lock_sp).SetActive(false);
+                    
+                    //unlock sprite가 ON되어 있어도 그 밑에있는 버튼들이 클릭되어지는 것을 방지하기 위함.
+                    bow_struct_object[i].bow_enable_gameobject.SetActive(true);
+                    bow_MAX++;
+                    
+                     // 무기 레벨 up 버튼 GameObject Setting.
+                    bow_struct_object[i].lvup_button = GameObject.Find("_bow" + i.ToString() + "_lvup_button");
+
+                    // 가져온 무기의 레벨값으로 해당 무기 data struct에 setting.
+                    bow_data_struct_update(i, bow_struct_object[i].level);
+                    update_bow_data_label(i);
+                
                 }
 
-                // 무기 레벨 up 버튼 GameObject Setting.
-                bow_struct_object[i].lvup_button = GameObject.Find("_bow" + i.ToString() + "_lvup_button");
-
-                // 가져온 무기의 레벨값으로 해당 무기 data struct에 setting.
-                bow_data_struct_update(i, bow_struct_object[i].level);
-                update_bow_data_label(i);
+               
             }
-
+            
             // ************************************************************************  armor init ************************************************************************ //                     
 
             // Armor Button All disable except 0.
@@ -187,6 +215,13 @@ namespace gamedata_weapon
             
         }
 
+        void Start()
+        {
+            // 보스씬 갔다가 다시 Main 씬왔을때 아래 변수들은 static이므로 0으로 resetting.
+            bow_MAX = 0;
+            weapon_MAX = 0;
+        }
+            
 
         // ************************************************************************  Weapon Functions ************************************************************************ //
 
@@ -200,7 +235,6 @@ namespace gamedata_weapon
             // NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
             string get_weapon_to_npc_str = "weapon" + _weapon_index.ToString() + "_npc";
 
-            print(get_weapon_to_npc_str);
             switch (PlayerPrefs.GetInt(get_weapon_to_npc_str, 100))
             {
 
@@ -720,7 +754,6 @@ namespace gamedata_weapon
 			}else
             {
                 // 해당 armor는 아직 구입전 상태로 구매비용 label에 update해줘야 함. 
-                print("armor index : " + _armor_index.ToString());
                 string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
                 GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
             }
@@ -756,27 +789,31 @@ namespace gamedata_weapon
         public static void check_weapon_buttons_is_enable_or_not()
         {
             // 무기 버튼 체크.
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < weapon_MAX; i++)
             {
                 if (GameData.coin_struct.gold >= weapon_struct_object[i].upgrade_cost)
                 {
+                    print("weapon : " + i.ToString());
 					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = true;
                 }
                 else
                 {
+                    print("weapon : " + i.ToString());
 					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = false;
                 }
             }
 
             // 활 버튼 체크.
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < bow_MAX; i++)
             {
                 if (GameData.coin_struct.gold >= bow_struct_object[i].upgrade_cost)
                 {
+                    print("bow : " + i.ToString());
                     bow_struct_object[i].lvup_button.GetComponent<UIButton>().isEnabled = true;
                 }
                 else
                 {
+                    print("bow : " + i.ToString());
                     bow_struct_object[i].lvup_button.GetComponent<UIButton>().isEnabled = false;
                 }
             }

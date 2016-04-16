@@ -128,7 +128,7 @@ public class button_manager : MonoBehaviour {
 
         // slash4 레벨 1 증가 시키고 해당 값으로 slash 구조체에 Data Setting.
         GameData.slash4_struct.Level++;
-        GameData.slash4_data_struct_update(GameData.slash4_struct.Level);
+        GameData.slash4_data_struct_levelup(GameData.slash4_struct.Level);
 
         // slash4 레벨 1 증가 시킨 값을 Local Data에 저장.
         PlayerPrefs.SetInt("slash4_level", GameData.slash4_struct.Level);
@@ -151,7 +151,7 @@ public class button_manager : MonoBehaviour {
 
         // slash5 레벨 1 증가 시키고 해당 값으로 slash 구조체에 Data Setting.
         GameData.slash5_struct.Level++;
-        GameData.slash5_data_struct_update(GameData.slash5_struct.Level);
+        GameData.slash5_data_struct_levelup(GameData.slash5_struct.Level);
 
         // slash5 레벨 1 증가 시킨 값을 Local Data에 저장.
         PlayerPrefs.SetInt("slash5_level", GameData.slash5_struct.Level);
@@ -184,6 +184,8 @@ public class button_manager : MonoBehaviour {
         // 유니티 광고를 불러오기 위한 코드.
         unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
         unityADs.ShowRewardedAd();
+        print("get the coin!@!@!@!@");
+
     }
 
     public void Clicked_Ads_button()
@@ -232,9 +234,35 @@ public class button_manager : MonoBehaviour {
         GameData.quit_popup_window.SetActive(false);
     }
 
-    public void toggle3_changed()
+ public void toggle1_changed()
     {
-        print("toggle3_open");
+        {
+            GameData.menu1_clicked = true;
+            GameData.menu2_clicked = false;
+            GameData.menu3_clicked = false;
+            GameData.menu4_clicked = false;
+            GameData.menu5_clicked = false;
+            GameData.menu6_clicked = false;
+        }
+
+        // NPC 선택 창 Popup Close.
+    }
+    
+     public void toggle2_changed()
+    {
+        {
+            GameData.menu1_clicked = false;
+            GameData.menu2_clicked = true;
+            GameData.menu3_clicked = false;
+            GameData.menu4_clicked = false;
+            GameData.menu5_clicked = false;
+            GameData.menu6_clicked = false;
+        }
+
+    }
+    
+     public void toggle3_changed()
+    {
         {
             GameData.menu1_clicked = false;
             GameData.menu2_clicked = false;
@@ -244,14 +272,10 @@ public class button_manager : MonoBehaviour {
             GameData.menu6_clicked = false;
         }
 
-        // NPC 선택 창 Popup Close.
-        GameData.weapon_sel_popup_window_obj.SetActive(false);
     }
 
     public void toggle4_changed()
     {
-        print("toggle4_open");
-
         {
             GameData.menu1_clicked = false;
             GameData.menu2_clicked = false;
@@ -269,7 +293,6 @@ public class button_manager : MonoBehaviour {
 
 	public void toggle5_changed()
 	{
-        print("toggle5_open");
         {
             GameData.menu1_clicked = false;
             GameData.menu2_clicked = false;
@@ -283,7 +306,6 @@ public class button_manager : MonoBehaviour {
 	}
 	public void toggle6_changed()
 	{
-        print("toggle6_open");
         {
             GameData.menu1_clicked = false;
             GameData.menu2_clicked = false;

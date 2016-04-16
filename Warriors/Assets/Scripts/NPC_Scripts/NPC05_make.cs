@@ -214,8 +214,15 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         // 보물상자 HP가 0이면 아래 코드 안타도록함.
         if (!opened_chest_box.enable_disable_chest_open)
         {
+             // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
+            GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
+            
             if (GameData.chest_struct._HP <= 0)
             {
+                 // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
+                GameData.chest_animator.GetComponent<UISprite>().transform.localScale = new Vector3(1,1,1);
+                GameData.chest_animator.GetComponent<Animator>().transform.localScale = new Vector3(1,1,1);   
+                                
                 // 보물상자 false시키고 , open된 보물상자 enable
                 GameData.chest_sprite.SetActive(false);
                 opened_chest_box.enable_disable_chest_open = true;
@@ -277,7 +284,7 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         // NPC 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC05_struct.Level =Level;
 		NPC05_struct.damage = (ulong)(NPC05_struct.Level * 2 + 7);
-        NPC05_struct.attack_speed = NPC05_struct.Level * 1f;
+        //NPC05_struct.attack_speed = NPC05_struct.Level - 1;
         NPC05_struct.upgrade_cost = (ulong)(30 + NPC05_struct.Level * 2);
 
         // NPC05 레벨이 20 이상이면 NPC05 캐릭터 구입할 수 있음.

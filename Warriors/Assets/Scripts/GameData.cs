@@ -134,6 +134,7 @@ namespace gamedata
 		public static GameObject chest_dropgold_label;
 		public static GameObject chest_dropgold_plus_label;
 		public static GameObject chest_lvup_cost_label;
+		public static GameObject chest_animator;
 
 		public static GameObject slash1_lv_label;
 		public static GameObject slash1_lvup_cost_label;
@@ -201,7 +202,7 @@ namespace gamedata
 
         // Use this for initialization
         void Awake () {
-            menu1_clicked = false;
+            menu1_clicked = true;
             menu2_clicked = false;
             menu3_clicked = false;
             menu4_clicked = false;
@@ -225,8 +226,9 @@ namespace gamedata
 			chest_sprite = GameObject.Find ("chest_sprite");
 			chest_HUDText_control = GameObject.Find ("chest_HUDText");
 			chest_opened_sprite = GameObject.Find ("chest_opened_sprite");
+			chest_animator = GameObject.Find("chest_sprite_anim");
 			chest_opened_sprite.SetActive (false);
-
+			
 			chest_lvup_btn = GameObject.Find ("chest_levelup_btn");
 			chest_lv_label = GameObject.Find ("_chest_lv_label");
 			chest_lvup_cost_label = GameObject.Find ("_chest_levelup_cost_label");
@@ -369,7 +371,7 @@ namespace gamedata
                 number_of_slash++;
                 slash4_locking_sprite.SetActive(false);                 // Slash4 UI 활성화.
             }
-            // slash3 Level 데이터를 가져온 후 해당 값으로 Data Setting.
+            // slash4 Level 데이터를 가져온 후 해당 값으로 Data Setting.
             slash4_struct.add_damage = 0;
             if (PlayerPrefs.HasKey("slash4_level"))
             {
@@ -568,7 +570,7 @@ namespace gamedata
 			slash4_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format (slash4_struct.add_damage);
 		}
 
-		// Levelup slash2 struct data
+		// Levelup slash4 struct data
 		public static void slash4_data_struct_update(int Level)
 		{
 
@@ -578,8 +580,8 @@ namespace gamedata
 
 		}
 
-        // Levelup slash2 struct data
-        public static void slash4_data_struct_levelupfpl(int Level)
+        // Levelup slash4 struct data
+        public static void slash4_data_struct_levelup(int Level)
         {
 
             slash4_struct.Level = Level;
@@ -620,7 +622,15 @@ namespace gamedata
 
 		}
 
-      
+      // Levelup slash4 struct data
+        public static void slash5_data_struct_levelup(int Level)
+        {
+
+            slash5_struct.Level = Level;
+			slash5_struct.damage = slash5_struct.damage + 1;
+            slash5_struct.upgrade_cost = slash5_struct.upgrade_cost + 40;
+
+        }
 
         
         // ********************************************************			etc.. functions 					******************************************************** //
@@ -719,7 +729,6 @@ namespace gamedata
 				NPC05_make.NPC05_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
 
-
 			// NPC06 enable check
 			// NPC06 button check
 			if (coin_struct.gold > NPC06_make.NPC06_struct.upgrade_cost) {
@@ -739,14 +748,13 @@ namespace gamedata
 
 
 			// NPC08 enable check
-			if (NPC08_make.NPC08_struct.enable) {
 			// NPC08 button check
 			if (coin_struct.gold > NPC08_make.NPC08_struct.upgrade_cost) {
 				NPC08_make.NPC08_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = true;
 			} else {
 				NPC08_make.NPC08_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
 			}
-			}
+			
 
 			// NPC09 enable check
 			// NPC09 button check

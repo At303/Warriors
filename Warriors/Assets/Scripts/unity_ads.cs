@@ -12,7 +12,7 @@ public class unity_ads : MonoBehaviour
     }
     public void ShowRewardedAd()
     {
-        print("in  the ads func");
+        print("in the ads func");
         if (Advertisement.IsReady())
         {
             Advertisement.Show();

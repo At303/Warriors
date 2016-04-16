@@ -54,19 +54,22 @@ public class GM : MonoBehaviour {
 
         // 골드 && 보석 데이터 10초마다 자동 저장.
         StartCoroutine("save_data_gold_gemstone");
+        
+        // 1초마다 토글메뉴가 On되어 있는 버튼들 체크.
+        StartCoroutine("check_button_per_1sec");
 
 
     }
-
-
+   
 	// Update is called once per frame
 	void Update () 
 	{
         
+        GameData_weapon.check_wing_buttons_is_enable_or_not();
+        
         if (Input.GetMouseButtonDown(0))
         {
             {
-
                 //Get the mouse position on the screen and send a raycast into the game world from that position.
                 Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
@@ -78,6 +81,9 @@ public class GM : MonoBehaviour {
                     string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
                     GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
 
+                    // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
+                    GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
+            
                     // Add touch coin to total_coin and update total coin label
 					GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
 					GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
@@ -86,6 +92,11 @@ public class GM : MonoBehaviour {
                     if (GameData.chest_struct._HP <= 0)
                     {
 						print ("open chest");
+
+                        // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
+                        GameData.chest_animator.GetComponent<UISprite>().transform.localScale = new Vector3(1,1,1);
+                        GameData.chest_animator.GetComponent<Animator>().transform.localScale = new Vector3(1,1,1);
+
                         // 보물상자 false시키고 , open된 보물상자 enable
                         GameData.chest_sprite.SetActive(false);
                         opened_chest_box.enable_disable_chest_open = true;
@@ -152,6 +163,7 @@ public class GM : MonoBehaviour {
                     // check upgrade buttons들을 활성화 할 지말지.
                     check_all_function_when_gold_changed();
                 }
+                
 				// 보물상자가 열림. 보석 획득 시작.
                 else if (hit.collider != null && hit.collider.name == "Touch_Area")      
                 {
@@ -379,6 +391,52 @@ public class GM : MonoBehaviour {
         PlayerPrefs.Save();
         StartCoroutine("save_data_gold_gemstone");
     }
+ IEnumerator check_button_per_1sec()
+	{
+		yield return new WaitForSeconds(1f);  
+        check_button_for_coroutine();       	 
+		StartCoroutine("check_button_per_1sec");
 
+	}
+    void check_button_for_coroutine()
+    {
+        print("check button");
+        if(GameData.menu1_clicked)
+        {
+            print("menu1 clicked");
+            // TO DO...
+            // slash & chest button check
+            GameData.check_lvup_button_is_enable_or_not();
+        }else if(GameData.menu2_clicked)
+        {
+             print("menu2 clicked");
+            // TO DO...
+            // NPC button check
+            GameData.check_lvup_button_is_enable_or_not();
+        }else if(GameData.menu3_clicked)
+        {
+            print("menu3 clicked");
+            // TO DO...
+            // weapon button check
+            GameData_weapon.check_weapon_buttons_is_enable_or_not();
+        }else if(GameData.menu4_clicked)
+        {
+            print("menu4 clicked");
+            // TO DO...
+            // armor button check
+            GameData_weapon.check_armor_buttons_is_enable_or_not();
+        }else if(GameData.menu5_clicked)
+        {
+            print("menu5 clicked");
+            // TO DO...
+            // bow button check
+            GameData_weapon.check_weapon_buttons_is_enable_or_not();
+        }else if(GameData.menu6_clicked)
+        {
+            print("menu6 clicked");
+            // TO DO...
+            // wing button check
+        }
+    }
 
 }

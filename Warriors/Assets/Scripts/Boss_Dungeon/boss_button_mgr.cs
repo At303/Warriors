@@ -321,10 +321,6 @@ public class boss_button_mgr : MonoBehaviour {
         //enter_boss1_button    weapon0_enable , bow0_enable
         for (int i = 0; i < 30; i++)
         {
-
-           
-
-
             if (i < 20)
             {
                 // Next 보스로 진입하기 위한 조건 검사 ( 무기 enable && 활 enable )

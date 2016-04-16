@@ -24,11 +24,11 @@ public class opened_chest_box : MonoBehaviour {
 				// chest box reinit
 				float fHP = GameData.chest_struct._HP / GameData.chest_struct._HP;
 				GameData.chest_opened_sprite.GetComponent<UIProgressBar> ().value = fHP;
-
+		
 				GameData.chest_sprite.SetActive (true);
 				GameData.chest_opened_sprite.SetActive (false);
 				enable_disable_chest_open = false;
-
+				
 			}
 
 		}

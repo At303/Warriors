@@ -135,7 +135,10 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
         character.Info.order = 1;
         character.Info.unit_part = "human-male";
         character.Info.unit_index = 2;
-
+        
+        //Color ToChangeColor = new Color(0.8f, 0f, 0f, 1f); // Set to opaque black        
+        //character.SetColor(ToChangeColor);
+        
         // Boss Scene Loading시 weapon 체크해야 Error 발생하지 않음 
         // weapon enable값을 가져옴. 없으면 default값으로 0을 setting.
         npc01_char.weapon_enable = PlayerPrefs.GetInt("npc1_weapon_enable", 0);
@@ -211,9 +214,17 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
         // 보물상자 HP가 0이면 아래 코드 안타도록함.
         if (!opened_chest_box.enable_disable_chest_open)
         {
+            // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
+            GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
+            
             // 혹시 다른 곳에서 동시에 opened sprite접근시 에러방지를 위해 enabled bool check
             if (GameData.chest_struct._HP <= 0)
             {
+                
+                // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
+                GameData.chest_animator.GetComponent<UISprite>().transform.localScale = new Vector3(1,1,1);
+                GameData.chest_animator.GetComponent<Animator>().transform.localScale = new Vector3(1,1,1);                        
+               
                 // 보물상자 false시키고 , open된 보물상자 enable
                 GameData.chest_sprite.SetActive(false);
                 opened_chest_box.enable_disable_chest_open = true;

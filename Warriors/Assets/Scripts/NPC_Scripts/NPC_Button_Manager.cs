@@ -301,7 +301,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
-        NPC09_make npc09 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC09_make>();
+        NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
 
         // update NPC 데이터.
         NPC09_make.NPC09_struct.Level++;
