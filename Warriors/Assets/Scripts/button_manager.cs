@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
 using gamedata;
-using UnityEngine.SceneManagement;
-using System;
 using gamedata_weapon;
 
 public class button_manager : MonoBehaviour {

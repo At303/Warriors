@@ -688,7 +688,7 @@ namespace gamedata_weapon
             // Wing Data 능력치 부여 공식.
 			wing_struct_object[_wing_index].plus_gold = (ulong)(_wing_index * 2 + 2);
 			wing_struct_object[_wing_index].upgrade_cost = (ulong)(30 + _wing_index * 2);
-
+                        
 			// Wing is enable 되어 있는지 확인. ( 0 : false, 1 : true)
             int check_armor_enable = PlayerPrefs.GetInt("wing_"+_wing_index.ToString()+"_enable",0);
 			if (check_armor_enable == 1)
@@ -702,7 +702,7 @@ namespace gamedata_weapon
             else
             {
                 string lvup_cost_label = "_wing" + _wing_index.ToString() + "_upgrade_cost_label";
-                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(weapon_struct_object[_wing_index].upgrade_cost);
+                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(wing_struct_object[_wing_index].upgrade_cost);
             }
 		}
 

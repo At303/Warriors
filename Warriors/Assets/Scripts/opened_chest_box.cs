@@ -25,7 +25,11 @@ public class opened_chest_box : MonoBehaviour {
 				float fHP = GameData.chest_struct._HP / GameData.chest_struct._HP;
 				GameData.chest_opened_sprite.GetComponent<UIProgressBar> ().value = fHP;
 		
-				GameData.chest_sprite.SetActive (true);
+		        GameData.chest_animator.GetComponent<UISprite>().depth = 5;
+				GameData.chest_HP_Bar.SetActive(true);
+				GameData.chest_HP_Bar_bg.SetActive(true);
+				
+				//GameData.chest_sprite.SetActive (true);
 				GameData.chest_opened_sprite.SetActive (false);
 				enable_disable_chest_open = false;
 				

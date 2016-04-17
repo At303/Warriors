@@ -135,6 +135,8 @@ namespace gamedata
 		public static GameObject chest_dropgold_plus_label;
 		public static GameObject chest_lvup_cost_label;
 		public static GameObject chest_animator;
+		public static GameObject chest_HP_Bar;
+		public static GameObject chest_HP_Bar_bg;
 
 		public static GameObject slash1_lv_label;
 		public static GameObject slash1_lvup_cost_label;
@@ -227,6 +229,8 @@ namespace gamedata
 			chest_HUDText_control = GameObject.Find ("chest_HUDText");
 			chest_opened_sprite = GameObject.Find ("chest_opened_sprite");
 			chest_animator = GameObject.Find("chest_sprite_anim");
+			chest_HP_Bar = GameObject.Find("chest_progressbar_hp");	
+			chest_HP_Bar_bg = GameObject.Find("chest_progressbar_bg");
 			chest_opened_sprite.SetActive (false);
 			
 			chest_lvup_btn = GameObject.Find ("chest_levelup_btn");

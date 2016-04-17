@@ -21,9 +21,25 @@ public class button_manager_bossScene : MonoBehaviour {
 
     public void Clicked_boss_kill_ok()
     {
-        SceneManager.LoadScene("warriors");
+        //SceneManager.LoadScene("warriors");
 
-
+        StartCoroutine(Load());
 
     }
+	 IEnumerator Load()
+	{
+
+		AsyncOperation async = SceneManager.LoadSceneAsync("warriors");
+
+		while(!async.isDone)
+		{
+		float progress = async.progress * 100.0f;
+		int pRounded = Mathf.RoundToInt(progress);
+		//progressLabel.text = “Loading…”+ pRounded.ToString() + “%”;
+		print("Loading…"+ pRounded.ToString() + "%");
+
+		yield return true;
+		}
+
+	}
 }

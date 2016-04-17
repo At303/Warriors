@@ -8,6 +8,7 @@ public class boss_button_mgr : MonoBehaviour {
 
     public static ulong[] boss_enter_cost = new ulong[31];
     public static GameObject[] boss_enter_button_object = new GameObject[31];
+	string ToLoadScene_Name;
 
 
     public int boss0
@@ -270,9 +271,29 @@ public class boss_button_mgr : MonoBehaviour {
         // 
         select_boss_popup.check_popup_window = false;
         // Boss Scene으로 입장.
-        SceneManager.LoadScene ("warriors_boss");
-    }
+        //SceneManager.LoadScene ("warriors_boss");
+        ToLoadScene_Name = "warriors_boss";
+        StartCoroutine(Load());
 
+    }
+    
+    IEnumerator Load()
+	{
+
+		AsyncOperation async = SceneManager.LoadSceneAsync(ToLoadScene_Name);
+
+		while(!async.isDone)
+		{
+		float progress = async.progress * 100.0f;
+		print(progress.ToString());
+		int pRounded = Mathf.RoundToInt(progress);
+		//progressLabel.text = “Loading…”+ pRounded.ToString() + “%”;
+
+		yield return true;
+		}
+
+	}
+    
    void  Awake()
     {
         

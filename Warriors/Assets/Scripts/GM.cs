@@ -18,7 +18,7 @@ public class GM : MonoBehaviour {
 	void Start () {
 
         // FOR TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        // PlayerPrefs.DeleteAll();
+         PlayerPrefs.DeleteAll();
 
         // quit popup window를 가져옴.
 
@@ -94,11 +94,12 @@ public class GM : MonoBehaviour {
 						print ("open chest");
 
                         // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
-                        GameData.chest_animator.GetComponent<UISprite>().transform.localScale = new Vector3(1,1,1);
-                        GameData.chest_animator.GetComponent<Animator>().transform.localScale = new Vector3(1,1,1);
+                        GameData.chest_animator.GetComponent<UISprite>().depth = -1;
 
                         // 보물상자 false시키고 , open된 보물상자 enable
-                        GameData.chest_sprite.SetActive(false);
+                        //GameData.chest_sprite.SetActive(false);
+                        GameData.chest_HP_Bar.SetActive(false);
+                        GameData.chest_HP_Bar_bg.SetActive(false);
                         opened_chest_box.enable_disable_chest_open = true;
 
                         opened_chest_box.target_time = Time.time + 5.0f;
