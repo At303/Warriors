@@ -300,7 +300,7 @@ public class boss_button_mgr : MonoBehaviour {
         for(int i=0;i<30;i++)
         {
             // Boss 던전 입장시 지불해야할 보석 공식.
-            boss_enter_cost[i] = 10 + (ulong)(i * 200);
+            boss_enter_cost[i] = (ulong)((i + 1) * 10000);
 
             // Boss 던전 입장 버튼들 Object값들을 시작시 가져와서 저장해둬야함.
             string find_button_str = "enter_boss" + i.ToString() + "_button";

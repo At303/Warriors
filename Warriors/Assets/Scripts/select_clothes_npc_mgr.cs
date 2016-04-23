@@ -182,9 +182,17 @@ public class select_clothes_npc_mgr : MonoBehaviour {
         // NPC 아이콘 개수에 따라서 Soft Clip 사이즈를 재 지정하기 위함. NPC 아이콘이 0개면 Soft Clip 사이즈도 제로.
         if (!(count_npc == 0))
         {
-            // 마지막에 Pannel 사이즈를 추가된 아이콘 개수에 맞게 지정.
-            // Default ( Center : X.-400 Y.0 )
-            this.GetComponent<UIPanel>().SetRect((float)(-400 + (80 * (count_npc - 1))), 0, (float)(160 + (160 * (count_npc - 1))), 166f);
+            if(count_npc < 7)
+            {
+                // 마지막에 Pannel 사이즈를 추가된 아이콘 개수에 맞게 지정.
+                // Default ( Center : X.-400 Y.0 )
+                this.GetComponent<UIPanel>().SetRect((float)(-400 + (80 * (count_npc - 1))), 0, (float)(160 + (160 * (count_npc - 1))), 166f);
+            }
+            else
+            {
+                this.GetComponent<UIPanel>().SetRect(0,0,950f,166f);
+            }
+           
         }
 
     }

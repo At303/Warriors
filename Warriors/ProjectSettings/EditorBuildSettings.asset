@@ -13,5 +13,7 @@ EditorBuildSettings:
     path: Assets/Scene/Warriors.unity
   - enabled: 1
     path: Assets/Scene/Warriors_boss.unity
+  - enabled: 1
+    path: Assets/Scene/Warriors_boss_item_drop.unity
   - enabled: 0
     path: Assets/testscene.unity

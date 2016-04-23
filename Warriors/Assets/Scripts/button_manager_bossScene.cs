@@ -21,9 +21,9 @@ public class button_manager_bossScene : MonoBehaviour {
 
     public void Clicked_boss_kill_ok()
     {
-        //SceneManager.LoadScene("warriors");
-
-        StartCoroutine(Load());
+        SceneManager.LoadScene("warriors");
+        print("clicked boss kill ok button");
+        //StartCoroutine(Load());
 
     }
 	 IEnumerator Load()

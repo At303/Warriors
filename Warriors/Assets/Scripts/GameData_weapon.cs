@@ -80,8 +80,11 @@ namespace gamedata_weapon
 		public static Armor_struct[] armor_struct_object = new Armor_struct[41];
 
         // Use this for initialization
-        void Awake()
+        void Start()
         {
+            // 보스씬 갔다가 다시 Main 씬왔을때 아래 변수들은 static이므로 0으로 resetting.
+            bow_MAX = 0;
+            weapon_MAX = 0;
 
             // ************************************************************************  weapon init ************************************************************************ //
 
@@ -191,14 +194,14 @@ namespace gamedata_weapon
             
             // ************************************************************************  wing init ************************************************************************ //
 
-            // Wing Button All disable except 0.
-            for(int i=1; i < 20; i++)
+            // Wing Button All disable.
+            for(int i=0; i < 20; i++)
             {
                 // 게임 시작시 모든 Armor 구매 버튼은 비활성화 시켜줌 아래 for문에 있는 함수에서 Local 변수를 보고 활성화 할지 결정.
                 GameObject.Find("_wing" + i.ToString() +"_lvup_button").GetComponent<UIButton>().isEnabled = false;
             }            
             
-            // 망토 데이터 초기화.
+            // wing gameobject 데이터 초기화.
             for (int i = 0; i < 20; i++)
             {
                 // Armor 레벨 up 버튼 GameObject Setting.
@@ -207,20 +210,17 @@ namespace gamedata_weapon
                 // unlock sprite가 있음에도 그 밑에 있는 버튼이 클릭 되어지는걸 방지하기 위해 밑에 있는  object들을 비활성화 시켜줌.
                 wing_struct_object[i].wing_enable_gameobject = GameObject.Find("_wing" + i.ToString() +"_enable");
                 wing_struct_object[i].wing_enable_gameobject.SetActive(false);
-                
-				Wing_data_struct_update(i);
             }
 
-           
-            
+            for (int i=0;i<20;i++)
+            {
+                Wing_data_struct_update(i);
+            }
+
+            check_wing_buttons_is_enable_or_not();
+
         }
 
-        void Start()
-        {
-            // 보스씬 갔다가 다시 Main 씬왔을때 아래 변수들은 static이므로 0으로 resetting.
-            bow_MAX = 0;
-            weapon_MAX = 0;
-        }
             
 
         // ************************************************************************  Weapon Functions ************************************************************************ //
@@ -291,6 +291,7 @@ namespace gamedata_weapon
             // 무기가 어떤 npc에 장착되어 있는지 Local변수를 가져옴.
             // NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
             string get_weapon_to_npc_str = "weapon" + _weapon_index.ToString() + "_npc";
+
             switch (PlayerPrefs.GetInt(get_weapon_to_npc_str, 100)) 
 			{
 				case 1:
@@ -345,14 +346,12 @@ namespace gamedata_weapon
 
         public static void equip_the_weapon(int _weapon_index, popup_window_button_mgr.NPC_INDEX _npc_index)
         {
-			// 무기 change, reset the before add damage.
-			GameData.slash1_struct.add_damage = 0;
-			GameData.slash2_struct.add_damage = 0;
-			GameData.slash3_struct.add_damage = 0;
-			GameData.slash4_struct.add_damage = 0;
-			GameData.slash5_struct.add_damage = 0;
 
             string set_weapon_to_npc_str;
+
+            // weapon skill인 slash damage추가를 위하여 하기 함수 호출.
+            get_weapon_skill_damage(_weapon_index);
+
             // NPC에 Damage 추가 && NPC Damage 추가 Label Update.
             switch (_npc_index)
             {
@@ -430,38 +429,50 @@ namespace gamedata_weapon
 					break;
             }
 
-			// weapon별 스킬 추가.
-            switch(_weapon_index)
-            {
-				case 0:
-                    // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                    GameData.slash1_struct.add_damage = 100;
-					GameData.slash1_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash1_struct.add_damage);
-                    break;
-                case 1:
-					// weapon2 스킬 추가. < slash2에 Damage 추가. >
-					GameData.slash2_struct.add_damage = 100;
-					GameData.slash2_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash2_struct.add_damage);
-					break;
-				case 2:
-					// weapon3 스킬 추가. < slash3에 Damage 추가. >
-					GameData.slash3_struct.add_damage = 100;
-					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash3_struct.add_damage);
-					break;
-				case 3:
-					// weapon4 스킬 추가. < slash4에 Damage 추가. >
-					GameData.slash4_struct.add_damage = 100;
-					GameData.slash4_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash4_struct.add_damage);
-					break;
-				case 4:
-					// weapon5 스킬 추가. < slash5에 Damage 추가. >
-					GameData.slash5_struct.add_damage = 100;
-					GameData.slash5_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash5_struct.add_damage);
-					break;
-
-            }
+			
 
         }
+
+        public static void get_weapon_skill_damage(int _weapon_index)
+        {
+            // weapon별 스킬 추가.
+            // weapon은 slash에 damage추가하는 스킬을 지님.
+            switch (_weapon_index)
+            {
+                case 0:
+                    // weapon1 스킬 추가. < slash1에 10% 추가 Damage. >
+                    print("weapon1 스킬 : 진검베기 추가 damage :: " + (GameData.slash_struct_object[0].damage * 0.1f).ToString());
+                    GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.1f);
+                    GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    break;
+                case 1:
+                    // weapon2 스킬 추가. < slash2에 Damage 추가. >
+                    print("weapon2 스킬 : 진검베기 추가 damage :: " + (GameData.slash_struct_object[0].damage * 0.24f).ToString());
+                    GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.24f);
+                    GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    break;
+                case 2:
+                    // weapon3 스킬 추가. < slash3에 Damage 추가. >
+                    print("weapon3 스킬 : 진검베기 추가 damage :: " + (GameData.slash_struct_object[0].damage * 0.34f).ToString());
+                    GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.34f);
+                    GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    break;
+                case 3:
+                    // weapon4 스킬 추가. < slash4에 Damage 추가. >
+                    print("weapon4 스킬 : 돌려베기 추가 damage :: " + (GameData.slash_struct_object[1].damage * 0.13f).ToString());
+                    GameData.slash_struct_object[1].add_damage = GameData.slash_struct_object[1].add_damage + (ulong)((float)GameData.slash_struct_object[1].damage * 0.13f);
+                    GameData.slash_struct_object[1].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[1].add_damage.ToString();
+                    break;
+                case 4:
+                    // weapon5 스킬 추가. < slash5에 Damage 추가. >
+                    print("weapon5 스킬 : 돌려베기 추가 damage :: " + (GameData.slash_struct_object[1].damage * 0.25f).ToString());
+                    GameData.slash_struct_object[1].add_damage = GameData.slash_struct_object[1].add_damage + (ulong)((float)GameData.slash_struct_object[1].damage * 0.25f);
+                    GameData.slash_struct_object[1].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[1].add_damage.ToString();
+                    break;
+
+            }
+        }
+
         // ************************************************************************  bow Functions ************************************************************************ //
 
         // 활 레벨 UP && Data Update.
@@ -688,23 +699,21 @@ namespace gamedata_weapon
             // Wing Data 능력치 부여 공식.
 			wing_struct_object[_wing_index].plus_gold = (ulong)(_wing_index * 2 + 2);
 			wing_struct_object[_wing_index].upgrade_cost = (ulong)(30 + _wing_index * 2);
-                        
-			// Wing is enable 되어 있는지 확인. ( 0 : false, 1 : true)
-            int check_armor_enable = PlayerPrefs.GetInt("wing_"+_wing_index.ToString()+"_enable",0);
-			if (check_armor_enable == 1)
-			{
+
+            // Wing is enable 되어 있는지 확인. ( 0 : false, 1 : true)
+            int check_armor_enable = PlayerPrefs.GetInt("wing_" + _wing_index.ToString() + "_enable", 0);
+            if (check_armor_enable == 1)
+            {
                 // Armor is enable 해당 Armor status창 enable시켜줌.
-				Wing_enable(_wing_index);
-                
-                // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-                //GameObject.Find("_wing" + (_wing_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
-			}
+                Wing_enable(_wing_index);
+            }
             else
             {
                 string lvup_cost_label = "_wing" + _wing_index.ToString() + "_upgrade_cost_label";
                 GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(wing_struct_object[_wing_index].upgrade_cost);
             }
-		}
+
+        }
 
 
         // wing 레벨 UP && Data Update.
@@ -713,7 +722,7 @@ namespace gamedata_weapon
              // unlock되어 있는 wing object enable시킴.
             wing_struct_object[_wing_index].wing_enable_gameobject.SetActive(true);
             
-             // Wing 구매시 Wing enable상태를 Local에 저장. ( 0 : false, 1 : true)
+            // Wing 구매시 Wing enable상태를 Local에 저장. ( 0 : false, 1 : true)
             string set_wing_enable_str = "wing" + _wing_index.ToString() + "_enable";
             PlayerPrefs.SetInt(set_wing_enable_str, 1);
             PlayerPrefs.Save(); 
@@ -721,13 +730,6 @@ namespace gamedata_weapon
             // unlock sprite 제거해줌.
             string unlock_armor_sprite = "_wing" + _wing_index.ToString() + "_unlock_sprite";
             GameObject.Find(unlock_armor_sprite).SetActive(false);  
-
-            // Next wing 구매 버튼 활성화. 왜나하면 현재 wing를 유저가 구매했기 때문에 Next wing을 활성화 시켜줌.
-            // check 다음 wing 구매할만큼의 보석을 가지고 있는지.
-            if(GameData.coin_struct.gemstone > wing_struct_object[_wing_index+1].upgrade_cost)
-            {
-                GameObject.Find("_wing" + (_wing_index + 1).ToString() + "_lvup_button").GetComponent<UIButton>().isEnabled = true;
-            }
 
         }
 
@@ -749,8 +751,6 @@ namespace gamedata_weapon
                 // Armor is enable 해당 Armor status창 enable시켜줌.
 				Armor_enable(_armor_index);
                 
-                // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-                //GameObject.Find("_armor" + (_armor_index + 1).ToString() +"lvup_button").GetComponent<UIButton>().isEnabled = true;
 			}else
             {
                 // 해당 armor는 아직 구입전 상태로 구매비용 label에 update해줘야 함. 
@@ -773,14 +773,6 @@ namespace gamedata_weapon
             // unlock sprite 제거해줌.
             string unlock_armor_sprite = "_armor" + _armor_index.ToString() + "_unlock_sprite";
             GameObject.Find(unlock_armor_sprite).SetActive(false);
-
-            // Next Armor 구매 버튼 활성화. 왜나하면 현재 Armor를 유저가 구매했기 때문에 Next Armor를 활성화 시켜줌.
-            // check 다음 wing 구매할만큼의 보석을 가지고 있는지.
-            if (GameData.coin_struct.gemstone > armor_struct_object[_armor_index + 1].upgrade_cost)
-            {
-                GameObject.Find("_armor" + (_armor_index + 1).ToString() + "_lvup_button").GetComponent<UIButton>().isEnabled = true;
-            }
-
         }
 
         // ************************************************************************  common Functions ************************************************************************ //
@@ -793,12 +785,10 @@ namespace gamedata_weapon
             {
                 if (GameData.coin_struct.gold >= weapon_struct_object[i].upgrade_cost)
                 {
-                    print("weapon : " + i.ToString());
 					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = true;
                 }
                 else
                 {
-                    print("weapon : " + i.ToString());
 					weapon_struct_object [i].lvup_button.GetComponent<UIButton> ().isEnabled = false;
                 }
             }
@@ -808,12 +798,10 @@ namespace gamedata_weapon
             {
                 if (GameData.coin_struct.gold >= bow_struct_object[i].upgrade_cost)
                 {
-                    print("bow : " + i.ToString());
                     bow_struct_object[i].lvup_button.GetComponent<UIButton>().isEnabled = true;
                 }
                 else
                 {
-                    print("bow : " + i.ToString());
                     bow_struct_object[i].lvup_button.GetComponent<UIButton>().isEnabled = false;
                 }
             }
@@ -839,7 +827,7 @@ namespace gamedata_weapon
         {
             // Armor 버튼 체크.
             for (int i = 0; i < 20; i++)
-            {
+            {                 
                 if (GameData.coin_struct.gemstone >= wing_struct_object[i].upgrade_cost)
                 {
                     wing_struct_object[i].wing_buy_button.GetComponent<UIButton>().isEnabled = true;
@@ -847,7 +835,7 @@ namespace gamedata_weapon
                 else
                 {
                     wing_struct_object[i].wing_buy_button.GetComponent<UIButton>().isEnabled = false;
-                }
+                }                                  
             }
         }
 
@@ -859,37 +847,38 @@ namespace gamedata_weapon
 			case "dagger-a":
 				if (equip_weapon_index == 0) 
 				{
-					// weapon1 스킬 추가. < slash1에 Damage 추가. >
-					GameData.slash1_struct.add_damage = 100;
-					GameData.slash1_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash1_struct.add_damage);
-				} else if (equip_weapon_index == 1) 
+                    // weapon1 스킬 추가. < slash1에 Damage 추가. >
+                    GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.1f);
+                    GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    }
+                else if (equip_weapon_index == 1) 
 				{
-					// weapon2 스킬 추가. < slash2에 Damage 추가. >
-					GameData.slash2_struct.add_damage = 100;
-					GameData.slash2_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash2_struct.add_damage);
-				}
+                        // weapon2 스킬 추가. < slash2에 Damage 추가. >
+                        GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.24f);
+                        GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    }
 				break;
 
 			case "sword-a":
 				switch (equip_weapon_index) 
 				{
 					case 0:
-					// weapon3 스킬 추가. < slash3에 Damage 추가. >
-					GameData.slash3_struct.add_damage = 100;
-					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash3_struct.add_damage);
-					break;
+                    // weapon3 스킬 추가. < slash3에 Damage 추가. >
+                    GameData.slash_struct_object[0].add_damage = GameData.slash_struct_object[0].add_damage + (ulong)((float)GameData.slash_struct_object[0].damage * 0.34f);
+                    GameData.slash_struct_object[0].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[0].add_damage.ToString();
+                    break;
 
 					case 1:
-					// weapon4 스킬 추가. < slash4에 Damage 추가. >
-					GameData.slash4_struct.add_damage = 100;
-					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash4_struct.add_damage);
-					break;
+                    // weapon4 스킬 추가. < slash4에 Damage 추가. >
+                    GameData.slash_struct_object[1].add_damage = GameData.slash_struct_object[1].add_damage + (ulong)((float)GameData.slash_struct_object[1].damage * 0.13f);
+                    GameData.slash_struct_object[1].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[1].add_damage.ToString();
+                    break;
 
 					case 2:
-					// weapon5 스킬 추가. < slash5에 Damage 추가. >
-					GameData.slash5_struct.add_damage = 100;
-					GameData.slash3_damage_plus_label.GetComponent<UILabel>().text = GameData.int_to_label_format (GameData.slash5_struct.add_damage);
-					break;
+                    // weapon5 스킬 추가. < slash5에 Damage 추가. >
+                    GameData.slash_struct_object[1].add_damage = GameData.slash_struct_object[1].add_damage + (ulong)((float)GameData.slash_struct_object[1].damage * 0.25f);
+                    GameData.slash_struct_object[1].slash_damage_plus_label.GetComponent<UILabel>().text = GameData.slash_struct_object[1].add_damage.ToString();
+                    break;
 
 					case 3:
 					

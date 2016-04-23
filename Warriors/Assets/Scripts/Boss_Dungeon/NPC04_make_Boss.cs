@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using UnityEngine.SceneManagement;
 
 public class NPC04_make_Boss : MonoBehaviour, IAnimEventListener
 {
@@ -133,9 +134,7 @@ public class NPC04_make_Boss : MonoBehaviour, IAnimEventListener
     // Interface about attacked. ( 캐릭터가 공격 애니메이션 이후 실행 할 함수. )
     public void OnAnimation_Hitting(int _index)
     {
-        print("kill the boss HP : " + GM_Boss.boss_hp.ToString());
 
-        // 
         if (GM_Boss.boss_hp > 0)
         {
 
@@ -162,8 +161,7 @@ public class NPC04_make_Boss : MonoBehaviour, IAnimEventListener
             boss_popup_window.enable_item_popup = true;
 
             // Get Item popup window 띄워줌.
-            GM_Boss.getitem_window.SetActive(true);
-
+            SceneManager.LoadScene("Warriors_boss_item_drop");
         }
 
 

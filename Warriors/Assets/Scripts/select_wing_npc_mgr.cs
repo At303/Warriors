@@ -84,16 +84,112 @@ public class select_wing_npc_mgr : MonoBehaviour {
         {
             npc_object[4].SetActive(false);
         }
+        // NPC06 캐릭터가 Enable인지 아닌지 Check
+        if (NPC06_make.NPC06_struct.enable)
+        {
+            npc_object[5].SetActive(true);
 
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[5].SetActive(false);
+        }
+
+        // NPC07 캐릭터가 Enable인지 아닌지 Check
+        if (NPC07_make.NPC07_struct.enable)
+        {
+            npc_object[6].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[6].SetActive(false);
+        }
+
+        // NPC08 캐릭터가 Enable인지 아닌지 Check
+        if (NPC08_make.NPC08_struct.enable)
+        {
+            npc_object[7].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[7].SetActive(false);
+        }
+
+        // NPC09 캐릭터가 Enable인지 아닌지 Check
+        if (NPC09_make.NPC09_struct.enable)
+        {
+            npc_object[8].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[8].SetActive(false);
+        }
+
+        // NPC10 캐릭터가 Enable인지 아닌지 Check
+        if (NPC10_make.NPC10_struct.enable)
+        {
+            npc_object[9].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[9].SetActive(false);
+        }
+
+        // NPC11 캐릭터가 Enable인지 아닌지 Check
+        if (NPC11_make.NPC11_struct.enable)
+        {
+            npc_object[10].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[10].SetActive(false);
+        }
+
+        // NPC12 캐릭터가 Enable인지 아닌지 Check
+        if (NPC12_make.NPC12_struct.enable)
+        {
+            npc_object[11].SetActive(true);
+
+            // Soft Clip 사이즈를 재기 위한 npc icon개수 증가.
+            count_npc++;
+        }
+        else
+        {
+            npc_object[11].SetActive(false);
+        }
 
 
         // NPC 아이콘 개수에 따라서 Soft Clip 사이즈를 재 지정하기 위함. NPC 아이콘이 0개면 Soft Clip 사이즈도 제로.
         if (!(count_npc == 0))
 		{
-			// 마지막에 Pannel 사이즈를 추가된 아이콘 개수에 맞게 지정.
-			// Default ( Center : X.-400 Y.0 )
-			this.GetComponent<UIPanel>().SetRect((float)(-400 + (80 * (count_npc - 1))), 0, (float)(160 + (160 * (count_npc - 1))), 166f);
-		}
+            if (count_npc < 7)
+            {
+                // 마지막에 Pannel 사이즈를 추가된 아이콘 개수에 맞게 지정.
+                // Default ( Center : X.-400 Y.0 )
+                this.GetComponent<UIPanel>().SetRect((float)(-400 + (80 * (count_npc - 1))), 0, (float)(160 + (160 * (count_npc - 1))), 166f);
+            }
+            else
+            {
+                this.GetComponent<UIPanel>().SetRect(0, 0, 950f, 166f);
+            }
+        }
 
 	}
 }

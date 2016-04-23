@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using UnityEngine.SceneManagement;
 
 public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
 {
@@ -158,8 +159,7 @@ public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
             // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
             boss_popup_window.enable_item_popup = true;
 
-            // Get Item popup window 띄워줌.
-            GM_Boss.getitem_window.SetActive(true);
+            SceneManager.LoadScene("Warriors_boss_item_drop");
         }
 
 

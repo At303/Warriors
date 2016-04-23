@@ -35,6 +35,7 @@ public class boss_popup_window : MonoBehaviour {
         // randmom value 생성.
         float select_val = 0f;
         select_val = Random.Range(0, 100);
+        print("open pop up : " + select_val.ToString());
 
         if (enable_item_popup)
         {
@@ -530,6 +531,7 @@ public class boss_popup_window : MonoBehaviour {
     void Setweapon_to_popup_window(int boss_index,string type, string _popup_label)
     {
         string weapon_enable_str = type + boss_index.ToString() + "_enable";
+        print("get item str : " + weapon_enable_str);
 
         if (PlayerPrefs.GetInt(weapon_enable_str,1) == 0)
         {

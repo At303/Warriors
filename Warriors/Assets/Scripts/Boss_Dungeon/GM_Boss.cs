@@ -2,6 +2,7 @@
 using System.Collections;
 using gamedata;
 using gamedata_weapon;
+using UnityEngine.SceneManagement;
 
 public class GM_Boss : MonoBehaviour {
 
@@ -27,7 +28,12 @@ public class GM_Boss : MonoBehaviour {
     public static GameObject popup_window_2;
     public static GameObject popup_window_1;
     public static GameObject popup_window_0;
-    public static GameObject getitem_window;
+
+    // 보스씬 bgm object.
+    GameObject boss_fight_bgm_object;
+    GameObject boss_slash_attack_sound_object;
+    public static GameObject boss_weapon_attack_sound_object;
+
 
     public float start_time = 0.0f;
 
@@ -42,13 +48,14 @@ public class GM_Boss : MonoBehaviour {
         popup_window_1 = GameObject.Find("count_1st");
         popup_window_0 = GameObject.Find("count_fight");
 
-        // Boss Kill시 popup window object.
-        getitem_window = GameObject.Find("get_item_pop_window");
+        boss_fight_bgm_object = GameObject.Find("boss_fight_bgm_");
+        boss_slash_attack_sound_object = GameObject.Find("boss_slash_attack_effect");
+        boss_weapon_attack_sound_object = GameObject.Find("boss_weapon_attack_effect");
 
         // Boss HP init && object 가져오기.
         for (int i = 0; i < 30; i++)
         {
-			boss_st[i].HP = (ulong)((i+1) * 200);                                            // Boss HP init.
+			boss_st[i].HP = (ulong)((i+1) * 400);                                            // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
             boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
@@ -60,8 +67,10 @@ public class GM_Boss : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        start_time = Time.time + 10;
+        // Boss 씬 BGM Play
+        boss_fight_bgm_object.GetComponent<AudioSource>().Play(0);
 
+        start_time = Time.time + 10;
         // 이전 씬에서 어떤 보스와 싸울지 index값을 가져오고, 해당 index에 맞는 boss HP return
         boss_hp = _boss_hp = boss_st[boss_index].HP;
         print("Boss HP : " + boss_hp.ToString());
@@ -124,8 +133,16 @@ public class GM_Boss : MonoBehaviour {
 			//If touch is on the fixed range, excute the code.
 			if (hit.collider != null)
 			{
-                
-				string slash_animation_name = "slash" + (slash_index+1).ToString();
+                if (GameData.sound_on_off)
+                {
+                    // attack effect sound play.
+                    boss_slash_attack_sound_object.GetComponent<AudioSource>().Play(0);
+                }
+
+                // 보스 공격시 보스가 공격당하는 애니메이션 enable
+                boss_obj[boss_index].GetComponent<Animator>().SetTrigger("attacked");
+
+                string slash_animation_name = "slash" + (slash_index+1).ToString();
                 GameData.slash_animation = GameObject.Find(slash_animation_name);
 				slash_index++;
 				    
@@ -137,27 +154,27 @@ public class GM_Boss : MonoBehaviour {
 				switch ((SLASH_TYPE)slash_index)
 				{
 					case SLASH_TYPE.SLASH1:
-                        boss_hp = boss_hp - (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage);
+                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
                         fHP = boss_hp / _boss_hp;
 						GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 						break;
                     case SLASH_TYPE.SLASH2:
-                        boss_hp = boss_hp - (GameData.slash2_struct.damage + GameData.slash2_struct.add_damage);
+                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH3:
-                        boss_hp = boss_hp - (GameData.slash3_struct.damage + GameData.slash3_struct.add_damage);
+                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH4:
-                        boss_hp = boss_hp - (GameData.slash4_struct.damage + GameData.slash4_struct.add_damage);
+                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH5:
-                        boss_hp = boss_hp - (GameData.slash5_struct.damage + GameData.slash5_struct.add_damage);
+                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
@@ -165,7 +182,7 @@ public class GM_Boss : MonoBehaviour {
                 }
 
                 // Damage HUDText.
-                string slash_damage_hud_str = "-" + (GameData.slash1_struct.damage + GameData.slash1_struct.add_damage).ToString();
+                string slash_damage_hud_str = "-" + (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage).ToString();
                 slash_HUD.GetComponent<HUDText>().Add(slash_damage_hud_str, Color.red, 0.5f);
 
                 // Random touch slash animation
@@ -183,8 +200,7 @@ public class GM_Boss : MonoBehaviour {
                     // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
                     boss_popup_window.enable_item_popup = true;
 
-                    // Get Item popup window 띄워줌.
-                    getitem_window.SetActive(true);
+                    SceneManager.LoadScene("Warriors_boss_item_drop");
 
                 }
 

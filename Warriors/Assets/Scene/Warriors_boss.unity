@@ -469,6 +469,36 @@ MonoBehaviour:
   mFill: 0
   numberOfSteps: 0
   onChange: []
+--- !u!1 &49483388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 49483389}
+  m_Layer: 5
+  m_Name: sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49483389
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 49483388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1002679106}
+  - {fileID: 981074126}
+  - {fileID: 1668749506}
+  m_Father: {fileID: 330560331}
+  m_RootOrder: 3
 --- !u!1 &51689943
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2085,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 163373423}
   - 114: {fileID: 163373424}
+  - 95: {fileID: 163373425}
   m_Layer: 5
   m_Name: Boss10_Sprite
   m_TagString: Untagged
@@ -2127,6 +2158,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss11_sp
   mFillCenter: 1
+--- !u!95 &163373425
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163373422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &179279859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2541,6 +2589,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 237546301}
   - 114: {fileID: 237546302}
+  - 95: {fileID: 237546303}
   m_Layer: 5
   m_Name: Boss26_Sprite
   m_TagString: Untagged
@@ -2613,6 +2662,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss27_sp
   mFillCenter: 1
+--- !u!95 &237546303
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237546300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &237621356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4291,11 +4357,12 @@ Transform:
   m_GameObject: {fileID: 330560327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0010411245, y: 0.0010411245, z: 0.0010411245}
+  m_LocalScale: {x: 0.0010416667, y: 0.0010416667, z: 0.0010416667}
   m_Children:
   - {fileID: 1665970281}
   - {fileID: 1820823416}
   - {fileID: 112063895}
+  - {fileID: 49483389}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &330560332
@@ -5148,6 +5215,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 406005768}
   - 114: {fileID: 406005769}
+  - 95: {fileID: 406005770}
   m_Layer: 5
   m_Name: Boss8_Sprite
   m_TagString: Untagged
@@ -5220,6 +5288,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss9_sp
   mFillCenter: 1
+--- !u!95 &406005770
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406005767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &416156074
 GameObject:
   m_ObjectHideFlags: 0
@@ -6306,6 +6391,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 481749427}
   - 114: {fileID: 481749428}
+  - 95: {fileID: 481749429}
   m_Layer: 5
   m_Name: Boss16_Sprite
   m_TagString: Untagged
@@ -6378,6 +6464,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss17_sp
   mFillCenter: 1
+--- !u!95 &481749429
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481749426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &492729136
 GameObject:
   m_ObjectHideFlags: 0
@@ -8583,6 +8686,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 649285421}
   - 114: {fileID: 649285422}
+  - 95: {fileID: 649285423}
   m_Layer: 5
   m_Name: Boss15_Sprite
   m_TagString: Untagged
@@ -8655,6 +8759,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss16_sp
   mFillCenter: 1
+--- !u!95 &649285423
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 649285420}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &649934193
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,6 +9311,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 672160790}
   - 114: {fileID: 672160791}
+  - 95: {fileID: 672160792}
   m_Layer: 5
   m_Name: Boss22_Sprite
   m_TagString: Untagged
@@ -9262,6 +9384,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss23_sp
   mFillCenter: 1
+--- !u!95 &672160792
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672160789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &681403441
 GameObject:
   m_ObjectHideFlags: 0
@@ -10603,6 +10742,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 799679375}
   - 114: {fileID: 799679376}
+  - 95: {fileID: 799679377}
   m_Layer: 5
   m_Name: Boss0_Sprite
   m_TagString: Untagged
@@ -10675,6 +10815,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss1_sp
   mFillCenter: 1
+--- !u!95 &799679377
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 799679374}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &813027449
 GameObject:
   m_ObjectHideFlags: 0
@@ -11453,6 +11610,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 864889525}
   - 114: {fileID: 864889526}
+  - 95: {fileID: 864889527}
   m_Layer: 5
   m_Name: Boss6_Sprite
   m_TagString: Untagged
@@ -11525,6 +11683,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss7_sp
   mFillCenter: 1
+--- !u!95 &864889527
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 864889524}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &867851226
 GameObject:
   m_ObjectHideFlags: 0
@@ -12101,6 +12276,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 916724153}
   - 114: {fileID: 916724154}
+  - 95: {fileID: 916724155}
   m_Layer: 5
   m_Name: Boss5_Sprite
   m_TagString: Untagged
@@ -12173,6 +12349,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss6_sp
   mFillCenter: 1
+--- !u!95 &916724155
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 916724152}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &921459376
 Prefab:
   m_ObjectHideFlags: 0
@@ -12513,6 +12706,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 925730187}
   - 114: {fileID: 925730188}
+  - 95: {fileID: 925730189}
   m_Layer: 5
   m_Name: Boss3_Sprite
   m_TagString: Untagged
@@ -12585,6 +12779,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss4_sp
   mFillCenter: 1
+--- !u!95 &925730189
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925730186}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &926962929
 GameObject:
   m_ObjectHideFlags: 0
@@ -12675,6 +12886,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 936799356}
   - 114: {fileID: 936799357}
+  - 95: {fileID: 936799358}
   m_Layer: 5
   m_Name: Boss4_Sprite
   m_TagString: Untagged
@@ -12747,6 +12959,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss5_sp
   mFillCenter: 1
+--- !u!95 &936799358
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 936799355}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &937138592
 GameObject:
   m_ObjectHideFlags: 0
@@ -12959,6 +13188,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 946317685}
   - 114: {fileID: 946317686}
+  - 95: {fileID: 946317687}
   m_Layer: 5
   m_Name: Boss9_Sprite
   m_TagString: Untagged
@@ -13031,6 +13261,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss10_sp
   mFillCenter: 1
+--- !u!95 &946317687
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946317684}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &950353472
 GameObject:
   m_ObjectHideFlags: 0
@@ -13417,6 +13664,108 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &981074125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 981074126}
+  - 82: {fileID: 981074127}
+  m_Layer: 5
+  m_Name: boss_slash_attack_effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981074126
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981074125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49483389}
+  m_RootOrder: 1
+--- !u!82 &981074127
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981074125}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 130eda64401527947a4a21435988281f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &990648465
 GameObject:
   m_ObjectHideFlags: 0
@@ -13669,6 +14018,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 994179706}
   - 114: {fileID: 994179707}
+  - 95: {fileID: 994179708}
   m_Layer: 5
   m_Name: Boss27_Sprite
   m_TagString: Untagged
@@ -13741,6 +14091,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss28_sp
   mFillCenter: 1
+--- !u!95 &994179708
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994179705}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &995153363
 GameObject:
   m_ObjectHideFlags: 0
@@ -13903,6 +14270,108 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_159
   mFillCenter: 1
+--- !u!1 &1002679105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1002679106}
+  - 82: {fileID: 1002679107}
+  m_Layer: 5
+  m_Name: boss_fight_bgm_
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1002679106
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1002679105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49483389}
+  m_RootOrder: 0
+--- !u!82 &1002679107
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1002679105}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 857aad66883576544b240e9fd97dc435, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1014307256
 GameObject:
   m_ObjectHideFlags: 0
@@ -15816,6 +16285,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1126957297}
   - 114: {fileID: 1126957298}
+  - 95: {fileID: 1126957299}
   m_Layer: 5
   m_Name: Boss17_Sprite
   m_TagString: Untagged
@@ -15888,6 +16358,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss18_sp
   mFillCenter: 1
+--- !u!95 &1126957299
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1126957296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1130962900
 GameObject:
   m_ObjectHideFlags: 0
@@ -16262,6 +16749,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1165958797}
   - 114: {fileID: 1165958798}
+  - 95: {fileID: 1165958799}
   m_Layer: 5
   m_Name: Boss13_Sprite
   m_TagString: Untagged
@@ -16334,6 +16822,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss14_sp
   mFillCenter: 1
+--- !u!95 &1165958799
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1165958796}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1186187837
 GameObject:
   m_ObjectHideFlags: 0
@@ -16505,6 +17010,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1190103571}
   - 114: {fileID: 1190103572}
+  - 95: {fileID: 1190103573}
   m_Layer: 5
   m_Name: Boss19_Sprite
   m_TagString: Untagged
@@ -16577,6 +17083,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss20_sp
   mFillCenter: 1
+--- !u!95 &1190103573
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1190103570}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1192023468
 GameObject:
   m_ObjectHideFlags: 0
@@ -16667,6 +17190,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1201472870}
   - 114: {fileID: 1201472871}
+  - 95: {fileID: 1201472872}
   m_Layer: 5
   m_Name: Boss21_Sprite
   m_TagString: Untagged
@@ -16739,6 +17263,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss22_sp
   mFillCenter: 1
+--- !u!95 &1201472872
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201472869}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1215961086
 Prefab:
   m_ObjectHideFlags: 0
@@ -18965,6 +19506,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1389980719}
   - 114: {fileID: 1389980720}
+  - 95: {fileID: 1389980721}
   m_Layer: 5
   m_Name: Boss11_Sprite
   m_TagString: Untagged
@@ -19037,21 +19579,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss12_sp
   mFillCenter: 1
---- !u!1 &1392239270 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 185320, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
-  m_PrefabInternal: {fileID: 1291978995}
---- !u!114 &1392239272
-MonoBehaviour:
+--- !u!95 &1389980721
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1392239270}
+  m_GameObject: {fileID: 1389980718}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f335955c1e0f6b4bad5a363423e1adf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1393235157
 GameObject:
   m_ObjectHideFlags: 0
@@ -19424,6 +19968,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1460453566}
   - 114: {fileID: 1460453567}
+  - 95: {fileID: 1460453568}
   m_Layer: 5
   m_Name: Boss24_Sprite
   m_TagString: Untagged
@@ -19496,6 +20041,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss25_sp
   mFillCenter: 1
+--- !u!95 &1460453568
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460453565}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1460721845
 GameObject:
   m_ObjectHideFlags: 0
@@ -20265,6 +20827,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1528527888}
   - 114: {fileID: 1528527889}
+  - 95: {fileID: 1528527890}
   m_Layer: 5
   m_Name: Boss7_Sprite
   m_TagString: Untagged
@@ -20337,6 +20900,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss8_sp
   mFillCenter: 1
+--- !u!95 &1528527890
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1528527887}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1543800099 stripped
 Transform:
   m_PrefabParentObject: {fileID: 483394, guid: 9605ed04ca8001f49ba762d39f150199, type: 2}
@@ -22711,6 +23291,108 @@ MonoBehaviour:
   mAtlas: {fileID: 11497394, guid: 3a937052aaa734f70b2435d77eed189a, type: 2}
   mSpriteName: DungeonColor3@64x64_174
   mFillCenter: 1
+--- !u!1 &1668749505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1668749506}
+  - 82: {fileID: 1668749507}
+  m_Layer: 5
+  m_Name: boss_weapon_attack_effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1668749506
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668749505}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49483389}
+  m_RootOrder: 2
+--- !u!82 &1668749507
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668749505}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: dc6f9fcf05406a44496bcbe131edf4e9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1672116759
 GameObject:
   m_ObjectHideFlags: 0
@@ -22720,6 +23402,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1672116760}
   - 114: {fileID: 1672116761}
+  - 95: {fileID: 1672116762}
   m_Layer: 5
   m_Name: Boss23_Sprite
   m_TagString: Untagged
@@ -22792,6 +23475,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss24_sp
   mFillCenter: 1
+--- !u!95 &1672116762
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1672116759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1686916447
 Prefab:
   m_ObjectHideFlags: 0
@@ -23303,6 +24003,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1719122227}
   - 114: {fileID: 1719122228}
+  - 95: {fileID: 1719122229}
   m_Layer: 5
   m_Name: Boss14_Sprite
   m_TagString: Untagged
@@ -23375,6 +24076,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss15_sp
   mFillCenter: 1
+--- !u!95 &1719122229
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1719122226}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1720075541
 GameObject:
   m_ObjectHideFlags: 0
@@ -24437,6 +25155,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1823839791}
   - 114: {fileID: 1823839792}
+  - 95: {fileID: 1823839793}
   m_Layer: 5
   m_Name: Boss18_Sprite
   m_TagString: Untagged
@@ -24509,6 +25228,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss19_sp
   mFillCenter: 1
+--- !u!95 &1823839793
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823839790}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1830565983
 GameObject:
   m_ObjectHideFlags: 0
@@ -24599,6 +25335,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1838177869}
   - 114: {fileID: 1838177870}
+  - 95: {fileID: 1838177871}
   m_Layer: 5
   m_Name: Boss25_Sprite
   m_TagString: Untagged
@@ -24671,6 +25408,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss26_sp
   mFillCenter: 1
+--- !u!95 &1838177871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1838177868}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1841210503
 GameObject:
   m_ObjectHideFlags: 0
@@ -24768,6 +25522,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1848612073}
   - 114: {fileID: 1848612074}
+  - 95: {fileID: 1848612075}
   m_Layer: 5
   m_Name: Boss12_Sprite
   m_TagString: Untagged
@@ -24840,6 +25595,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss13_sp
   mFillCenter: 1
+--- !u!95 &1848612075
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1848612072}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1851659881
 GameObject:
   m_ObjectHideFlags: 0
@@ -25213,6 +25985,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1913193975}
   - 114: {fileID: 1913193976}
+  - 95: {fileID: 1913193977}
   m_Layer: 5
   m_Name: Boss28_Sprite
   m_TagString: Untagged
@@ -25285,6 +26058,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss29_sp
   mFillCenter: 1
+--- !u!95 &1913193977
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1913193974}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1914539660
 GameObject:
   m_ObjectHideFlags: 0
@@ -25547,6 +26337,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1936942615}
   - 114: {fileID: 1936942616}
+  - 95: {fileID: 1936942617}
   m_Layer: 5
   m_Name: Boss2_Sprite
   m_TagString: Untagged
@@ -25619,6 +26410,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss3_sp
   mFillCenter: 1
+--- !u!95 &1936942617
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1936942614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1946629398
 GameObject:
   m_ObjectHideFlags: 0
@@ -25790,6 +26598,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1982151684}
   - 114: {fileID: 1982151685}
+  - 95: {fileID: 1982151686}
   m_Layer: 5
   m_Name: Boss20_Sprite
   m_TagString: Untagged
@@ -25862,6 +26671,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss21_sp
   mFillCenter: 1
+--- !u!95 &1982151686
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1982151683}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1986227239
 GameObject:
   m_ObjectHideFlags: 0
@@ -26600,6 +27426,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2082729739}
   - 114: {fileID: 2082729740}
+  - 95: {fileID: 2082729741}
   m_Layer: 5
   m_Name: Boss29_Sprite
   m_TagString: Untagged
@@ -26672,6 +27499,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss30_sp
   mFillCenter: 1
+--- !u!95 &2082729741
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2082729738}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2099877382
 GameObject:
   m_ObjectHideFlags: 0
@@ -26924,6 +27768,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2126766924}
   - 114: {fileID: 2126766925}
+  - 95: {fileID: 2126766926}
   m_Layer: 5
   m_Name: Boss1_Sprite
   m_TagString: Untagged
@@ -26996,6 +27841,23 @@ MonoBehaviour:
   mAtlas: {fileID: 11441324, guid: 5934cfd3dbffd419da7fcb4061e1392b, type: 2}
   mSpriteName: boss2_sp
   mFillCenter: 1
+--- !u!95 &2126766926
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2126766923}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 446d872885c6c1044af000cb4daaca5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2129820620
 GameObject:
   m_ObjectHideFlags: 0

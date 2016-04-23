@@ -2,6 +2,7 @@
 using System.Collections;
 using Devwin;
 using gamedata;
+using UnityEngine.SceneManagement;
 
 public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
 {
@@ -137,15 +138,20 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
 
 		if(GM_Boss.boss_hp > 0)
 		{
+            if (GameData.sound_on_off)
+            {
+                // 검 캐릭터이므로 보스씬 검 사운드 enable시켜줌.
+                GM_Boss.boss_weapon_attack_sound_object.GetComponent<AudioSource>().Play(0);
+            }
 
-		// Damage HUDText.
-		string get_coin_str = "-" + (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage).ToString();
-		GM_Boss.slash_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
+            // Damage HUDText.
+            string get_coin_str = "-" + (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage).ToString();
+		    GM_Boss.slash_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
 
-        // Chest box HP modify.
-        GM_Boss.boss_hp = GM_Boss.boss_hp - (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage);
-		fHP = GM_Boss.boss_hp / GM_Boss._boss_hp;
-		GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
+            // Chest box HP modify.
+            GM_Boss.boss_hp = GM_Boss.boss_hp - (NPC01_Boss_struct.damage+NPC01_Boss_struct.add_damage);
+		    fHP = GM_Boss.boss_hp / GM_Boss._boss_hp;
+		    GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 		}
 		else
 		{
@@ -160,9 +166,8 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
             // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
             boss_popup_window.enable_item_popup = true;
 
-            // Get Item popup window 띄워줌.
-            GM_Boss.getitem_window.SetActive(true);
-            
+            SceneManager.LoadScene("Warriors_boss_item_drop");
+
         }
 
 

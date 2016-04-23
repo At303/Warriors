@@ -207,20 +207,27 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
     // Interface about attacked. ( 캐릭터가 공격 애니메이션 이후 실행 할 함수. )
     public void OnAnimation_Hitting(int _index)
     {
+        if (GameData.sound_on_off)
+        {
+            // 검 캐릭터이므로 검 사운드 enable시켜줌.
+            GameData.npc_sword_sound_object.GetComponent<AudioSource>().Play(0);
+        }
+
         // 보물상자 HP가 0이면 아래 코드 안타도록함.
         if (!opened_chest_box.enable_disable_chest_open)
-        {
-             // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
+        {          
+            // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
             GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
             
             if (GameData.chest_struct._HP <= 0)
             {
-                 // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
-                GameData.chest_animator.GetComponent<UISprite>().transform.localScale = new Vector3(1,1,1);
-                GameData.chest_animator.GetComponent<Animator>().transform.localScale = new Vector3(1,1,1);   
-                                
+                // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
+                GameData.chest_animator.GetComponent<UISprite>().depth = -1;
+
                 // 보물상자 false시키고 , open된 보물상자 enable
-                GameData.chest_sprite.SetActive(false);
+                //GameData.chest_sprite.SetActive(false);
+                GameData.chest_HP_Bar.SetActive(false);
+                GameData.chest_HP_Bar_bg.SetActive(false);
                 opened_chest_box.enable_disable_chest_open = true;
 
                 // 보물 상자 시간 설정.
@@ -260,8 +267,8 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
             GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
             GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
-            // check upgrade buttons들을 활성화 할 지말지 .
-            GM.check_all_function_when_gold_changed();
+            // check armor && wing upgrade buttons들을 활성화 할 지말지 .
+            GM.check_all_function_when_gems_changed();
 
         }
 
@@ -405,5 +412,9 @@ public class NPC03_make : MonoBehaviour, IAnimEventListener
         // Coroutine으로 일정 초간격으로 해당 함수 실행. ( Attack Animation 실행. )
         StartCoroutine("npc_attack_func");
     }
+    public void change_color(Color ToChangeColor)
+    {
 
+        character.SetColor(ToChangeColor);
+    }
 }
