@@ -131,7 +131,6 @@ public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
     // Interface about attacked. ( 캐릭터가 공격 애니메이션 이후 실행 할 함수. )
     public void OnAnimation_Hitting(int _index)
     {
-        print("kill the boss HP : " + GM_Boss.boss_hp.ToString());
 
         // 
         if (GM_Boss.boss_hp > 0)
@@ -176,7 +175,8 @@ public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
         // NPC02 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC02_Boss_struct.Level = Level;
         NPC02_Boss_struct.damage = (ulong)(NPC02_Boss_struct.Level * 2) + 7;
-        NPC02_Boss_struct.attack_speed = NPC02_Boss_struct.Level * 1f;
+        NPC02_Boss_struct.attack_speed = NPC02_make.NPC02_struct.attack_speed;
+
     }
 
 }

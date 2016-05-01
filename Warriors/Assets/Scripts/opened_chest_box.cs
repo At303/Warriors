@@ -14,28 +14,7 @@ public class opened_chest_box : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(enable_disable_chest_open)
-		{
-			float time = (target_time - Time.time) / 5.0f;
-
-			GameData.chest_opened_sprite.GetComponent<UIProgressBar> ().value = time;
-			if (time < 0) 
-			{
-				// chest box reinit
-				float fHP = GameData.chest_struct._HP / GameData.chest_struct._HP;
-				GameData.chest_opened_sprite.GetComponent<UIProgressBar> ().value = fHP;
 		
-		        GameData.chest_animator.GetComponent<UISprite>().depth = 5;
-				GameData.chest_HP_Bar.SetActive(true);
-				GameData.chest_HP_Bar_bg.SetActive(true);
-				
-				//GameData.chest_sprite.SetActive (true);
-				GameData.chest_opened_sprite.SetActive (false);
-				enable_disable_chest_open = false;
-				
-			}
-
-		}
 	}
 
 	void OnTriggerExit2D(Collider2D Collider2D) 

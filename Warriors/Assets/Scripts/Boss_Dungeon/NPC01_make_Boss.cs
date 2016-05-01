@@ -122,7 +122,6 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
 	// attack animation coroutine about 2sec.
 	IEnumerator npc_attack_func()
 	{
-        print("npc animation");
 		yield return new WaitForSeconds(NPC01_Boss_struct.attack_speed);         	 // 모든 NPC 공격 default속도는 1. attack. 무한반복.
 		character.PlayAnimation("anim_melee_attack1", true);                         // NPC공격 animation 실행.
 
@@ -155,7 +154,6 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
 		}
 		else
 		{
-			print ("kill the boss HP : " + GM_Boss.boss_hp.ToString());
         
             // Boss kill하였으므로 NPC Animation Stop.
             StopCoroutine("npc_attack_func");
@@ -184,7 +182,8 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
         // NPC01 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC01_Boss_struct.Level = Level;
         NPC01_Boss_struct.damage = (ulong)(NPC01_Boss_struct.Level * 2) + 7;
-        NPC01_Boss_struct.attack_speed = NPC01_Boss_struct.Level * 1f;       
+        NPC01_Boss_struct.attack_speed = NPC01_make.NPC01_struct.attack_speed;
+
     }
 
 

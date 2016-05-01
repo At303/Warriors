@@ -178,7 +178,8 @@ public class NPC03_make_Boss : MonoBehaviour, IAnimEventListener
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC03_Boss_struct.Level = Level;
         NPC03_Boss_struct.damage = (ulong)(NPC03_Boss_struct.Level * 2) + 7;
-        NPC03_Boss_struct.attack_speed = NPC03_Boss_struct.Level * 1f;
+        NPC03_Boss_struct.attack_speed = NPC03_make.NPC03_struct.attack_speed;
+
     }
 
 

@@ -21,12 +21,15 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
 
         // NPC Label.
         public static GameObject gameobject;
+        public static GameObject npc_enable;
+
         public static GameObject lv_label;
         public static GameObject lvup_cost_label;
         public static GameObject damage_label;
         public static GameObject add_damage_label;
         public static GameObject add_speed_label;
         public static GameObject unlock_sp;
+        public static GameObject skill_label;
 
         // NPC Sprite.
         public static UISprite weapon_sp;
@@ -59,15 +62,20 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
     // For 데미지 HUD Text.
     public GameObject NPC07_HUD;
 
+    public static float npc7_saved_attack_speed = 0f;
+
+
     // NPC07 Struct 구조체 초기화 및 Gameobject 가져오기.
     void Awake()
     {
         // **************************************   NPC07 GameObject init    ************************************************ //
-        NPC07_struct.gameobject = GameObject.Find("_NPC07_gameobj");                                       // NPC01 GameObject.    
+        NPC07_struct.gameobject = GameObject.Find("_NPC07_gameobj");
+        NPC07_struct.npc_enable = GameObject.Find("_npc7_enable");                                             // NPC02하위 요소들을 enable할지 말지 결정할 val.
+
+        // NPC07 GameObject.    
         NPC07_struct.weapon_sp = GameObject.Find("_npc07_weapon_sprite").GetComponent<UISprite>();               // NPC01 무기 icon Object.
         NPC07_struct.clothes_sp = GameObject.Find("_npc07_clothes_sprite").GetComponent<UISprite>();             // NPC01 옷 icon Object.
         NPC07_struct.wing_sp = GameObject.Find("_npc07_wing_sprite").GetComponent<UISprite>();                   // NPC01 날개 icon Object.
-        //npc_gameobject.SetActive(false);                    // 추후 모든 캐릭터가 잠깐 나올 수 있기때문에 로딩딜레이줘야함.
 
         NPC07_struct.unlock_sp = GameObject.Find("_npc07_locking_sprite");                   // NPC01 날개 icon Object.
         NPC07_struct.lv_label = GameObject.Find("_npc07_level_label");
@@ -75,6 +83,7 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         NPC07_struct.damage_label = GameObject.Find("_npc07_damage_label");
         NPC07_struct.add_damage_label = GameObject.Find("_npc07_damage_plus_label");
         NPC07_struct.add_speed_label = GameObject.Find("_npc07_speed_plus_label");
+        NPC07_struct.skill_label = GameObject.Find("_npc07_skill_label");
 
         NPC07_struct.lvup_btn = GameObject.Find("_npc07_lvup_btn");
 		NPC07_struct.lvup_btn.GetComponent<UIButton> ().isEnabled = false;
@@ -107,6 +116,8 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         {
             // 처음 NPC07 GameObject생성시 enable 변수는 False로 해줌.
             NPC07_struct.enable = false;            // boss Scene에서 사용할 변수.
+
+            NPC07_struct.npc_enable.SetActive(false);   // npc 하위 변수들 비활성화. ( 해당 npc가 enable이 아닌데도 버튼이 눌려지는 현상을 해결하기 위함. )
             NPC07_struct.gameobject.SetActive(false);
         }
 
@@ -126,9 +137,11 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         }
 
         int check_npc_level = PlayerPrefs.GetInt("npc6_level", 0);
-        if (check_npc_level  > 2)
+        if (check_npc_level > 2)
+        {
+            NPC07_struct.npc_enable.SetActive(true);
             NPC07_struct.unlock_sp.SetActive(false);                  // npc 아이템 캐릭터창 unlock 풀어주기
-
+        }
     }
 
 
@@ -138,6 +151,12 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
         character.Info.order = 1;
         character.Info.unit_part = "darkelf-male";
         character.Info.unit_index = 5;
+
+        // NPC 속도 1로 초기화.
+        NPC07_struct.attack_speed = 1f;
+
+        // NPC03 캐릭터 enable 변수 True.
+        NPC07_struct.enable = true;
 
         // Boss Scene Loading시 weapon 체크해야 Error 발생하지 않음 
         // weapon enable값을 가져옴. 없으면 default값으로 0을 setting.
@@ -161,6 +180,10 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
             character.Info.armor_index = PlayerPrefs.GetInt("npc7_armor_index", 0);
             character.Info.armor_color = PlayerPrefs.GetInt("npc7_armor_color", 0);
 
+            // 현재 장착하고 있는 Armor 스킬 Setting.
+            int someValue = GameData_weapon.armorDIC[character.Info.armor_part + character.Info.armor_index + character.Info.armor_color];
+            GameData_weapon.set_data_for_equip_armor(someValue, 6);
+
             // Change the NPC05 Clothes icon Sprite.
             NPC07_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
             NPC07_struct.clothes_sp.spriteName = character.Info.armor_part + character.Info.armor_index.ToString() + character.Info.armor_color.ToString();
@@ -173,17 +196,14 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
             character.Info.wing_part = PlayerPrefs.GetString("npc7_wing_part", "");
             character.Info.wing_index = PlayerPrefs.GetInt("npc7_wing_index", 0);
 
+            //현재 장착하고 있는 Wing 스킬 Setting.
+            GameData_weapon.set_data_for_equip_wing(character.Info.wing_part, character.Info.wing_index, popup_window_button_mgr.NPC_INDEX.NPC07);
+
             // Change the NPC Clothes icon Sprite.
             NPC07_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
             NPC07_struct.wing_sp.spriteName = character.Info.wing_part + character.Info.wing_index.ToString();
 
         }
-
-        // NPC 속도 1로 초기화.
-        NPC07_struct.attack_speed = 1f;
-
-        // NPC03 캐릭터 enable 변수 True.
-        NPC07_struct.enable = true;
 
         character.InitWithoutTextureBaking();
 
@@ -213,64 +233,28 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
             GameData.npc_sword_sound_object.GetComponent<AudioSource>().Play(0);
         }
 
-        // 보물상자 HP가 0이면 아래 코드 안타도록함.
-        if (!opened_chest_box.enable_disable_chest_open)
-        {
-             // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
-            GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
+      
+            // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
+        GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
             
-            if (GameData.chest_struct._HP <= 0)
-            {
-                // 보물상자가 attacked 애니메이션에 의해 커져있는 상태를 다시 원복시켜줌.
-                GameData.chest_animator.GetComponent<UISprite>().depth = -1;
+ 
+        // Gold HUDText;;;;
+        string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "원";
+        NPC07_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
 
-                // 보물상자 false시키고 , open된 보물상자 enable
-                //GameData.chest_sprite.SetActive(false);
-                GameData.chest_HP_Bar.SetActive(false);
-                GameData.chest_HP_Bar_bg.SetActive(false);
-                opened_chest_box.enable_disable_chest_open = true;
+        // Add touch coin to total_coin and update total coin label
+        GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
-                // 보물 상자 시간 설정.
-                opened_chest_box.target_time = Time.time + 5.0f;
-                GameData.chest_struct._HP = GameData.chest_struct.HP;
-                GameData.chest_sprite.GetComponent<UIProgressBar>().value = GameData.chest_struct._HP;
+        // Chest box HP modify
+		GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC07_struct.damage + NPC07_struct.add_damage);
+        float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
+        GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
 
-                GameData.chest_opened_sprite.SetActive(true);
-            }
-            else {
+        // check upgrade buttons들을 활성화 할 지말지 .
+        GM.check_all_function_when_gold_changed();
 
-                // Gold HUDText;;;;
-                string get_coin_str = "+" + GameData.chest_struct.attacked_gold + "g";
-                NPC07_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, 0.5f);
-
-                // Add touch coin to total_coin and update total coin label
-                GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
-                GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
-
-                // Chest box HP modify
-				GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC07_struct.damage + NPC07_struct.add_damage);
-                float fHP = GameData.chest_struct._HP / GameData.chest_struct.HP;
-                GameData.chest_sprite.GetComponent<UIProgressBar>().value = fHP;
-            }
-
-            // check upgrade buttons들을 활성화 할 지말지 .
-            GM.check_all_function_when_gold_changed();
-        }
-        // 열린 보물상자 Sprite enable시키고, GOLD가 아닌 GEMSTONE을 얻을 수 있도록 함.
-        else
-        {
-            // Gemstone HUDText;;;;
-            string get_gemstone_str = "+" + GameData.chest_struct.attacked_gemstone + "G";
-            NPC07_HUD.GetComponent<HUDText>().Add(get_gemstone_str, Color.red, 0.5f);
-
-            // Add gemstone while NPC attacking to chest.
-            GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + GameData.chest_struct.attacked_gemstone;
-            GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
-
-            // check armor && wing upgrade buttons들을 활성화 할 지말지 .
-            GM.check_all_function_when_gems_changed();
-
-        }
+      
 
     }
     public void OnAnimation_AttackMove()
@@ -286,15 +270,25 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
 
         // NPC03 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC07_struct.Level = Level;
-        NPC07_struct.damage = (ulong)(NPC07_struct.Level * 2 + 7) ;
-        //NPC07_struct.attack_speed = NPC07_struct.Level * 1f;
-        NPC07_struct.upgrade_cost = (ulong)(30 + NPC07_struct.Level * 2);
+
+        // 캐릭터 공격력도 누적.
+        NPC07_struct.damage = 0;
+
+        for (int i = 1; i < Level + 1; i++)
+        {
+            NPC07_struct.damage = NPC07_struct.damage + (ulong)(560 * Mathf.Pow(1.275f, i) + 10);
+        }
+
+        // =POWER(1.325,A2)*10000
+        NPC07_struct.upgrade_cost = (ulong)Mathf.Round(Mathf.Pow(1.325f, Level) * 10000000);
 
         // NPC03 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
         if (NPC07_struct.Level == 2)
         {
             // NPC08 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC04 캐릭터는 화면에 안보여짐. )
             NPC08_make.NPC08_struct.unlock_sp.SetActive(false);
+            NPC08_make.NPC08_struct.npc_enable.SetActive(true);
+
         }
     }
 
@@ -302,8 +296,9 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
     public void update_npc07_data_label()
     {
         NPC07_struct.lv_label.GetComponent<UILabel>().text = NPC07_struct.Level.ToString();
-        NPC07_struct.lvup_cost_label.GetComponent<UILabel>().text = GameData.int_to_label_format(NPC07_struct.upgrade_cost);
+        NPC07_struct.lvup_cost_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(NPC07_struct.upgrade_cost);
         NPC07_struct.damage_label.GetComponent<UILabel>().text = GameData.int_to_label_format(NPC07_struct.damage);
+
     }
 
     // ********************************************************			NPC03 init functions 					******************************************************** //
@@ -415,5 +410,14 @@ public class NPC07_make : MonoBehaviour, IAnimEventListener
     {
 
         character.SetColor(ToChangeColor);
+    }
+    public void change_attack_speed()
+    {
+        npc7_saved_attack_speed = NPC07_struct.attack_speed;
+        NPC07_struct.attack_speed = NPC07_struct.attack_speed * 0.5f;
+    }
+    public void reset_attack_speed()
+    {
+        NPC07_struct.attack_speed = npc7_saved_attack_speed;
     }
 }

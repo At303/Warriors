@@ -22,7 +22,7 @@ public class NPC_Button_Manager : MonoBehaviour {
 	{
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC01_make.NPC01_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC01 함수를 쓰기 위해 Object 가져옴. 
         NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
@@ -34,7 +34,9 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if(NPC01_make.NPC01_struct.Level == 2)
         {
+            
             PlayerPrefs.SetInt("npc1_enable", 1);
+            PlayerPrefs.Save();
 
             // npc01 캐릭터 init해주고 gameobject Active
             NPC01_make.NPC01_struct.gameobject.SetActive(true);
@@ -56,9 +58,8 @@ public class NPC_Button_Manager : MonoBehaviour {
     public void Clicked_npc02_Level_UP()
     {
         // pay the cost about chest level up
-		print("current gold : " + GameData.coin_struct.gold.ToString() + " upgrade cost : " + NPC01_make.NPC01_struct.upgrade_cost.ToString());
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC02_make.NPC02_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
 		// NPC03 함수를 쓰기 위해 Object 가져옴. 
         NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
@@ -71,7 +72,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC02_make.NPC02_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc2_enable", 1);
-           
+            PlayerPrefs.Save();
+
             // npc02 캐릭터 init해주고 gameobject Active
             NPC02_make.NPC02_struct.gameobject.SetActive(true);
             npc02.init();
@@ -93,7 +95,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC03_make.NPC03_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+		GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
 		// NPC03 함수를 쓰기 위해 Object 가져옴. 
         NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
@@ -105,8 +107,10 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if (NPC03_make.NPC03_struct.Level == 2)
         {
+            print("npc3 enable");
             PlayerPrefs.SetInt("npc3_enable", 1);
-            
+            PlayerPrefs.Save();
+
 
             // npc03 캐릭터 init해주고 gameobject Active
             NPC03_make.NPC03_struct.gameobject.SetActive(true);
@@ -128,7 +132,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC04_make.NPC04_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
@@ -140,7 +144,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if (NPC04_make.NPC04_struct.Level == 2)
         {
-            PlayerPrefs.SetInt("npc4_enable", 1);      
+            PlayerPrefs.SetInt("npc4_enable", 1);
+            PlayerPrefs.Save();
 
             // npc04 캐릭터 init해주고 gameobject Active
             NPC04_make.NPC04_struct.gameobject.SetActive(true);
@@ -162,7 +167,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC05_make.NPC05_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
@@ -175,7 +180,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC05_make.NPC05_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc5_enable", 1);
-           
+            PlayerPrefs.Save();
+
             // npc04 캐릭터 init해주고 gameobject Active
             NPC05_make.NPC05_struct.gameobject.SetActive(true);
             npc05.init();
@@ -196,7 +202,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC06_make.NPC06_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
@@ -209,7 +215,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC06_make.NPC06_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc6_enable", 1);
-           
+            PlayerPrefs.Save();
+
             // npc06 캐릭터 init해주고 gameobject Active
             NPC06_make.NPC06_struct.gameobject.SetActive(true);
             npc06.init();
@@ -230,7 +237,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC07_make.NPC07_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
@@ -243,7 +250,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC07_make.NPC07_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc7_enable", 1);
-           
+            PlayerPrefs.Save();
+
             // npc06 캐릭터 init해주고 gameobject Active
             NPC07_make.NPC07_struct.gameobject.SetActive(true);
             npc07.init();
@@ -264,7 +272,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC08_make.NPC08_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
@@ -277,6 +285,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC08_make.NPC08_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc8_enable", 1);
+            PlayerPrefs.Save();
 
             // npc06 캐릭터 init해주고 gameobject Active
             NPC08_make.NPC08_struct.gameobject.SetActive(true);
@@ -298,7 +307,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC09_make.NPC09_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
@@ -310,7 +319,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         // npc 최초 생성 시 level은 2가되고 npc_enable변수를 1로 setting 시켜줌 ( enable )
         if (NPC09_make.NPC09_struct.Level == 2)
         {
-            PlayerPrefs.SetInt("npc9_enable", 1);   
+            PlayerPrefs.SetInt("npc9_enable", 1);
+            PlayerPrefs.Save();
 
             // npc06 캐릭터 init해주고 gameobject Active
             NPC09_make.NPC09_struct.gameobject.SetActive(true);
@@ -332,7 +342,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC10_make.NPC10_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
@@ -345,7 +355,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC10_make.NPC10_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc10_enable", 1);
-           
+            PlayerPrefs.Save();
+
 
             // npc 캐릭터 init해주고 gameobject Active
             NPC10_make.NPC10_struct.gameobject.SetActive(true);
@@ -367,7 +378,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC11_make.NPC11_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
@@ -380,7 +391,8 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC11_make.NPC11_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc11_enable", 1);
-           
+            PlayerPrefs.Save();
+
             // npc 캐릭터 init해주고 gameobject Active
             NPC11_make.NPC11_struct.gameobject.SetActive(true);
             npc11.init();
@@ -401,7 +413,7 @@ public class NPC_Button_Manager : MonoBehaviour {
     {
         // pay the cost about chest level up
         GameData.coin_struct.gold = GameData.coin_struct.gold - NPC12_make.NPC12_struct.upgrade_cost;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // NPC 함수를 쓰기 위해 Object 가져옴. 
         NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
@@ -414,7 +426,7 @@ public class NPC_Button_Manager : MonoBehaviour {
         if (NPC12_make.NPC12_struct.Level == 2)
         {
             PlayerPrefs.SetInt("npc12_enable", 1);
-           
+            PlayerPrefs.Save();
 
             // npc 캐릭터 init해주고 gameobject Active
             NPC12_make.NPC12_struct.gameobject.SetActive(true);

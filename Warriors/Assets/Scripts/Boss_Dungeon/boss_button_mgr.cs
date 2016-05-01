@@ -300,15 +300,16 @@ public class boss_button_mgr : MonoBehaviour {
         for(int i=0;i<30;i++)
         {
             // Boss 던전 입장시 지불해야할 보석 공식.
-            boss_enter_cost[i] = (ulong)((i + 1) * 10000);
-
+            // =ROUND(110245*POWER(2.175,H4)+110245*POWER(2.175,H4),0)
+            boss_enter_cost[i] = (ulong)( 110245*Mathf.Pow(2.175f, i) *2 );
+            
             // Boss 던전 입장 버튼들 Object값들을 시작시 가져와서 저장해둬야함.
             string find_button_str = "enter_boss" + i.ToString() + "_button";
             boss_enter_button_object[i] = GameObject.Find(find_button_str);
 
             // Boss 던전 입장 cost를 label에 update.
             string find_cost_label_str = "boss" + i.ToString() + "_cost";
-            GameObject.Find(find_cost_label_str).GetComponent<UILabel>().text = GameData.int_to_label_format(boss_enter_cost[i]);
+            GameObject.Find(find_cost_label_str).GetComponent<UILabel>().text = GameData.int_to_label_format_won(boss_enter_cost[i]);
 
             // 처음에는 전부 False시켜주고 popup되었을때, 조건 판별하여 True시켜줌.
             boss_enter_button_object[i].GetComponent<UIButton>().isEnabled = false;
@@ -324,8 +325,8 @@ public class boss_button_mgr : MonoBehaviour {
     {
         for(int i=0;i<30;i++)
         {
-            // 현재 사용자가 가지고 있는 보석량을 Boss enter cost와 비교해서 입장을 가능하게 할지 말지 결정.
-            if (GameData.coin_struct.gemstone >= boss_enter_cost[i])
+            // 현재 사용자가 가지고 있는 골드량을 Boss enter cost와 비교해서 입장을 가능하게 할지 말지 결정.
+            if (GameData.coin_struct.gold >= boss_enter_cost[i])
             {
                 boss_enter_button_object[i].GetComponent<UIButton>().isEnabled = true;
             }

@@ -173,6 +173,6 @@ public class NPC09_make_Boss : MonoBehaviour, IAnimEventListener
         // NPC09 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC09_Boss_struct.Level = Level;
         NPC09_Boss_struct.damage = (ulong)(NPC09_Boss_struct.Level * 2) + 7;
-        NPC09_Boss_struct.attack_speed = NPC09_Boss_struct.Level * 1f;
+        NPC09_Boss_struct.attack_speed = NPC09_make.NPC09_struct.attack_speed;
     }
 }

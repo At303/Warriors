@@ -54,7 +54,7 @@ public class Boss_make : MonoBehaviour {
             {
                 // Boss Kill TIme 종료.
                 // 시간 내에 Boss를 죽이지 못하여 popup 창 띄워줌.
-
+                NGUIDebug.Log("touch count ::: " + GM_Boss.touch_count.ToString());
 
             }
 

@@ -28,8 +28,6 @@ public class animation_evt_manager : MonoBehaviour {
 		GameData.chest_struct._HP = GameData.chest_struct.HP;
 		GameData.chest_sprite.GetComponent<UIProgressBar> ().value = (float)GameData.chest_struct._HP;
 
-		GameData.chest_opened_sprite.SetActive (true);
-
 	}
 
 	public void chest_animation_enable()

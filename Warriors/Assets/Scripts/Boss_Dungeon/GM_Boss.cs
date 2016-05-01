@@ -40,6 +40,8 @@ public class GM_Boss : MonoBehaviour {
     // For 데미지 HUD Text.
     public static GameObject slash_HUD;
 
+    public static int touch_count = 0;
+    
     void Awake()
     {
         // Count 다운 Popup 테스트용.
@@ -125,7 +127,7 @@ public class GM_Boss : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && Boss_make.start_boss_kill)
 		{
             float fHP = 0;
-
+           
             //Get the mouse position on the screen and send a raycast into the game world from that position.
             Vector2 worldPoint = UICamera.mainCamera.ScreenToWorldPoint(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
@@ -138,43 +140,43 @@ public class GM_Boss : MonoBehaviour {
                     // attack effect sound play.
                     boss_slash_attack_sound_object.GetComponent<AudioSource>().Play(0);
                 }
-
+                touch_count++;
                 // 보스 공격시 보스가 공격당하는 애니메이션 enable
                 boss_obj[boss_index].GetComponent<Animator>().SetTrigger("attacked");
 
                 string slash_animation_name = "slash" + (slash_index+1).ToString();
                 GameData.slash_animation = GameObject.Find(slash_animation_name);
-				slash_index++;
 				    
 
            		// slash sprite enable
                 GameData.slash_animation.GetComponent<Animator>().SetTrigger("enable");
 				GameData.slash_animation.GetComponent<SpriteRenderer>().enabled = true;
 
+
 				switch ((SLASH_TYPE)slash_index)
 				{
 					case SLASH_TYPE.SLASH1:
-                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
+                        boss_hp = boss_hp - GameData.slash_struct_object[slash_index].damage;
                         fHP = boss_hp / _boss_hp;
 						GameObject.Find ("Boss_Object").GetComponent<UIProgressBar> ().value = fHP;
 						break;
                     case SLASH_TYPE.SLASH2:
-                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
+                        boss_hp = boss_hp - GameData.slash_struct_object[slash_index].damage;
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH3:
-                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
+                        boss_hp = boss_hp - GameData.slash_struct_object[slash_index].damage;
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH4:
-                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
+                        boss_hp = boss_hp - GameData.slash_struct_object[slash_index].damage;
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
                     case SLASH_TYPE.SLASH5:
-                        boss_hp = boss_hp - (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage);
+                        boss_hp = boss_hp - GameData.slash_struct_object[slash_index].damage;
                         fHP = boss_hp / _boss_hp;
                         GameObject.Find("Boss_Object").GetComponent<UIProgressBar>().value = fHP;
                         break;
@@ -182,30 +184,30 @@ public class GM_Boss : MonoBehaviour {
                 }
 
                 // Damage HUDText.
-                string slash_damage_hud_str = "-" + (GameData.slash_struct_object[slash_index].damage + GameData.slash_struct_object[slash_index].add_damage).ToString();
+                string slash_damage_hud_str = "-" + GameData.slash_struct_object[slash_index].damage.ToString();
                 slash_HUD.GetComponent<HUDText>().Add(slash_damage_hud_str, Color.red, 0.5f);
 
+                slash_index++;
                 // Random touch slash animation
                 if (slash_index == GameData.number_of_slash)
 				{
-					slash_index = 0;
+                    slash_index = 0;
 				}
                 if(fHP < 0)
                 {
-                    print("kill the boss!!!!!!!");
 
                     // 보스를 Kill so Kill timer stop
-                    Boss_make.start_boss_kill = false;
+                    //Boss_make.start_boss_kill = false;
 
                     // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
-                    boss_popup_window.enable_item_popup = true;
+                    //boss_popup_window.enable_item_popup = true;
 
-                    SceneManager.LoadScene("Warriors_boss_item_drop");
+                    //SceneManager.LoadScene("Warriors_boss_item_drop");
 
                 }
 
             }
-		}
+        }
 	}
 
 

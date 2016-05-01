@@ -39,15 +39,20 @@ public class button_manager : MonoBehaviour {
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
 		GM.check_all_function_when_gold_changed();
 
+        // slash add_percent 골드 update.
+        for(int i=0;i<10;i++)
+        {
+            GameData.slash_struct_object[i].add_gold = (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
+        }
 
-	}
+    }
 
 	//slash1 레벨 업 버튼 클릭시 호출 함수
 	public void Clicked_slash_Level_UP(int _slash_index)
 	{
         // 현재 가지고 있는 골드에서 slash upgrade cost만큼 빼주고 Gold Label에 update.
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData.slash_struct_object[_slash_index].upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format (GameData.coin_struct.gold);
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
 
         // slash 레벨 1 증가 시키고 해당 값으로 slash 구조체에 Data Setting.
         GameData.slash_struct_object[_slash_index].Level++;
@@ -57,6 +62,8 @@ public class button_manager : MonoBehaviour {
         string To_levelup_slash = "slash"+ _slash_index.ToString() + "_level";
         PlayerPrefs.SetInt(To_levelup_slash, GameData.slash_struct_object[_slash_index].Level);
         PlayerPrefs.Save();
+
+        // slash index에 따른 추가데미지도 증가시켜줘야함.
 
         // Update된 slash 데이터를 slash Label에 모두 Update.
         GameData.update_slash_data_label(_slash_index);
@@ -101,7 +108,7 @@ public class button_manager : MonoBehaviour {
         GameData.ads_icon_clicked.SetActive(true);
 
         // TEMP CODE>>>>>>
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
     public void Clicked_Ads_window_close_button()
     {
@@ -114,7 +121,7 @@ public class button_manager : MonoBehaviour {
     }
     public void Clicked_sound_on_off()
     {
-
+        print("sound off" + GameData.sound_on_off.ToString());
         GameData.sound_on_off = !GameData.sound_on_off;
         if (GameData.sound_on_off)
         {
@@ -122,6 +129,7 @@ public class button_manager : MonoBehaviour {
             PlayerPrefs.Save();
             GameData.sound_on_object.SetActive(true);
             GameData.sound_off_object.SetActive(false);
+            GameData.sound_object.SetActive(true);
         }
         else
         {
@@ -129,6 +137,8 @@ public class button_manager : MonoBehaviour {
             PlayerPrefs.Save();
             GameData.sound_on_object.SetActive(false);
             GameData.sound_off_object.SetActive(true);
+            GameData.sound_object.SetActive(false);
+
         }
     }
 
@@ -230,5 +240,8 @@ public class button_manager : MonoBehaviour {
         // NPC 선택 창 Popup Close.
         GameData.wing_sel_popup_window_obj.SetActive(false);
 	}
-
+    public void temp_delete_save()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

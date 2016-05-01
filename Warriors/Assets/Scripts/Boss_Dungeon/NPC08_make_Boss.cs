@@ -28,7 +28,7 @@ public class NPC08_make_Boss : MonoBehaviour, IAnimEventListener
     private bool check_count_down;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         // count down이 끝나고 npc animation실행하게 할 변수
         check_count_down = true;
@@ -54,9 +54,9 @@ public class NPC08_make_Boss : MonoBehaviour, IAnimEventListener
             GameObject.Find("_NPC08_gameobj_intheboss").SetActive(false);                 // npc8 캐릭터 비활성화.
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         // Count Down이 완료 되면 NPC가 공격 시작.
         if (check_count_down && Boss_make.start_boss_kill)
@@ -174,7 +174,7 @@ public class NPC08_make_Boss : MonoBehaviour, IAnimEventListener
         // NPC08 데이터 초기화 및 레벨업시 적용되는 공식.
         NPC08_Boss_struct.Level = Level;
         NPC08_Boss_struct.damage = (ulong)(NPC08_Boss_struct.Level * 2) + 7;
-        NPC08_Boss_struct.attack_speed = NPC08_Boss_struct.Level * 1f;
-    }
+        NPC08_Boss_struct.attack_speed = NPC08_make.NPC08_struct.attack_speed;
 
+    }
 }

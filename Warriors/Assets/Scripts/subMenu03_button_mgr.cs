@@ -59,6 +59,10 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
         // 해당 Armor enable 되도록 Local에 저장. ( 0 : false, 1 : true)
         PlayerPrefs.SetInt("armor_" + armor_index.ToString() + "_enable", 1);
+        PlayerPrefs.Save();
+
+        // 어떤 무기를 사용할 지 index Save.
+        popup_window_button_mgr.equip_armor_index = armor_index;
 
         // Armor는 보석이므로 보석 check하는 함수 중에서도 armor메뉴가 활성화 상태이므로 armor만 check.
         GameData_weapon.check_armor_buttons_is_enable_or_not();
@@ -126,6 +130,10 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
         // 해당 wing enable 되도록 Local에 저장. ( 0 : false, 1 : true)
         PlayerPrefs.SetInt("wing_" + wing_index.ToString() + "_enable", 1);
+        PlayerPrefs.Save();
+
+        // 어떤 무기를 사용할 지 index Save.
+        popup_window_button_mgr.equip_wing_index = wing_index;
 
         // Wing은 보석이므로 보석 check하는 함수 중에서도 wing메뉴가 활성화 상태이므로 wing만 check.
         GameData_weapon.check_wing_buttons_is_enable_or_not();
