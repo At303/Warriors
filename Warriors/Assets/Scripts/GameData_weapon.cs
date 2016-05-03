@@ -83,6 +83,10 @@ namespace gamedata_weapon
         //Define a string to int dictionary in C#
         public static Dictionary<string, int> armorDIC = new Dictionary<string, int>();
 
+        //Define a string to int dictionary in C#
+        public static Dictionary<string, int> wingDIC = new Dictionary<string, int>();
+
+
         void amorDIC_Init()
         {
             armorDIC["steel-a00"] = 0;
@@ -131,6 +135,39 @@ namespace gamedata_weapon
             armorDIC["mithril-a00"] = 38;
             armorDIC["mithril-a10"] = 39;
             armorDIC["mithril-a20"] = 40;
+
+            // not equiped.
+            armorDIC["00"] = 100;
+
+        }
+
+        void wingDIC_Init()
+        {
+            wingDIC["cape-a0"] = 0;
+            wingDIC["cape-a1"] = 1;
+            wingDIC["cape-a2"] = 2;
+            wingDIC["cape-a3"] = 3;
+            wingDIC["cape-a4"] = 4;
+            wingDIC["cape-a5"] = 5;
+            wingDIC["cape-a6"] = 6;
+            wingDIC["cape-a7"] = 7;
+            wingDIC["cape-a8"] = 8;
+            wingDIC["cape-a9"] = 9;
+            wingDIC["cape-a10"] = 10;
+            wingDIC["cape-a11"] = 11;
+
+            wingDIC["wing-a0"] = 12;
+            wingDIC["wing-a1"] = 13;
+            wingDIC["wing-a2"] = 14;
+            wingDIC["wing-a3"] = 15;
+            wingDIC["wing-a4"] = 16;
+            wingDIC["wing-a5"] = 17;
+            wingDIC["wing-a6"] = 18;
+            wingDIC["wing-a7"] = 19;
+
+            // not equiped.
+            wingDIC["0"] = 100;
+
         }
 
         // Use this for initialization
@@ -143,6 +180,8 @@ namespace gamedata_weapon
             // armor Dictornary init.
             amorDIC_Init();
 
+            // wing Dictornary init.
+            wingDIC_Init();
             // ************************************************************************  weapon init ************************************************************************ //
 
             // 무기 데이터 초기화.
@@ -304,14 +343,11 @@ namespace gamedata_weapon
             {
 
                 case 1:
-                    print("npc01 equip weapon 1");
                     NPC01_make.NPC01_struct.add_damage = weapon_struct_object[_weapon_index].damage;
                     NPC01_make.NPC01_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC01_make.NPC01_struct.add_damage);
                     break;
 
                 case 2:
-                    print("npc02 equip weapon 1");
-
                     NPC02_make.NPC02_struct.add_damage = weapon_struct_object[_weapon_index].damage;
                     NPC02_make.NPC02_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC02_make.NPC02_struct.add_damage);
                     break;
@@ -703,7 +739,9 @@ namespace gamedata_weapon
         {
             // Wing Data 능력치 부여 공식.
             wing_struct_object[_wing_index].plus_gold = (ulong)(_wing_index * 2 + 2);
-            wing_struct_object[_wing_index].upgrade_cost = (ulong)(30 + _wing_index * 2);
+
+            // =POWER(2.145,B7)*50000000+POWER(2.425,B7)*1000000
+            wing_struct_object[_wing_index].upgrade_cost = (ulong) Mathf.Round( Mathf.Pow(2.145f, (_wing_index+9))*50000000 + Mathf.Pow(2.425f, (_wing_index + 9)) * 1000000);
 
             // Wing is enable 되어 있는지 확인. ( 0 : false, 1 : true)
             int check_armor_enable = PlayerPrefs.GetInt("wing_" + _wing_index.ToString() + "_enable", 0);
@@ -715,7 +753,7 @@ namespace gamedata_weapon
             else
             {
                 string lvup_cost_label = "_wing" + _wing_index.ToString() + "_upgrade_cost_label";
-                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(wing_struct_object[_wing_index].upgrade_cost);
+                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format_won(wing_struct_object[_wing_index].upgrade_cost);
             }
 
         }
@@ -746,53 +784,271 @@ namespace gamedata_weapon
         /// </summary>
         /// <param name="_wing_index_skill"></param>
         /// <param name="_npc_inde"></param>
-        public static void get_wing_skill_func(int _wing_index_skill, popup_window_button_mgr.NPC_INDEX _npc_inde)
+        public static void get_wing_skill_func(int _wing_index_skill, popup_window_button_mgr.NPC_INDEX _npc_index)
         {
+            Animator anim;
+
+            // wing index에 따라서 공격속도 달리 설정해 줄 변수 선언.
+            float animation_speed = 0f;
+            float attack_speed = 0f;
+
+            print("To Save wing index :: " + _wing_index_skill);
+            print("To Save npc index :: " + (int)_npc_index);
+
+            // 해당 wing이 어떤 npc에 저장되어 있는지 판별할 Local 변수에 저장해줌
+            // Ex) NPC01 : 1 , NPC02 : 2.... 임. enum값때문.
+            PlayerPrefs.SetInt("wing" + _wing_index_skill + "_npc", (int)_npc_index);
+            PlayerPrefs.Save();
 
             // Wing index별 스킬 추가.
             // Wing index에 해당하는 스킬을 할당해줌.
-            switch (_npc_inde)
+            switch (_wing_index_skill)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    // 속도 Level 1
+                    animation_speed = 1f;
+                    attack_speed = 0.9f;
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    // 속도 Level 2
+                    animation_speed = 1f;
+                    attack_speed = 0.8f;
+                    break;
+
+                case 10:
+                    // 속도 Level 3
+                    animation_speed = 1f;
+                    attack_speed = 0.7f;
+                    break;
+
+                case 11:
+                    // 속도 Level 4
+                    animation_speed = 1.5f;
+                    attack_speed = 0.6f;
+                    break;
+
+                case 12:
+                case 13:
+                    // 속도 level 5
+                    animation_speed = 1.5f;
+                    attack_speed = 0.5f;
+                    break;
+
+                case 14:
+                case 15:
+                    // 속도 Level 6
+                    animation_speed = 1.7f;
+                    attack_speed = 0.4f;
+                    break;
+
+                case 16:
+                    // 속도 Level 7
+                    animation_speed = 2.3f;
+                    attack_speed = 0.3f;
+                    break;
+
+                case 17:
+                case 18:
+                    // 속도 Level 8
+                    animation_speed = 3.2f;
+                    attack_speed = 0.2f;
+                    break;
+
+                case 19:
+                    // 속도 Level MAX
+                    animation_speed = 6f;
+                    attack_speed = 0.1f;
+                    break;
+
+                default:
+                    print("wing index error!!!");
+                    break;
+            }
+
+
+            // 해당 NPC에 wing skill 속도를 setting해줌.
+            switch(_npc_index)
             {
                 case popup_window_button_mgr.NPC_INDEX.NPC01:
-                    // 1번 wing 장착 후 gemstone획득량 10% UP.
-                    float get_speed = get_wing_skill_speed(_wing_index_skill);
-                    print("To change speed :: " + get_speed.ToString());
-                    NPC01_make.NPC01_struct.attack_speed = get_speed;
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl1").GetComponent<Animator>();
+                    print("npc1 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+                    npc01.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC01_make.NPC01_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1-attack_speed)*100) + "%";
                     break;
 
                 case popup_window_button_mgr.NPC_INDEX.NPC02:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl2").GetComponent<Animator>();
+                    print("npc2 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
+                    npc02.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC02_make.NPC02_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
                     break;
-                    // TO DO 
-                    // 추가 wing 아이템 스킬 구현 해야함.
+
+                case popup_window_button_mgr.NPC_INDEX.NPC03:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl3").GetComponent<Animator>();
+                    print("npc3 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+                    npc03.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC03_make.NPC03_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC04:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl4").GetComponent<Animator>();
+                    print("npc4 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+                    npc04.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC04_make.NPC04_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC05:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl5").GetComponent<Animator>();
+                    print("npc5 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+                    npc05.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC05_make.NPC05_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC06:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl6").GetComponent<Animator>();
+                    print("npc6 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+                    npc06.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC06_make.NPC06_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC07:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl7").GetComponent<Animator>();
+                    print("npc7 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+                    npc07.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC07_make.NPC07_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC08:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl8").GetComponent<Animator>();
+                    print("npc8 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+                    npc08.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC08_make.NPC08_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC09:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl9").GetComponent<Animator>();
+                    print("npc9 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+                    npc09.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC09_make.NPC09_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC10:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl10").GetComponent<Animator>();
+                    print("npc10 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+                    npc10.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC10_make.NPC10_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC11:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl11").GetComponent<Animator>();
+                    print("npc11 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC11_make npc11= NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+                    npc11.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC11_make.NPC11_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                case popup_window_button_mgr.NPC_INDEX.NPC12:
+                    // 캐릭터 공격 애니메이션 속도 변경.
+                    anim = GameObject.Find("Impl12").GetComponent<Animator>();
+                    print("npc12 speed :::" + anim.speed.ToString());
+                    anim.speed = animation_speed;
+
+                    // 캐릭터 공격속도 변경.
+                    NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+                    npc12.change_attack_speed(attack_speed);
+
+                    // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
+                    NPC12_make.NPC12_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
+                    break;
+
+                default:
+                    print("To accept wing skill,npc index error");
+                    break;
             }
-        }
-
-        /// <summary>
-        /// wing index를 받아와서 해당하는 index에 따라서 캐릭터 attack speed를 변경해 줄 값을 return.
-        /// </summary>
-        /// <param name="_wing_index"></param>
-        /// <returns></returns>
-        public static float get_wing_skill_speed(int _wing_index)
-        {
-            float return_speed = 0f;
-
-            switch (_wing_index)
-            {
-                case 0:
-                    return_speed = 0.4f;
-                    break;
-
-                case 1:
-                    return_speed = 1.9f;
-                    break;
-
-            }
-
-
-
-
-            return return_speed;
-
         }
 
         // ************************************************************************  Armor Functions ************************************************************************ //
@@ -803,40 +1059,25 @@ namespace gamedata_weapon
         public static void Armor_data_struct_update(int _armor_index)
         {
             // Armor Data 능력치 부여 공식.
-            //armor_struct_object[_armor_index].plus_gold = (ulong)(_armor_index * 2 + 2);
-            armor_struct_object[_armor_index].upgrade_cost = (ulong)(Mathf.Round( (100 * (Mathf.Pow(2.715f,(_armor_index+1))))));
+            // =POWER(1.925,A4)*5000000+POWER(2.125,A4)*1000000
+            armor_struct_object[_armor_index].upgrade_cost = (ulong)(Mathf.Round( Mathf.Pow(1.925f, _armor_index)* 5000000 + Mathf.Pow(2.125f, _armor_index)* 1000000));
 
             // Armor가 enable 되어 있는지 확인. ( 0 : false, 1 : true)
-            int check_armor_enable = PlayerPrefs.GetInt("armor_" + _armor_index.ToString() + "_enable", 0);
+            int check_armor_enable = PlayerPrefs.GetInt("armor" + _armor_index.ToString() + "_enable", 0);
             if (check_armor_enable == 1)
             {
-                // Armor is enable 해당 Armor status창 enable시켜줌.
-                Armor_enable(_armor_index);
-
+                // unlock sprite 제거해줌.
+                string unlock_armor_sprite = "_armor" + _armor_index.ToString() + "_unlock_sprite";
+                GameObject.Find(unlock_armor_sprite).SetActive(false);
+                // unlock되어 있는 armor object enable시킴.
+                armor_struct_object[_armor_index].armor_enable_gameobject.SetActive(true);
             }
             else
             {
                 // 해당 armor는 아직 구입전 상태로 구매비용 label에 update해줘야 함. 
                 string lvup_cost_label = "_armor" + _armor_index.ToString() + "_upgrade_cost_label";
-                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(armor_struct_object[_armor_index].upgrade_cost);
+                GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format_won(armor_struct_object[_armor_index].upgrade_cost);
             }
-        }
-
-
-        /// Armor index를 가져와서 해당 Armor status창 enable 시켜줄 함수.
-        public static void Armor_enable(int _armor_index)
-        {
-            // unlock되어 있는 armor object enable시킴.
-            armor_struct_object[_armor_index].armor_enable_gameobject.SetActive(true);
-
-            // Armor 구매시 Armor enable상태를 Local에 저장. ( 0 : false, 1 : true)
-            string set_armor_enable_str = "armor" + _armor_index.ToString() + "_enable";
-            PlayerPrefs.SetInt(set_armor_enable_str, 1);
-            PlayerPrefs.Save();
-
-            // unlock sprite 제거해줌.
-            string unlock_armor_sprite = "_armor" + _armor_index.ToString() + "_unlock_sprite";
-            GameObject.Find(unlock_armor_sprite).SetActive(false);
         }
 
         /// <summary>
@@ -846,7 +1087,8 @@ namespace gamedata_weapon
         /// <param name="_npx_index"></param>
         public static void get_armor_skill_func(int _armor_index, int _npx_index)
         {
-            print("_armor_index ::: " + _armor_index);
+            print("_npx_index : "+ _npx_index + "_armor_index ::: " + _armor_index);
+
             string set_armor_to_npc_str;
 
             // Armor index별 스킬 추가.
@@ -861,7 +1103,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash1 gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 0.1f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 "+ (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 10% 증가");
@@ -875,7 +1116,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash1 gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 0.1f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 10% 증가");
@@ -889,7 +1129,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash1 gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 0.15f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 15% 증가");
@@ -903,7 +1142,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash1 gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 0.15f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 15% 증가");
@@ -917,7 +1155,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent + 0.15f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "2연속베기 골드 획득량 15% 증가");
@@ -931,7 +1168,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 0.19f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 19% 증가");
@@ -945,7 +1181,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 0.19f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 19% 증가");
@@ -959,7 +1194,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent + 0.19f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "2연속베기 골드 획득량 19% 증가");
@@ -973,7 +1207,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent + 0.19f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "위아래베기 골드 획득량 19% 증가");
@@ -987,7 +1220,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 0.25f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 25% 증가");
@@ -1001,7 +1233,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 0.25f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 25% 증가");
@@ -1015,7 +1246,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent + 0.25f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "2연속베기 골드 획득량 25% 증가");
@@ -1029,7 +1259,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent + 0.25f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "위아래베기 골드 획득량 25% 증가");
@@ -1043,7 +1272,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent + 0.25f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "3연속베기 골드 획득량 25% 증가");
@@ -1057,7 +1285,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 50% 증가");
@@ -1071,7 +1298,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 50% 증가");
@@ -1085,7 +1311,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "2연속베기 골드 획득량 50% 증가");
@@ -1099,7 +1324,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "위아래베기 골드 획득량 50% 증가");
@@ -1113,7 +1337,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "3연속베기 골드 획득량 50% 증가");
@@ -1127,7 +1350,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[5].add_gold_percent = GameData.slash_struct_object[5].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[5].add_gold = (ulong)(GameData.slash_struct_object[5].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[5].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[5].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "번개베기 골드 획득량 50% 증가");
@@ -1141,7 +1363,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[6].add_gold_percent = GameData.slash_struct_object[6].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[6].add_gold = (ulong)(GameData.slash_struct_object[6].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[6].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[6].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "겹쳐베기 골드 획득량 50% 증가");
@@ -1155,7 +1376,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[7].add_gold_percent = GameData.slash_struct_object[7].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[7].add_gold = (ulong)(GameData.slash_struct_object[7].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[7].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[7].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "동전베기 골드 획득량 50% 증가");
@@ -1169,7 +1389,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[8].add_gold_percent = GameData.slash_struct_object[8].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[8].add_gold = (ulong)(GameData.slash_struct_object[8].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[8].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[8].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "전자베기 골드 획득량 50% 증가");
@@ -1183,7 +1402,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[9].add_gold_percent = GameData.slash_struct_object[9].add_gold_percent + 0.5f;
-                    GameData.slash_struct_object[9].add_gold = (ulong)(GameData.slash_struct_object[9].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[9].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[9].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "울버베기 골드 획득량 50% 증가");
@@ -1197,7 +1415,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent + 1f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "진검베기 골드 획득량 100% 증가");
@@ -1211,7 +1428,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent + 1f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "돌려베기 골드 획득량 100% 증가");
@@ -1225,7 +1441,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent + 1f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "2연속베기 골드 획득량 100% 증가");
@@ -1239,7 +1454,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent + 1f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "위아래베기 골드 획득량 100% 증가");
@@ -1253,7 +1467,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent + 1f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "3연속베기 골드 획득량 100% 증가");
@@ -1267,7 +1480,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[5].add_gold_percent = GameData.slash_struct_object[5].add_gold_percent + 1f;
-                    GameData.slash_struct_object[5].add_gold = (ulong)(GameData.slash_struct_object[5].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[5].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[5].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "번개베기 골드 획득량 100% 증가");
@@ -1282,7 +1494,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[6].add_gold_percent = GameData.slash_struct_object[6].add_gold_percent + 1f;
-                    GameData.slash_struct_object[6].add_gold = (ulong)(GameData.slash_struct_object[6].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[6].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[6].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "겹쳐베기 골드 획득량 100% 증가");
@@ -1296,7 +1507,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[7].add_gold_percent = GameData.slash_struct_object[7].add_gold_percent + 1f;
-                    GameData.slash_struct_object[7].add_gold = (ulong)(GameData.slash_struct_object[7].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[7].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[7].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "동전베기 골드 획득량 100% 증가");
@@ -1310,7 +1520,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[8].add_gold_percent = GameData.slash_struct_object[8].add_gold_percent + 1f;
-                    GameData.slash_struct_object[8].add_gold = (ulong)(GameData.slash_struct_object[8].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[8].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[8].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "전자베기 골드 획득량 100% 증가");
@@ -1324,7 +1533,6 @@ namespace gamedata_weapon
 
                     // armor 장착 후 slash gold 획득량 UP.
                     GameData.slash_struct_object[9].add_gold_percent = GameData.slash_struct_object[9].add_gold_percent + 1f;
-                    GameData.slash_struct_object[9].add_gold = (ulong)(GameData.slash_struct_object[9].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent);
                     // slash skill label update
                     GameData.slash_struct_object[9].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[9].add_gold_percent * 100).ToString() + "% 증가";
                     set_npc_skill_label(_npx_index, "울버베기 골드 획득량 100% 증가");
@@ -1340,7 +1548,6 @@ namespace gamedata_weapon
                     for(int i=0;i<10;i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 0.5f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1357,7 +1564,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 1f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1375,7 +1581,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 2f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1393,7 +1598,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 3f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1410,7 +1614,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 5f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1427,7 +1630,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 7f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1444,7 +1646,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 10f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
@@ -1469,251 +1670,179 @@ namespace gamedata_weapon
         /// <param name="_npx_index"></param>
         public static void reset_armor_skill_func(int _armor_index)
         {
-            print("armor index ::: " + _armor_index);
+            print("reset armor index ::: " + _armor_index);
             // Armor index에 해당하는 스킬을 없애줌.
             switch (_armor_index)
             {
                 case 0:
-                    print("slash_struct_object index ::: " + 0);
-
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 0.1f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
+
                     break;
 
                 case 1:
-                    print("slash_struct_object index ::: " + 1);
-
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 0.1f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 2:
-                    print("slash_struct_object index ::: " + 2);
-
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 0.15f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 3:
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 0.15f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 4:
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent - 0.15f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
-
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 5:
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 0.19f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 6:
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 0.19f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 7:
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent - 0.19f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
-
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 8:
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent - 0.19f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
-
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 9:
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 0.25f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 10:
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 0.25f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 11:
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent - 0.25f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
-
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 12:
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent - 0.25f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
-
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 13:
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent - 0.25f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
-
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 14:
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 15:
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 16:
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
-
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 17:
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
-
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 18:
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
-
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 19:
                     GameData.slash_struct_object[5].add_gold_percent = GameData.slash_struct_object[5].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[5].add_gold = (ulong)(GameData.slash_struct_object[5].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent);
-
                     GameData.slash_struct_object[5].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[5].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 20:
                     GameData.slash_struct_object[6].add_gold_percent = GameData.slash_struct_object[6].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[6].add_gold = (ulong)(GameData.slash_struct_object[6].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent);
-
                     GameData.slash_struct_object[6].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[6].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 21:
                     GameData.slash_struct_object[7].add_gold_percent = GameData.slash_struct_object[7].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[7].add_gold = (ulong)(GameData.slash_struct_object[7].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent);
-
                     GameData.slash_struct_object[7].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[7].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 22:
                     GameData.slash_struct_object[8].add_gold_percent = GameData.slash_struct_object[8].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[8].add_gold = (ulong)(GameData.slash_struct_object[8].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent);
-
                     GameData.slash_struct_object[8].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[8].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 23:
                     GameData.slash_struct_object[9].add_gold_percent = GameData.slash_struct_object[9].add_gold_percent - 0.5f;
-                    GameData.slash_struct_object[9].add_gold = (ulong)(GameData.slash_struct_object[9].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent);
 
                     GameData.slash_struct_object[9].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[9].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 24:
                     GameData.slash_struct_object[0].add_gold_percent = GameData.slash_struct_object[0].add_gold_percent - 1f;
-                    GameData.slash_struct_object[0].add_gold = (ulong)(GameData.slash_struct_object[0].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent);
-
                     GameData.slash_struct_object[0].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[0].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 25:
                     GameData.slash_struct_object[1].add_gold_percent = GameData.slash_struct_object[1].add_gold_percent - 1f;
-                    GameData.slash_struct_object[1].add_gold = (ulong)(GameData.slash_struct_object[1].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
-
                     GameData.slash_struct_object[1].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[1].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 26:
                     GameData.slash_struct_object[2].add_gold_percent = GameData.slash_struct_object[2].add_gold_percent - 1f;
-                    GameData.slash_struct_object[2].add_gold = (ulong)(GameData.slash_struct_object[2].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
-
                     GameData.slash_struct_object[2].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[2].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 27:
                     GameData.slash_struct_object[3].add_gold_percent = GameData.slash_struct_object[3].add_gold_percent - 1f;
-                    GameData.slash_struct_object[3].add_gold = (ulong)(GameData.slash_struct_object[3].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
-
                     GameData.slash_struct_object[3].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[3].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 28:
                     GameData.slash_struct_object[4].add_gold_percent = GameData.slash_struct_object[4].add_gold_percent - 1f;
-                    GameData.slash_struct_object[4].add_gold = (ulong)(GameData.slash_struct_object[4].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
-
                     GameData.slash_struct_object[4].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[4].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 29:
                     GameData.slash_struct_object[5].add_gold_percent = GameData.slash_struct_object[5].add_gold_percent - 1f;
-                    GameData.slash_struct_object[5].add_gold = (ulong)(GameData.slash_struct_object[5].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent);
-
                     GameData.slash_struct_object[5].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[5].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 30:
                     GameData.slash_struct_object[6].add_gold_percent = GameData.slash_struct_object[6].add_gold_percent - 1f;
-                    GameData.slash_struct_object[6].add_gold = (ulong)(GameData.slash_struct_object[6].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent);
-
                     GameData.slash_struct_object[6].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[6].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 31:
                     GameData.slash_struct_object[7].add_gold_percent = GameData.slash_struct_object[7].add_gold_percent - 1f;
-                    GameData.slash_struct_object[7].add_gold = (ulong)(GameData.slash_struct_object[7].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent);
-
                     GameData.slash_struct_object[7].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[7].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 32:
                     GameData.slash_struct_object[8].add_gold_percent = GameData.slash_struct_object[8].add_gold_percent - 1f;
-                    GameData.slash_struct_object[8].add_gold = (ulong)(GameData.slash_struct_object[8].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent);
-
                     GameData.slash_struct_object[8].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[8].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
                 case 33:
                     GameData.slash_struct_object[9].add_gold_percent = GameData.slash_struct_object[9].add_gold_percent - 1f;
-                    GameData.slash_struct_object[9].add_gold = (ulong)(GameData.slash_struct_object[9].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent);
-
                     GameData.slash_struct_object[9].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[9].add_gold_percent * 100).ToString() + "% 증가";
                     break;
 
@@ -1721,8 +1850,6 @@ namespace gamedata_weapon
                     for(int i=0;i<10;i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 0.5f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1731,8 +1858,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 1f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1741,8 +1866,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 2f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1751,8 +1874,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 3f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1761,8 +1882,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 5f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1771,8 +1890,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 7f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1781,8 +1898,6 @@ namespace gamedata_weapon
                     for (int i = 0; i < 10; i++)
                     {
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent - 10f;
-                        GameData.slash_struct_object[i].add_gold = (ulong)(GameData.slash_struct_object[i].add_gold + GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
                     }
                     break;
@@ -1887,7 +2002,7 @@ namespace gamedata_weapon
             // Armor 버튼 체크.
             for (int i = 0; i < 41; i++)
             {
-                if (GameData.coin_struct.gemstone >= armor_struct_object[i].upgrade_cost)
+                if (GameData.coin_struct.gold >= armor_struct_object[i].upgrade_cost)
                 {
                     armor_struct_object[i].armor_buy_button.GetComponent<UIButton>().isEnabled = true;
                 }
@@ -1900,10 +2015,10 @@ namespace gamedata_weapon
 
         public static void check_wing_buttons_is_enable_or_not()
         {
-            // Armor 버튼 체크.
+            // Wing 버튼 체크.
             for (int i = 0; i < 20; i++)
             {
-                if (GameData.coin_struct.gemstone >= wing_struct_object[i].upgrade_cost)
+                if (GameData.coin_struct.gold >= wing_struct_object[i].upgrade_cost)
                 {
                     wing_struct_object[i].wing_buy_button.GetComponent<UIButton>().isEnabled = true;
                 }
@@ -1987,77 +2102,6 @@ namespace gamedata_weapon
             }
         }
 
-        // 캐릭터 init시 해당 armor를 가지고 있으면 해당 skill을 부여해줌.
-        public static void set_data_for_equip_armor(int armor_index,int npc_index)
-        {
-            print("armor_index  " + armor_index + "npc_index  " + npc_index);
-            switch (armor_index)
-            {
-                case 0:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-                case 1:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-                case 2:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-                case 3:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-                case 4:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-                case 5:
-                    get_armor_skill_func(armor_index, npc_index);
-                    break;
-
-
-            }
-        }
-
-        // 캐릭터 init시 해당 wing을 가지고 있으면 해당 skill을 부여해줌.
-        public static void set_data_for_equip_wing(string wing_type, int wing_index, popup_window_button_mgr.NPC_INDEX _npc_index)
-        {
-            switch (_npc_index)
-            {
-                case popup_window_button_mgr.NPC_INDEX.NPC01:
-                    switch (wing_type)
-                    {
-                        case "cape-a":
-                            switch (wing_index)
-                            {
-                                case 0:
-                                // 1번 wing 장착 후 gemstone획득량 10% UP.
-                                float get_speed = get_wing_skill_speed(0);
-                                print("To change speed :: " + get_speed.ToString());
-                                NPC01_make.NPC01_struct.attack_speed = get_speed;
-                                break;
-                            }
-                            break;
-
-                        case "wing-a":
-                            switch (wing_index)
-                            {
-                                case 0:
-
-                                    break;
-                            }
-                            break;
-                            // To Do....
-                            // 나머지 Armor 스킬 추가해야함.
-                    }
-                    break;
-                case popup_window_button_mgr.NPC_INDEX.NPC02:
-
-                    break;
-
-            }
-        }
+    
     }
 }

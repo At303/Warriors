@@ -70,8 +70,8 @@ public class GM : MonoBehaviour {
 
 
         // 골드 && 보석 Label에 Update.
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
-        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
+        //GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
 
 		// Check All Buttons
 		check_all_function_when_gold_changed();
@@ -155,90 +155,90 @@ public class GM : MonoBehaviour {
                     switch ((SLASH_TYPE)slash_index)
                     {
                         case SLASH_TYPE.SLASH1:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[0].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold*GameData.slash_struct_object[0].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[0].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[0].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
                         case SLASH_TYPE.SLASH2:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[1].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[1].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[1].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
                         case SLASH_TYPE.SLASH3:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[2].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[2].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[2].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
-                            break;
+
                         case SLASH_TYPE.SLASH4:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[3].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[3].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[3].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
-                        case SLASH_TYPE.SLASH5:
 
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[4].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                        case SLASH_TYPE.SLASH5:
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[4].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[4].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
 
                         case SLASH_TYPE.SLASH6:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[5].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[5].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[5].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
 
                         case SLASH_TYPE.SLASH7:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[6].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[6].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[6].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
 
                         case SLASH_TYPE.SLASH8:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[7].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[7].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[7].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
 
                         case SLASH_TYPE.SLASH9:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[8].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[8].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[8].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
 
                         case SLASH_TYPE.SLASH10:
-                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + GameData.slash_struct_object[9].add_gold;
-                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+                            GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent);
+                            GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
                             // Test HUDText;;;;
-                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + GameData.slash_struct_object[9].add_gold);
+                            get_coin_str = "+" + GameData.int_to_label_format_won(GameData.chest_struct.attacked_gold + (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[9].add_gold_percent));
                             GameData.chest_HUDText_control.GetComponent<HUDText>().Add(get_coin_str, Color.yellow, -0.8f);
                             break;
                     }

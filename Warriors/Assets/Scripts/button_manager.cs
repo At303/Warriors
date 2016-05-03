@@ -23,7 +23,7 @@ public class button_manager : MonoBehaviour {
 	{
 		// 현재 가지고 있는 골드에서 보물상자 upgrade cost만큼 빼주고 Gold Label에 update.
 		GameData.coin_struct.gold = GameData.coin_struct.gold - GameData.chest_struct.upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.coin_struct.gold.ToString ();
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
         // 보물상자 레벨 1 증가 시키고 해당 값으로 보물상자 구조체에 Data Setting.
         GameData.chest_struct.Level++;
@@ -39,12 +39,6 @@ public class button_manager : MonoBehaviour {
 		// 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
 		GM.check_all_function_when_gold_changed();
 
-        // slash add_percent 골드 update.
-        for(int i=0;i<10;i++)
-        {
-            GameData.slash_struct_object[i].add_gold = (ulong)(GameData.chest_struct.attacked_gold * GameData.slash_struct_object[i].add_gold_percent);
-        }
-
     }
 
 	//slash1 레벨 업 버튼 클릭시 호출 함수
@@ -52,7 +46,7 @@ public class button_manager : MonoBehaviour {
 	{
         // 현재 가지고 있는 골드에서 slash upgrade cost만큼 빼주고 Gold Label에 update.
         GameData.coin_struct.gold = GameData.coin_struct.gold - GameData.slash_struct_object[_slash_index].upgrade_cost;
-		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+		GameData.gold_total_label.GetComponent<UILabel> ().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
         // slash 레벨 1 증가 시키고 해당 값으로 slash 구조체에 Data Setting.
         GameData.slash_struct_object[_slash_index].Level++;

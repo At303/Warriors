@@ -27,7 +27,6 @@ namespace gamedata
     {
         public int Level;
         public float damage;
-        public ulong add_gold;
         public float add_gold_percent;
 
         public ulong add_gemstone;
@@ -364,8 +363,7 @@ namespace gamedata
             slash_struct_object[_slash_index].slash_lvup_cost_label.GetComponent<UILabel> ().text = int_to_label_format_won(slash_struct_object[_slash_index].upgrade_cost);
 
             slash_struct_object[_slash_index].slash_damage_label.GetComponent<UILabel> ().text = int_to_label_format((ulong)slash_struct_object[_slash_index].damage);
-            //slash_struct_object[_slash_index].slash_damage_plus_label.GetComponent<UILabel> ().text = int_to_label_format_won((ulong)slash_struct_object[_slash_index].add_damage);
-		}
+        }
 
         // Slash1 데이터를 해당 레벨에 맞게 Setting해줄 함수.
 		public static void slash_data_struct_update(int _slash_index, int Level)
@@ -713,6 +711,62 @@ namespace gamedata
             return _return_label;
         }
 
+        public static string int_to_label_format_only_total(ulong _number)
+        {
+            string _return_label = "";
+            int i = 0;
+            ulong remainder = 0;
+            ulong[] temp_number = new ulong[10];
+
+            for (; i < 10; i++)
+            {
+                temp_number[i] = _number % 10000;
+                remainder = _number / 10000;
+                _number = remainder;
+
+                if (remainder == 0)
+                    break;
+            }
+
+            if (i == 0)
+            {
+                _return_label = temp_number[0].ToString() + "원";
+            }
+            else if (i == 1)
+            {
+                _return_label = temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 2)
+            {
+                _return_label = temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 3)
+            {
+                _return_label = temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 4)
+            {
+                _return_label = temp_number[4].ToString() + "경" + temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 5)
+            {
+                _return_label = temp_number[5].ToString() + "해" + temp_number[4].ToString() + "경" + temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 6)
+            {
+                _return_label = temp_number[6].ToString() + "자" + temp_number[5].ToString() + "해" + temp_number[4].ToString() + "경" + temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 7)
+            {
+                _return_label = temp_number[7].ToString() + "양" + temp_number[6].ToString() + "자" + temp_number[5].ToString() + "해" + temp_number[4].ToString() + "경" + temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+            else if (i == 8)
+            {
+                _return_label = temp_number[8].ToString() + "구" + temp_number[7].ToString() + "양" + temp_number[6].ToString() + "자" + temp_number[5].ToString() + "해" + temp_number[4].ToString() + "경" + temp_number[3].ToString() + "조" + temp_number[2].ToString() + "억" + temp_number[1].ToString() + "만" + temp_number[0].ToString() + "원";
+            }
+
+            return _return_label;
+        }
     }
 
 

@@ -64,8 +64,6 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
     // For 데미지 HUD Text.
     public GameObject NPC12_HUD;
 
-    public static float npc12_saved_attack_speed = 0f;
-
     // NPC12 Struct 구조체 초기화 및 Gameobject 가져오기.
     void Awake()
     {
@@ -83,6 +81,8 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
         NPC12_struct.damage_label = GameObject.Find("_npc12_damage_label");
         NPC12_struct.add_damage_label = GameObject.Find("_npc12_damage_plus_label");
         NPC12_struct.add_speed_label = GameObject.Find("_npc12_speed_plus_label");
+        NPC12_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+
         NPC12_struct.skill_label = GameObject.Find("_npc12_skill_label");
 
         NPC12_struct.lvup_btn = GameObject.Find("_npc12_lvup_btn");
@@ -186,7 +186,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
 
             // 현재 장착하고 있는 Armor 스킬 Setting.
             int someValue = GameData_weapon.armorDIC[character.Info.armor_part + character.Info.armor_index + character.Info.armor_color];
-            GameData_weapon.set_data_for_equip_armor(someValue, 11);
+            GameData_weapon.get_armor_skill_func(someValue, 11);
 
             // Change the NPC05 Clothes icon Sprite.
             NPC12_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
@@ -201,7 +201,9 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
             character.Info.wing_index = PlayerPrefs.GetInt("npc12_wing_index", 0);
 
             //현재 장착하고 있는 Wing 스킬 Setting.
-            GameData_weapon.set_data_for_equip_wing(character.Info.wing_part, character.Info.wing_index, popup_window_button_mgr.NPC_INDEX.NPC12);
+            int equip_wing_index = GameData_weapon.wingDIC[character.Info.wing_part + character.Info.wing_index];
+            print("npc12이 현재 장착하고 있는 wing index : " + equip_wing_index);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, popup_window_button_mgr.NPC_INDEX.NPC12);
 
             // Change the NPC Clothes icon Sprite.
             NPC12_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
@@ -247,7 +249,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
 
         // Add touch coin to total_coin and update total coin label
         GameData.coin_struct.gold = GameData.coin_struct.gold + GameData.chest_struct.attacked_gold;
-        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_won(GameData.coin_struct.gold);
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
 
         // Chest box HP modify
 		GameData.chest_struct._HP = GameData.chest_struct._HP - (NPC12_struct.damage + NPC12_struct.add_damage);
@@ -332,7 +334,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
     }
 
     // Change the clothes.
-    public void change_clothes(int index, int color, string clothes_type)
+    public void change_clothes(int enable, int index, int color, string clothes_type)
     {
         // 캐릭터 False.
         this.gameObject.SetActive(false);
@@ -342,7 +344,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
         character.Info.armor_color = color;
 
         // Boss Scene Load시 사용할 character image;
-        npc12_char.armor_enable = 1;
+        npc12_char.armor_enable = enable;
         npc12_char.armor_type = clothes_type;
         npc12_char.armor_index = index;
         npc12_char.armor_color = color;
@@ -365,7 +367,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
     }
 
     // wing the clothes.
-    public void change_wing(int index, string wing_type)
+    public void change_wing(int enable,int index, string wing_type)
     {
         // 캐릭터 False.
         this.gameObject.SetActive(false);
@@ -374,7 +376,7 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
         character.Info.wing_index = index;
 
         // Boss Scene Load시 사용할 character image;
-        npc12_char.wing_enable = 1;
+        npc12_char.wing_enable = enable;
         npc12_char.wing_type = wing_type;
         npc12_char.wing_index = index;
 
@@ -398,13 +400,12 @@ public class NPC12_make : MonoBehaviour, IAnimEventListener
 
         character.SetColor(ToChangeColor);
     }
-    public void change_attack_speed()
+    public void change_attack_speed(float speed)
     {
-        npc12_saved_attack_speed = NPC12_struct.attack_speed;
-        NPC12_struct.attack_speed = NPC12_struct.attack_speed * 0.5f;
+        NPC12_struct.attack_speed = 1 * speed;
     }
     public void reset_attack_speed()
     {
-        NPC12_struct.attack_speed = npc12_saved_attack_speed;
+        NPC12_struct.attack_speed = 1;
     }
 }

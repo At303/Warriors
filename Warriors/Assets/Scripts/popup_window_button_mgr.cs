@@ -24,8 +24,6 @@ public class popup_window_button_mgr : MonoBehaviour {
     }
     
 	public static int equip_weapon_index;
-    public static int equip_armor_index;
-    public static int equip_wing_index;
 
     public string weapon
     {
@@ -540,254 +538,247 @@ public class popup_window_button_mgr : MonoBehaviour {
     // 해당 NPC에게 선택한 Armor를 장착하게 하는 함수.
     void clothes_to_selected_NPC(NPC_INDEX _npc_index, string _armor_type, int _armor_index, int _armor_color)
     {
+        // 1. 선택한 armor를 장착하고 있는 npc는 해당 armor를 해제.
+        // 2. 선택한 npc가 armorm를 장착하고 있을경우 해당 armor를 해제 그렇지 않으면 바로 3번 ㄱㄱ
+        // 3. 선택한 npc에 선택한 armor를 장착.
 
-        bool enable_armor_change = false;
+        int change_npc_index = (int)_npc_index - 1;
+        print("NPC_INDEX _npc_index : " + (int)_npc_index);
+        print("NPC_INDEX change_npc_index : " + change_npc_index);
 
-        // 선택한 캐릭터가 해당 무기를 가지고 있는지 check. 
-        string npc_str = "npc" + ((int)_npc_index).ToString() + "_armor_enable";
-        int get_npc_armor_index = PlayerPrefs.GetInt(npc_str);
+        // armor DIC으로부터 wing index가져옴.
+        print("To get armor index string :: " + _armor_type + _armor_index + _armor_color);
+        int equip_armor_index = GameData_weapon.armorDIC[_armor_type + _armor_index + _armor_color];
 
-        // 현재 장착하고 있는 Armor index 가져오기.
-        int toequip_armor_index = GameData_weapon.armorDIC[_armor_type + _armor_index.ToString() + _armor_color.ToString()];
-        string npc_select_armor = _armor_type + _armor_index + _armor_color;
-        string npc_has_armor = PlayerPrefs.GetString("npc" + ((int)_npc_index).ToString() + "_armor_part") + PlayerPrefs.GetInt("npc" + ((int)_npc_index).ToString() + "_armor_index").ToString() + PlayerPrefs.GetInt("npc" + ((int)_npc_index).ToString() + "_armor_color").ToString();
+        // 가져온 armor index를 가지고 해당 armor가 어떤 npc에 저장되어 있는지 판별함.
+        int armor_already_equiped_npc = PlayerPrefs.GetInt("armor" + equip_armor_index + "_npc", 100);
 
-        if (get_npc_armor_index == 1)
+        print("현재 armor를 장착하고 있는 npc :: " + armor_already_equiped_npc);
+        if(armor_already_equiped_npc != 100)
         {
-            print("캐릭터는 Armor를 가지고 있으므로 동일한 무기인지 check.");
-
-            //무기를 가지고 있다면 동일한 무기인지 check.
-            if (string.Equals(npc_select_armor, npc_has_armor))
-            {
-                print("같은 Armor 선택.");
-                GameData.clothes_sel_popup_window_obj.SetActive(false);
-                return;
-            }
-            else
-            {
-                print("다른 Armor 선택하여 해당 무기 setting.");
-                enable_armor_change = true;
-                unequiped_armor_npc(npc_has_armor);
-            }
-        }
-        else
-        {
-            print("캐릭터는 무기를 가지고 있지 않음.");
-            enable_armor_change = true;
-            unequiped_armor_npc(npc_select_armor);
+            // 1번.
+            unequiped_armor_npc(equip_armor_index, armor_already_equiped_npc);
         }
 
-        if (enable_armor_change)
+        // 선택한 npc가 armor를 장착하고 있으면 해당 armor skill을 reset 
+        // 그렇지 않으면 그냥 armor 장착 ( enable_armor_change = true ) setting.
+        int get_armor_enable = PlayerPrefs.GetInt("npc" + (int)_npc_index + "_armor_enable");
+        if(get_armor_enable == 1)
         {
-            // npc0x에 따라서 실행.
-            switch (_npc_index)
-            {
+            string get_equiped_armor = PlayerPrefs.GetString("npc"+ (int)_npc_index + "_armor_part", "null") + PlayerPrefs.GetInt("npc" + (int)_npc_index + "_armor_index",100) + PlayerPrefs.GetInt("npc" + (int)_npc_index + "_armor_color",100);
+            print("선택한 npc가 장착하고 있는 아머 :: " + get_equiped_armor);
 
-                case NPC_INDEX.NPC01:
-                    // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+            int equiped_armor_index = GameData_weapon.armorDIC[get_equiped_armor];
+            print("선택한 npc가 장착하고 있는 아머 index :: " + equiped_armor_index);
 
-                    // Change the NPC01 Clothes icon Sprite.
-                    NPC01_make.NPC01_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC01_make.NPC01_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+            // 2번.
+            unequiped_armor_npc(equiped_armor_index, change_npc_index);
+            // 선택한 npc가 장착하고 있는 armor Local변수도 reset해줘야함.
+            PlayerPrefs.SetInt("armor" + equiped_armor_index + "_npc", 100);
+            PlayerPrefs.Save();
+        }
 
-                    // NPC01 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+        // npc0x에 따라서 실행.
+        switch (_npc_index)
+        {
+            case NPC_INDEX.NPC01:
+                // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+
+                // Change the NPC01 Clothes icon Sprite.
+                NPC01_make.NPC01_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC01_make.NPC01_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+
+                // NPC01 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
            
-                    // NPC01 캐릭터 clothes 이미지 바꾸기.
-                    npc01.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC01 캐릭터 clothes 이미지 바꾸기.
+                npc01.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC02:
-                    // Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
+            case NPC_INDEX.NPC02:
+                // Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
-                    // Change the NPC02 Clothes icon Sprite.
-                    NPC02_make.NPC02_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC02_make.NPC02_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC02 Clothes icon Sprite.
+                NPC02_make.NPC02_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC02_make.NPC02_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC01 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC01 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC02 캐릭터 clothes 이미지 바꾸기.
-                    npc02.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC02 캐릭터 clothes 이미지 바꾸기.
+                npc02.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC03:
-                    // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+            case NPC_INDEX.NPC03:
+                // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
 
-                    // Change the NPC03 Clothes icon Sprite.
-                    NPC03_make.NPC03_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC03_make.NPC03_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC03 Clothes icon Sprite.
+                NPC03_make.NPC03_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC03_make.NPC03_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC03 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC03 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC03 캐릭터 clothes 이미지 바꾸기.
-                    npc03.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC03 캐릭터 clothes 이미지 바꾸기.
+                npc03.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC04:
-                    // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+            case NPC_INDEX.NPC04:
+                // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
 
-                    // Change the NPC04 Clothes icon Sprite.
-                    NPC04_make.NPC04_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC04_make.NPC04_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC04 Clothes icon Sprite.
+                NPC04_make.NPC04_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC04_make.NPC04_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC04 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC04 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC04 캐릭터 clothes 이미지 바꾸기.
-                    npc04.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC04 캐릭터 clothes 이미지 바꾸기.
+                npc04.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC05:
-                    // Change the NPC05 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+            case NPC_INDEX.NPC05:
+                // Change the NPC05 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
 
-                    // Change the NPC05 Clothes icon Sprite.
-                    NPC05_make.NPC05_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC05_make.NPC05_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC05 Clothes icon Sprite.
+                NPC05_make.NPC05_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC05_make.NPC05_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC05 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC05 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC05 캐릭터 clothes 이미지 바꾸기.
-                    npc05.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC05 캐릭터 clothes 이미지 바꾸기.
+                npc05.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC06:
-                    print("npc06 enable" + _npc_index);
-                    // Change the NPC06 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+            case NPC_INDEX.NPC06:
+                // Change the NPC06 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
 
-                    // Change the NPC06 Clothes icon Sprite.
-                    NPC06_make.NPC06_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC06_make.NPC06_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC06 Clothes icon Sprite.
+                NPC06_make.NPC06_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC06_make.NPC06_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC06 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC06 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC06 캐릭터 clothes 이미지 바꾸기.
-                    npc06.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC06 캐릭터 clothes 이미지 바꾸기.
+                npc06.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC07:
-                    // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+            case NPC_INDEX.NPC07:
+                // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
 
-                    // Change the NPC07 Clothes icon Sprite.
-                    NPC07_make.NPC07_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC07_make.NPC07_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC07 Clothes icon Sprite.
+                NPC07_make.NPC07_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC07_make.NPC07_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC07 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC07 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC07 캐릭터 clothes 이미지 바꾸기.
-                    npc07.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC07 캐릭터 clothes 이미지 바꾸기.
+                npc07.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC08:
-                    // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+            case NPC_INDEX.NPC08:
+                // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
 
-                    // Change the NPC08 Clothes icon Sprite.
-                    NPC08_make.NPC08_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC08_make.NPC08_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC08 Clothes icon Sprite.
+                NPC08_make.NPC08_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC08_make.NPC08_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC08 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC08 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC08 캐릭터 clothes 이미지 바꾸기.
-                    npc08.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC08 캐릭터 clothes 이미지 바꾸기.
+                npc08.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC09:
-                    // Change the NPC09 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+            case NPC_INDEX.NPC09:
+                // Change the NPC09 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
 
-                    // Change the NPC09 Clothes icon Sprite.
-                    NPC09_make.NPC09_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC09_make.NPC09_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC09 Clothes icon Sprite.
+                NPC09_make.NPC09_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC09_make.NPC09_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC09 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC09 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC09 캐릭터 clothes 이미지 바꾸기.
-                    npc09.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC09 캐릭터 clothes 이미지 바꾸기.
+                npc09.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC10:
-                    // Change the NPC10 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+            case NPC_INDEX.NPC10:
+                // Change the NPC10 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
 
-                    // Change the NPC10 Clothes icon Sprite.
-                    NPC10_make.NPC10_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC10_make.NPC10_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC10 Clothes icon Sprite.
+                NPC10_make.NPC10_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC10_make.NPC10_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC10 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC10 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC10 캐릭터 clothes 이미지 바꾸기.
-                    npc10.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC10 캐릭터 clothes 이미지 바꾸기.
+                npc10.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC11:
-                    // Change the NPC11 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+            case NPC_INDEX.NPC11:
+                // Change the NPC11 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
 
-                    // Change the NPC11 Clothes icon Sprite.
-                    NPC11_make.NPC11_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC11_make.NPC11_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC11 Clothes icon Sprite.
+                NPC11_make.NPC11_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC11_make.NPC11_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC11 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC11 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC11 캐릭터 clothes 이미지 바꾸기.
-                    npc11.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
+                // NPC11 캐릭터 clothes 이미지 바꾸기.
+                npc11.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
 
-                case NPC_INDEX.NPC12:
-                    // Change the NPC12 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+            case NPC_INDEX.NPC12:
+                // Change the NPC12 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
 
-                    // Change the NPC12 Clothes icon Sprite.
-                    NPC12_make.NPC12_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC12_make.NPC12_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
+                // Change the NPC12 Clothes icon Sprite.
+                NPC12_make.NPC12_struct.clothes_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC12_make.NPC12_struct.clothes_sp.spriteName = _armor_type + _armor_index.ToString() + _armor_color.ToString();
 
-                    // NPC12 캐릭터 coin획득량에 armor skill 추가.
-                    GameData_weapon.get_armor_skill_func(toequip_armor_index, (int)_npc_index-1);
+                // NPC12 캐릭터 coin획득량에 armor skill 추가.
+                GameData_weapon.get_armor_skill_func(equip_armor_index, change_npc_index);
 
-                    // NPC12 캐릭터 clothes 이미지 바꾸기.
-                    npc12.change_clothes(_armor_index, _armor_color, _armor_type);
-                    break;
-                default:
-                    print("Can`t find NPC index");
-                    break;
-
-            }
+                // NPC12 캐릭터 clothes 이미지 바꾸기.
+                npc12.change_clothes(1, _armor_index, _armor_color, _armor_type);
+                break;
+            default:
+                print("Can`t find NPC index");
+                break;
+            
+       
         }
         // NPC선택 후 popUp window 비활성화.
 		GameData.clothes_sel_popup_window_obj.SetActive(false);
 
     }
 
-    void unequiped_armor_npc(string _armor)
+    void unequiped_armor_npc(int _armor, int npc_index)
     {
         //******   현재 장착하고 있는 npc는 해당 무기 해제.  ******//
-
-        // 현재 장착하고 있는 Armor index 가져오기.
-        int equiped_armor_index = GameData_weapon.armorDIC[_armor];
-        int unequiped_npc = PlayerPrefs.GetInt("armor" + equiped_armor_index.ToString() + "_npc", 100);
-
+        print("npc_index ::: " + npc_index);
         print("_armor ::: " + _armor);
-        print("equiped_armor_index ::: " + equiped_armor_index);
-        print("unequiped_npc ::: " + unequiped_npc);
 
-        string reset_npc_str = "";
-        switch (unequiped_npc)
+        // 현재 해당 armor를 장착되어 있는 npc는 해제.
+        switch (npc_index)
         {
             case 0:
                 // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
@@ -798,15 +789,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC01_make.NPC01_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC01 캐릭터 armor 이미지 바꾸기.
-                npc01.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc01.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC01_make.NPC01_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -819,15 +805,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC02_make.NPC02_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC02 캐릭터 armor 이미지 바꾸기.
-                npc02.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc02.change_clothes(0, 0, 0, "");
 
                 // NPC02 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC02_make.NPC02_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -840,15 +821,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC03_make.NPC03_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc03.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc03.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC03_make.NPC03_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -861,15 +837,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC04_make.NPC04_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc04.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc04.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC04_make.NPC04_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -882,15 +853,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC05_make.NPC05_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc05.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc05.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC05_make.NPC05_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -903,15 +869,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC06_make.NPC06_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc06.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc06.change_clothes(0, 0, 0, ""); ;
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC06_make.NPC06_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -924,15 +885,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC07_make.NPC07_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc07.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc07.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC07_make.NPC07_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -945,15 +901,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC08_make.NPC08_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc08.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc08.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC08_make.NPC08_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -966,15 +917,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC09_make.NPC09_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc09.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc09.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC09_make.NPC09_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -987,15 +933,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC10_make.NPC10_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc10.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc10.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC10_make.NPC10_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -1008,15 +949,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC11_make.NPC11_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc11.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc11.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC11_make.NPC11_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -1029,15 +965,10 @@ public class popup_window_button_mgr : MonoBehaviour {
                 NPC12_make.NPC12_struct.clothes_sp.spriteName = "weapon_nothing";
 
                 // NPC 캐릭터 armor 이미지 바꾸기.
-                npc12.change_clothes(0, 0, "");
-
-                // 해당 npc armor enable Loca변수를 0으로 disable시켜줌.
-                reset_npc_str = "npc" + ((int)unequiped_npc + 1).ToString() + "_armor_enable";
-                PlayerPrefs.SetInt(reset_npc_str, 0);
-                PlayerPrefs.Save();
+                npc12.change_clothes(0, 0, 0, "");
 
                 // NPC01 캐릭터 damage에 베기 추가 공격력 reset.
-                GameData_weapon.reset_armor_skill_func(equiped_armor_index);
+                GameData_weapon.reset_armor_skill_func(_armor);
                 NPC12_make.NPC12_struct.skill_label.GetComponent<UILabel>().text = "없음";
                 break;
 
@@ -1045,28 +976,299 @@ public class popup_window_button_mgr : MonoBehaviour {
                 print("NPC Index Error!!!");
                 break;
         }
+
     }
 
 	// 해당 NPC에게 선택한 Wing을 장착하게 하는 함수.
 	void wing_to_selected_NPC(NPC_INDEX _npc_index, string _wing_type, int _wing_index)
 	{
-		// npc0x에 따라서 실행.
-		switch (_npc_index)
+        Animator anim;
+
+        // wing DIC으로부터 wing index가져옴.
+        print("To get wing index string :: "+ _wing_type + _wing_index);
+        int equip_wing_index = GameData_weapon.wingDIC[_wing_type + _wing_index];
+
+        // 가져온 wing index를 가지고 해당 wing이 어떤 npc에 저장되어 있는지 판별함.
+        int wing_already_equiped_npc = PlayerPrefs.GetInt("wing" + equip_wing_index + "_npc",100);
+
+        // 기존에 해당 wing을 가지고 있는 npc가 있으면 해제 및, skill 없애줌.
+        switch (wing_already_equiped_npc)
+        {
+            case 1:
+                // NPC1 장착 해제.
+                // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+
+                // Change the NPC01 wimg icon Sprite.
+                NPC01_make.NPC01_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC01_make.NPC01_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl1").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc01.reset_attack_speed();
+
+                // NPC01 캐릭터 wing 이미지 바꾸기.
+                npc01.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC01_make.NPC01_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+
+                break;
+
+            case 2:
+                // NPC2 장착 해제.
+                // Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
+
+                // Change the NPC02 wimg icon Sprite.
+                NPC02_make.NPC02_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC02_make.NPC02_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl2").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc02.reset_attack_speed();
+
+                // NPC 캐릭터 wing 이미지 바꾸기.
+                npc02.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC02_make.NPC02_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 3:
+                // NPC3 장착 해제.
+                // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+
+                // Change the NPC03 wimg icon Sprite.
+                NPC03_make.NPC03_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC03_make.NPC03_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl3").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc03.reset_attack_speed();
+
+                // NPC03 캐릭터 wing 이미지 바꾸기.
+                npc03.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC03_make.NPC03_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 4:
+                // NPC4 장착 해제.
+                // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+
+                // Change the NPC04 wimg icon Sprite.
+                NPC04_make.NPC04_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC04_make.NPC04_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl4").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc04.reset_attack_speed();
+
+                // NPC04 캐릭터 wing 이미지 바꾸기.
+                npc04.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC04_make.NPC04_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 5:
+                // NPC5 장착 해제.
+                // Change the NPC05 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+
+                // Change the NPC05 wimg icon Sprite.
+                NPC05_make.NPC05_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC05_make.NPC05_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl5").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc05.reset_attack_speed();
+
+                // NPC05 캐릭터 wing 이미지 바꾸기.
+                npc05.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC05_make.NPC05_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 6:
+                // NPC1 장착 해제.
+                // Change the NPC06 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+
+                // Change the NPC06 wimg icon Sprite.
+                NPC06_make.NPC06_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC06_make.NPC06_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl6").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc06.reset_attack_speed();
+
+                // NPC06 캐릭터 wing 이미지 바꾸기.
+                npc06.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC06_make.NPC06_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 7:
+                // NPC1 장착 해제.
+                // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+
+                // Change the NPC07 wimg icon Sprite.
+                NPC07_make.NPC07_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC07_make.NPC07_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl7").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc07.reset_attack_speed();
+
+                // NPC07 캐릭터 wing 이미지 바꾸기.
+                npc07.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC07_make.NPC07_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 8:
+                // NPC8 장착 해제.
+                // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+
+                // Change the NPC08 wimg icon Sprite.
+                NPC08_make.NPC08_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC08_make.NPC08_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl8").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc08.reset_attack_speed();
+
+                // NPC08 캐릭터 wing 이미지 바꾸기.
+                npc08.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC08_make.NPC08_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 9:
+                // NPC9 장착 해제.
+                // Change the NPC09 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+
+                // Change the NPC09 wimg icon Sprite.
+                NPC09_make.NPC09_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC09_make.NPC09_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl9").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc09.reset_attack_speed();
+
+                // NPC09 캐릭터 wing 이미지 바꾸기.
+                npc09.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC09_make.NPC09_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 10:
+                // NPC1 장착 해제.
+                // Change the NPC10 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+
+                // Change the NPC10 wimg icon Sprite.
+                NPC10_make.NPC10_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC10_make.NPC10_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl10").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc10.reset_attack_speed();
+
+                // NPC10 캐릭터 wing 이미지 바꾸기.
+                npc10.change_wing(0, 0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC10_make.NPC10_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 11:
+                // NPC1 장착 해제.
+                // Change the NPC11 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+
+                // Change the NPC11 wimg icon Sprite.
+                NPC11_make.NPC11_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC11_make.NPC11_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl11").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc11.reset_attack_speed();
+
+                // NPC11 캐릭터 wing 이미지 바꾸기.
+                npc11.change_wing(0,0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC11_make.NPC11_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            case 12:
+                // NPC1 장착 해제.
+                // Change the NPC12 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+
+                // Change the NPC12 wimg icon Sprite.
+                NPC12_make.NPC12_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC12_make.NPC12_struct.wing_sp.spriteName = "weapon_nothing";
+
+                // NPC 캐릭터에 wing skill 초기화 ( 공격속도 증가 ) default : 1
+                anim = GameObject.Find("Impl12").GetComponent<Animator>();
+                anim.speed = 1f;
+                npc12.reset_attack_speed();
+
+                // NPC12 캐릭터 wing 이미지 바꾸기.
+                npc12.change_wing(0,0, "");
+
+                // 캐릭터 state창에서 공격속도 초기화 update해줘야함.
+                NPC12_make.NPC12_struct.add_speed_label.GetComponent<UILabel>().text = "+0%";
+                break;
+
+            default:
+                print("no body equiped wing!!!");
+                break;
+        }
+
+        // 장착되어 있는 npc는 해제하고 클릭받은 npc0x에 wing 스킬 적용.
+        switch (_npc_index)
 		{
 
 		case NPC_INDEX.NPC01:
 			// Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
 			NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
             
-			// Change the NPC01 Clothes icon Sprite.
+			// Change the NPC01 wimg icon Sprite.
 			NPC01_make.NPC01_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
 			NPC01_make.NPC01_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
-            // NPC1 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC01);
+            // NPC1 캐릭터에 wing skill추가 ( 공격속도 증가 )
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC01);
 
             // NPC01 캐릭터 wing 이미지 바꾸기.
-            npc01.change_wing(_wing_index, _wing_type);
+            npc01.change_wing(1,_wing_index, _wing_type);
 
 			break;
 
@@ -1079,10 +1281,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC02_make.NPC02_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC02 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC02);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC02);
 
             // NPC02 캐릭터 wing 이미지 바꾸기.
-            npc02.change_wing(_wing_index, _wing_type);
+            npc02.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1095,10 +1297,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC03_make.NPC03_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC03 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC03);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC03);
 
             // NPC03 캐릭터 wing 이미지 바꾸기.
-            npc03.change_wing(_wing_index, _wing_type);
+            npc03.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1111,10 +1313,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC04_make.NPC04_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC04 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC04);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC04);
 
             // NPC04 캐릭터 wing 이미지 바꾸기.
-            npc04.change_wing(_wing_index, _wing_type);
+            npc04.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1127,10 +1329,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC05_make.NPC05_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC05 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC05);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC05);
 
             // NPC05 캐릭터 wing 이미지 바꾸기.
-            npc05.change_wing(_wing_index, _wing_type);
+            npc05.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1143,10 +1345,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC06_make.NPC06_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC06 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC06);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC06);
 
             // NPC06 캐릭터 wing 이미지 바꾸기.
-            npc06.change_wing(_wing_index, _wing_type);
+            npc06.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1159,10 +1361,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC07_make.NPC07_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC07 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC07);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC07);
 
             // NPC07 캐릭터 wing 이미지 바꾸기.
-            npc07.change_wing(_wing_index, _wing_type);
+            npc07.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1175,10 +1377,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC08_make.NPC08_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC08 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC08);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC08);
 
             // NPC08 캐릭터 wing 이미지 바꾸기.
-            npc08.change_wing(_wing_index, _wing_type);
+            npc08.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1191,10 +1393,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC09_make.NPC09_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC09 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC09);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC09);
 
             // NPC09 캐릭터 wing 이미지 바꾸기.
-            npc09.change_wing(_wing_index, _wing_type);
+            npc09.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1207,10 +1409,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC10_make.NPC10_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC10 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC10);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC10);
 
             // NPC10 캐릭터 wing 이미지 바꾸기.
-            npc10.change_wing(_wing_index, _wing_type);
+            npc10.change_wing(1, _wing_index, _wing_type);
 
             break;
 
@@ -1223,10 +1425,10 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC11_make.NPC11_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
             // NPC11 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC11);
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC11);
 
             // NPC11 캐릭터 wing 이미지 바꾸기.
-            npc11.change_wing(_wing_index, _wing_type);
+            npc11.change_wing(1,_wing_index, _wing_type);
 
             break;
 
@@ -1238,11 +1440,11 @@ public class popup_window_button_mgr : MonoBehaviour {
             NPC12_make.NPC12_struct.wing_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
             NPC12_make.NPC12_struct.wing_sp.spriteName = GameData.to_change_npc_struct.To_Change_wing_type + GameData.to_change_npc_struct.wing_index.ToString();
 
-            // NPC012 캐릭터 coin획득량에 armor skill 추가.
-            GameData_weapon.get_wing_skill_func(equip_weapon_index, NPC_INDEX.NPC12);
+            // NPC12 캐릭터 coin획득량에 armor skill 추가.
+            GameData_weapon.get_wing_skill_func(equip_wing_index, NPC_INDEX.NPC12);
 
             // NPC12 캐릭터 wing 이미지 바꾸기.
-            npc12.change_wing(_wing_index, _wing_type);
+            npc12.change_wing(1,_wing_index, _wing_type);
 
             break;
 
