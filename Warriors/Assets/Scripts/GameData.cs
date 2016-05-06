@@ -41,6 +41,8 @@ namespace gamedata
         public GameObject slash_enable;
     }
 
+
+
     public class GameData : MonoBehaviour {
 
         // **************************************    Game data Struct    ************************************************ //
@@ -135,6 +137,7 @@ namespace gamedata
 
         // boss object
         public static GameObject boss_hp_value;
+        public static bool boss_kill_retry_enable;
 
 		// sprite object
 		public static GameObject chest_sprite;
@@ -172,6 +175,7 @@ namespace gamedata
 
             // 첫 게임 시작시에는 default로 Sound ON시킴.
             sound_on_off = true;
+            boss_kill_retry_enable = true;
 
             debug_label2 = GameObject.Find ("debug_label2");
 

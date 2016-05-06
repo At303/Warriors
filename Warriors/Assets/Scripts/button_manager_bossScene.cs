@@ -1,18 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class button_manager_bossScene : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 	public void Clicked_boss_scene()
 	{
 		SceneManager.LoadScene ("warriors");
@@ -26,6 +20,18 @@ public class button_manager_bossScene : MonoBehaviour {
         //StartCoroutine(Load());
 
     }
+	
+	 public void Clicked_boss_retry_kill()
+    {
+		if (Advertisement.IsReady())
+        {
+            Advertisement.Show();
+			SceneManager.LoadScene("Warriors_boss");
+
+		}
+
+    }
+	
 	 IEnumerator Load()
 	{
 
@@ -35,8 +41,6 @@ public class button_manager_bossScene : MonoBehaviour {
 		{
 		float progress = async.progress * 100.0f;
 		int pRounded = Mathf.RoundToInt(progress);
-		//progressLabel.text = “Loading…”+ pRounded.ToString() + “%”;
-		print("Loading…"+ pRounded.ToString() + "%");
 
 		yield return true;
 		}

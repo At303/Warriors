@@ -3,6 +3,7 @@ using System.Collections;
 using Devwin;
 using gamedata;
 using UnityEngine.SceneManagement;
+using gamedata_weapon;
 
 public class NPC07_make_Boss : MonoBehaviour, IAnimEventListener
 {
@@ -99,6 +100,12 @@ public class NPC07_make_Boss : MonoBehaviour, IAnimEventListener
         {
             character.Info.wing_part = PlayerPrefs.GetString("npc7_wing_part", "");
             character.Info.wing_index = PlayerPrefs.GetInt("npc7_wing_index", 0);
+            
+            //현재 장착하고 있는 Wing 스킬 Setting.
+            Animator anim = GameObject.Find("Impl7").GetComponent<Animator>();
+            int equip_wing_index = GameData_weapon.wingDIC[character.Info.wing_part + character.Info.wing_index];       
+            anim.speed = GM_Boss.get_wing_skill_attack_speed(equip_wing_index);
+        
         }
 
         // NPC가 가지고있는 데이터를 setting해줌.
@@ -106,8 +113,8 @@ public class NPC07_make_Boss : MonoBehaviour, IAnimEventListener
         NPC07_Boss_struct.add_damage = NPC07_make.NPC07_struct.add_damage;
 
         // 무기에 따라서 해당 값을 변경해주면될듯.
-        NPC07_Boss_struct.attack_speed = 1f;
-
+        NPC07_Boss_struct.attack_speed = NPC07_make.NPC07_struct.attack_speed;
+        
         character.InitWithoutTextureBaking();
 
         // Add Attack event clip interface. ( NPC07이 공격 애니메이션 시 사용할 함수를 추가. )

@@ -275,6 +275,8 @@ public class boss_button_mgr : MonoBehaviour {
         ToLoadScene_Name = "warriors_boss";
         StartCoroutine(Load());
 
+        // Boss retry 를 위한 변수.
+        GameData.boss_kill_retry_enable = true;
     }
     
     IEnumerator Load()

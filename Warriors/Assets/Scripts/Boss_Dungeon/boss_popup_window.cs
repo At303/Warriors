@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using gamedata;
 
 public class boss_popup_window : MonoBehaviour {
 
@@ -7,9 +8,15 @@ public class boss_popup_window : MonoBehaviour {
     public UISprite sprite_;
     public static bool enable_item_popup;
 
+    public ParticleSystem getitem;
+
+
     void Start()
     {
         setDisable();
+        getitem = GameObject.Find("getitem_particle").GetComponent<ParticleSystem>();
+        getitem.Stop();
+        
     }
     void Awake()
     {
@@ -17,6 +24,7 @@ public class boss_popup_window : MonoBehaviour {
         label_ = GameObject.Find("get_item_label");
         sprite_ = GameObject.Find("get_item_sprite").GetComponent<UISprite>();
         enable_item_popup = false;
+
     }
     //SetActive(true) 호출 시 실행됩니다.
     void OnEnable()
@@ -501,12 +509,14 @@ public class boss_popup_window : MonoBehaviour {
     // 초기화
     void init()
     {
+        
         TweenScale tween = TweenScale.Begin(gameObject, duration, scaleTo);
         tween.duration = duration;
         tween.delay = startDelay;
         //tween.method = UITweener.Method.BounceIn; // AnimationCurve 대신 이것도 한번 써보세요.
         tween.animationCurve = animationCurve;
-
+        print("play particle");
+        getitem.Play();
     }
 
     // 팝업 닫기
@@ -579,6 +589,13 @@ public class boss_popup_window : MonoBehaviour {
             // Label update.
             label_.GetComponent<UILabel>().text = "이미 가지고 있음...";
 
+            // 이미 가지고 있으므로 광고보고 한번 더 시도할지 묻기.
+            if(GameData.boss_kill_retry_enable)
+            {
+                scene_loading.ads_play_retry_object.SetActive(true);
+                GameData.boss_kill_retry_enable = false;
+            }
+        
             // popup window sprite update.
             // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
             string weapon_sprite_str = type + boss_index .ToString() + "_icon";
@@ -612,6 +629,14 @@ public class boss_popup_window : MonoBehaviour {
         // 꽝.
         // Label update.
         label_.GetComponent<UILabel>().text = "무기 획득 실패...";
+
+        // 광고보고 한번더 시도할지 묻기.
+        if(GameData.boss_kill_retry_enable)
+        {
+            scene_loading.ads_play_retry_object.SetActive(true);
+            GameData.boss_kill_retry_enable = false;
+        }
+        
         // sprite update.
         // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
         string weapon_sprite_str = "Fail";

@@ -83,8 +83,10 @@ namespace gamedata_weapon
         //Define a string to int dictionary in C#
         public static Dictionary<string, int> armorDIC = new Dictionary<string, int>();
 
-        //Define a string to int dictionary in C#
         public static Dictionary<string, int> wingDIC = new Dictionary<string, int>();
+        
+        public static Dictionary<string, int> weaponDIC = new Dictionary<string, int>();
+        public static Dictionary<string, int> bowDIC = new Dictionary<string, int>();
 
 
         void amorDIC_Init()
@@ -170,6 +172,66 @@ namespace gamedata_weapon
 
         }
 
+
+        void weaponDIC_Init()
+        {
+             weaponDIC["dagger-a0"] = 0;
+             weaponDIC["dagger-a1"] = 1;
+             weaponDIC["blunt-a0"] = 2;
+             weaponDIC["blunt-a1"] = 3;
+             weaponDIC["blunt-a3"] = 4;
+             weaponDIC["blunt-a4"] = 5;
+             weaponDIC["sword-a2"] = 6;
+             weaponDIC["axe-a1"] = 7;
+             weaponDIC["sword-a1"] = 8;
+             weaponDIC["axe-a2"] = 9;
+             weaponDIC["axe-a3"] = 10;
+             weaponDIC["axe-a4"] = 11;
+             weaponDIC["sword-a5"] = 12;
+             weaponDIC["sword-a6"] = 13;
+             weaponDIC["sword-a7"] = 14;
+             weaponDIC["axe-a6"] = 15;
+             weaponDIC["blunt-a9"] = 16;
+             weaponDIC["sword-a8"] = 17;
+             weaponDIC["sword-a11"] = 18;
+             weaponDIC["sword-a12"] = 19;
+             weaponDIC["sword-a13"] = 20;
+             weaponDIC["sword-a16"] = 21;
+             weaponDIC["blunt-a10"] = 22;
+             weaponDIC["sword-a9"] = 23;
+             weaponDIC["sword-a17"] = 24;
+
+        }
+        
+        void bowDIC_Init()
+        {
+            bowDIC["bow-a0"] = 0;
+            bowDIC["bow-a1"] = 1;
+            bowDIC["bow-a2"] = 2;
+            bowDIC["bow-a3"] = 3;
+            bowDIC["bow-a4"] = 4;
+            bowDIC["bow-a5"] = 5;
+            bowDIC["bow-a6"] = 6;
+            bowDIC["bow-a7"] = 7;
+            bowDIC["bow-a8"] = 8;
+            bowDIC["bow-a9"] = 9;
+            bowDIC["bow-a10"] = 10;
+            bowDIC["bow-a11"] = 11;
+            bowDIC["bow-a12"] = 12;
+            bowDIC["bow-a13"] = 13;
+            bowDIC["bow-a14"] = 14;
+            bowDIC["bow-a15"] = 15;            
+            bowDIC["bow-a16"] = 16;
+            bowDIC["bow-a17"] = 17;
+            bowDIC["bow-a18"] = 18;
+            bowDIC["bow-a19"] = 19;
+            bowDIC["bow-a20"] = 20;
+            bowDIC["bow-a21"] = 21;
+            bowDIC["bow-a22"] = 22;
+            bowDIC["bow-a23"] = 23;
+            bowDIC["bow-a24"] = 24;
+
+        }
         // Use this for initialization
         void Start()
         {
@@ -177,11 +239,12 @@ namespace gamedata_weapon
             bow_MAX = 0;
             weapon_MAX = 0;
 
-            // armor Dictornary init.
+            // Dictornary init.
             amorDIC_Init();
-
-            // wing Dictornary init.
             wingDIC_Init();
+            weaponDIC_Init();
+            bowDIC_Init();
+            
             // ************************************************************************  weapon init ************************************************************************ //
 
             // 무기 데이터 초기화.
@@ -466,7 +529,7 @@ namespace gamedata_weapon
                 case popup_window_button_mgr.NPC_INDEX.NPC01:
                     weapon_struct_object[_weapon_index].equiped_this_weapon_npc_index = popup_window_button_mgr.NPC_INDEX.NPC01;
 
-                    // 무기가 어떤 npc에 장착 되어있는지 확인할 Local 변수
+                    // 무기가 어떤 npc에 장착 되어있는지 확인할 Local 변수 Save.
                     set_weapon_to_npc_str = "weapon" + _weapon_index.ToString() + "_npc";
                     PlayerPrefs.SetInt(set_weapon_to_npc_str, 1);                                                    // 1 -> NPC01
                     PlayerPrefs.Save();
@@ -879,13 +942,9 @@ namespace gamedata_weapon
             {
                 case popup_window_button_mgr.NPC_INDEX.NPC01:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl1").GetComponent<Animator>();
-                    print("npc1 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
-                    npc01.change_attack_speed(attack_speed);
+                    npc01.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC01_make.NPC01_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1-attack_speed)*100) + "%";
@@ -893,13 +952,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC02:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl2").GetComponent<Animator>();
-                    print("npc2 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
-                    npc02.change_attack_speed(attack_speed);
+                    npc02.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC02_make.NPC02_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -907,13 +962,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC03:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl3").GetComponent<Animator>();
-                    print("npc3 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
-                    npc03.change_attack_speed(attack_speed);
+                    npc03.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC03_make.NPC03_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -921,13 +972,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC04:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl4").GetComponent<Animator>();
-                    print("npc4 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
-                    npc04.change_attack_speed(attack_speed);
+                    npc04.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC04_make.NPC04_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -935,13 +982,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC05:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl5").GetComponent<Animator>();
-                    print("npc5 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
-                    npc05.change_attack_speed(attack_speed);
+                    npc05.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC05_make.NPC05_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -949,13 +992,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC06:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl6").GetComponent<Animator>();
-                    print("npc6 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
-                    npc06.change_attack_speed(attack_speed);
+                    npc06.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC06_make.NPC06_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -963,13 +1002,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC07:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl7").GetComponent<Animator>();
-                    print("npc7 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
-                    npc07.change_attack_speed(attack_speed);
+                    npc07.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC07_make.NPC07_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -983,7 +1018,7 @@ namespace gamedata_weapon
 
                     // 캐릭터 공격속도 변경.
                     NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
-                    npc08.change_attack_speed(attack_speed);
+                    npc08.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC08_make.NPC08_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -997,7 +1032,7 @@ namespace gamedata_weapon
 
                     // 캐릭터 공격속도 변경.
                     NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
-                    npc09.change_attack_speed(attack_speed);
+                    npc09.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC09_make.NPC09_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -1005,13 +1040,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC10:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl10").GetComponent<Animator>();
-                    print("npc10 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
-                    npc10.change_attack_speed(attack_speed);
+                    npc10.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC10_make.NPC10_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -1019,13 +1050,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC11:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl11").GetComponent<Animator>();
-                    print("npc11 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC11_make npc11= NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
-                    npc11.change_attack_speed(attack_speed);
+                    npc11.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC11_make.NPC11_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -1033,13 +1060,9 @@ namespace gamedata_weapon
 
                 case popup_window_button_mgr.NPC_INDEX.NPC12:
                     // 캐릭터 공격 애니메이션 속도 변경.
-                    anim = GameObject.Find("Impl12").GetComponent<Animator>();
-                    print("npc12 speed :::" + anim.speed.ToString());
-                    anim.speed = animation_speed;
-
                     // 캐릭터 공격속도 변경.
                     NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
-                    npc12.change_attack_speed(attack_speed);
+                    npc12.change_attack_speed(attack_speed,animation_speed);
 
                     // 캐릭터 state창에서 공격속도증가 Label에 update해줘야함.
                     NPC12_make.NPC12_struct.add_speed_label.GetComponent<UILabel>().text = "+" + ((1 - attack_speed) * 100) + "%";
@@ -2029,78 +2052,7 @@ namespace gamedata_weapon
             }
         }
 
-        public static void set_data_for_equip_weapon(string weapon_type, int equip_weapon_index)
-        {
-            switch (weapon_type)
-            {
-
-                case "dagger-a":
-                    if (equip_weapon_index == 0)
-                    {
-                        // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                    }
-                    else if (equip_weapon_index == 1)
-                    {
-                        // weapon2 스킬 추가. < slash2에 Damage 추가. >
-                    }
-                    break;
-
-                case "sword-a":
-                    switch (equip_weapon_index)
-                    {
-                        case 0:
-                            // weapon3 스킬 추가. < slash3에 Damage 추가. >
-                            break;
-
-                        case 1:
-                            // weapon4 스킬 추가. < slash4에 Damage 추가. >
-                            break;
-
-                        case 2:
-                            // weapon5 스킬 추가. < slash5에 Damage 추가. >
-                            break;
-
-                        case 3:
-
-                            break;
-                    }
-                    break;
-
-                // To Do....
-                // 나머지 Bow 스킬 추가해야함.
-
-                case "bow-a":
-                    switch (equip_weapon_index)
-                    {
-                        case 0:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-
-                        case 1:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-
-                        case 2:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-
-                        case 3:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-
-                        case 4:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-
-                        case 5:
-                            // weapon1 스킬 추가. < slash1에 Damage 추가. >
-                            break;
-                            // To Do....
-                            // 나머지 Bow 스킬 추가해야함.
-                    }
-                    break;
-            }
-        }
+       
 
     
     }

@@ -10,6 +10,19 @@ public class GM : MonoBehaviour {
 	// Get a gap of two touch
 	int slash_index = 0;
     public static GameObject boost_time_label;
+    public static UILabel channel1_label;
+    public static UILabel channel2_label;
+    public static UILabel channel3_label;
+    public static UILabel channel4_label;
+    public static UILabel channel5_label;
+
+    
+    public static UISprite channel1_sprite;
+    public static UISprite channel2_sprite;
+    public static UISprite channel3_sprite;
+    public static UISprite channel4_sprite;
+    public static UISprite channel5_sprite;
+
 
     // 종료 popup window object받아 오기 위한 변수.
     // Use this for initializationf
@@ -20,22 +33,34 @@ public class GM : MonoBehaviour {
         // boost time lable을 처음 시작시 가져온다. 처음에는 false시키고 boost time이 enable되있을때만 활성화 시켜줌.
         boost_time_label = GameObject.Find("_boost_time_label");
         boost_time_label.SetActive(false);
-
         
+        channel1_label = GameObject.Find("ads_channel1_count_label").GetComponent<UILabel>();
+        channel1_sprite = GameObject.Find("Ads_channel1").GetComponent<UISprite>();
 
+        channel2_label = GameObject.Find("ads_channel2_count_label").GetComponent<UILabel>();
+        channel2_sprite = GameObject.Find("Ads_channel2").GetComponent<UISprite>();
+        
+        channel3_label = GameObject.Find("ads_channel3_count_label").GetComponent<UILabel>();
+        channel3_sprite = GameObject.Find("Ads_channel3").GetComponent<UISprite>();
+        
+        channel4_label = GameObject.Find("ads_channel4_count_label").GetComponent<UILabel>();
+        channel4_sprite = GameObject.Find("Ads_channel4").GetComponent<UISprite>();
+        
+        channel5_label = GameObject.Find("ads_channel5_count_label").GetComponent<UILabel>();
+        channel5_sprite = GameObject.Find("Ads_channel5").GetComponent<UISprite>();
+        
         // 처음 게임을 시작하면 Gold 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gold"))
         {
             string get_gold = PlayerPrefs.GetString("gold");
             GameData.coin_struct.gold = Convert.ToUInt64(get_gold);
-            GameData.coin_struct.gold = 1000000000000000;
+            GameData.coin_struct.gold = 10000000000000000000;
         }
         else
         {
             GameData.coin_struct.gold = 0;
         }
        
-
         // 처음 게임을 시작하면 보석 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gemstone"))
         {
@@ -49,11 +74,9 @@ public class GM : MonoBehaviour {
         }
 
         //tempppppppppppppppp
-        GameData.coin_struct.gold = 1000000000000000;
-        GameData.coin_struct.gemstone = 100000;
+        GameData.coin_struct.gold = 10000000000000000000;
 
         // 게임 시작시 sound on off값을 가져오고, sound on off 결정.
-        print("sound off" + GameData.sound_on_off.ToString());
         string sound_on_off_str = PlayerPrefs.GetString("sound_on_off", "ON");
         if (sound_on_off_str == "ON")
         {
@@ -87,15 +110,83 @@ public class GM : MonoBehaviour {
 
     public static float target_time = 0.0f;
     public static bool enable_boost = false;
+    public static float ads1_delay_time = 0.0f;
+    public static float ads2_delay_time = 0.0f;
+    public static float ads3_delay_time = 0.0f;
+    public static float ads4_delay_time = 0.0f;
+    public static float ads5_delay_time = 0.0f;
 
     
     // Update is called once per frame
     void Update () 
 	{
 
+         if (channel1_label.enabled)
+        {
+            float time = (ads1_delay_time - Time.time);
+
+            // ads1 time lable에 남은 시간 update.
+            channel1_label.GetComponent<UILabel>().text = string.Format("{0:0초}", time);
+             if (time < 0)
+            {
+                channel1_label.enabled = false;
+                channel1_sprite.enabled = true;
+            }
+        }
+        if (channel2_label.enabled)
+        {
+            float time = (ads2_delay_time - Time.time);
+
+            // ads1 time lable에 남은 시간 update.
+            channel2_label.GetComponent<UILabel>().text = string.Format("{0:0초}", time);
+             if (time < 0)
+            {
+                channel2_label.enabled = false;
+                channel2_sprite.enabled = true;
+            }
+        }
+        if (channel3_label.enabled)
+        {
+            float time = (ads3_delay_time - Time.time);
+
+            // ads1 time lable에 남은 시간 update.
+            channel3_label.GetComponent<UILabel>().text = string.Format("{0:0초}", time);
+             if (time < 0)
+            {
+                channel3_label.enabled = false;
+                channel3_sprite.enabled = true;
+            }
+        }
+        if (channel4_label.enabled)
+        {
+            float time = (ads4_delay_time - Time.time);
+
+            // ads1 time lable에 남은 시간 update.
+            channel4_label.GetComponent<UILabel>().text = string.Format("{0:0초}", time);
+             if (time < 0)
+            {
+                channel4_label.enabled = false;
+                channel4_sprite.enabled = true;
+            }
+        }
+        if (channel5_label.enabled)
+        {
+            float time = (ads5_delay_time - Time.time);
+
+            // ads5 time lable에 남은 시간 update.
+            channel5_label.GetComponent<UILabel>().text = string.Format("{0:0초}", time);
+             if (time < 0)
+            {
+                channel5_label.enabled = false;
+                channel5_sprite.enabled = true;
+            }
+        }
+        
+        
+        // 광고 클릭 후 골드 2배 및 캐릭터 공속 맥스로 설정하는 코드.
         if (enable_boost)
         {
-            float time = (target_time - Time.time) / 5.0f;
+            float time = (target_time - Time.time) / 10.0f;
 
             // Boost time lable에 남은 시간 update.
             boost_time_label.GetComponent<UILabel>().text = string.Format("{0:0.0}", time * 10);
@@ -115,7 +206,7 @@ public class GM : MonoBehaviour {
 
                 print("획득하는 gold & gemstone 원상복귀.");
                 GameData.chest_struct.attacked_gold = GameData.chest_struct.attacked_gold / 2;
-
+                unity_ads.boost_enable = true;
             }
         }
 

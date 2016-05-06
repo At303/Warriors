@@ -62,7 +62,11 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
     // For 데미지 HUD Text.
     public GameObject NPC10_HUD;
 
-
+    // 광고 시청 후 캐릭터 공속 원복을 위한 변수.
+    public float saved_attack_speed = 0f;
+    public float saved_animatoion_speed = 0f;
+    public Animator anim;
+    
     // NPC04 Struct 구조체 초기화 및 Gameobject 가져오기.
     void Awake()
     {
@@ -166,9 +170,6 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
         {
             character.Info.main_weapon_part = PlayerPrefs.GetString("npc10_weapon_part", "");
             character.Info.main_weapon_index = PlayerPrefs.GetInt("npc10_weapon_index", 0);
-
-            // 현재 장착하고 있는 무기의 스킬 Setting.
-            GameData_weapon.set_data_for_equip_weapon(character.Info.main_weapon_part, character.Info.main_weapon_index);
 
             // Change the NPC01 Weapon01 icon Sprite.
             // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
@@ -308,7 +309,7 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
     // ********************************************************			Image change functions 					******************************************************** //
 
     // Change the Weapon.
-    public void change_weapon(int weapon_index, string weapon_name)
+    public void change_weapon(int enable, int weapon_index, string weapon_name)
     {
         // 캐릭터 이미지 변화시 잠시 캐릭터 이미지 저장할 Reference 생성.
         // CharacterData _character = new CharacterData();
@@ -322,7 +323,7 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
         character.Info.main_weapon_index = weapon_index;
 
         // Boss Scene Load시 사용할 character image;
-        npc10_char.weapon_enable = 1;
+        npc10_char.weapon_enable = enable;
         npc10_char.weapon_part = weapon_name;
         npc10_char.weapon_index = weapon_index;
 
@@ -409,12 +410,28 @@ public class NPC10_make : MonoBehaviour, IAnimEventListener
 
         character.SetColor(ToChangeColor);
     }
-    public void change_attack_speed(float speed)
+    public void change_attack_speed(float speed, float anim_speed)
     {
+        // 광고 클릭 후 캐릭터 속도 복원을 위해 저장해둘 변수들.
+        // 캐릭터의 애니메이션 속도도 reset.
+        anim = GameObject.Find("Impl10").GetComponent<Animator>();   
+        saved_animatoion_speed= anim.speed;
+        saved_attack_speed = NPC10_struct.attack_speed;
+        
         NPC10_struct.attack_speed = 1 * speed;
+        anim.speed = anim_speed;
+
     }
     public void reset_attack_speed()
     {
         NPC10_struct.attack_speed = 1;
+    }
+    public void ads_reset_attack_speed()
+    {
+        // 캐릭터의 애니메이션 속도도 reset.
+        anim = GameObject.Find("Impl10").GetComponent<Animator>();
+        anim.speed = saved_animatoion_speed;
+            
+        NPC10_struct.attack_speed = saved_attack_speed;
     }
 }

@@ -34,9 +34,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
         print(" Clicked_weapon_select_NPC : "+weapon_type.ToString() + weapon_index.ToString());
         
-		// 어떤 무기를 사용할 지 index Save.
-		popup_window_button_mgr.equip_weapon_index = _equip_weapon_index;
-
         // NPC 선택 창 Popup Open.
         GameData.weapon_sel_popup_window_obj.SetActive(true);
 
@@ -98,7 +95,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
 
         // 이 함수에서 데이터 전부 세팅 및 버튼 On Off 체크.  
         GM.check_all_function_when_gold_changed();
-
     }
 
     // Bow 캐릭터 선택 창 클릭시 호출 함수.
@@ -109,9 +105,6 @@ public class subMenu03_button_mgr : MonoBehaviour {
         // 바꿀 Bow 정보 저장.
         GameData.to_change_npc_struct.To_Change_bow_type = "bow-a";
         GameData.to_change_npc_struct.bow_index = bow_index;
-
-        // 어떤 무기를 사용할 지 index Save.
-        popup_window_button_mgr.equip_weapon_index = _equip_weapon_index;
 
         // NPC 선택 창 Popup Open.
         GameData.bow_sel_popup_window_obj.SetActive(true);

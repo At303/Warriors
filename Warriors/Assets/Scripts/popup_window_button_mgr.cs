@@ -23,7 +23,6 @@ public class popup_window_button_mgr : MonoBehaviour {
         NPC12,
     }
     
-	public static int equip_weapon_index;
 
     public string weapon
     {
@@ -154,238 +153,144 @@ public class popup_window_button_mgr : MonoBehaviour {
     // 해당 NPC에게 선택한 Weapon을 장착하게 하는 함수.
     void weapon_to_selected_NPC(NPC_INDEX _npc_index, string _weapon_name, int _weapon_index)
     {
-        bool enable_weapon_change = false;
+        // 1. 선택한 weapon을  장착하고 있는 npc는 해당 weapon을 해제.
+        // 2. 선택한 npc가 weapon을 장착하고 있을경우 해당 weapon을 해제 그렇지 않으면 바로 3번 ㄱㄱ
+        // 3. 선택한 npc에 선택한 weapon을 장착.
+        
+        // weapon DIC으로부터 wing index가져옴.
+        print(" NPC : " + _npc_index);
+        print(" Weapon String : " + _weapon_name + _weapon_index);
+        
+        int equip_weapon_index = GameData_weapon.weaponDIC[_weapon_name + _weapon_index];
+        print(" Get Weapon index : " + equip_weapon_index);
 
-        // example : dagger-a0
-        print("weapon_to_selected_NPC : " + _weapon_name.ToString() + _weapon_index.ToString());
+        // 가져온 weapon index를 가지고 해당 weapon가 어떤 npc에 저장되어 있는지 판별함. 없으면 100으로 setting.
+        int weapon_already_equiped_npc = PlayerPrefs.GetInt("weapon" + equip_weapon_index + "_npc", 100);
 
-        // 선택한 캐릭터가 해당 무기를 가지고 있는지 check. 
-        string npc_str = "npc" + ((int)_npc_index).ToString() + "_weapon_enable";
-
-        if (PlayerPrefs.HasKey(npc_str))
+        print("현재 Weapon을 장착하고 있는 npc :: " + weapon_already_equiped_npc);
+        if(weapon_already_equiped_npc != 100)
         {
-            print("캐릭터는 무기를 가지고 있으므로 동일한 무기인지 check.");
-
-            //무기를 가지고 있다면 동일한 무기인지 check.
-            string npc_select_weapon = _weapon_name + _weapon_index;
-            string npc_has_weapon = PlayerPrefs.GetString("npc"+ ((int)_npc_index).ToString() + "_weapon_part") + PlayerPrefs.GetInt("npc"+ ((int)_npc_index).ToString() + "_weapon_index").ToString();
-            if (string.Equals(npc_select_weapon, npc_has_weapon))
-            {
-                print("같은 무기 선택.");
-                GameData.weapon_sel_popup_window_obj.SetActive(false);
-                return;
-            } else
-            {
-                print("다른 무기 선택하여 해당 무기 setting.");
-                enable_weapon_change = true;
-            }
-        } else
+            // 1번.
+            unequiped_weapon_npc(equip_weapon_index, weapon_already_equiped_npc);
+        }           
+        
+        // 선택한 npc가 weapon를 장착하고 있으면 해당 weapon skill을 reset 
+        // 그렇지 않으면 그냥 weapon 장착 ( enable_weapon_change = true ) setting.
+        int get_weapon_enable = PlayerPrefs.GetInt("npc" + (int)_npc_index + "_weapon_enable");
+        if(get_weapon_enable == 1)
         {
-            print("캐릭터는 무기를 가지고 있지 않음.");
-            enable_weapon_change = true;
+            string get_equiped_weapon = PlayerPrefs.GetString("npc"+ (int)_npc_index + "_weapon_part", "null") + PlayerPrefs.GetInt("npc" + (int)_npc_index + "_weapon_index",100);
+            print("선택한 npc가 장착하고 있는 Weapon : " + get_equiped_weapon);
 
-            // 현재 장착하고 있는 npc는 해당 무기 해제.
-            int unequiped_npc = PlayerPrefs.GetInt("weapon" + _weapon_index.ToString() + "_npc");
-            switch (unequiped_npc)
-            {
-                case 1:
-                    // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+            int equiped_weapon_index = GameData_weapon.weaponDIC[get_equiped_weapon];
+            print("선택한 npc가 장착하고 있는 아머 index :: " + equiped_weapon_index);
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC01_make.NPC01_struct.weapon_sp.spriteName = "weapon_nothing";
+            // 2번.
+            unequiped_weapon_npc(equip_weapon_index, weapon_already_equiped_npc);
+            // 선택한 npc가 장착하고 있는 weapon Local변수도 reset해줘야함.
+            PlayerPrefs.SetInt("weapon" + equiped_weapon_index + "_npc", 100);
+            PlayerPrefs.Save();
+        }
+        
+        // npc index에 따라서 실행.
+        switch (_npc_index)
+        {
 
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc01.change_weapon(0, "");
+            case NPC_INDEX.NPC01:
+                // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
 
-                    // NPC01 캐릭터 damage에 weapon damage 추가.
-                    NPC01_make.NPC01_struct.add_damage = 0;
-                    NPC01_make.NPC01_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC01_make.NPC01_struct.add_damage);
+                // Change the NPC01 Weapon01 icon Sprite.
+                // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
+                NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC01_make.NPC01_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc01.change_weapon(1,_weapon_index, _weapon_name);
+
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC01);
                 break;
-                case 2:
-                    // Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC02_make.NPC02_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC02_make.NPC02_struct.weapon_sp.spriteName = "weapon_nothing";
+            case NPC_INDEX.NPC02:
+                // Change the NPC02 Character Sprite.
+                NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
 
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc02.change_weapon(0, "");
+                // Change the NPC02 Weapon01 icon Sprite.
+                NPC02_make.NPC02_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC02_make.NPC02_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
 
-                    // NPC01 캐릭터 damage에 weapon damage 추가.
-                    NPC02_make.NPC02_struct.add_damage = 0;
-                    NPC02_make.NPC02_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC02_make.NPC02_struct.add_damage);
-                    break;
-                case 3:
-                    // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+                // NPC02 캐릭터 이미지 바꾸기.
+                npc02.change_weapon(1,_weapon_index, _weapon_name);
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC03_make.NPC03_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC03_make.NPC03_struct.weapon_sp.spriteName = "weapon_nothing";
+                // NPC02 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC02);
+                break;
 
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc03.change_weapon(0, "");
+            case NPC_INDEX.NPC03:
+                // Change the NPC03 Character Sprite.
+                NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
 
-                    // NPC01 캐릭터 damage에 weapon damage 추가.
-                    NPC03_make.NPC03_struct.add_damage = 0;
-                    NPC03_make.NPC03_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC03_make.NPC03_struct.add_damage);
-                    break;
-                case 7:
-                    // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+                // Change the NPC03 Weapon icon Sprite.
+                NPC03_make.NPC03_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC03_make.NPC03_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC07_make.NPC07_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC07_make.NPC07_struct.weapon_sp.spriteName = "weapon_nothing";
+                // NPC03 캐릭터 이미지 바꾸기.
+                npc03.change_weapon(1,_weapon_index, _weapon_name);
 
-                    // NPC07 캐릭터 weapon 이미지 바꾸기.
-                    npc07.change_weapon(0, "");
+                // NPC03 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC03);
+                break;
 
-                    // NPC07 캐릭터 damage에 weapon damage 추가.
-                    NPC07_make.NPC07_struct.add_damage = 0;
-                    NPC07_make.NPC07_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC07_make.NPC07_struct.add_damage);
-                    break;
-                case 8:
-                    // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+            case NPC_INDEX.NPC07:
+                // Change the NPC07 Character Sprite.
+                NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC08_make.NPC08_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC08_make.NPC08_struct.weapon_sp.spriteName = "weapon_nothing";
+                // Change the NPC03 Weapon icon Sprite.
+                NPC07_make.NPC07_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC07_make.NPC07_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
 
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc08.change_weapon(0, "");
+                // NPC07 캐릭터 이미지 바꾸기.
+                npc07.change_weapon(1,_weapon_index, _weapon_name);
 
-                    // NPC08 캐릭터 damage에 weapon damage 추가.
-                    NPC08_make.NPC08_struct.add_damage = 0;
-                    NPC08_make.NPC08_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC08_make.NPC08_struct.add_damage);
-                    break;
-                case 9:
-                    // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+                // NPC07 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC07);
+                break;
 
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    NPC09_make.NPC09_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC09_make.NPC09_struct.weapon_sp.spriteName = "weapon_nothing";
+            case NPC_INDEX.NPC08:
+                // Change the NPC08 Character Sprite.
+                NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
 
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc09.change_weapon(0, "");
+                // Change the NPC08 Weapon icon Sprite.
+                NPC08_make.NPC08_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC08_make.NPC08_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
 
-                    // NPC01 캐릭터 damage에 weapon damage 추가.
-                    NPC09_make.NPC09_struct.add_damage = 0;
-                    NPC09_make.NPC09_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC09_make.NPC09_struct.add_damage);
-                    break;
-            }
+                // NPC08 캐릭터 이미지 바꾸기.
+                npc08.change_weapon(1,_weapon_index, _weapon_name);
 
+                // NPC08 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC08);
+                break;
+
+            case NPC_INDEX.NPC09:
+                // Change the NPC09 Character Sprite.
+                NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+
+                // Change the NPC09 Weapon icon Sprite.
+                NPC09_make.NPC09_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC09_make.NPC09_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
+
+                // NPC09 캐릭터 이미지 바꾸기.
+                npc09.change_weapon(1,_weapon_index, _weapon_name);
+
+                // NPC09 캐릭터 damage에 weapon damage 추가.
+                GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC09);
+                break;
+            default:
+                print("Can`t find NPC index");
+                break;
         }
 
-        //무기를 가지고 있지 않으면 그냥 setting.
-        if (enable_weapon_change)
-        {
-            print("해당 캐릭터는 무기를 가지고 있지 않음.");
-
-            // npc index에 따라서 실행.
-            switch (_npc_index)
-            {
-
-                case NPC_INDEX.NPC01:
-                    // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
-                    NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
-
-                    // Change the NPC01 Weapon01 icon Sprite.
-                    // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
-                    NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC01_make.NPC01_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC01 캐릭터 weapon 이미지 바꾸기.
-                    npc01.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC01 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC01);
-                    break;
-
-                case NPC_INDEX.NPC02:
-                    // Change the NPC02 Character Sprite.
-                    NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
-
-                    // Change the NPC02 Weapon01 icon Sprite.
-                    NPC02_make.NPC02_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC02_make.NPC02_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC02 캐릭터 이미지 바꾸기.
-                    npc02.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC02 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC02);
-                    break;
-
-                case NPC_INDEX.NPC03:
-                    // Change the NPC03 Character Sprite.
-                    NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
-
-                    // Change the NPC03 Weapon icon Sprite.
-                    NPC03_make.NPC03_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC03_make.NPC03_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC03 캐릭터 이미지 바꾸기.
-                    npc03.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC03 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC03);
-                    break;
-
-                case NPC_INDEX.NPC07:
-                    // Change the NPC07 Character Sprite.
-                    NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
-
-                    // Change the NPC03 Weapon icon Sprite.
-                    NPC07_make.NPC07_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC07_make.NPC07_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC07 캐릭터 이미지 바꾸기.
-                    npc07.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC07 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC07);
-                    break;
-
-                case NPC_INDEX.NPC08:
-                    // Change the NPC08 Character Sprite.
-                    NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
-
-                    // Change the NPC08 Weapon icon Sprite.
-                    NPC08_make.NPC08_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC08_make.NPC08_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC08 캐릭터 이미지 바꾸기.
-                    npc08.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC08 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC08);
-                    break;
-
-                case NPC_INDEX.NPC09:
-                    // Change the NPC09 Character Sprite.
-                    NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
-
-                    // Change the NPC09 Weapon icon Sprite.
-                    NPC09_make.NPC09_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC09_make.NPC09_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_Weapon_type + GameData.to_change_npc_struct.weapon_index.ToString();
-
-                    // NPC09 캐릭터 이미지 바꾸기.
-                    npc09.change_weapon(_weapon_index, _weapon_name);
-
-                    // NPC09 캐릭터 damage에 weapon damage 추가.
-                    GameData_weapon.equip_the_weapon(equip_weapon_index, NPC_INDEX.NPC09);
-                    break;
-                default:
-                    print("Can`t find NPC index");
-                    break;
-            }
-        }
         // NPC선택 후 popUp window 비활성화.
         GameData.weapon_sel_popup_window_obj.SetActive(false);
     }
@@ -393,144 +298,147 @@ public class popup_window_button_mgr : MonoBehaviour {
     void bow_to_selected_NPC(NPC_INDEX _npc_index, string _weapon_name, int _weapon_index)
     {
 
-        bool enable_weapon_change = false;
+        // 1. 선택한 bow을  장착하고 있는 npc는 해당 bow을 해제.
+        // 2. 선택한 npc가 bow을 장착하고 있을경우 해당 bow을 해제 그렇지 않으면 바로 3번 ㄱㄱ
+        // 3. 선택한 npc에 선택한 bow을 장착.
+        
+        // bow DIC으로부터 wing index가져옴.
+        print(" NPC : " + _npc_index);
+        print(" Bow String : " + _weapon_name + _weapon_index);
+        
+        int equip_weapon_index = GameData_weapon.bowDIC[_weapon_name + _weapon_index];
+        print(" Get bow index : " + equip_weapon_index);
 
-        // example : dagger-a0
-        print("weapon_to_selected_NPC : " + _weapon_name.ToString() + _weapon_index.ToString());
+        // 가져온 weapon index를 가지고 해당 weapon가 어떤 npc에 저장되어 있는지 판별함. 없으면 100으로 setting.
+        int weapon_already_equiped_npc = PlayerPrefs.GetInt("bow" + equip_weapon_index + "_npc", 100);
 
-        // 선택한 캐릭터가 해당 무기를 가지고 있는지 check. 
-        string npc_str = "npc" + ((int)_npc_index).ToString() + "_weapon_enable";
-
-        if (PlayerPrefs.HasKey(npc_str))
+        print("현재 Weapon을 장착하고 있는 npc :: " + weapon_already_equiped_npc);
+        if(weapon_already_equiped_npc != 100)
         {
-            print("캐릭터는 무기를 가지고 있으므로 동일한 무기인지 check.");
-
-            //무기를 가지고 있다면 동일한 무기인지 check.
-            string npc_select_weapon = _weapon_name + _weapon_index;
-            string npc_has_weapon = PlayerPrefs.GetString("npc"+ ((int)_npc_index).ToString() + "_weapon_part") + PlayerPrefs.GetInt("npc"+ ((int)_npc_index).ToString() + "_weapon_index").ToString();
-            if (string.Equals(npc_select_weapon, npc_has_weapon))
-            {
-                print("같은 무기 선택.");
-                GameData.weapon_sel_popup_window_obj.SetActive(false);
-                return;
-            }
-            else
-            {
-                print("다른 무기 선택하여 해당 무기 setting.");
-                enable_weapon_change = true;
-            }
-        }
-        else
+            // 1번.
+            unequiped_bow_npc(equip_weapon_index, weapon_already_equiped_npc);
+        }           
+        
+        // 선택한 npc가 weapon를 장착하고 있으면 해당 weapon skill을 reset 
+        // 그렇지 않으면 그냥 weapon 장착 ( enable_weapon_change = true ) setting.
+        int get_weapon_enable = PlayerPrefs.GetInt("npc" + (int)_npc_index + "_weapon_enable");
+        if(get_weapon_enable == 1)
         {
-            print("캐릭터는 무기를 가지고 있지 않음.");
-            enable_weapon_change = true;
+            string get_equiped_weapon = PlayerPrefs.GetString("npc"+ (int)_npc_index + "_weapon_part", "null") + PlayerPrefs.GetInt("npc" + (int)_npc_index + "_weapon_index",100);
+            print("선택한 npc가 장착하고 있는 bow : " + get_equiped_weapon);
 
+            int equiped_weapon_index = GameData_weapon.weaponDIC[get_equiped_weapon];
+            print("선택한 npc가 장착하고 있는 bow index :: " + equiped_weapon_index);
+
+            // 2번.
+            unequiped_bow_npc(equip_weapon_index, weapon_already_equiped_npc);
+            // 선택한 npc가 장착하고 있는 weapon Local변수도 reset해줘야함.
+            PlayerPrefs.SetInt("weapon" + equiped_weapon_index + "_npc", 100);
+            PlayerPrefs.Save();
         }
-
-        if (enable_weapon_change)
+        
+        // npc0x에 따라서 실행.
+        switch (_npc_index)
         {
-            // npc0x에 따라서 실행.
-            switch (_npc_index)
-            {
 
-                case NPC_INDEX.NPC04:
+            case NPC_INDEX.NPC04:
+                // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할 때 object 받아와야함. )
+                NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
 
-                    // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할 때 object 받아와야함. )
-                    NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+                // Change the NPC04 Weapon04 icon Sprite.
+                // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
+                NPC04_make.NPC04_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC04_make.NPC04_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                    // Change the NPC04 Weapon04 icon Sprite.
-                    // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
-                    NPC04_make.NPC04_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC04_make.NPC04_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+                // NPC04 캐릭터 damage에 첫번째 weapon damage 추가.
+                print("to change sprite : " + NPC04_make.NPC04_struct.weapon_sp.spriteName.ToString());
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC04);
 
-                    // NPC04 캐릭터 damage에 첫번째 weapon damage 추가.
-                    print("to change sprite : " + NPC04_make.NPC04_struct.weapon_sp.spriteName.ToString());
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC04);
+                // NPC04 캐릭터 bow 이미지 바꾸기.
+                npc04.change_weapon(1,_weapon_index, _weapon_name);
+                break;
 
-                    // NPC04 캐릭터 bow 이미지 바꾸기.
-                    npc04.change_weapon(_weapon_index, _weapon_name);
-                    break;
+            case NPC_INDEX.NPC05:
+                // Change the NPC05 Character Sprite.
+                NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
 
-                case NPC_INDEX.NPC05:
+                // Change the NPC05 Weapon01 icon Sprite.
+                NPC05_make.NPC05_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC05_make.NPC05_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                    // Change the NPC05 Character Sprite.
-                    NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+                // NPC05 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC05);
 
-                    // Change the NPC05 Weapon01 icon Sprite.
-                    NPC05_make.NPC05_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC05_make.NPC05_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+                // NPC02 캐릭터 이미지 바꾸기.
+                npc05.change_weapon(1,_weapon_index, _weapon_name);
+                break;
 
-                    // NPC05 캐릭터 damage에 첫번째 weapon damage 추가.
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC05);
+            case NPC_INDEX.NPC06:
+                // Change the NPC06 Character Sprite.
+                NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
 
-                    // NPC02 캐릭터 이미지 바꾸기.
-                    npc05.change_weapon(_weapon_index, _weapon_name);
-                    break;
+                // Change the NPC03 Weapon icon Sprite.
+                NPC06_make.NPC06_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC06_make.NPC06_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                case NPC_INDEX.NPC06:
-                    // Change the NPC06 Character Sprite.
-                    NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+                // NPC06 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC06);
 
-                    // Change the NPC03 Weapon icon Sprite.
-                    NPC06_make.NPC06_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC06_make.NPC06_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+                // NPC03 캐릭터 이미지 바꾸기.
+                npc06.change_weapon(1,_weapon_index, _weapon_name);
+                break;
 
-                    // NPC06 캐릭터 damage에 첫번째 weapon damage 추가.
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC06);
+            case NPC_INDEX.NPC10:
+                // Change the NPC10 Character Sprite.
+                NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
 
-                    // NPC03 캐릭터 이미지 바꾸기.
-                    npc06.change_weapon(_weapon_index, _weapon_name);
-                    break;
+                // Change the NPC10 Weapon icon Sprite.
+                NPC10_make.NPC10_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC10_make.NPC10_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                case NPC_INDEX.NPC10:
-                    // Change the NPC10 Character Sprite.
-                    NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+                // NPC10 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC10);
 
-                    // Change the NPC10 Weapon icon Sprite.
-                    NPC10_make.NPC10_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC10_make.NPC10_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+                // NPC07 캐릭터 이미지 바꾸기.
+                npc10.change_weapon(1,_weapon_index, _weapon_name);
+                break;
 
-                    // NPC10 캐릭터 damage에 첫번째 weapon damage 추가.
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC10);
+            case NPC_INDEX.NPC11:
+                // Change the NPC11 Character Sprite.
+                NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
 
-                    // NPC07 캐릭터 이미지 바꾸기.
-                    npc10.change_weapon(_weapon_index, _weapon_name);
-                    break;
+                // Change the NPC11 Weapon icon Sprite.
+                NPC11_make.NPC11_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC11_make.NPC11_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                case NPC_INDEX.NPC11:
-                    // Change the NPC11 Character Sprite.
-                    NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+                // NPC11 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC11);
 
-                    // Change the NPC11 Weapon icon Sprite.
-                    NPC11_make.NPC11_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC11_make.NPC11_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
+                // NPC11 캐릭터 이미지 바꾸기.
+                npc11.change_weapon(1,_weapon_index, _weapon_name);
+                break;
 
-                    // NPC11 캐릭터 damage에 첫번째 weapon damage 추가.
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC11);
+            case NPC_INDEX.NPC12:
+                // Change the NPC12 Character Sprite.
+                NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
 
-                    // NPC11 캐릭터 이미지 바꾸기.
-                    npc11.change_weapon(_weapon_index, _weapon_name);
-                    break;
+                // Change the NPC12 Weapon icon Sprite.
+                NPC12_make.NPC12_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC12_make.NPC12_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
 
-                case NPC_INDEX.NPC12:
-                    // Change the NPC12 Character Sprite.
-                    NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+                // NPC12 캐릭터 damage에 첫번째 weapon damage 추가.
+                GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC12);
 
-                    // Change the NPC12 Weapon icon Sprite.
-                    NPC12_make.NPC12_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
-                    NPC12_make.NPC12_struct.weapon_sp.spriteName = GameData.to_change_npc_struct.To_Change_bow_type + GameData.to_change_npc_struct.bow_index.ToString();
-
-                    // NPC12 캐릭터 damage에 첫번째 weapon damage 추가.
-                    GameData_weapon.equip_the_bow(equip_weapon_index, NPC_INDEX.NPC12);
-
-                    // NPC12 캐릭터 이미지 바꾸기.
-                    npc12.change_weapon(_weapon_index, _weapon_name);
-                    break;
-                default:
-                    print("Can`t find NPC index");
-                    break;
-            }
+                // NPC12 캐릭터 이미지 바꾸기.
+                npc12.change_weapon(1,_weapon_index, _weapon_name);
+                break;
+                
+            default:
+                print("Can`t find NPC index");
+                break;
         }
+
+       
         // NPC선택 후 popUp window 비활성화.
         GameData.bow_sel_popup_window_obj.SetActive(false);
     }
@@ -771,6 +679,231 @@ public class popup_window_button_mgr : MonoBehaviour {
 
     }
 
+    void unequiped_bow_npc(int _weapon, int npc_index)
+    {
+        //******   현재 장착하고 있는 npc는 해당 무기 해제.  ******//
+        print("npc_index : " + npc_index);
+        print("_weapon : " + _weapon);
+               
+        // npc0x에 따라서 실행.
+        switch (npc_index)
+        {
+
+            case 4:
+
+                // Change the NPC04 Character Sprite. ( 다른 스크립트 함수 실행할 때 object 받아와야함. )
+                NPC04_make npc04 = NPC04_make.NPC04_struct.gameobject.GetComponent<NPC04_make>();
+
+                // Change the NPC04 Weapon04 icon Sprite.
+                // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
+                NPC04_make.NPC04_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC04_make.NPC04_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC04 캐릭터 bow 이미지 바꾸기.
+                npc04.change_weapon(0,0, "");
+                
+                // NPC04 캐릭터 damage에 weapon damage 추가.
+                NPC04_make.NPC04_struct.add_damage = 0;
+                NPC04_make.NPC04_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC04_make.NPC04_struct.add_damage);
+                
+                break;
+
+            case 5:
+
+                // Change the NPC05 Character Sprite.
+                NPC05_make npc05 = NPC05_make.NPC05_struct.gameobject.GetComponent<NPC05_make>();
+
+                // Change the NPC05 Weapon01 icon Sprite.
+                NPC05_make.NPC05_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC05_make.NPC05_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC05 캐릭터 이미지 바꾸기.
+                npc05.change_weapon(0,0, "");
+                
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC05_make.NPC05_struct.add_damage = 0;
+                NPC05_make.NPC05_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC05_make.NPC05_struct.add_damage);
+                
+                break;
+
+            case 6:
+                // Change the NPC06 Character Sprite.
+                NPC06_make npc06 = NPC06_make.NPC06_struct.gameobject.GetComponent<NPC06_make>();
+
+                // Change the NPC03 Weapon icon Sprite.
+                NPC06_make.NPC06_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC06_make.NPC06_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC03 캐릭터 이미지 바꾸기.
+                npc06.change_weapon(0,0, "");
+                
+                // NPC06 캐릭터 damage에 weapon damage 추가.
+                NPC06_make.NPC06_struct.add_damage = 0;
+                NPC06_make.NPC06_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC06_make.NPC06_struct.add_damage);
+                
+                break;
+
+            case 10:
+                // Change the NPC10 Character Sprite.
+                NPC10_make npc10 = NPC10_make.NPC10_struct.gameobject.GetComponent<NPC10_make>();
+
+                // Change the NPC10 Weapon icon Sprite.
+                NPC10_make.NPC10_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC10_make.NPC10_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC07 캐릭터 이미지 바꾸기.
+                npc10.change_weapon(0,0, "");
+                
+                // NPC10 캐릭터 damage에 weapon damage 추가.
+                NPC10_make.NPC10_struct.add_damage = 0;
+                NPC10_make.NPC10_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC10_make.NPC10_struct.add_damage);
+                break;
+
+            case 11:
+                // Change the NPC11 Character Sprite.
+                NPC11_make npc11 = NPC11_make.NPC11_struct.gameobject.GetComponent<NPC11_make>();
+
+                // Change the NPC11 Weapon icon Sprite.
+                NPC11_make.NPC11_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC11_make.NPC11_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC11 캐릭터 이미지 바꾸기.
+                npc11.change_weapon(0,0, "");
+                
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC11_make.NPC11_struct.add_damage = 0;
+                NPC11_make.NPC11_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC11_make.NPC11_struct.add_damage);
+                
+                break;
+
+            case 12:
+                // Change the NPC12 Character Sprite.
+                NPC12_make npc12 = NPC12_make.NPC12_struct.gameobject.GetComponent<NPC12_make>();
+
+                // Change the NPC12 Weapon icon Sprite.
+                NPC12_make.NPC12_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC12_make.NPC12_struct.weapon_sp.spriteName = "weapon_nothing";
+              
+                // NPC12 캐릭터 이미지 바꾸기.
+                npc12.change_weapon(0,0, "");
+                
+                // NPC12 캐릭터 damage에 weapon damage 추가.
+                NPC12_make.NPC12_struct.add_damage = 0;
+                NPC12_make.NPC12_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC12_make.NPC12_struct.add_damage);
+                
+                break;
+                
+            default:
+                print("Can`t find NPC index");
+                break;
+        }
+ 
+        
+    }
+
+    void unequiped_weapon_npc(int _weapon, int npc_index)
+    {
+        //******   현재 장착하고 있는 npc는 해당 무기 해제.  ******//
+        print("npc_index : " + npc_index);
+        print("_weapon : " + _weapon);
+                
+        // 현재 장착하고 있는 npc는 해당 무기 해제.
+        switch (npc_index)
+        {
+            case 1:
+                // Change the NPC01 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC01_make npc01 = NPC01_make.NPC01_struct.gameobject.GetComponent<NPC01_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC01_make.NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC01_make.NPC01_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc01.change_weapon(0,0, "");
+
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC01_make.NPC01_struct.add_damage = 0;
+                NPC01_make.NPC01_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC01_make.NPC01_struct.add_damage);
+            break;
+            case 2:
+                // Change the NPC02 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC02_make npc02 = NPC02_make.NPC02_struct.gameobject.GetComponent<NPC02_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC02_make.NPC02_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC02_make.NPC02_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc02.change_weapon(0,0, "");
+
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC02_make.NPC02_struct.add_damage = 0;
+                NPC02_make.NPC02_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC02_make.NPC02_struct.add_damage);
+                break;
+            case 3:
+                // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC03_make npc03 = NPC03_make.NPC03_struct.gameobject.GetComponent<NPC03_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC03_make.NPC03_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC03_make.NPC03_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc03.change_weapon(0,0, "");
+
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC03_make.NPC03_struct.add_damage = 0;
+                NPC03_make.NPC03_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC03_make.NPC03_struct.add_damage);
+                break;
+            case 7:
+                // Change the NPC07 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC07_make npc07 = NPC07_make.NPC07_struct.gameobject.GetComponent<NPC07_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC07_make.NPC07_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC07_make.NPC07_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC07 캐릭터 weapon 이미지 바꾸기.
+                npc07.change_weapon(0,0, "");
+
+                // NPC07 캐릭터 damage에 weapon damage 추가.
+                NPC07_make.NPC07_struct.add_damage = 0;
+                NPC07_make.NPC07_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC07_make.NPC07_struct.add_damage);
+                break;
+            case 8:
+                // Change the NPC08 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC08_make npc08 = NPC08_make.NPC08_struct.gameobject.GetComponent<NPC08_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC08_make.NPC08_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC08_make.NPC08_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc08.change_weapon(0,0, "");
+
+                // NPC08 캐릭터 damage에 weapon damage 추가.
+                NPC08_make.NPC08_struct.add_damage = 0;
+                NPC08_make.NPC08_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC08_make.NPC08_struct.add_damage);
+                break;
+            case 9:
+                // Change the NPC03 Character Sprite. ( 다른 스크립트 함수 실행할떄 object 받아와야함. )
+                NPC09_make npc09 = NPC09_make.NPC09_struct.gameobject.GetComponent<NPC09_make>();
+
+                // Change the NPC01 Weapon01 icon Sprite.
+                NPC09_make.NPC09_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
+                NPC09_make.NPC09_struct.weapon_sp.spriteName = "weapon_nothing";
+
+                // NPC01 캐릭터 weapon 이미지 바꾸기.
+                npc09.change_weapon(0,0, "");
+
+                // NPC01 캐릭터 damage에 weapon damage 추가.
+                NPC09_make.NPC09_struct.add_damage = 0;
+                NPC09_make.NPC09_struct.add_damage_label.GetComponent<UILabel>().text = "+ " + GameData.int_to_label_format(NPC09_make.NPC09_struct.add_damage);
+                break;
+        }
+
+    }
+    
     void unequiped_armor_npc(int _armor, int npc_index)
     {
         //******   현재 장착하고 있는 npc는 해당 무기 해제.  ******//

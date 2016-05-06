@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using gamedata;
 
 public class scene_loading : MonoBehaviour {
 
     private UISprite m_Fade;
 
-    public float m_fDuration = 0.5f;
+    public float m_fDuration = 0.2f;
     public static GameObject getitem_window;
     public static GameObject item_drop_bgm_object;
-
     // Use this for initialization
+
+    public static GameObject ads_play_retry_object;
+    
+    void Awake()
+    {
+        ads_play_retry_object = GameObject.Find("ads_and_retry");
+        ads_play_retry_object.SetActive(false);
+    }
 
     void Start()
     {
@@ -17,8 +25,13 @@ public class scene_loading : MonoBehaviour {
         getitem_window = GameObject.Find("get_item_pop_window");
         item_drop_bgm_object = GameObject.Find("item_drop_bgm_object");
 
-        // Item Drop 씬 BGM Play
-        item_drop_bgm_object.GetComponent<AudioSource>().Play(0);
+         // 게임 시작시 sound on off값을 가져오고, sound on off 결정.
+        if (GameData.sound_on_off)
+        {
+             print("item drop bgm play");
+             item_drop_bgm_object.GetComponent<AudioSource>().Play(0);
+        }
+       
 
         m_Fade = GameObject.Find("FadeObject").GetComponent<UISprite>();
         StartCoroutine(FadeOut());

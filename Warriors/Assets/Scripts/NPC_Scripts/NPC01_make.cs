@@ -60,6 +60,10 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
     // For 데미지 HUD Text.
     private GameObject NPC01_HUD;
 
+    // 광고 시청 후 캐릭터 공속 원복을 위한 변수.
+    public float saved_attack_speed = 1f;
+    public float saved_animatoion_speed = 1f;
+    public Animator anim;
     
     // NPC01 Struct 구조체 초기화 및 Gameobject 가져오기.
     void Awake()
@@ -153,8 +157,9 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
             character.Info.main_weapon_index = PlayerPrefs.GetInt("npc1_weapon_index", 0);
 
 			// 현재 장착하고 있는 무기의 스킬 Setting.
-			GameData_weapon.set_data_for_equip_weapon (character.Info.main_weapon_part, character.Info.main_weapon_index);
-
+            int weapon_index = GameData_weapon.weaponDIC[character.Info.main_weapon_part + character.Info.main_weapon_index];
+            GameData_weapon.equip_the_weapon(weapon_index, popup_window_button_mgr.NPC_INDEX.NPC01);
+                
             // Change the NPC01 Weapon01 icon Sprite.
             // 무기 장착 메뉴에서 무기의 type과 index를 to_change 구조체에 미리 저장해두고 여기서 가져와서 해당 무기 장착 sprite로 바꿔줌.
             NPC01_struct.weapon_sp.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
@@ -188,7 +193,6 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
 
             //현재 장착하고 있는 Wing 스킬 Setting.
             int equip_wing_index = GameData_weapon.wingDIC[character.Info.wing_part + character.Info.wing_index];
-            print("npc1이 현재 장착하고 있는 wing index : " + equip_wing_index);
             GameData_weapon.get_wing_skill_func(equip_wing_index, popup_window_button_mgr.NPC_INDEX.NPC01);
 
             // Change the NPC Clothes icon Sprite.
@@ -300,7 +304,7 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
     // ********************************************************			Image change functions 					******************************************************** //
 
     // Change the Weapon.
-    public void change_weapon(int weapon_index, string weapon_name)
+    public void change_weapon(int enable, int weapon_index, string weapon_name)
     {
         // 캐릭터 이미지 변화시 잠시 캐릭터 이미지 저장할 Reference 생성.
         // CharacterData _character = new CharacterData();
@@ -314,7 +318,7 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
         character.Info.main_weapon_index = weapon_index;
 
         // Boss Scene Load시 사용할 character image;
-        npc01_char.weapon_enable = 1;
+        npc01_char.weapon_enable = enable;
         npc01_char.weapon_part = weapon_name;
         npc01_char.weapon_index = weapon_index;
 
@@ -401,17 +405,31 @@ public class NPC01_make : MonoBehaviour, IAnimEventListener
 
     public void change_color(Color ToChangeColor)
     {
-        print("npc1 color change!!");
         character.SetColor(ToChangeColor);
     }
-    public void change_attack_speed(float speed)
-    {
+    public void change_attack_speed(float speed, float anim_speed)
+    {     
+        // 광고 클릭 후 캐릭터 속도 복원을 위해 저장해둘 변수들.
+        // 캐릭터의 애니메이션 속도도 reset.
+        anim = GameObject.Find("Impl1").GetComponent<Animator>();   
+        saved_animatoion_speed= anim.speed;
+        saved_attack_speed = NPC01_struct.attack_speed;
+        
         NPC01_struct.attack_speed = 1 * speed;
+        anim.speed = anim_speed;
     }
 
     public void reset_attack_speed()
     {
         NPC01_struct.attack_speed = 1;
-
+    }
+    
+    public void ads_reset_attack_speed()
+    {
+        // 캐릭터의 애니메이션 속도도 reset.
+        anim = GameObject.Find("Impl1").GetComponent<Animator>();
+        anim.speed = saved_animatoion_speed;
+            
+        NPC01_struct.attack_speed = saved_attack_speed;
     }
 }

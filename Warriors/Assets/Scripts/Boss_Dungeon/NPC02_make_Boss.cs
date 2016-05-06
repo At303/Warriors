@@ -3,6 +3,7 @@ using System.Collections;
 using Devwin;
 using gamedata;
 using UnityEngine.SceneManagement;
+using gamedata_weapon;
 
 public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
 {
@@ -101,14 +102,20 @@ public class NPC02_make_Boss : MonoBehaviour, IAnimEventListener
         {
             character.Info.wing_part = PlayerPrefs.GetString("npc2_wing_part", "");
             character.Info.wing_index = PlayerPrefs.GetInt("npc2_wing_index", 0);
+            
+            //현재 장착하고 있는 Wing 스킬 Setting.
+            Animator anim = GameObject.Find("Impl2").GetComponent<Animator>();
+            int equip_wing_index = GameData_weapon.wingDIC[character.Info.wing_part + character.Info.wing_index];       
+            anim.speed = GM_Boss.get_wing_skill_attack_speed(equip_wing_index);
+        
         }
 
         // NPC가 가지고있는 데이터를 setting해줌.
         NPC02_Boss_struct.damage = NPC02_make.NPC02_struct.damage;
-        NPC02_Boss_struct.add_damage = NPC02_make.NPC02_struct.add_damage;
-
+        NPC02_Boss_struct.add_damage = NPC02_make.NPC02_struct.add_damage;       
+        
         // 무기에 따라서 해당 값을 변경해주면될듯.
-        NPC02_Boss_struct.attack_speed = 1f;
+        NPC02_Boss_struct.attack_speed = NPC02_make.NPC02_struct.attack_speed;
 
         character.InitWithoutTextureBaking();
 

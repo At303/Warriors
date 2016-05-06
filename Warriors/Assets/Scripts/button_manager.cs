@@ -7,16 +7,6 @@ public class button_manager : MonoBehaviour {
     // Setting 버튼 클릭 시 true , 다시 클릭 시 false.
     bool setting_popup_enable_or_not = false;
 
-	// Use this for initialization
-	void Start () {
-		
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
 	// 보물상자 Level UP Button클릭 시 호출 함수. 
 	public void Clicked_Chest_Level_UP()
@@ -82,11 +72,11 @@ public class button_manager : MonoBehaviour {
 
     }
 
-    public void Clicked_AdsPlay_button()
+    public void Clicked_AdsPlay_button(int index_ads_channel)
     {
         // 유니티 광고를 불러오기 위한 코드.
         unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
-        unityADs.ShowRewardedAd();
+        unityADs.ShowRewardedAd(index_ads_channel);
         print("get the coin!@!@!@!@");
 
 
