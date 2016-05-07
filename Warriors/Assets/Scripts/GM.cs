@@ -9,6 +9,8 @@ public class GM : MonoBehaviour {
 
 	// Get a gap of two touch
 	int slash_index = 0;
+    public static int boost_index = 0;
+    public static ulong save_attacked_gold = 0;
     public static GameObject boost_time_label;
     public static UILabel channel1_label;
     public static UILabel channel2_label;
@@ -23,7 +25,9 @@ public class GM : MonoBehaviour {
     public static UISprite channel4_sprite;
     public static UISprite channel5_sprite;
 
-
+	public static float target_time = 0.0f;
+	public static float base_time = 0.0f;
+    
     // 종료 popup window object받아 오기 위한 변수.
     // Use this for initializationf
     void Start () {
@@ -64,12 +68,15 @@ public class GM : MonoBehaviour {
         // 처음 게임을 시작하면 보석 데이터를 Local에서 가져옴. 없으면 0으로  Set.
         if (PlayerPrefs.HasKey("gemstone"))
         {
-            string get_gemstone = PlayerPrefs.GetString("gemstone");
-            GameData.coin_struct.gemstone = Convert.ToUInt64(get_gemstone);
-            GameData.coin_struct.gemstone = 100000;
+            GameData.coin_struct.gemstone =  PlayerPrefs.GetInt("gemstone");
+            print("exist gemstone : " +  GameData.coin_struct.gemstone);
+
+            // 처음 시작시 저장되어 있는 보석을 보고 SKILL enable check.
+            GM.check_skills_enable_or_not();            
         }
         else
         {
+            print("no gemstone");
             GameData.coin_struct.gemstone = 0;
         }
 
@@ -91,10 +98,10 @@ public class GM : MonoBehaviour {
             GameData.sound_object.SetActive(false);
         }
 
-
+        
         // 골드 && 보석 Label에 Update.
         GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
-        //GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format(GameData.coin_struct.gemstone);
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
 
 		// Check All Buttons
 		check_all_function_when_gold_changed();
@@ -108,7 +115,6 @@ public class GM : MonoBehaviour {
 
     }
 
-    public static float target_time = 0.0f;
     public static bool enable_boost = false;
     public static float ads1_delay_time = 0.0f;
     public static float ads2_delay_time = 0.0f;
@@ -190,6 +196,11 @@ public class GM : MonoBehaviour {
 
             // Boost time lable에 남은 시간 update.
             boost_time_label.GetComponent<UILabel>().text = string.Format("{0:0.0}", time * 10);
+            
+            // Boost time progressbar update.
+            time = (target_time - Time.time) / base_time; 
+            GameObject.Find ("skill_boost_time_progressbar").GetComponent<UIProgressBar> ().value = time;
+                
             if (time < 0)
             {
                 print("end boost time");
@@ -198,15 +209,41 @@ public class GM : MonoBehaviour {
 
                 // boost time label false.
                 boost_time_label.SetActive(false);
-
-                // NPC 색상 원상태로 복귀
-                Color _tochange_color = new Color(1f, 1f, 1f, 1f);          // Set to red color  
-                unity_ads.check_npc(_tochange_color,false);                 // reset color.
-                unity_ads.reset_npc();                                      // reset attack speed.
-
-                print("획득하는 gold & gemstone 원상복귀.");
-                GameData.chest_struct.attacked_gold = GameData.chest_struct.attacked_gold / 2;
-                unity_ads.boost_enable = true;
+                
+                // boost time progressbar false
+                GameData.skill_object.SetActive(false);
+                
+                Color _tochange_color;
+                switch (boost_index)
+                {
+                    case 1:
+                        print("획득하는 gold 원상복귀.");
+                        GameData.chest_struct.attacked_gold = save_attacked_gold;
+                        break;
+                    
+                    case 2:
+                        // NPC 색상 원상태로 복귀 
+                        _tochange_color = new Color(1f, 1f, 1f, 1f);                // Set to red color  
+                        unity_ads.check_npc(_tochange_color,false,0,0);             // reset color.
+                        unity_ads.reset_npc();                                      // reset attack speed.
+                        break;
+                    
+                    case 3:
+                        print("획득하는 gold 원상복귀.");
+                        GameData.chest_struct.attacked_gold = save_attacked_gold;
+                        break;
+                    
+                    case 4:
+                        // NPC 색상 원상태로 복귀
+                        _tochange_color = new Color(1f, 1f, 1f, 1f);                // Set to red color  
+                        unity_ads.check_npc(_tochange_color,false,0,0);             // reset color.
+                        unity_ads.reset_npc();                                      // reset attack speed.
+                        break;
+                    
+                    default:
+                    
+                       break;
+                }
             }
         }
 
@@ -568,10 +605,31 @@ public class GM : MonoBehaviour {
 
     }
     // 보석획득량 변경시 check해야할 모든 함수 불르기
-    public static void check_all_function_when_gems_changed()
+    public static void check_skills_enable_or_not()
     {
-        GameData_weapon.check_armor_buttons_is_enable_or_not();    // check armor
-        GameData_weapon.check_wing_buttons_is_enable_or_not();     // check wing.
+        if(GameData.coin_struct.gemstone >= 1)
+        {
+            // skill 1 , 2 enable
+            GameData.skill1_button_object.isEnabled = true;
+            GameData.skill2_button_object.isEnabled = true;
+        }else
+        {
+            GameData.skill1_button_object.isEnabled = false;
+            GameData.skill2_button_object.isEnabled = false;
+        }
+        
+        if(GameData.coin_struct.gemstone >= 10)
+        {
+            // skill 3 , 4 enable
+            GameData.skill3_button_object.isEnabled = true;
+            GameData.skill4_button_object.isEnabled = true;
+        }else
+        {
+            GameData.skill3_button_object.isEnabled = false;
+            GameData.skill4_button_object.isEnabled = false;
+        }
+        
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
     }
 
     //  Coroutine   //

@@ -51,7 +51,7 @@ namespace gamedata
         public struct coin_struct
 		{
 			public static ulong gold;
-			public static ulong gemstone;
+			public static int gemstone;
 		}
 
         // Boss Monster Struct
@@ -112,6 +112,8 @@ namespace gamedata
         public static GameObject setting_popup_window_obj;
         public static GameObject quit_popup_window;
         public static GameObject Ads_popup_window;
+        public static GameObject Skill_popup_window;
+        public static GameObject Store_popup_window;
 
         // label object
         public static GameObject gold_total_label;					// gold total label
@@ -152,6 +154,14 @@ namespace gamedata
 		public static GameObject chest_lvup_btn;
         public static GameObject ads_icon_clicked;
 
+        public static UIButton skill1_button_object;
+        public static UIButton skill2_button_object;
+        public static UIButton skill3_button_object;
+        public static UIButton skill4_button_object;
+
+        public static GameObject skill_object;
+
+
         // Submenu check 
         public static bool menu1_clicked;
         public static bool menu2_clicked;
@@ -187,6 +197,8 @@ namespace gamedata
             setting_popup_window_obj = GameObject.Find("popup_setting");
             quit_popup_window = GameObject.Find("popup_quit");
             Ads_popup_window = GameObject.Find("ads_popup_window");
+            Skill_popup_window = GameObject.Find("skill_popup_window");
+            Store_popup_window = GameObject.Find("store_popup_window");
 
             gold_total_label = GameObject.Find ("_gold_total_label");
 			gemstone_total_label = GameObject.Find ("_gemstone_total_label");
@@ -201,6 +213,13 @@ namespace gamedata
 			chest_dropgold_label = GameObject.Find ("_chest_drop_gold_label");
             chest_dropgemstone_label = GameObject.Find("_chest_drop_gemstone_label");
 
+            skill1_button_object = GameObject.Find("skill1_button").GetComponent<UIButton>();
+            skill2_button_object = GameObject.Find("skill2_button").GetComponent<UIButton>();
+            skill3_button_object = GameObject.Find("skill3_button").GetComponent<UIButton>();
+            skill4_button_object = GameObject.Find("skill4_button").GetComponent<UIButton>();
+            skill_object = GameObject.Find("skill_boost_time_progressbar");
+            skill_object.SetActive(false);
+                
             // slash struct init.
             for (int i=0;i < 10;i++)
             {
@@ -345,11 +364,6 @@ namespace gamedata
 
             // =ROUND(9.5751*EXP(0.0487*C3),0)
             chest_struct.upgrade_cost = (ulong)Mathf.Round((Mathf.Exp(0.0487f*Level)) * 9.5751f);     // =ROUND(15.5*C5^1.98,0)     
-
-            // To Do..
-            // 보석은 아직 안했음. 
-            chest_struct.attacked_gemstone = (ulong)Mathf.RoundToInt(chest_struct.Level * (Mathf.Pow(1.002f, chest_struct.Level)));              // =ROUND(C5*1.002^C5,0)
-
         }
 
         public static ulong factorial(ulong n)

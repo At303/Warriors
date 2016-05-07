@@ -8,7 +8,6 @@ public class unity_ads : MonoBehaviour
     public static GameObject ads_object;
     public static Animator anim;
 
-    public static bool boost_enable = true;
     void Update()
     {
         
@@ -28,62 +27,65 @@ public class unity_ads : MonoBehaviour
         if (Advertisement.IsReady())
         {
             Advertisement.Show();
-            if(boost_enable)
+            // 보석 1개 추가해줌.
+            GameData.coin_struct.gemstone++;    
+            GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);   
+                
+            PlayerPrefs.SetInt("gemstone",(int)GameData.coin_struct.gemstone);  
+            PlayerPrefs.Save();               
+            
+            // 보석이 추가됬으니 skill이 enable인지 체크.
+            GM.check_skills_enable_or_not();            
+
+            // 광고 클릭 후 15초 딜레이 줌.
+            switch (ads_channel)
             {
-                boost_enable = false;
+                case 1:
+                    GM.channel1_sprite.enabled = false;
+                    GM.channel1_label.enabled = true;                   
+                    
+                    // 광고 아이콘 타이머 설정.
+                    GM.ads1_delay_time = Time.time + 20;
+                    break;
+                    
+                case 2:
+                    GM.channel2_sprite.enabled = false;
+                    GM.channel2_label.enabled = true;                                     
 
-                // 광고클릭 후 10초동안 gold && gemstone획득량 2배.
-                print("2배로 뿔려줌.");
-                GameData.chest_struct.attacked_gold = GameData.chest_struct.attacked_gold * 2;
-
-                // NPC가 enable되어 있는지 check후 해당 npc 색상을 변경해줌.
-                Color tochange_color = new Color(0.8f, 0f, 0f, 1f);     // Set to red color     
-                
-                // 캐릭터 색상과 attack speed를 아래 함수에서 바꿔줌.  
-                check_npc(tochange_color,true);
-
-                GM.target_time = Time.time + 10;
-                GM.enable_boost = true;
-                GM.boost_time_label.SetActive(true);
-                
-                // 광고 클릭 후 15초 딜레이 줌.
-                switch (ads_channel)
-                {
-                    case 1:
-                        GM.channel1_sprite.enabled = false;
-                        GM.channel1_label.enabled = true;
-                        GM.ads1_delay_time = Time.time + 20;
-                        break;
+                    
+                    // 광고 아이콘 타이머 설정.
+                    GM.ads2_delay_time = Time.time + 20;
+                    break;
+            
+                case 3:
+                    GM.channel3_sprite.enabled = false;
+                    GM.channel3_label.enabled = true;                    
+                    
+                    // 광고 아이콘 타이머 설정.
+                    GM.ads3_delay_time = Time.time + 20;
+                    break;
+                    
+                case 4:
+                    GM.channel4_sprite.enabled = false;
+                    GM.channel4_label.enabled = true;
+                    
+                    // 광고 아이콘 타이머 설정.
+                    GM.ads4_delay_time = Time.time + 20;
+                    break;
+                    
+                case 5:
+                    GM.channel5_sprite.enabled = false;
+                    GM.channel5_label.enabled = true;
+                    
+                    // 광고 아이콘 타이머 설정.
+                    GM.ads5_delay_time = Time.time + 20;
+                    break;
                         
-                    case 2:
-                        GM.channel2_sprite.enabled = false;
-                        GM.channel2_label.enabled = true;
-                        GM.ads2_delay_time = Time.time + 20;
-                        break;
-                
-                    case 3:
-                        GM.channel3_sprite.enabled = false;
-                        GM.channel3_label.enabled = true;
-                        GM.ads3_delay_time = Time.time + 20;
-                        break;
-                        
-                    case 4:
-                        GM.channel4_sprite.enabled = false;
-                        GM.channel4_label.enabled = true;
-                        GM.ads4_delay_time = Time.time + 20;
-                        break;
-                        
-                    case 5:
-                        GM.channel5_sprite.enabled = false;
-                        GM.channel5_label.enabled = true;
-                        GM.ads5_delay_time = Time.time + 20;
-                        break;
-                            
-                    default:
-                        print("Fail ads channel!!!");
-                        break;
-                }
+                default:
+                    print("Fail ads channel!!!");
+                    break;
             }
+
         }
 
         // 광고 popup window닫아줌.
@@ -91,7 +93,7 @@ public class unity_ads : MonoBehaviour
         
 
     }
-    public static void check_npc(Color tochange_color, bool speed_change_enable)
+    public static void check_npc(Color tochange_color, bool speed_change_enable, float attack_speed, float anim_speed)
     {
         // npc가 enable인지 아닌지 check할 변수.
         int check_npc_enable;
@@ -103,7 +105,7 @@ public class unity_ads : MonoBehaviour
             npc01.change_color(tochange_color);
             if(speed_change_enable)
             {
-                npc01.change_attack_speed(0.2f,3.2f);
+                npc01.change_attack_speed(attack_speed,anim_speed);
             }
         }
         
@@ -115,7 +117,7 @@ public class unity_ads : MonoBehaviour
             npc02.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc02.change_attack_speed(0.2f,3.2f);
+                npc02.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -127,7 +129,7 @@ public class unity_ads : MonoBehaviour
             npc03.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc03.change_attack_speed(0.2f,3.2f);
+                npc03.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -151,7 +153,7 @@ public class unity_ads : MonoBehaviour
             npc05.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc05.change_attack_speed(0.2f,3.2f);
+                npc05.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -164,7 +166,7 @@ public class unity_ads : MonoBehaviour
             npc06.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc06.change_attack_speed(0.2f,3.2f);
+                npc06.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -175,7 +177,7 @@ public class unity_ads : MonoBehaviour
             npc07.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc07.change_attack_speed(0.2f,3.2f);
+                npc07.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -187,7 +189,7 @@ public class unity_ads : MonoBehaviour
             npc08.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc08.change_attack_speed(0.2f,3.2f);
+                npc08.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -198,7 +200,7 @@ public class unity_ads : MonoBehaviour
             npc09.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc09.change_attack_speed(0.2f,3.2f);
+                npc09.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -220,7 +222,7 @@ public class unity_ads : MonoBehaviour
             npc11.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc11.change_attack_speed(0.2f,3.2f);
+                npc11.change_attack_speed(attack_speed,anim_speed);
             }
         }
 
@@ -231,7 +233,7 @@ public class unity_ads : MonoBehaviour
             npc12.change_color(tochange_color);
             if (speed_change_enable)
             {
-                npc12.change_attack_speed(0.2f,3.2f);
+                npc12.change_attack_speed(attack_speed,anim_speed);
             }
         }
         

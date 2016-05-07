@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using gamedata;
 using gamedata_weapon;
+using UnityEngine.Advertisements;
 
 public class button_manager : MonoBehaviour {
 
@@ -63,7 +64,20 @@ public class button_manager : MonoBehaviour {
         GameObject.Find("Touch_Area").GetComponent<BoxCollider2D>().size = new Vector2(1085f, 890f);
         GameObject.Find("Touch_Area").transform.position = new Vector2(0, -0.2f);
 
-
+        // 다른 팝업 윈도우가 열려 있으면 닫고 해당 팝업창 띄워줌.
+        if(GameData.Skill_popup_window.activeSelf)
+        {
+            GameData.Skill_popup_window.SetActive(false);
+        }
+        if(GameData.Store_popup_window.activeSelf)
+        {
+            GameData.Store_popup_window.SetActive(false);
+        }
+        if(GameData.Ads_popup_window.activeSelf)
+        {
+            GameData.Ads_popup_window.SetActive(false);
+        }
+        
         // 처음 게임 시작시 check button 함수를 부르지 않고 popup되었을때만 call하기 위한 변수.
         select_boss_popup.check_popup_window = true;
         // Boss 선택 창 Popup Open.
@@ -83,11 +97,75 @@ public class button_manager : MonoBehaviour {
 
     }
 
+    public void Clicked_skill_button()
+    {
+
+        // 다른 팝업 윈도우가 열려 있으면 닫고 해당 팝업창 띄워줌.
+        if(GameData.Store_popup_window.activeSelf)
+        {
+            GameData.Store_popup_window.SetActive(false);
+        }
+        if(GameData.Ads_popup_window.activeSelf)
+        {
+            GameData.Ads_popup_window.SetActive(false);
+        }
+        if(GameData.boss_sel_popup_window_obj.activeSelf)
+        {
+            GameData.boss_sel_popup_window_obj.SetActive(false);
+        }
+        
+        GameData.Skill_popup_window.SetActive(true);
+
+    }
+    public void Clicked_skill_window_close_button()
+    {
+
+        GameData.Skill_popup_window.SetActive(false);
+
+    }
+    
+    public void Clicked_store_window_close_button()
+    {
+
+        GameData.Store_popup_window.SetActive(false);
+
+    }
+      public void Clicked_store_button()
+    {
+        // 다른 팝업 윈도우가 열려 있으면 닫고 해당 팝업창 띄워줌.
+        if(GameData.Skill_popup_window.activeSelf)
+        {
+            GameData.Skill_popup_window.SetActive(false);
+        }
+        if(GameData.Ads_popup_window.activeSelf)
+        {
+            GameData.Ads_popup_window.SetActive(false);
+        }
+        if(GameData.boss_sel_popup_window_obj.activeSelf)
+        {
+            GameData.boss_sel_popup_window_obj.SetActive(false);
+        }
+        
+        GameData.Store_popup_window.SetActive(true);
+
+    }
     public void Clicked_Ads_button()
     {
-        // 유니티 광고를 불러오기 위한 코드.
-        //unity_ads unityADs = unity_ads.ads_object.GetComponent<unity_ads>();
-        //unityADs.ShowRewardedAd();
+
+        // 다른 팝업 윈도우가 열려 있으면 닫고 해당 팝업창 띄워줌.
+        if(GameData.Skill_popup_window.activeSelf)
+        {
+            GameData.Skill_popup_window.SetActive(false);
+        }
+        if(GameData.Store_popup_window.activeSelf)
+        {
+            GameData.Store_popup_window.SetActive(false);
+        }
+        if(GameData.boss_sel_popup_window_obj.activeSelf)
+        {
+            GameData.boss_sel_popup_window_obj.SetActive(false);
+        }
+
         GameData.Ads_popup_window.SetActive(true);
         GameData.ads_icon_clicked.SetActive(true);
 
@@ -227,5 +305,138 @@ public class button_manager : MonoBehaviour {
     public void temp_delete_save()
     {
         PlayerPrefs.DeleteAll();
+    }
+    
+    public void skill1_click_button()
+    {
+        print("clicked skill1 button clicked ");        
+        if( !GM.enable_boost )
+        {                  
+            // Skill1 cost인 보석1개를 지불.
+            GameData.coin_struct.gemstone--;
+            
+            // 보석이 변동됬으니 skill이 enable인지 체크.
+            GM.check_skills_enable_or_not();
+              
+            // 광고클릭 후 10초동안 gold 획득량 5배.
+            print("5배로 뿔려줌.");
+            GM.save_attacked_gold = GameData.chest_struct.attacked_gold;
+            GameData.chest_struct.attacked_gold = GameData.chest_struct.attacked_gold * 5;
+                    
+            GM.enable_boost = true;
+            GM.boost_time_label.SetActive(true);
+            // Boost time progressbar를 위함.    
+            GameData.skill_object.SetActive(true);               
+                        
+            // skill1 boost time progress bar를 위한 타임 설정.
+            GM.target_time = Time.time + 10;
+            GM.base_time = 10;
+            
+            // skill 1번이라고 GM에 Notify.
+            GM.boost_index = 1;
+
+            
+        }
+        Clicked_skill_window_close_button();
+    }
+    
+    public void skill2_click_button()
+    {
+        print("clicked skill1 button clicked ");  
+        if( !GM.enable_boost )
+        {
+            // Skill2 cost인 보석1개를 지불.
+            GameData.coin_struct.gemstone--;
+            
+            // 보석이 변동됬으니 skill이 enable인지 체크.
+            GM.check_skills_enable_or_not();
+            
+            // NPC가 enable되어 있는지 check후 해당 npc 색상을 변경해줌.
+            Color tochange_color = new Color(0.8f, 0f, 0f, 1f);     // Set to red color     
+            
+            // 캐릭터 색상과 attack speed를 아래 함수에서 바꿔줌.  
+            unity_ads.check_npc(tochange_color,true,0.1f,6f);
+
+            GM.target_time = Time.time + 5;
+            GM.enable_boost = true;
+            GM.boost_time_label.SetActive(true);
+            
+            // Boost time progressbar를 위함.    
+            GameData.skill_object.SetActive(true);               
+                        
+            // skill1 boost time progress bar를 위한 타임 설정.
+            GM.target_time = Time.time + 5;
+            GM.base_time = 5;
+                    
+            // skill 1번이라고 GM에 Notify.
+            GM.boost_index = 2;
+        }   
+        Clicked_skill_window_close_button();        
+    }
+    
+    public void skill3_click_button()
+    {
+        print("clicked skill1 button clicked ");
+        if( !GM.enable_boost )
+        {
+            // Skill3 cost인 보석10개를 지불.
+            GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - 10;
+            
+            // 보석이 변동됬으니 skill이 enable인지 체크.
+            GM.check_skills_enable_or_not();
+            
+            // 광고클릭 후 10초동안 gold 획득량 5배.
+            print("100배로 뿔려줌.");
+            GM.save_attacked_gold = GameData.chest_struct.attacked_gold;
+            GameData.chest_struct.attacked_gold = GameData.chest_struct.attacked_gold * 100;
+                    
+            GM.target_time = Time.time + 10;
+            GM.enable_boost = true;
+            GM.boost_time_label.SetActive(true);
+
+            // Boost time progressbar를 위함.    
+            GameData.skill_object.SetActive(true);                   
+                                    
+            // skill1 boost time progress bar를 위한 타임 설정.
+            GM.target_time = Time.time + 10;
+            GM.base_time = 10;
+            
+            // skill 1번이라고 GM에 Notify.
+            GM.boost_index = 3;
+        }
+        Clicked_skill_window_close_button();
+    }
+    
+    public void skill4_click_button()
+    {
+        print("clicked skill1 button clicked ");
+        if( !GM.enable_boost )
+        {
+            // Skill4 cost인 보석10개를 지불.
+            GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - 10;
+            
+            // 보석이 변동됬으니 skill이 enable인지 체크.
+            GM.check_skills_enable_or_not();
+            
+             // NPC가 enable되어 있는지 check후 해당 npc 색상을 변경해줌.
+            Color tochange_color = new Color(0.8f, 0f, 0f, 1f);     // Set to red color     
+            
+            // 캐릭터 색상과 attack speed를 아래 함수에서 바꿔줌.  
+            unity_ads.check_npc(tochange_color,true,0.1f,6f);
+
+            GM.target_time = Time.time + 10;
+            GM.enable_boost = true;
+            GM.boost_time_label.SetActive(true);
+            // Boost time progressbar를 위함.    
+            GameData.skill_object.SetActive(true);                   
+                                    
+            // skill1 boost time progress bar를 위한 타임 설정.
+            GM.target_time = Time.time + 10;
+            GM.base_time = 10;
+            
+            // skill 1번이라고 GM에 Notify.
+            GM.boost_index = 4;
+        }
+        Clicked_skill_window_close_button();
     }
 }
