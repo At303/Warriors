@@ -41,7 +41,7 @@ public class Boss_make : MonoBehaviour {
         if (start_boss_kill)
         {
             // 보스 Kill Time 설정
-            double time = (target_time - Time.time) / 20.0f;        // For test set 20 sec.
+            double time = (target_time - Time.time) / 10.0f;        // For test set 20 sec.
 
             if (time > 0 )
             {
@@ -54,8 +54,8 @@ public class Boss_make : MonoBehaviour {
             {
                 // Boss Kill TIme 종료.
                 // 시간 내에 Boss를 죽이지 못하여 popup 창 띄워줌.
-                NGUIDebug.Log("touch count ::: " + GM_Boss.touch_count.ToString());
-
+                GM_Boss.time_over_window_object.SetActive(true);
+                start_boss_kill = false;
             }
 
         }

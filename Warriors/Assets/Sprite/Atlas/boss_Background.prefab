@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: ads_channel1
     x: 0
-    y: 1781
+    y: 1778
     width: 222
     height: 144
     borderLeft: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ads_channel2
-    x: 223
-    y: 1781
+    x: 226
+    y: 1778
     width: 222
     height: 144
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ads_channel3
-    x: 446
-    y: 1781
+    x: 452
+    y: 1778
     width: 222
     height: 144
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ads_channel4
-    x: 669
-    y: 1781
+    x: 678
+    y: 1778
     width: 222
     height: 144
     borderLeft: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: ads_channel5
     x: 0
-    y: 1636
+    y: 1630
     width: 222
     height: 144
     borderLeft: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ads_icon_off
-    x: 223
-    y: 1636
+    x: 226
+    y: 1630
     width: 222
     height: 144
     borderLeft: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ads_icon_on
-    x: 446
-    y: 1636
+    x: 452
+    y: 1630
     width: 222
     height: 144
     borderLeft: 0
@@ -132,346 +132,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: DungeonColor2@64x64_13
-    x: 939
-    y: 1646
-    width: 58
-    height: 53
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 5
-    paddingTop: 5
-    paddingBottom: 6
-  - name: DungeonColor3@64x64_01
-    x: 918
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_02
-    x: 0
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_109
-    x: 65
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_110
-    x: 130
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_111
-    x: 195
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_112
-    x: 260
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_124
-    x: 325
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_125
-    x: 390
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_126
-    x: 455
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_127
-    x: 520
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_128
-    x: 0
-    y: 707
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_140
-    x: 0
-    y: 772
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_141
-    x: 0
-    y: 837
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_142
-    x: 0
-    y: 902
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_143
-    x: 910
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_144
-    x: 845
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_158
-    x: 780
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_159
-    x: 715
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_160
-    x: 650
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_174
-    x: 593
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_175
-    x: 658
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_176
-    x: 723
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_190
-    x: 788
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_191
-    x: 853
-    y: 1082
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: DungeonColor3@64x64_192
-    x: 585
-    y: 967
-    width: 64
-    height: 64
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
   - name: fight
-    x: 349
+    x: 352
     y: 1977
     width: 214
     height: 71
@@ -484,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: in-app_1000ea
-    x: 893
-    y: 1934
+    x: 138
+    y: 1157
     width: 118
     height: 114
     borderLeft: 0
@@ -497,8 +159,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_100ea
-    x: 135
-    y: 1172
+    x: 904
+    y: 1808
     width: 114
     height: 114
     borderLeft: 0
@@ -510,8 +172,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_10ea
-    x: 471
-    y: 1172
+    x: 827
+    y: 1157
     width: 106
     height: 114
     borderLeft: 0
@@ -522,9 +184,22 @@ MonoBehaviour:
     paddingRight: 12
     paddingTop: 4
     paddingBottom: 10
+  - name: in-app_140ea
+    x: 377
+    y: 1157
+    width: 112
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 6
+    paddingTop: 4
+    paddingBottom: 10
   - name: in-app_150ea
-    x: 899
-    y: 1172
+    x: 0
+    y: 1014
     width: 106
     height: 114
     borderLeft: 0
@@ -536,8 +211,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_200ea
-    x: 892
-    y: 1811
+    x: 905
+    y: 1934
     width: 115
     height: 114
     borderLeft: 0
@@ -548,9 +223,22 @@ MonoBehaviour:
     paddingRight: 3
     paddingTop: 4
     paddingBottom: 10
+  - name: in-app_25ea
+    x: 607
+    y: 1157
+    width: 106
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 12
+    paddingTop: 4
+    paddingBottom: 10
   - name: in-app_300ea
-    x: 792
-    y: 1172
+    x: 110
+    y: 1014
     width: 106
     height: 114
     borderLeft: 0
@@ -562,8 +250,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_30ea
-    x: 685
-    y: 1172
+    x: 220
+    y: 1014
     width: 106
     height: 114
     borderLeft: 0
@@ -575,8 +263,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_500ea
-    x: 250
-    y: 1172
+    x: 260
+    y: 1157
     width: 113
     height: 114
     borderLeft: 0
@@ -588,8 +276,21 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_50ea
-    x: 364
-    y: 1172
+    x: 330
+    y: 1014
+    width: 106
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 12
+    paddingTop: 4
+    paddingBottom: 10
+  - name: in-app_60ea
+    x: 717
+    y: 1157
     width: 106
     height: 114
     borderLeft: 0
@@ -601,8 +302,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_700ea
-    x: 0
-    y: 1032
+    x: 440
+    y: 1014
     width: 106
     height: 114
     borderLeft: 0
@@ -614,8 +315,8 @@ MonoBehaviour:
     paddingTop: 4
     paddingBottom: 10
   - name: in-app_70ea
-    x: 578
-    y: 1172
+    x: 550
+    y: 1014
     width: 106
     height: 114
     borderLeft: 0
@@ -624,6 +325,19 @@ MonoBehaviour:
     borderBottom: 0
     paddingLeft: 10
     paddingRight: 12
+    paddingTop: 4
+    paddingBottom: 10
+  - name: in-app_800ea
+    x: 493
+    y: 1157
+    width: 110
+    height: 114
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 10
+    paddingRight: 8
     paddingTop: 4
     paddingBottom: 10
   - name: Intro
@@ -640,8 +354,8 @@ MonoBehaviour:
     paddingTop: 8
     paddingBottom: 8
   - name: pluse_data
-    x: 967
-    y: 1567
+    x: 954
+    y: 1706
     width: 56
     height: 68
     borderLeft: 0
@@ -653,7 +367,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: Ready
-    x: 564
+    x: 570
     y: 1975
     width: 205
     height: 73
@@ -666,8 +380,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill_icon
-    x: 512
-    y: 1066
+    x: 0
+    y: 846
     width: 80
     height: 80
     borderLeft: 0
@@ -679,8 +393,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill1
-    x: 431
-    y: 1066
+    x: 0
+    y: 930
     width: 80
     height: 80
     borderLeft: 0
@@ -692,8 +406,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill1_disable
-    x: 350
-    y: 1066
+    x: 912
+    y: 1048
     width: 80
     height: 80
     borderLeft: 0
@@ -705,8 +419,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill2
-    x: 269
-    y: 1066
+    x: 828
+    y: 1048
     width: 80
     height: 80
     borderLeft: 0
@@ -718,8 +432,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill2_disable
-    x: 188
-    y: 1066
+    x: 744
+    y: 1048
     width: 80
     height: 80
     borderLeft: 0
@@ -731,8 +445,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill3
-    x: 107
-    y: 1066
+    x: 660
+    y: 1048
     width: 80
     height: 80
     borderLeft: 0
@@ -744,8 +458,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill3_disable
-    x: 918
-    y: 1292
+    x: 937
+    y: 1191
     width: 80
     height: 80
     borderLeft: 0
@@ -757,8 +471,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill4
-    x: 918
-    y: 1373
+    x: 936
+    y: 1277
     width: 80
     height: 80
     borderLeft: 0
@@ -770,8 +484,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: skill4_disable
-    x: 939
-    y: 1700
+    x: 936
+    y: 1361
     width: 80
     height: 80
     borderLeft: 0
@@ -783,8 +497,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash00
-    x: 0
-    y: 1147
+    x: 816
+    y: 1635
     width: 134
     height: 139
     borderLeft: 0
@@ -796,8 +510,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash00_btn_Off
-    x: 0
-    y: 1454
+    x: 492
+    y: 1445
     width: 160
     height: 181
     borderLeft: 0
@@ -809,8 +523,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash00_btn_On
-    x: 324
-    y: 1287
+    x: 0
+    y: 1275
     width: 161
     height: 166
     borderLeft: 0
@@ -822,8 +536,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash01
-    x: 783
-    y: 1314
+    x: 678
+    y: 1635
     width: 134
     height: 139
     borderLeft: 0
@@ -835,8 +549,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash01_btn_Off
-    x: 161
-    y: 1454
+    x: 0
+    y: 1445
     width: 160
     height: 181
     borderLeft: 0
@@ -848,8 +562,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash01_btn_On
-    x: 162
-    y: 1287
+    x: 495
+    y: 1275
     width: 161
     height: 166
     borderLeft: 0
@@ -861,8 +575,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash02
-    x: 648
-    y: 1314
+    x: 660
+    y: 1302
     width: 134
     height: 139
     borderLeft: 0
@@ -874,8 +588,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash02_btn_Off
-    x: 322
-    y: 1454
+    x: 164
+    y: 1445
     width: 160
     height: 181
     borderLeft: 0
@@ -887,8 +601,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash02_btn_On
-    x: 0
-    y: 1287
+    x: 165
+    y: 1275
     width: 161
     height: 166
     borderLeft: 0
@@ -900,8 +614,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash03
-    x: 669
-    y: 1641
+    x: 798
+    y: 1302
     width: 134
     height: 139
     borderLeft: 0
@@ -913,8 +627,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash03_btn_Off
-    x: 483
-    y: 1454
+    x: 328
+    y: 1445
     width: 160
     height: 181
     borderLeft: 0
@@ -926,8 +640,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash03_btn_On
-    x: 805
-    y: 1469
+    x: 820
+    y: 1460
     width: 161
     height: 166
     borderLeft: 0
@@ -939,8 +653,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash04
-    x: 804
-    y: 1641
+    x: 0
+    y: 1132
     width: 134
     height: 139
     borderLeft: 0
@@ -952,8 +666,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash04_btn_Off
-    x: 644
-    y: 1454
+    x: 656
+    y: 1445
     width: 160
     height: 181
     borderLeft: 0
@@ -965,8 +679,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: slash04_btn_On
-    x: 486
-    y: 1287
+    x: 330
+    y: 1275
     width: 161
     height: 166
     borderLeft: 0
@@ -978,7 +692,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: store_icon
-    x: 770
+    x: 779
     y: 1934
     width: 122
     height: 114

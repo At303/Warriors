@@ -3,6 +3,9 @@ using System.Collections;
 using gamedata;
 using gamedata_weapon;
 using System;
+using UnityEngine.SocialPlatforms;
+
+
 
 public class GM : MonoBehaviour {
 
@@ -112,8 +115,19 @@ public class GM : MonoBehaviour {
         // 1초마다 토글메뉴가 On되어 있는 버튼들 체크.
         StartCoroutine("check_button_per_1sec");
 
-
+        // Google Log in.
+        google_sign_in();
     }
+
+    void google_sign_in()
+    {
+        print("google chekc");
+        //authenticate user:
+        Social.localUser.Authenticate((bool success) => {
+        //handle success or failure
+        });
+    }
+
 
     public static bool enable_boost = false;
     public static float ads1_delay_time = 0.0f;

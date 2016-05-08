@@ -41,6 +41,7 @@ public class GM_Boss : MonoBehaviour {
 
     public static int touch_count = 0;
     
+    public static GameObject time_over_window_object;
     void Awake()
     {
         // Count 다운 Popup 테스트용.
@@ -50,7 +51,8 @@ public class GM_Boss : MonoBehaviour {
         boss_fight_bgm_object = GameObject.Find("boss_fight_bgm_");
         boss_slash_attack_sound_object = GameObject.Find("boss_slash_attack_effect");
         boss_weapon_attack_sound_object = GameObject.Find("boss_weapon_attack_effect");
-
+        time_over_window_object = GameObject.Find("time_over_window");
+            
         // Boss HP init && object 가져오기.
         for (int i = 0; i < 30; i++)
         {
@@ -111,7 +113,7 @@ public class GM_Boss : MonoBehaviour {
                 Boss_make.start_boss_kill = true;
 
                 // Boss Kill Time 세팅.
-                Boss_make.target_time = Time.time + 20;
+                Boss_make.target_time = Time.time + 10;
             }
            
         }
@@ -218,6 +220,9 @@ public class GM_Boss : MonoBehaviour {
 
                     // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
                     boss_popup_window.enable_item_popup = true;
+                    
+                    // Touch area disable.
+                    GameObject.Find("Touch_Area").SetActive(false);
 
                     SceneManager.LoadScene("Warriors_boss_item_drop");
                 }

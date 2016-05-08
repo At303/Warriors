@@ -139,8 +139,8 @@ public class boss_button_mgr : MonoBehaviour {
         get { return 30; }
     }
 
-
-
+   
+    
     public void boss_enter_clicked(int boss_index)
     {
         // Boss Index선택하여 해당 Boss던전으로 입장.
