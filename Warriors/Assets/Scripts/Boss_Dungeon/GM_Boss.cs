@@ -220,17 +220,40 @@ public class GM_Boss : MonoBehaviour {
 
                     // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
                     boss_popup_window.enable_item_popup = true;
-                    
-                    // Touch area disable.
-                    GameObject.Find("Touch_Area").SetActive(false);
 
-                    SceneManager.LoadScene("Warriors_boss_item_drop");
+                    // Monster 잡으면 리더보드에 킬 타임 올리고 다음 씬 넘어가기.
+                    kill_the_monster();
+                    
                 }
 
             }
         }
 	}
-
+    public static void kill_the_monster()
+    {
+        float test = 10f - (Boss_make.target_time - Time.time);
+        switch (boss_index)
+        {
+            case 0:
+            NGUIDebug.Log("Boss Index 0");
+            Social.ReportScore( (long)Mathf.Floor(test*10000) , "CgkI-_DYnssUEAIQBg", (bool success) => {
+                    // handle success or failure
+                    if(success)
+                    {
+                        NGUIDebug.Log("success");
+                    }else
+                    {
+                        NGUIDebug.Log("Fail");
+                    }
+                });
+                break;  
+                
+            default:
+            break;
+        }
+        SceneManager.LoadScene("Warriors_boss_item_drop");
+    }
+    
     public static float get_wing_skill_attack_speed(int wing_index)
     {
         float return_anim_attack_speed = 0f;

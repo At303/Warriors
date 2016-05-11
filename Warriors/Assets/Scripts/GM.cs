@@ -4,7 +4,8 @@ using gamedata;
 using gamedata_weapon;
 using System;
 using UnityEngine.SocialPlatforms;
-
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
 
 
 public class GM : MonoBehaviour {
@@ -30,6 +31,11 @@ public class GM : MonoBehaviour {
 
 	public static float target_time = 0.0f;
 	public static float base_time = 0.0f;
+    
+    // 구글 플레이 연동을 위한 변수들.
+    bool mAuthOnStart = true;
+    bool mInMatch = false;
+    System.Action<bool> mAuthCallback;
     
     // 종료 popup window object받아 오기 위한 변수.
     // Use this for initializationf
@@ -117,15 +123,52 @@ public class GM : MonoBehaviour {
 
         // Google Log in.
         google_sign_in();
+        
+        // 벙글 초기화.
+        Vungle.init ("5731cdd92270cba25f000092","","");
+    }
+    void SwitchToMain() {
+        //gameObject.GetComponent<MainMenuGui>().MakeActive();
     }
 
+    public void SetAuthOnStart(bool authOnStart) {
+        mAuthOnStart = authOnStart;
+    }
+    
     void google_sign_in()
     {
-        print("google chekc");
-        //authenticate user:
-        Social.localUser.Authenticate((bool success) => {
-        //handle success or failure
-        });
+        NGUIDebug.Log("google chekc");
+        
+           PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+        // enables saving game progress.
+        //.EnableSavedGames()
+        // registers a callback to handle game invitations received while the game is not running.
+         //.WithInvitationDelegate(<this.Deb>)
+        // registers a callback for turn based match notifications received while the
+        // game is not running.
+        //.WithMatchDelegate(<callback method>)
+        // require access to a player's Google+ social graph to sign in
+        .RequireGooglePlus()
+        .Build();
+
+    PlayGamesPlatform.InitializeInstance(config);
+    // recommended for debugging:
+    PlayGamesPlatform.DebugLogEnabled = true;
+    // Activate the Google Play Games platform
+    PlayGamesPlatform.Activate();
+    
+    //authenticate user:
+    Social.localUser.Authenticate((bool success) =>
+        {
+            if(success)
+            {
+                NGUIDebug.Log("success");
+            }else
+            {
+                 NGUIDebug.Log("fail to login");
+            }
+    //handle success or failure
+    });
     }
 
 

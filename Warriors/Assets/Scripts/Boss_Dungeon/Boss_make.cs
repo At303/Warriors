@@ -16,7 +16,7 @@ public class Boss_make : MonoBehaviour {
 	public static GameObject Boss_HP_Bar;
 	public static GameObject Boss_kill_time_label;
     public static bool start_boss_kill;
-
+    public static float time = 0f;
 	void Awake()
 	{
         // 카운트 다운이 끝났는지 check할 변수.
@@ -41,7 +41,7 @@ public class Boss_make : MonoBehaviour {
         if (start_boss_kill)
         {
             // 보스 Kill Time 설정
-            double time = (target_time - Time.time) / 10.0f;        // For test set 20 sec.
+            time = (target_time - Time.time) / 10.0f;        // For test set 20 sec.
 
             if (time > 0 )
             {

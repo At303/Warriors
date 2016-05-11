@@ -176,8 +176,8 @@ public class NPC01_make_Boss : MonoBehaviour,IAnimEventListener
             // Get Item popup window 오브젝트가 보스씬 실행시 처음 한번 활성화 되므로 bool변수로 control해줘야 함.
             boss_popup_window.enable_item_popup = true;
 
-            SceneManager.LoadScene("Warriors_boss_item_drop");
-
+            // Monster 잡으면 리더보드에 킬 타임 올리고 다음 씬 넘어가기.
+            GM_Boss.kill_the_monster();
         }
 
 

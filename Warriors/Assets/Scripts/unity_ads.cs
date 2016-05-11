@@ -26,7 +26,18 @@ public class unity_ads : MonoBehaviour
         
         if (Advertisement.IsReady())
         {
-            Advertisement.Show();
+            
+            int ads_random = Random.RandomRange(0,6);
+            if(ads_random < 2)
+            {
+                print("vungleads");
+                VungleAndroid.playAd();
+
+            }else
+            {
+                print("unityads");
+                Advertisement.Show();
+            }
             // 보석 1개 추가해줌.
             GameData.coin_struct.gemstone++;    
             GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);   

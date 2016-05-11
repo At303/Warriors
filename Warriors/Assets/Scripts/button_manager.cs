@@ -2,6 +2,7 @@
 using gamedata;
 using gamedata_weapon;
 using UnityEngine.Advertisements;
+using UnityEngine.SocialPlatforms;
 
 public class button_manager : MonoBehaviour {
 
@@ -464,20 +465,22 @@ public class button_manager : MonoBehaviour {
     {
         // 만원 구매
          print("10,000 Won purchase");
-       
     }
     
          public void InApp_300ea_purchase_button()
     {
         // 2만원 구매
           print("20,000 Won purchase");
-      
+
     }
     
          public void InApp_700ea_purchase_button()
     {
         // 5만원 구매
          print("50,000 Won purchase");
-       
+    }
+    public void rank_leaderboardUI()
+    {
+        Social.ShowLeaderboardUI();
     }
 }
