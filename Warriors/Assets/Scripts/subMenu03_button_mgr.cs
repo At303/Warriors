@@ -98,7 +98,7 @@ public class subMenu03_button_mgr : MonoBehaviour {
     }
 
     // Bow 캐릭터 선택 창 클릭시 호출 함수.
-    public void Clicked_bow_select_NPC(int bow_index, int _equip_weapon_index)
+    public void Clicked_bow_select_NPC(int bow_index)
     {
 
         // 버튼 클릭에 맞는 bow index를 가져오고 해당 index로 캐릭터 update.

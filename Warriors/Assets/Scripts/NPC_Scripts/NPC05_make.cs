@@ -154,8 +154,8 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         character.Info.order = 1;
         character.Info.unit_part = "darkelf-male";
         character.Info.unit_index = 8;
-        //character.Info.main_weapon_part = "bow-a";
-        //character.Info.main_weapon_index = 0;
+        character.Info.main_weapon_part = "bow-a";
+        character.Info.main_weapon_index = 0;
         character.Info.sub_weapon_part = "arrow-a";
         character.Info.sub_weapon_index = 0;
 
@@ -292,8 +292,8 @@ public class NPC05_make : MonoBehaviour, IAnimEventListener
         NPC05_struct.upgrade_cost = (ulong)Mathf.Round(Mathf.Pow(1.325f, Level) * 1000000);
 
 
-        // NPC05 레벨이 20 이상이면 NPC05 캐릭터 구입할 수 있음.
-        if (NPC05_struct.Level == 3)
+        // NPC05 레벨이 10 이상이면 NPC05 캐릭터 구입할 수 있음.
+        if (NPC05_struct.Level == 10)
         {
             // NPC05 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC05 캐릭터는 화면에 안보여짐. )
             NPC06_make.NPC06_struct.unlock_sp.SetActive(false);

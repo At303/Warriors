@@ -154,8 +154,8 @@ public class NPC11_make : MonoBehaviour, IAnimEventListener
     public void init () {
         character.Info.order = 1;
         character.Info.unit_part = "elf-male";
-        //character.Info.main_weapon_part = "bow-a";
-        //character.Info.main_weapon_index = 0;
+        character.Info.main_weapon_part = "bow-a";
+        character.Info.main_weapon_index = 0;
         character.Info.sub_weapon_part = "arrow-a";
 
         // NPC 속도 1로 초기화.
@@ -291,8 +291,8 @@ public class NPC11_make : MonoBehaviour, IAnimEventListener
         // =POWER(1.325,A2)*10000
         NPC11_struct.upgrade_cost = (ulong)Mathf.Round(Mathf.Pow(1.325f, Level) * 1000000000);
 
-        // NPC04 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
-        if (NPC11_struct.Level == 3)
+        // NPC04 레벨이 10 이상이면 NPC04 캐릭터 구입할 수 있음.
+        if (NPC11_struct.Level == 10)
         {
             // NPC12 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC12 캐릭터는 화면에 안보여짐. )
             NPC12_make.NPC12_struct.unlock_sp.SetActive(false);

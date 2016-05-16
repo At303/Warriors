@@ -155,8 +155,8 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
         character.Info.order = 1;
         character.Info.unit_part = "elf-male";
         character.Info.unit_index = 5;
-        //character.Info.main_weapon_part = "bow-a";
-        //character.Info.main_weapon_index = 0;
+        character.Info.main_weapon_part = "bow-a";
+        character.Info.main_weapon_index = 0;
         character.Info.sub_weapon_part = "arrow-a";
         character.Info.sub_weapon_index = 0;
 
@@ -201,7 +201,7 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
 
         }
 
-        npc04_char.wing_enable = PlayerPrefs.GetInt("npc1_wing_enable", 0);
+        npc04_char.wing_enable = PlayerPrefs.GetInt("npc4_wing_enable", 0);
         if (npc04_char.wing_enable == 1)
         {
             character.Info.wing_part = PlayerPrefs.GetString("npc4_wing_part", "");
@@ -294,8 +294,8 @@ public class NPC04_make : MonoBehaviour, IAnimEventListener
 
 
 
-        // NPC04 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
-        if (NPC04_struct.Level == 3)
+        // NPC04 레벨이 10 이상이면 NPC04 캐릭터 구입할 수 있음.
+        if (NPC04_struct.Level == 10)
         {
             // NPC04 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC04 캐릭터는 화면에 안보여짐. )
             NPC05_make.NPC05_struct.unlock_sp.SetActive(false);

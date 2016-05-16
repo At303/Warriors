@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class timerover_button_mgr : MonoBehaviour {
 
@@ -13,6 +14,17 @@ public class timerover_button_mgr : MonoBehaviour {
     {
         // To Do retry.
         // ads view and retry.
-        
+        int ads_random = Random.RandomRange(0,6);
+        if(ads_random < 2)
+        {
+            print("vungleads");
+            VungleAndroid.playAd();
+
+        }else
+        {
+            print("unityads");
+            Advertisement.Show();
+        }
+        SceneManager.LoadScene ("Warriors_boss");
     }
 }

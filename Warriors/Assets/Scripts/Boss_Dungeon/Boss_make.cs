@@ -52,6 +52,15 @@ public class Boss_make : MonoBehaviour {
             }
             else
             {
+                if(GM_Boss.ads_retry_just_onece)
+                {
+                    GM_Boss.ads_retry_button.SetActive(true);
+                    GM_Boss.ads_retry_just_onece = !GM_Boss.ads_retry_just_onece;
+                }else
+                {
+                    GM_Boss.ads_retry_button.SetActive(false);
+                    GM_Boss.ads_retry_just_onece = !GM_Boss.ads_retry_just_onece;
+                }
                 // Boss Kill TIme 종료.
                 // 시간 내에 Boss를 죽이지 못하여 popup 창 띄워줌.
                 GM_Boss.time_over_window_object.SetActive(true);

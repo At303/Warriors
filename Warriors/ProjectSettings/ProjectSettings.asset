@@ -9,8 +9,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: OhRock Studio
-  productName: Warriors
+  companyName: PowerRoom
+  productName: "\uBAAC\uC2A4\uD130\uB97C \uC7A1\uC544\uB77C"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -89,15 +89,15 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.ohrockstudio.Warriors
-  bundleVersion: 1.0
+  bundleIdentifier: com.PowerRoom.Warriors
+  bundleVersion: 1.06
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 8a1967b8e503f4bdda2df4c22722a60c
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -162,7 +162,7 @@ PlayerSettings:
   AndroidKeyaliasName: warriros
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -173,7 +173,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 4b218a345bedb4446bd6bee1cfccc883, type: 3}
       m_Width: 128
       m_Height: 128
   m_BuildTargetBatching: []
@@ -332,7 +332,8 @@ PlayerSettings:
   spritePackerPolicy: 
   scriptingDefineSymbols:
     1: 
-    7: Touch_Area
+    4: 
+    7: 
   metroPackageName: Warriors
   metroPackageVersion: 
   metroCertificatePath: 

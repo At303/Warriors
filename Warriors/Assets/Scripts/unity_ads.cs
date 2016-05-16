@@ -8,34 +8,25 @@ public class unity_ads : MonoBehaviour
     public static GameObject ads_object;
     public static Animator anim;
 
-    void Update()
+     void Start()
     {
-        
-        
-    }
-
-    void Start()
-    {
+               
         ads_object = this.gameObject;
     }
     
-    
-    public void ShowRewardedAd(int ads_channel)
-    {
-        print("ads is ready : " + Advertisement.IsReady());
-        
+        public void ShowRewardedAd(int ads_channel)
+    {        
         if (Advertisement.IsReady())
         {
             
             int ads_random = Random.RandomRange(0,6);
             if(ads_random < 2)
             {
-                print("vungleads");
+                //print("");
                 VungleAndroid.playAd();
 
             }else
             {
-                print("unityads");
                 Advertisement.Show();
             }
             // 보석 1개 추가해줌.

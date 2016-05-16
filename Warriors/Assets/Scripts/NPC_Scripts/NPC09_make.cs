@@ -288,8 +288,8 @@ public class NPC09_make : MonoBehaviour, IAnimEventListener
         NPC09_struct.upgrade_cost = (ulong)Mathf.Round(Mathf.Pow(1.325f, Level) * 100000000);
 
 
-        // NPC03 레벨이 20 이상이면 NPC04 캐릭터 구입할 수 있음.
-        if (NPC09_struct.Level == 2)
+        // NPC03 레벨이 10 이상이면 NPC04 캐릭터 구입할 수 있음.
+        if (NPC09_struct.Level == 10)
         {
             // NPC10 Level up 캐릭터 창 Enable 시켜줌. ( 단, 아직은 NPC04 캐릭터는 화면에 안보여짐. )
             NPC10_make.NPC10_struct.unlock_sp.SetActive(false);

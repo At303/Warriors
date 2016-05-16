@@ -8,8 +8,14 @@ public class button_manager : MonoBehaviour {
 
     // Setting 버튼 클릭 시 true , 다시 클릭 시 false.
     bool setting_popup_enable_or_not = false;
+    public static GameObject facebook_obj;
+    public static GameObject review_obj;
 
-
+    void Start()
+    {
+        facebook_obj = GameObject.Find("Facebook_click");
+        review_obj = GameObject.Find("AppReview");
+    }
 	// 보물상자 Level UP Button클릭 시 호출 함수. 
 	public void Clicked_Chest_Level_UP()
 	{
@@ -78,12 +84,16 @@ public class button_manager : MonoBehaviour {
         {
             GameData.Ads_popup_window.SetActive(false);
         }
+        if(GameData.quit_popup_window.activeSelf)
+        {
+            GameData.quit_popup_window.SetActive(false);
+        }
         
         // 처음 게임 시작시 check button 함수를 부르지 않고 popup되었을때만 call하기 위한 변수.
         select_boss_popup.check_popup_window = true;
+        
         // Boss 선택 창 Popup Open.
         GameData.boss_sel_popup_window_obj.SetActive(true);
-        //SceneManager.LoadScene ("warriors_boss");
 
     }
 
@@ -146,7 +156,13 @@ public class button_manager : MonoBehaviour {
         {
             GameData.boss_sel_popup_window_obj.SetActive(false);
         }
+        if(GameData.quit_popup_window.activeSelf)
+        {
+            GameData.quit_popup_window.SetActive(false);
+        }
         
+        
+                
         GameData.Store_popup_window.SetActive(true);
 
     }
@@ -166,7 +182,23 @@ public class button_manager : MonoBehaviour {
         {
             GameData.boss_sel_popup_window_obj.SetActive(false);
         }
-
+        if(GameData.quit_popup_window.activeSelf)
+        {
+            GameData.quit_popup_window.SetActive(false);
+        }
+        
+        int facebook_enable = PlayerPrefs.GetInt("facebook_enable",100);
+        if(facebook_enable == 0)
+        {
+            facebook_obj.SetActive(false);
+        }
+        int review_enable = PlayerPrefs.GetInt("review_enable",100);
+        
+        if(review_enable == 0)
+        {
+            review_obj.SetActive(false);
+        }
+        
         GameData.Ads_popup_window.SetActive(true);
         GameData.ads_icon_clicked.SetActive(true);
 
@@ -207,6 +239,7 @@ public class button_manager : MonoBehaviour {
 
     public void Clicked_quit_yes_button()
     {
+        
         Application.Quit();
     }
     public void Clicked_quit_no_button()
@@ -315,6 +348,8 @@ public class button_manager : MonoBehaviour {
         {                  
             // Skill1 cost인 보석1개를 지불.
             GameData.coin_struct.gemstone--;
+            PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+            PlayerPrefs.Save();
             
             // 보석이 변동됬으니 skill이 enable인지 체크.
             GM.check_skills_enable_or_not();
@@ -348,6 +383,8 @@ public class button_manager : MonoBehaviour {
         {
             // Skill2 cost인 보석1개를 지불.
             GameData.coin_struct.gemstone--;
+            PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+            PlayerPrefs.Save();
             
             // 보석이 변동됬으니 skill이 enable인지 체크.
             GM.check_skills_enable_or_not();
@@ -382,6 +419,8 @@ public class button_manager : MonoBehaviour {
         {
             // Skill3 cost인 보석10개를 지불.
             GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - 10;
+            PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+            PlayerPrefs.Save();
             
             // 보석이 변동됬으니 skill이 enable인지 체크.
             GM.check_skills_enable_or_not();
@@ -415,6 +454,8 @@ public class button_manager : MonoBehaviour {
         {
             // Skill4 cost인 보석10개를 지불.
             GameData.coin_struct.gemstone = GameData.coin_struct.gemstone - 10;
+            PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+            PlayerPrefs.Save();
             
             // 보석이 변동됬으니 skill이 enable인지 체크.
             GM.check_skills_enable_or_not();
@@ -441,46 +482,60 @@ public class button_manager : MonoBehaviour {
         Clicked_skill_window_close_button();
     }
     
-     public void InApp_10ea_purchase_button()
-    {
-        // 천원 구매
-        print("1000 Won purchase");
-    }
-    
-         public void InApp_30ea_purchase_button()
-    {
-        // 2천원 구매
-        print("2000 Won purchase");
-
-    }
-    
-         public void InApp_70ea_purchase_button()
-    {
-        // 5천원 구매
-        print("5000 Won purchase");
-        
-    }
-    
-         public void InApp_150ea_purchase_button()
-    {
-        // 만원 구매
-         print("10,000 Won purchase");
-    }
-    
-         public void InApp_300ea_purchase_button()
-    {
-        // 2만원 구매
-          print("20,000 Won purchase");
-
-    }
-    
-         public void InApp_700ea_purchase_button()
-    {
-        // 5만원 구매
-         print("50,000 Won purchase");
-    }
     public void rank_leaderboardUI()
     {
         Social.ShowLeaderboardUI();
+    }
+    
+    public void clicked_goto_facebook()
+    {
+        Application.OpenURL("https://www.facebook.com/PowerRoom-1122397801115140/");  
+        
+        // facebook 좋아요 10개 지급..
+        GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + 10;
+        PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+        PlayerPrefs.Save();
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
+
+        // 한번만 보석 지급을 위해 로컬 변수를 저장.
+        PlayerPrefs.SetInt("facebook_enable",0);
+        PlayerPrefs.Save();
+        
+        // window button close
+        Clicked_Ads_window_close_button();
+        
+    }
+    
+     public void clicked_goto_review()
+    {
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.PowerRoom.Warriors");  
+        
+        // facebook 좋아요 10개 지급..
+        GameData.coin_struct.gemstone = GameData.coin_struct.gemstone + 10;
+        PlayerPrefs.SetInt("gemstone",GameData.coin_struct.gemstone);
+        PlayerPrefs.Save();
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
+
+        // 한번만 보석 지급을 위해 로컬 변수를 저장.
+        PlayerPrefs.SetInt("review_enable",0);
+        PlayerPrefs.Save();
+
+        // window button close
+        Clicked_Ads_window_close_button();
+
+    }
+    
+    public void reset_test_button()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    public void Add_gold_test_button()
+    {
+        GameData.coin_struct.gold = GameData.coin_struct.gold + 10000000000000000000;
+        GameData.coin_struct.gemstone = 10000;
+
+        // 골드 && 보석 Label에 Update.
+        GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
+        GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
     }
 }

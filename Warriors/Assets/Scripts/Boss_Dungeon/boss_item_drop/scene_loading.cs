@@ -7,16 +7,25 @@ public class scene_loading : MonoBehaviour {
     private UISprite m_Fade;
 
     public float m_fDuration = 0.2f;
+    public static float monster_kill_time = 0f;
     public static GameObject getitem_window;
     public static GameObject item_drop_bgm_object;
     // Use this for initialization
 
     public static GameObject ads_play_retry_object;
-    
+    public static GameObject boss_kill_time_text_label;
+    public static GameObject boss_kill_time_time_label;
+
     void Awake()
     {
         ads_play_retry_object = GameObject.Find("ads_and_retry");
         ads_play_retry_object.SetActive(false);
+        
+        // Monster Kill time label init and deactive.
+        boss_kill_time_text_label = GameObject.Find("monster_kill_time_Label");
+        boss_kill_time_text_label.SetActive(false);
+        boss_kill_time_time_label = GameObject.Find("monster_kill_time");
+        boss_kill_time_time_label.SetActive(false);
     }
 
     void Start()

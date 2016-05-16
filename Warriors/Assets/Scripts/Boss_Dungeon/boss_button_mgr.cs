@@ -143,12 +143,16 @@ public class boss_button_mgr : MonoBehaviour {
     
     public void boss_enter_clicked(int boss_index)
     {
+        print("boss_index : " + boss_index);
         // Boss Index선택하여 해당 Boss던전으로 입장.
         switch(boss_index)
         {
             case 0:
                 GM_Boss.boss_index = boss_index;
-                print("boss index : " + boss_index.ToString());
+                GameData.coin_struct.gold = GameData.coin_struct.gold - boss_enter_cost[boss_index];
+                GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
+                
+                print("boss index boss_enter_cost[boss_index]: " + boss_enter_cost[boss_index].ToString());
             break;
             case 1:
                 GM_Boss.boss_index = boss_index;
@@ -277,6 +281,11 @@ public class boss_button_mgr : MonoBehaviour {
 
         // Boss retry 를 위한 변수.
         GameData.boss_kill_retry_enable = true;
+        
+        // Gold  변동사항 세이브.
+        PlayerPrefs.SetString("gold",GameData.coin_struct.gold.ToString());
+        PlayerPrefs.Save();
+        
     }
     
     IEnumerator Load()
@@ -303,7 +312,7 @@ public class boss_button_mgr : MonoBehaviour {
         {
             // Boss 던전 입장시 지불해야할 보석 공식.
             // =ROUND(110245*POWER(2.175,H4)+110245*POWER(2.175,H4),0)
-            boss_enter_cost[i] = (ulong)( 110245*Mathf.Pow(2.175f, i) *2 );
+            boss_enter_cost[i] = (ulong)( 110245*Mathf.Pow(2.175f, i+1) *2 );
             
             // Boss 던전 입장 버튼들 Object값들을 시작시 가져와서 저장해둬야함.
             string find_button_str = "enter_boss" + i.ToString() + "_button";
@@ -345,17 +354,28 @@ public class boss_button_mgr : MonoBehaviour {
         //enter_boss1_button    weapon0_enable , bow0_enable
         for (int i = 0; i < 30; i++)
         {
-            if (i < 20)
+            print("i :::: " + i);
+            if(i == 0)
+            {
+                print("GameData_weapon.weapon_struct_object[i].enable : " + GameData_weapon.weapon_struct_object[i].enable);
+                if (GameData_weapon.weapon_struct_object[i].enable == 0)
+                {
+                    print("enable");
+                    boss_enter_button_object[i + 1].GetComponent<UIButton>().isEnabled = true;
+                }else
+                {
+                    print("그렇지 않음.");
+                    boss_enter_button_object[i + 1].GetComponent<UIButton>().isEnabled = false;
+                }
+            }
+            else if (i < 20)
             {
                 // Next 보스로 진입하기 위한 조건 검사 ( 무기 enable && 활 enable )
                 if ((GameData_weapon.weapon_struct_object[i].enable == 0) && (GameData_weapon.bow_struct_object[i].enable == 0))
                 {
                     print("두 아이템 가지고 있음.");
                     boss_enter_button_object[i + 1].GetComponent<UIButton>().isEnabled = true;
-                   
-
-                    // To Do.. 
-                    // 마지막 보스에서는 예외 처리 해줘야 out of index 발생하지 않음..               
+           
                 }
                 else
                 {

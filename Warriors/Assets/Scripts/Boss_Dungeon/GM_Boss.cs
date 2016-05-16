@@ -41,6 +41,8 @@ public class GM_Boss : MonoBehaviour {
 
     public static int touch_count = 0;
     
+    public static GameObject ads_retry_button;
+    public static bool ads_retry_just_onece = true;
     public static GameObject time_over_window_object;
     void Awake()
     {
@@ -53,10 +55,11 @@ public class GM_Boss : MonoBehaviour {
         boss_weapon_attack_sound_object = GameObject.Find("boss_weapon_attack_effect");
         time_over_window_object = GameObject.Find("time_over_window");
             
+        ads_retry_button = GameObject.Find("RETRYBUTTON");    
         // Boss HP init && object 가져오기.
         for (int i = 0; i < 30; i++)
         {
-			boss_st[i].HP = (ulong)((i+1) * 40000);                                            // Boss HP init.
+			boss_st[i].HP = (ulong)( 210245*Mathf.Pow(2.075f,i) + 210245 * Mathf.Pow(1.983f,i));                                            // Boss HP init.
             boss_obj[i] = GameObject.Find("Boss" + i.ToString() + "_Sprite");               // object 가져오기.
 
             boss_obj[i].SetActive(false);                                                   // 처음에는 전부 False시켜줌.
@@ -74,8 +77,10 @@ public class GM_Boss : MonoBehaviour {
             // Boss 씬 BGM Play
             boss_fight_bgm_object.GetComponent<AudioSource>().Play(0);
         }
-
-
+        
+        // 처음 시작시에는 무조건 1회 가능하게.
+        ads_retry_just_onece = true;
+        
         start_time = Time.time + 10;
         // 이전 씬에서 어떤 보스와 싸울지 index값을 가져오고, 해당 index에 맞는 boss HP return
         boss_hp = _boss_hp = boss_st[boss_index].HP;
@@ -204,7 +209,7 @@ public class GM_Boss : MonoBehaviour {
                 }
 
                 // Damage HUDText.
-                string slash_damage_hud_str = "-" + GameData.slash_struct_object[slash_index].damage.ToString();
+                string slash_damage_hud_str = "-" + GameData.int_to_label_format((ulong)GameData.slash_struct_object[slash_index].damage).ToString();
                 slash_HUD.GetComponent<HUDText>().Add(slash_damage_hud_str, Color.red, 0.5f);
 
                 slash_index++;
@@ -231,26 +236,201 @@ public class GM_Boss : MonoBehaviour {
 	}
     public static void kill_the_monster()
     {
-        float test = 10f - (Boss_make.target_time - Time.time);
+        float monster_kill_time_tosave = 10f - (Boss_make.target_time - Time.time);
+        
+        print("string :::: " + string.Format("{0:F4}", monster_kill_time_tosave));
+        print("to save string :::" + (long)Mathf.Floor(monster_kill_time_tosave*10000));
         switch (boss_index)
         {
             case 0:
-            NGUIDebug.Log("Boss Index 0");
-            Social.ReportScore( (long)Mathf.Floor(test*10000) , "CgkI-_DYnssUEAIQBg", (bool success) => {
-                    // handle success or failure
-                    if(success)
-                    {
-                        NGUIDebug.Log("success");
-                    }else
-                    {
-                        NGUIDebug.Log("Fail");
-                    }
-                });
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQAQ", (bool success) => 
+            {                    
+            });
+                break;  
+
+            case 1:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQCA", (bool success) => 
+            {
+                    
+            });
                 break;  
                 
+            case 2:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQCQ", (bool success) => 
+            {
+                   
+            });
+                break;  
+                
+            case 3:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQCg", (bool success) => 
+            {
+                   
+            });
+                break; 
+                
+            case 4:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQCw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 5:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQDA", (bool success) => 
+            {
+            });
+                break; 
+                
+                
+            case 6:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQDQ", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 7:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQDg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 8:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQDw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 9:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQEA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 10:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQEQ", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 11:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQEg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 12:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQEw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 13:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQFA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 14:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQFQ", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 15:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQFg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 16:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQFw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 17:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQGA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 18:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQGg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 19:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQGw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 20:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQHA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 21:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQHQ", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 22:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQHg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 23:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQHw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 24:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQIA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 25:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQIQ", (bool success) => 
+            {
+            });
+                break; 
+
+            case 26:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQIg", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 27:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQIw", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 28:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQJA", (bool success) => 
+            {
+            });
+                break; 
+                
+            case 29:
+            Social.ReportScore( (long)Mathf.Floor(monster_kill_time_tosave*10000) , "CgkI6tf649MWEAIQJQ", (bool success) => 
+            {
+            });
+                break;  
+                               
             default:
             break;
         }
+        
+        scene_loading.monster_kill_time = monster_kill_time_tosave;
         SceneManager.LoadScene("Warriors_boss_item_drop");
     }
     

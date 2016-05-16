@@ -48,7 +48,8 @@ public class boss_popup_window : MonoBehaviour {
         if (enable_item_popup)
         {
             print("select_val : " + select_val.ToString());
-
+            print("GM_Boss.boss_index :" + GM_Boss.boss_index);
+            
             switch (GM_Boss.boss_index)
             {
                 // 50% : 단검 , 50% : 활1
@@ -61,7 +62,7 @@ public class boss_popup_window : MonoBehaviour {
                     else
                     {
                         // 기본 활 enable
-                        Setbow_to_popup_window(GM_Boss.boss_index, "bow", "기본 활 획득!!!");
+                        fail_getitem_popup_window();
                     }
                     
                     break;
@@ -540,6 +541,11 @@ public class boss_popup_window : MonoBehaviour {
     /// <param name="_popup_label"></param>
     void Setweapon_to_popup_window(int boss_index,string type, string _popup_label)
     {
+        // Monster Kill Time Setting                
+        scene_loading.boss_kill_time_text_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.GetComponent<UILabel>().text = string.Format("{0:F4}", scene_loading.monster_kill_time) + "초";
+        
         string weapon_enable_str = type + boss_index.ToString() + "_enable";
         print("get item str : " + weapon_enable_str);
 
@@ -581,6 +587,11 @@ public class boss_popup_window : MonoBehaviour {
     /// 보스 킬 후 popup window에 setting할 weapon data 입력할 함수.
     void Setbow_to_popup_window(int boss_index, string type, string _popup_label)
     {
+        // Monster Kill Time Setting                
+        scene_loading.boss_kill_time_text_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.GetComponent<UILabel>().text = string.Format("{0:F4}", scene_loading.monster_kill_time) + "초";
+        
         string weapon_enable_str = type + boss_index.ToString() + "_enable";
 
         if (PlayerPrefs.GetInt(weapon_enable_str, 1) == 0)
@@ -593,7 +604,7 @@ public class boss_popup_window : MonoBehaviour {
             if(GameData.boss_kill_retry_enable)
             {
                 scene_loading.ads_play_retry_object.SetActive(true);
-                GameData.boss_kill_retry_enable = false;
+                GameData.boss_kill_retry_enable = false;        
             }
         
             // popup window sprite update.
@@ -603,6 +614,7 @@ public class boss_popup_window : MonoBehaviour {
             sprite_.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
             sprite_.spriteName = weapon_sprite_str;
             sprite_.MakePixelPerfect();
+
         }
         else
         {
@@ -621,11 +633,19 @@ public class boss_popup_window : MonoBehaviour {
             sprite_.atlas = Resources.Load<UIAtlas>("BackgroundAtlas");
             sprite_.spriteName = weapon_sprite_str;
             sprite_.MakePixelPerfect();
+            
+
+
         }
     }
 
     void fail_getitem_popup_window()
     {
+        // Monster Kill Time Setting                
+        scene_loading.boss_kill_time_text_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.SetActive(true);
+        scene_loading.boss_kill_time_time_label.GetComponent<UILabel>().text = string.Format("{0:F4}", scene_loading.monster_kill_time)+ "초";
+            
         // 꽝.
         // Label update.
         label_.GetComponent<UILabel>().text = "무기 획득 실패...";

@@ -289,7 +289,7 @@ namespace gamedata_weapon
             // ************************************************************************  bow init ************************************************************************ //
 
             // 활 데이터 초기화.
-            for (int i = 0; i < 25; i++)
+            for (int i = 1; i < 25; i++)
             {
                 // 처음 시작시에는 무기 lock sprite를 on 시키기 위해 check할 변수를 false시켜줌.
                 // 나중에 아래 변수는 playerprefas로 가져와야함.
@@ -389,14 +389,12 @@ namespace gamedata_weapon
             weapon_struct_object[_weapon_index].level = _level;
 
             weapon_struct_object[_weapon_index].damage = 0;
-            // 데미지는 레벨에 따라서 누적.
-            for (int i = 1; i < _level + 1; i++)
-            {
-                weapon_struct_object[_weapon_index].damage = weapon_struct_object[_weapon_index].damage + (ulong)((5 * (_weapon_index+1) * 10) * i);
-            }
+            
+            // 데미지는 레벨 && Index에 따라서 적용.
+            weapon_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,_level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *_level); 
 
-            // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
-            weapon_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, _level)) + ((10000 *_weapon_index) + 5000*_level)));
+            // =1000*POWER(1.375,A2) + 1000*POWER(1.775,C2)+ 5000*A2
+            weapon_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, weapon_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * weapon_struct_object[_weapon_index].level)));
 
             // 무기가 어떤 npc에 장착되어 있는지 Local변수를 가져옴.
             // NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
@@ -448,12 +446,9 @@ namespace gamedata_weapon
             // 무기 레벨업 공식.
             weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
 
-            // 데미지는 레벨에 따라서 누적.
-            for (int i = 1; i < weapon_struct_object[_weapon_index].level + 1; i++)
-            {
-                weapon_struct_object[_weapon_index].damage = weapon_struct_object[_weapon_index].damage + (ulong)((5 * (_weapon_index + 1) * 10) * i);
-            }
-
+            // 데미지는 레벨 && Index에 따라서 적용.
+            weapon_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,weapon_struct_object[_weapon_index].level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *weapon_struct_object[_weapon_index].level); 
+            
             // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
             weapon_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, weapon_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * weapon_struct_object[_weapon_index].level)));
 
@@ -602,15 +597,21 @@ namespace gamedata_weapon
         // 활 레벨 UP && Data Update.
         public static void bow_data_struct_update(int _weapon_index, int _level)
         {
-            // 활 레벨 공식.
             bow_struct_object[_weapon_index].level = _level;
-            bow_struct_object[_weapon_index].damage = (ulong)(_level * 2 + 2);
-            bow_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + _level * 3);
+
+            bow_struct_object[_weapon_index].damage = 0;
+
+            // 데미지는 레벨 && Index에 따라서 적용.
+            bow_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,_level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *_level); 
+
+            // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
+            bow_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, bow_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * bow_struct_object[_weapon_index].level)));
 
             // 무기가 어떤 npc에 장착되어 있는지 Local변수를 가져옴.
             // NPC가 Weapon을 장착하고 있는 상태에서 Weapon Level up 시 update해줄 변수들.
-            string get_weapon_to_npc_str = "bow" + _weapon_index.ToString() + "_npc";
-            switch (PlayerPrefs.GetInt(get_weapon_to_npc_str, 100))
+            string get_bow_to_npc_str = "bow" + _weapon_index.ToString() + "_npc";
+                                    
+            switch (PlayerPrefs.GetInt(get_bow_to_npc_str, 100))
             {
 
                 case 4:
@@ -651,10 +652,15 @@ namespace gamedata_weapon
         // 무기 레벨 UP && Data Update.
         public static void levelup_bow_data_struct(int _weapon_index)
         {
+            int _Level = bow_struct_object[_weapon_index].level;
             // 무기 레벨업 공식.
             bow_struct_object[_weapon_index].level = bow_struct_object[_weapon_index].level + 1;
-            bow_struct_object[_weapon_index].damage = (ulong)(bow_struct_object[_weapon_index].level * 2 + 2);
-            bow_struct_object[_weapon_index].upgrade_cost = (ulong)(30 + bow_struct_object[_weapon_index].level * 2);
+
+            // 데미지는 레벨 && Index에 따라서 적용.
+            bow_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,bow_struct_object[_weapon_index].level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *bow_struct_object[_weapon_index].level); 
+
+            // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
+            bow_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, bow_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * bow_struct_object[_weapon_index].level)));
 
             // 무기 레벨업 시 무기 레벨 값을 Local에 저장.
             string set_bow_level_str = "bow" + _weapon_index.ToString() + "_level";
@@ -788,11 +794,10 @@ namespace gamedata_weapon
             string level_label = "_bow" + _weapon_index.ToString() + "_level_label";
             string damage_label = "_bow" + _weapon_index.ToString() + "_damage_label";
             string lvup_cost_label = "_bow" + _weapon_index.ToString() + "_upgrade_cost_label";
-            string skill_label = "_bow" + _weapon_index.ToString() + "_skill_label";
 
             GameObject.Find(level_label).GetComponent<UILabel>().text = bow_struct_object[_weapon_index].level.ToString();
             GameObject.Find(damage_label).GetComponent<UILabel>().text = GameData.int_to_label_format(bow_struct_object[_weapon_index].damage);
-            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format(bow_struct_object[_weapon_index].upgrade_cost);
+            GameObject.Find(lvup_cost_label).GetComponent<UILabel>().text = GameData.int_to_label_format_won(bow_struct_object[_weapon_index].upgrade_cost);
         }
 
         // ************************************************************************  wing Functions ************************************************************************ //
@@ -1586,6 +1591,7 @@ namespace gamedata_weapon
                     // armor 장착 후 slash gold 획득량 UP.
                     for (int i = 0; i < 10; i++)
                     {
+                        print("i : " + i);
                         GameData.slash_struct_object[i].add_gold_percent = GameData.slash_struct_object[i].add_gold_percent + 1f;
                         // slash skill label update
                         GameData.slash_struct_object[i].slash_bonus_label.GetComponent<UILabel>().text = "골드 획득량 " + (GameData.slash_struct_object[i].add_gold_percent * 100).ToString() + "% 증가";
@@ -2007,7 +2013,7 @@ namespace gamedata_weapon
             }
 
             // 활 버튼 체크.
-            for (int i = 0; i < bow_MAX; i++)
+            for (int i = 1; i < bow_MAX; i++)
             {
                 if (GameData.coin_struct.gold >= bow_struct_object[i].upgrade_cost)
                 {
@@ -2051,9 +2057,5 @@ namespace gamedata_weapon
                 }
             }
         }
-
-       
-
-    
     }
 }

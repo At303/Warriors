@@ -139,13 +139,16 @@ public class NPC03_make_Boss : MonoBehaviour, IAnimEventListener
     public void OnAnimation_Hitting(int _index)
     {
 
-        // 
+        // 보스 공격시 보스가 공격당하는 애니메이션 enable
+        GM_Boss.boss_obj[GM_Boss.boss_index].GetComponent<Animator>().SetTrigger("attacked");
+         
         if (GM_Boss.boss_hp > 0)
         {
 
             // Damage HUDText.
-            string get_coin_str = "-" + (NPC03_Boss_struct.damage + NPC03_Boss_struct.add_damage).ToString();
-            GM_Boss.slash_HUD.GetComponent<HUDText>().Add(get_coin_str, Color.red, 0.5f);
+            //string get_coin_str = "-" + (NPC03_Boss_struct.damage + NPC03_Boss_struct.add_damage).ToString();
+            string set_npc_attack_damage = "-" + GameData.int_to_label_format((ulong)NPC03_Boss_struct.damage+NPC03_Boss_struct.add_damage).ToString();                        
+            GM_Boss.slash_HUD.GetComponent<HUDText>().Add(set_npc_attack_damage, Color.red, 0.5f);
 
             // Chest box HP modify.
             GM_Boss.boss_hp = GM_Boss.boss_hp - (NPC03_Boss_struct.damage + NPC03_Boss_struct.add_damage);

@@ -140,6 +140,7 @@ namespace gamedata
         // boss object
         public static GameObject boss_hp_value;
         public static bool boss_kill_retry_enable;
+        public static bool boss_kill_retry_enable_when_timeover;
 
 		// sprite object
 		public static GameObject chest_sprite;
@@ -186,8 +187,7 @@ namespace gamedata
             // 첫 게임 시작시에는 default로 Sound ON시킴.
             sound_on_off = true;
             boss_kill_retry_enable = true;
-
-            debug_label2 = GameObject.Find ("debug_label2");
+            boss_kill_retry_enable_when_timeover = true;
 
             weapon_sel_popup_window_obj = GameObject.Find("_select_npc_weapon_popup_window");
             clothes_sel_popup_window_obj = GameObject.Find("_select_npc_clothes_popup_window");
@@ -415,7 +415,7 @@ namespace gamedata
 
 
             // slash UnLock.
-            if (slash_struct_object[_slash_index].Level == 3 && _slash_index != 9) // max일때는 다음 slash가 없음.
+            if (slash_struct_object[_slash_index].Level == 20 && _slash_index != 9) // max일때는 다음 slash가 없음.
             {
                 print("slash" + _slash_index.ToString() + "enable");
                 slash_struct_object[_slash_index+1].slash_enable.SetActive(true);

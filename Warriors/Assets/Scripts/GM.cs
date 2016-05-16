@@ -3,9 +3,7 @@ using System.Collections;
 using gamedata;
 using gamedata_weapon;
 using System;
-using UnityEngine.SocialPlatforms;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
+
 
 
 public class GM : MonoBehaviour {
@@ -67,7 +65,6 @@ public class GM : MonoBehaviour {
         {
             string get_gold = PlayerPrefs.GetString("gold");
             GameData.coin_struct.gold = Convert.ToUInt64(get_gold);
-            GameData.coin_struct.gold = 10000000000000000000;
         }
         else
         {
@@ -78,19 +75,16 @@ public class GM : MonoBehaviour {
         if (PlayerPrefs.HasKey("gemstone"))
         {
             GameData.coin_struct.gemstone =  PlayerPrefs.GetInt("gemstone");
-            print("exist gemstone : " +  GameData.coin_struct.gemstone);
 
             // 처음 시작시 저장되어 있는 보석을 보고 SKILL enable check.
             GM.check_skills_enable_or_not();            
         }
         else
         {
-            print("no gemstone");
-            GameData.coin_struct.gemstone = 0;
+            GameData.coin_struct.gemstone = 0;            
+             // 처음 시작시 저장되어 있는 보석을 보고 SKILL enable check.
+            GM.check_skills_enable_or_not();      
         }
-
-        //tempppppppppppppppp
-        GameData.coin_struct.gold = 10000000000000000000;
 
         // 게임 시작시 sound on off값을 가져오고, sound on off 결정.
         string sound_on_off_str = PlayerPrefs.GetString("sound_on_off", "ON");
@@ -107,7 +101,7 @@ public class GM : MonoBehaviour {
             GameData.sound_object.SetActive(false);
         }
 
-        
+        //GameData.coin_struct.gold = 10000000000000000000;
         // 골드 && 보석 Label에 Update.
         GameData.gold_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_only_total(GameData.coin_struct.gold);
         GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);
@@ -120,12 +114,12 @@ public class GM : MonoBehaviour {
         
         // 1초마다 토글메뉴가 On되어 있는 버튼들 체크.
         StartCoroutine("check_button_per_1sec");
-
-        // Google Log in.
-        google_sign_in();
-        
+       	
+		        
         // 벙글 초기화.
-        Vungle.init ("5731cdd92270cba25f000092","","");
+        Vungle.init ("5739aca2c595ba6b3c0000e3","","");
+        
+
     }
     void SwitchToMain() {
         //gameObject.GetComponent<MainMenuGui>().MakeActive();
@@ -134,43 +128,7 @@ public class GM : MonoBehaviour {
     public void SetAuthOnStart(bool authOnStart) {
         mAuthOnStart = authOnStart;
     }
-    
-    void google_sign_in()
-    {
-        NGUIDebug.Log("google chekc");
-        
-           PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-        // enables saving game progress.
-        //.EnableSavedGames()
-        // registers a callback to handle game invitations received while the game is not running.
-         //.WithInvitationDelegate(<this.Deb>)
-        // registers a callback for turn based match notifications received while the
-        // game is not running.
-        //.WithMatchDelegate(<callback method>)
-        // require access to a player's Google+ social graph to sign in
-        .RequireGooglePlus()
-        .Build();
-
-    PlayGamesPlatform.InitializeInstance(config);
-    // recommended for debugging:
-    PlayGamesPlatform.DebugLogEnabled = true;
-    // Activate the Google Play Games platform
-    PlayGamesPlatform.Activate();
-    
-    //authenticate user:
-    Social.localUser.Authenticate((bool success) =>
-        {
-            if(success)
-            {
-                NGUIDebug.Log("success");
-            }else
-            {
-                 NGUIDebug.Log("fail to login");
-            }
-    //handle success or failure
-    });
-    }
-
+   
 
     public static bool enable_boost = false;
     public static float ads1_delay_time = 0.0f;
@@ -245,6 +203,29 @@ public class GM : MonoBehaviour {
             }
         }
         
+        // 뒤로가기 버튼 클릭 시, 게임 종료 popup window.
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                // 다른 팝업 윈도우가 열려 있으면 닫고 해당 팝업창 띄워줌.
+                if(GameData.Skill_popup_window.activeSelf)
+                {
+                    GameData.Skill_popup_window.SetActive(false);
+                }
+                if(GameData.Ads_popup_window.activeSelf)
+                {
+                    GameData.Ads_popup_window.SetActive(false);
+                }
+                if(GameData.boss_sel_popup_window_obj.activeSelf)
+                {
+                    GameData.boss_sel_popup_window_obj.SetActive(false);
+                }
+            
+                // Insert Code Here (I.E. Load Scene, Etc) 
+                GameData.quit_popup_window.SetActive(true);
+            }
+        }
         
         // 광고 클릭 후 골드 2배 및 캐릭터 공속 맥스로 설정하는 코드.
         if (enable_boost)
@@ -274,7 +255,6 @@ public class GM : MonoBehaviour {
                 switch (boost_index)
                 {
                     case 1:
-                        print("획득하는 gold 원상복귀.");
                         GameData.chest_struct.attacked_gold = save_attacked_gold;
                         break;
                     
@@ -286,7 +266,6 @@ public class GM : MonoBehaviour {
                         break;
                     
                     case 3:
-                        print("획득하는 gold 원상복귀.");
                         GameData.chest_struct.attacked_gold = save_attacked_gold;
                         break;
                     
@@ -303,10 +282,21 @@ public class GM : MonoBehaviour {
                 }
             }
         }
+        
+        // Mouse Click Enable
+        //if (Input.GetMouseButtonDown(0))
+        //{
+            //{
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            {
+        // Touch Enable
+        if (Input.touchCount > 0) 
+		{
+			Touch touch1 = Input.GetTouch (0);				// first touch
+
+			// if Touch is On
+			if (touch1.phase == TouchPhase.Began) 
+			{                     
+                
                 // attack effect sound play.
                 // GameData.slash_effect_sound_object.GetComponent<AudioSource>().Play(0);
 
@@ -321,9 +311,7 @@ public class GM : MonoBehaviour {
                     {
                         // 공격 효과음 enable.
                         GameData.slash_effect_sound_object.GetComponent<AudioSource>().Play(0);
-                    }
-
-                   
+                    }                   
 
                     // 보물상자 공격시 보물상자가 공격당하는 애니메이션 enable
                     GameData.chest_animator.GetComponent<Animator>().SetTrigger("attacked");
@@ -693,7 +681,7 @@ public class GM : MonoBehaviour {
     // attack animation coroutine about 2sec.
     IEnumerator save_data_gold_gemstone()
     {
-        yield return new WaitForSeconds(10f);    
+        yield return new WaitForSeconds(5f);    
         string temp_string;
 
         // 골드 저장.
@@ -701,11 +689,10 @@ public class GM : MonoBehaviour {
         PlayerPrefs.SetString("gold", temp_string);
 
         // 보석 저장.
-        temp_string = GameData.coin_struct.gemstone.ToString();
-        PlayerPrefs.SetString("gemstone", temp_string);
-
+        PlayerPrefs.SetInt("gemstone", GameData.coin_struct.gemstone);
         print("save gold & gemstone");
         PlayerPrefs.Save();
+        
         StartCoroutine("save_data_gold_gemstone");
     }
  IEnumerator check_button_per_1sec()
