@@ -297,7 +297,6 @@ namespace gamedata
 
                 if (PlayerPrefs.HasKey(get_slash_enalbe))
                 {
-                    print("slash" + i.ToString() + "enable");
 
                     // 해당 slash 
                     slash_struct_object[i].slash_enable.SetActive(true);
@@ -406,18 +405,18 @@ namespace gamedata
             slash_struct_object[_slash_index].Level = Level;
 
             // slash 데미지는 레벨에 따라서 누적.
+            slash_struct_object[_slash_index].damage = 0;
+            // slash 데미지는 레벨에 따라서 누적.
             for (int i = 1; i < Level + 1; i++)
             {
-                slash_struct_object[_slash_index].damage = slash_struct_object[_slash_index].damage + Mathf.Round(8 * (Mathf.Pow(1.175f, i)) + 10);
+                slash_struct_object[_slash_index].damage = slash_struct_object[_slash_index].damage + Mathf.Round(8 * (_slash_index + 1) * (Mathf.Pow(1.175f, i)) + 10);
             }
-
             slash_struct_object[_slash_index].upgrade_cost = (ulong)Mathf.Round((1500 * (_slash_index + 1)) * (Mathf.Pow(1.275f, Level)) + (_slash_index + 1) * 10000 * Level);
 
 
             // slash UnLock.
             if (slash_struct_object[_slash_index].Level == 20 && _slash_index != 9) // max일때는 다음 slash가 없음.
             {
-                print("slash" + _slash_index.ToString() + "enable");
                 slash_struct_object[_slash_index+1].slash_enable.SetActive(true);
 
                 string To_set_slash = "slash" + (_slash_index+1).ToString() + "_enable";

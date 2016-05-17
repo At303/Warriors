@@ -266,7 +266,6 @@ namespace gamedata_weapon
 
                 if (weapon_struct_object[i].enable == 0)
                 {
-                    print(i.ToString() + "이 무기는 가지고 있음");
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string weapon_lock_sp = "_weapon" + i.ToString() + "_unlock_sprite";
                     GameObject.Find(weapon_lock_sp).SetActive(false);
@@ -307,7 +306,6 @@ namespace gamedata_weapon
 
                 if (bow_struct_object[i].enable == 0)
                 {
-                    print(i.ToString() + "이 활은 가지고 있음");
                     // 해당 무기를 가지고 있기 때문에 unlock_sprite를 false시켜줌.
                     string bow_lock_sp = "_bow" + i.ToString() + "_unlock_sprite";
                     GameObject.Find(bow_lock_sp).SetActive(false);
@@ -389,9 +387,14 @@ namespace gamedata_weapon
             weapon_struct_object[_weapon_index].level = _level;
 
             weapon_struct_object[_weapon_index].damage = 0;
-            
-            // 데미지는 레벨 && Index에 따라서 적용.
-            weapon_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,_level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *_level); 
+             
+            // 무기 데미지는 레벨에 따라서 누적.
+            weapon_struct_object[_weapon_index].damage = 0;
+            for (int i=1;i< _level+1;i++)
+            {
+                weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].damage + Mathf.Round(8 * (_level + 1) * (Mathf.Pow(1.875f, _weapon_index))));
+            }
+
 
             // =1000*POWER(1.375,A2) + 1000*POWER(1.775,C2)+ 5000*A2
             weapon_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, weapon_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * weapon_struct_object[_weapon_index].level)));
@@ -446,9 +449,13 @@ namespace gamedata_weapon
             // 무기 레벨업 공식.
             weapon_struct_object[_weapon_index].level = weapon_struct_object[_weapon_index].level + 1;
 
-            // 데미지는 레벨 && Index에 따라서 적용.
-            weapon_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,weapon_struct_object[_weapon_index].level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *weapon_struct_object[_weapon_index].level); 
-            
+            // 무기 데미지는 레벨에 따라서 누적.
+            weapon_struct_object[_weapon_index].damage = 0;
+            for (int i=1;i< weapon_struct_object[_weapon_index].level+1;i++)
+            {
+                weapon_struct_object[_weapon_index].damage = (ulong)(weapon_struct_object[_weapon_index].damage + Mathf.Round(8 * (weapon_struct_object[_weapon_index].level + 1) * (Mathf.Pow(1.875f, _weapon_index))));
+            }      
+                  
             // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
             weapon_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, weapon_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * weapon_struct_object[_weapon_index].level)));
 
@@ -601,9 +608,13 @@ namespace gamedata_weapon
 
             bow_struct_object[_weapon_index].damage = 0;
 
-            // 데미지는 레벨 && Index에 따라서 적용.
-            bow_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,_level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *_level); 
-
+           // 무기 데미지는 레벨에 따라서 누적.
+            bow_struct_object[_weapon_index].damage = 0;
+            for (int i=1;i< _level+1;i++)
+            {
+                bow_struct_object[_weapon_index].damage = (ulong)(bow_struct_object[_weapon_index].damage + Mathf.Round(8 * (_level + 1) * (Mathf.Pow(1.875f, _weapon_index))));
+            }
+            
             // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
             bow_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, bow_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * bow_struct_object[_weapon_index].level)));
 
@@ -656,9 +667,14 @@ namespace gamedata_weapon
             // 무기 레벨업 공식.
             bow_struct_object[_weapon_index].level = bow_struct_object[_weapon_index].level + 1;
 
-            // 데미지는 레벨 && Index에 따라서 적용.
-            bow_struct_object[_weapon_index].damage = (ulong)(1000*Mathf.Pow(1.375f,bow_struct_object[_weapon_index].level) + 1000*Mathf.Pow(1.775f,_weapon_index) + 5000f *bow_struct_object[_weapon_index].level); 
-
+           // 무기 데미지는 레벨에 따라서 누적.
+            bow_struct_object[_weapon_index].damage = 0;
+            for (int i=1;i< bow_struct_object[_weapon_index].level+1;i++)
+            {
+                bow_struct_object[_weapon_index].damage = (ulong)(bow_struct_object[_weapon_index].damage + Mathf.Round(8 * (bow_struct_object[_weapon_index].level + 1) * (Mathf.Pow(1.875f, _weapon_index))));
+            }  
+            
+            
             // =ROUND((2000*1)*POWER(1.275,C3),0)+100000*C3
             bow_struct_object[_weapon_index].upgrade_cost = (ulong)Mathf.Round((1000 * (Mathf.Pow(1.275f, bow_struct_object[_weapon_index].level)) + ((10000 * _weapon_index) + 5000 * bow_struct_object[_weapon_index].level)));
 

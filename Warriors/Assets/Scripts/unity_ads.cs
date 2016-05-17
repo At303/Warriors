@@ -8,6 +8,7 @@ public class unity_ads : MonoBehaviour
     public static GameObject ads_object;
     public static Animator anim;
 
+    public static int ads_index = 0;
      void Start()
     {
                
@@ -19,16 +20,21 @@ public class unity_ads : MonoBehaviour
         if (Advertisement.IsReady())
         {
             
-            int ads_random = Random.RandomRange(0,6);
-            if(ads_random < 2)
+            //int ads_random = Random.RandomRange(0,6);
+            ads_index++;
+            if(ads_index < 2)
             {
-                //print("");
                 VungleAndroid.playAd();
 
             }else
             {
                 Advertisement.Show();
+                if(ads_index > 5)
+                {
+                    ads_index = 0;                    
+                }
             }
+            
             // 보석 1개 추가해줌.
             GameData.coin_struct.gemstone++;    
             GameData.gemstone_total_label.GetComponent<UILabel>().text = GameData.int_to_label_format_ea((ulong)GameData.coin_struct.gemstone);   
